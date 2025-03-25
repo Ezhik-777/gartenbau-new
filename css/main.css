@@ -794,7 +794,7 @@ body {
 
 .footer__1 {
   border-radius: 12px;
-  background: #539407;
+  background: #DCEAC6;
   margin-right: 16px;
   -webkit-flex: 0 0 auto;
       -ms-flex: 0 0 auto;
@@ -811,9 +811,9 @@ body {
 
 .footer__1-txt {
   padding-left: 11px;
-  color: white;
+  color: black;
   font-size: 14.3px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.4;
   margin-top: -13px; }
 
