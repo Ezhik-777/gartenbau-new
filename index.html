@@ -2,9 +2,8 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">  
-  <!--meta name="viewport" content="width=1200px"-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />            
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Gartenbau Z.M.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,6 +160,11 @@
       img.src = imgSrc;
       img.loading = 'lazy';
       img.alt = `Foto von unserem Projekt ${i}`;
+      img.style.opacity = '0';
+      img.onload = function() {
+        this.style.opacity = '1';
+        this.style.transition = 'opacity 0.3s ease';
+      };
 
       a.appendChild(img);
       gallery.appendChild(a);
@@ -234,9 +238,9 @@
     </div>
     <div class="footer__body">
       <ul class="footer__ul">
-        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="/impressum.html">Impressum</a></li>
         <li><a href="#Kontakt">Kontakt</a></li>
-        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="/datenschutz.html">Datenschutz</a></li>
       </ul>
     </div>
     <a href="#top" class="serv-arr-up"></a>    
