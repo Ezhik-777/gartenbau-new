@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  gartenbau-website:
+    build: .
+    container_name: gartenbau-dev-server
+    ports:
+      - "3000:80"
+    volumes:
+      # Mount source files for live reload during development
+      - ./:/usr/share/nginx/html/:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gartenbau.rule=Host(`localhost`)"
+      - "traefik.http.services.gartenbau.loadbalancer.server.port=80"
+
+  # Optional: Add a file watcher for auto-reload (development only)
+  watcher:
+    image: node:alpine
+    container_name: gartenbau-watcher
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: |
+      sh -c "
+        npm install -g browser-sync &&
+        browser-sync start --proxy gartenbau-website:80 --files '**/*.html,**/*.css,**/*.js' --no-open --port 3001
+      "
+    ports:
+      - "3001:3001"
+    depends_on:
+      - gartenbau-website
+    profiles:
+      - dev
+
+networks:
+  default:
+    name: gartenbau-network
