@@ -237,7 +237,7 @@
 
   <!-- Контролы галереи -->
   <div id="galleryControls" style="display:none; text-align:center; margin-bottom: 20px;">
-    <button id="showAll" class="gallery-btn active">Alle Fotos (181)</button>
+    <button id="showAll" class="gallery-btn active">Alle Fotos (180)</button>
     <button id="showGrid" class="gallery-btn">12 auf der Seite</button>
   </div>
 
@@ -265,7 +265,7 @@
     const nextBtn = document.getElementById('nextPage');
     const pageInfo = document.getElementById('pageInfo');
 
-    const totalImages = 181;
+    const totalImages = 180;
     let allImages = [];
     let currentMode = 'all'; // 'all' or 'grid'
     let currentPage = 1;
@@ -273,6 +273,7 @@
     
     // Создаем все изображения
     for (let i = 1; i <= totalImages; i++) {
+      if (i === 42) continue; // Пропускаем image_42.webp
       const imgSrc = `img/image_${i}.webp`;
       const a = document.createElement('a');
       a.href = imgSrc;

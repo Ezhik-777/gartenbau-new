@@ -21,6 +21,13 @@ jQuery(document).ready(function( $ ) {
     $('.header__col').toggleClass("open");    
   });
 
+  // Закрыть мобильное меню при клике на ссылку
+  $('.head__mn-ul li a').click(function () {
+    $('.burger').removeClass('burger-open');
+    $('body').removeClass("body-open");
+    $('.header__col').removeClass("open");
+  });
+
 
   $('[data-fancybox="gallery"]').fancybox({
     arrows: true,
