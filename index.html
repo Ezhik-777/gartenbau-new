@@ -250,18 +250,14 @@
   document.addEventListener('DOMContentLoaded', function () {
     const gallery = document.getElementById('galleryContainer');
     const loader = document.getElementById('loader');
-    const controls = document.getElementById('galleryControls');
     const pagination = document.getElementById('pagination');
     
-    const showAllBtn = document.getElementById('showAll');
-    const showGridBtn = document.getElementById('showGrid');
     const prevBtn = document.getElementById('prevPage');
     const nextBtn = document.getElementById('nextPage');
     const pageInfo = document.getElementById('pageInfo');
 
     const totalImages = 180;
     let allImages = [];
-    let currentMode = 'all'; // 'all' or 'grid'
     let currentPage = 1;
     const imagesPerPage = 12;
     
@@ -283,13 +279,6 @@
       allImages.push(a);
     }
     
-    function showAllImages() {
-      gallery.innerHTML = '';
-      allImages.forEach(item => gallery.appendChild(item.cloneNode(true)));
-      gallery.className = 'modern-gallery all-mode';
-      pagination.style.display = 'none';
-    }
-    
     function showGridImages() {
       const startIndex = (currentPage - 1) * imagesPerPage;
       const endIndex = startIndex + imagesPerPage;
@@ -305,14 +294,6 @@
       prevBtn.disabled = currentPage === 1;
       nextBtn.disabled = currentPage === totalPages;
       pagination.style.display = 'block';
-    }
-    
-    function updateGallery() {
-      if (currentMode === 'all') {
-        showAllImages();
-      } else {
-        showGridImages();
-      }
       
       // Обновить fancybox
       setTimeout(() => {
@@ -327,25 +308,11 @@
       }, 100);
     }
     
-    showAllBtn.addEventListener('click', () => {
-      currentMode = 'all';
-      showAllBtn.classList.add('active');
-      showGridBtn.classList.remove('active');
-      updateGallery();
-    });
-    
-    showGridBtn.addEventListener('click', () => {
-      currentMode = 'grid';
-      currentPage = 1;
-      showGridBtn.classList.add('active');
-      showAllBtn.classList.remove('active');
-      updateGallery();
-    });
     
     prevBtn.addEventListener('click', () => {
       if (currentPage > 1) {
         currentPage--;
-        updateGallery();
+        showGridImages();
       }
     });
     
@@ -353,20 +320,16 @@
       const totalPages = Math.ceil(totalImages / imagesPerPage);
       if (currentPage < totalPages) {
         currentPage++;
-        updateGallery();
+        showGridImages();
       }
     });
     
     // Показать галерею
     setTimeout(() => {
       loader.style.display = 'none';
-      controls.style.display = 'block';
       gallery.style.display = 'grid';
-      // Сразу включить режим пагинации для лучшей производительности
-      currentMode = 'grid';
-      showGridBtn.classList.add('active');
-      showAllBtn.classList.remove('active');
-      updateGallery();
+      // Показать галерею в режиме пагинации
+      showGridImages();
     }, 1000);
   });
   
