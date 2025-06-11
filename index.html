@@ -33,6 +33,20 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#459d72">
   
+  <!-- Performance optimizations -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta http-equiv="X-DNS-Prefetch-Control" content="on">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="css/improvements.css" as="style">
+  <link rel="preload" href="js/jquery-3.4.1.min.js" as="script">
+  <link rel="preload" href="js/common.js" as="script">
+  <link rel="preload" href="img/bg-top.jpg" as="image">
+  <link rel="preload" href="img/logo.png" as="image">
+  
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
@@ -110,6 +124,17 @@
 <![endif]-->
 </head>
 <body>
+  <!-- Main Preloader -->
+  <div id="mainPreloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">🌿 Gartenbau Z.M.</div>
+      <div class="preloader-text">Willkommen bei Ihrem Garten-Experten<div class="loading-dots"><span>.</span><span>.</span><span>.</span></div></div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-percentage" id="progressPercentage">0%</div>
+    </div>
+  </div>
 
   <div class="wrapper">
     <div class="head" id="top">
@@ -257,36 +282,66 @@
     const pageInfo = document.getElementById('pageInfo');
 
     const totalImages = 180;
-    let allImages = [];
     let currentPage = 1;
     const imagesPerPage = 12;
     
-    // Создаем все изображения
-    for (let i = 1; i <= totalImages; i++) {
-      if (i === 42) continue; // Пропускаем image_42.webp
-      const imgSrc = `img/image_${i}.webp`;
+    // Создаем плейсхолдеры с lazy loading
+    function createImageElement(imageNumber) {
+      const imgSrc = `img/image_${imageNumber}.webp`;
       const a = document.createElement('a');
       a.href = imgSrc;
       a.className = 'gallery-item';
       a.setAttribute('data-fancybox', 'gallery2');
 
       const img = document.createElement('img');
-      img.src = imgSrc;
+      img.dataset.src = imgSrc; // Используем data-src для lazy loading
+      img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect width="100%25" height="100%25" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999"%3ELaden...%3C/text%3E%3C/svg%3E'; // SVG placeholder
       img.loading = 'lazy';
-      img.alt = `Foto von unserem Projekt ${i}`;
+      img.alt = `Foto von unserem Projekt ${imageNumber}`;
+      img.style.transition = 'opacity 0.3s ease';
+      img.style.opacity = '0.7';
       
       a.appendChild(img);
-      allImages.push(a);
+      return a;
     }
+    
+    // Intersection Observer für lazy loading
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.dataset.src;
+          if (src) {
+            img.src = src;
+            img.style.opacity = '1';
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+          }
+        }
+      });
+    }, {
+      rootMargin: '50px' // Начинать загрузку за 50px до появления
+    });
     
     function showGridImages() {
       const startIndex = (currentPage - 1) * imagesPerPage;
       const endIndex = startIndex + imagesPerPage;
-      const pageImages = allImages.slice(startIndex, endIndex);
       
       gallery.innerHTML = '';
-      pageImages.forEach(item => gallery.appendChild(item.cloneNode(true)));
       gallery.className = 'modern-gallery grid-mode';
+      
+      // Создаем только нужные изображения для текущей страницы
+      for (let i = startIndex; i < endIndex && i < totalImages; i++) {
+        const imageNumber = i + 1;
+        if (imageNumber === 42) continue; // Пропускаем image_42.webp
+        
+        const imageElement = createImageElement(imageNumber);
+        gallery.appendChild(imageElement);
+        
+        // Наблюдаем за изображением для lazy loading
+        const img = imageElement.querySelector('img');
+        imageObserver.observe(img);
+      }
       
       const totalPages = Math.ceil(totalImages / imagesPerPage);
       pageInfo.textContent = `Seite ${currentPage} von ${totalPages}`;
@@ -302,12 +357,12 @@
             arrows: true,
             infobar: false,
             smallBtn: true,
-            toolbar: true
+            toolbar: true,
+            preload: [1, 1] // Предзагружать только 1 изображение до и после
           });
         }
       }, 100);
     }
-    
     
     prevBtn.addEventListener('click', () => {
       if (currentPage > 1) {
@@ -324,13 +379,12 @@
       }
     });
     
-    // Показать галерею
+    // Показать галерею быстрее
     setTimeout(() => {
       loader.style.display = 'none';
       gallery.style.display = 'grid';
-      // Показать галерею в режиме пагинации
       showGridImages();
-    }, 1000);
+    }, 300); // Уменьшили с 1000ms до 300ms
   });
   
   // Быстрая прокрутка для навигации
