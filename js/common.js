@@ -1,4 +1,4 @@
-// Main Preloader Logic
+// Main Preloader Logic with Gallery Integration
 (function() {
   const preloader = document.getElementById('mainPreloader');
   const progressBar = document.getElementById('progressBar');
@@ -6,7 +6,39 @@
   
   let progress = 0;
   let loadedResources = 0;
-  const totalResources = 8; // CSS, JS, основные изображения, шрифты
+  let totalResources = 8; // CSS, JS, основные изображения, шрифты
+  let galleryImagesLoaded = 0;
+  let totalGalleryImages = 12; // количество изображений на первой странице
+  let isGalleryLoading = false;
+  
+  // Глобальная функция для обновления прогресса
+  window.updatePreloaderProgress = function(percentage) {
+    updateProgress(percentage);
+  };
+  
+  // Глобальная функция для установки режима загрузки галереи
+  window.setGalleryLoadingMode = function(totalImages) {
+    isGalleryLoading = true;
+    totalGalleryImages = totalImages;
+    galleryImagesLoaded = 0;
+    totalResources = 8 + totalImages; // основные ресурсы + изображения галереи
+    const baseProgress = (8 / totalResources) * 100;
+    updateProgress(baseProgress);
+  };
+  
+  // Глобальная функция для отслеживания загрузки изображений галереи
+  window.incrementGalleryProgress = function() {
+    if (isGalleryLoading) {
+      galleryImagesLoaded++;
+      const galleryProgress = (galleryImagesLoaded / totalGalleryImages) * 30; // 30% от общего прогресса для галереи
+      const baseProgress = 70; // базовый прогресс после загрузки основных ресурсов
+      updateProgress(baseProgress + galleryProgress);
+      
+      if (galleryImagesLoaded >= totalGalleryImages) {
+        finishPreloader();
+      }
+    }
+  };
   
   function updateProgress(percentage) {
     progress = Math.min(percentage, 100);
@@ -16,8 +48,22 @@
   
   function incrementProgress() {
     loadedResources++;
-    const newProgress = (loadedResources / totalResources) * 90; // 90% для ресурсов, 10% для DOM
+    const newProgress = (loadedResources / totalResources) * (isGalleryLoading ? 70 : 90);
     updateProgress(newProgress);
+  }
+  
+  function finishPreloader() {
+    setTimeout(() => {
+      updateProgress(100);
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+        setTimeout(() => {
+          if (preloader.parentNode) {
+            preloader.parentNode.removeChild(preloader);
+          }
+        }, 500);
+      }, 300);
+    }, 200);
   }
   
   // Симуляция загрузки критических ресурсов
@@ -36,21 +82,8 @@
     resources.forEach((resource, index) => {
       setTimeout(() => {
         incrementProgress();
-        if (loadedResources === totalResources) {
-          // Завершаем до 100%
-          setTimeout(() => {
-            updateProgress(100);
-            // Скрываем прелоадер
-            setTimeout(() => {
-              preloader.classList.add('hidden');
-              // Удаляем через 500ms после анимации
-              setTimeout(() => {
-                if (preloader.parentNode) {
-                  preloader.parentNode.removeChild(preloader);
-                }
-              }, 500);
-            }, 300);
-          }, 200);
+        if (loadedResources === 8 && !isGalleryLoading) {
+          finishPreloader();
         }
       }, resource.delay + index * 100);
     });
@@ -63,20 +96,12 @@
     simulateResourceLoading();
   }
   
-  // Резервный скрыватель через максимум 4 секунды
+  // Резервный скрыватель через максимум 6 секунд
   setTimeout(() => {
     if (preloader && !preloader.classList.contains('hidden')) {
-      updateProgress(100);
-      setTimeout(() => {
-        preloader.classList.add('hidden');
-        setTimeout(() => {
-          if (preloader.parentNode) {
-            preloader.parentNode.removeChild(preloader);
-          }
-        }, 500);
-      }, 200);
+      finishPreloader();
     }
-  }, 4000);
+  }, 6000);
 })();
 
 jQuery(document).ready(function( $ ) {

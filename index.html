@@ -173,7 +173,7 @@
             <div class="ihr__cont-w" id="Ueber-uns">
               <h2 class="h2">Ihr vertrauensvoller Partner für Garten- und Landschaftsbau</h2>
               <p>Professioneller Gartenbau in <strong>Remseck am Neckar</strong> und der <strong>Region Stuttgart</strong>. Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume.</p>
-              <p><strong>Kostenlose Beratung vor Ort</strong> in Ludwigsburg, Waiblingen, Kornwestheim und Umgebung.</p>
+              <p><strong>Beratung vor Ort</strong> in Ludwigsburg, Waiblingen, Kornwestheim und Umgebung.</p>
             </div>
             <div class="ihr__img-w"><img src="img/ihr.jpg" alt="Gartenbau Z.M. Remseck am Neckar - Lokaler Experte für Landschaftsbau in der Region Stuttgart"></div>
           </div>
@@ -284,6 +284,12 @@
     const totalImages = 180;
     let currentPage = 1;
     const imagesPerPage = 12;
+    let loadedImageCount = 0;
+    
+    // Устанавливаем режим загрузки галереи в прелоадере
+    if (typeof window.setGalleryLoadingMode === 'function') {
+      window.setGalleryLoadingMode(imagesPerPage);
+    }
     
     // Создаем плейсхолдеры с lazy loading
     function createImageElement(imageNumber) {
@@ -294,33 +300,59 @@
       a.setAttribute('data-fancybox', 'gallery2');
 
       const img = document.createElement('img');
-      img.dataset.src = imgSrc; // Используем data-src для lazy loading
-      img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect width="100%25" height="100%25" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999"%3ELaden...%3C/text%3E%3C/svg%3E'; // SVG placeholder
+      img.dataset.src = imgSrc;
+      img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect width="100%25" height="100%25" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999"%3ELaden...%3C/text%3E%3C/svg%3E';
       img.loading = 'lazy';
       img.alt = `Foto von unserem Projekt ${imageNumber}`;
       img.style.transition = 'opacity 0.3s ease';
       img.style.opacity = '0.7';
       
+      // Отслеживаем загрузку изображения для прелоадера
+      img.addEventListener('load', function() {
+        loadedImageCount++;
+        this.style.opacity = '1';
+        if (typeof window.incrementGalleryProgress === 'function') {
+          window.incrementGalleryProgress();
+        }
+      });
+      
+      img.addEventListener('error', function() {
+        loadedImageCount++;
+        this.style.opacity = '0.5';
+        if (typeof window.incrementGalleryProgress === 'function') {
+          window.incrementGalleryProgress();
+        }
+      });
+      
       a.appendChild(img);
       return a;
     }
     
-    // Intersection Observer für lazy loading
+    // Оптимизированный Intersection Observer для lazy loading
     const imageObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const img = entry.target;
           const src = img.dataset.src;
           if (src) {
-            img.src = src;
-            img.style.opacity = '1';
-            img.removeAttribute('data-src');
+            // Используем Image объект для более быстрой загрузки
+            const imageLoader = new Image();
+            imageLoader.onload = function() {
+              img.src = src;
+              img.removeAttribute('data-src');
+            };
+            imageLoader.onerror = function() {
+              img.src = src; // всё равно устанавливаем src
+              img.removeAttribute('data-src');
+            };
+            imageLoader.src = src;
             observer.unobserve(img);
           }
         }
       });
     }, {
-      rootMargin: '50px' // Начинать загрузку за 50px до появления
+      rootMargin: '100px', // Увеличили до 100px для более агрессивной предзагрузки
+      threshold: 0.1
     });
     
     function showGridImages() {
@@ -329,6 +361,7 @@
       
       gallery.innerHTML = '';
       gallery.className = 'modern-gallery grid-mode';
+      loadedImageCount = 0;
       
       // Создаем только нужные изображения для текущей страницы
       for (let i = startIndex; i < endIndex && i < totalImages; i++) {
@@ -350,7 +383,7 @@
       nextBtn.disabled = currentPage === totalPages;
       pagination.style.display = 'block';
       
-      // Обновить fancybox
+      // Обновить fancybox с оптимизированными настройками
       setTimeout(() => {
         if (typeof jQuery !== 'undefined' && jQuery.fancybox) {
           jQuery('[data-fancybox="gallery2"]').fancybox({
@@ -358,10 +391,14 @@
             infobar: false,
             smallBtn: true,
             toolbar: true,
-            preload: [1, 1] // Предзагружать только 1 изображение до и после
+            preload: [2, 2], // Предзагружать по 2 изображения в каждую сторону
+            animationEffect: 'fade',
+            animationDuration: 300,
+            transitionEffect: 'slide',
+            transitionDuration: 300
           });
         }
-      }, 100);
+      }, 50); // Уменьшили задержку
     }
     
     prevBtn.addEventListener('click', () => {
@@ -379,12 +416,10 @@
       }
     });
     
-    // Показать галерею быстрее
-    setTimeout(() => {
-      loader.style.display = 'none';
-      gallery.style.display = 'grid';
-      showGridImages();
-    }, 300); // Уменьшили с 1000ms до 300ms
+    // Начинаем загрузку галереи сразу после DOM
+    loader.style.display = 'none';
+    gallery.style.display = 'grid';
+    showGridImages();
   });
   
   // Быстрая прокрутка для навигации
@@ -448,7 +483,7 @@
     <div class="sform__wrap">
       <div class="contain">
         <div class="sform__left">
-          <h2 class="sform__title" id="Kontakt">Kostenlose Beratung anfragen</h2>
+          <h2 class="sform__title" id="Kontakt">Beratung anfragen</h2>
 
           <!-- Форма с интеграцией Formspree -->
           <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xoqznyqb" method="post" class="sform__form">
