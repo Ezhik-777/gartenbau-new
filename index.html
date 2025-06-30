@@ -45,14 +45,16 @@
   
   <!-- Critical CSS inline для мгновенного FCP -->
   <style>
-:root{--primary-green:#2d5a3d;--primary-light:#4a8764;--primary-dark:#1e3d2a;--accent-green:#6db884;--light-green:#e8f5eb;--white:#fff;--light-gray:#f8f9fa;--gray:#6c757d;--dark-gray:#343a40;--text-dark:#2c3e50;--gradient-primary:linear-gradient(135deg,var(--primary-green) 0%,var(--primary-light) 100%);--gradient-accent:linear-gradient(135deg,var(--accent-green) 0%,var(--primary-light) 100%);--shadow-light:0 2px 10px rgba(45,90,61,.1);--shadow-medium:0 4px 20px rgba(45,90,61,.15);--shadow-heavy:0 8px 30px rgba(45,90,61,.2);--radius-sm:8px;--radius-md:12px;--radius-lg:20px;--transition-fast:.2s ease;--transition-medium:.3s ease;--transition-slow:.5s ease;--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Jost','Inter',sans-serif;--font-accent:'Montserrat',sans-serif}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--font-primary);line-height:1.6;color:var(--text-dark);background:var(--white);overflow-x:hidden}h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:600;line-height:1.2;margin:0 0 1rem 0;color:var(--text-dark)}h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}h2{font-size:clamp(2rem,4vw,3rem);color:var(--primary-green)}h3{font-size:clamp(1.5rem,3vw,2rem);color:var(--primary-green)}p{margin:0 0 1rem 0;font-size:1.1rem;color:var(--gray)}.wrapper{min-height:100vh;display:flex;flex-direction:column}.contain{max-width:1200px;margin:0 auto;padding:0 20px}.head{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);position:fixed;top:0;left:0;right:0;z-index:1000;box-shadow:var(--shadow-light);transition:var(--transition-medium);border-bottom:1px solid rgba(45,90,61,.1)}.head.scrolled{background:rgba(255,255,255,.98);box-shadow:var(--shadow-medium)}.head__row{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;min-height:80px}.logo{font-family:var(--font-heading);font-size:1.8rem;font-weight:700;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;transition:var(--transition-fast)}.logo:hover{transform:scale(1.05)}.header__col{display:flex;align-items:center;gap:2rem}.head__mn-ul{display:flex;list-style:none;gap:.5rem;margin:0;padding:0}.head__mn-ul li a{padding:.75rem 1.25rem;color:var(--text-dark);text-decoration:none;font-weight:500;font-size:.95rem;border-radius:var(--radius-sm);transition:var(--transition-fast);position:relative}.head__mn-ul li a:hover,.head__mn-ul li a:focus{background:var(--light-green);color:var(--primary-green);transform:translateY(-2px)}.head__mn-ul li a.active{background:var(--primary-green);color:var(--white)}.top__phone{background:var(--gradient-primary);color:var(--white);padding:.75rem 1.5rem;border-radius:var(--radius-lg);text-decoration:none;font-weight:600;font-size:.95rem;box-shadow:var(--shadow-light);transition:var(--transition-medium);display:flex;align-items:center;gap:.5rem}.top__phone:before{content:"📞";font-size:1.1rem}.top__phone:hover{transform:translateY(-3px);box-shadow:var(--shadow-heavy);background:var(--gradient-accent)}.burger{display:none;flex-direction:column;cursor:pointer;width:30px;height:30px;justify-content:space-around;padding:5px 0}.burger:before,.burger:after,.burger{position:relative}.burger:before,.burger:after{content:'';display:block;height:3px;background:var(--primary-green);border-radius:2px;transition:var(--transition-fast)}.burger:after{transform-origin:center}.hero{background:linear-gradient(135deg,rgba(45,90,61,.1) 0%,rgba(232,245,235,.8) 100%),url('img/bg-top.webp') center/cover no-repeat;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;margin-top:80px}.hero:before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 50%,rgba(45,90,61,.1),transparent 70%)}.hero__content{position:relative;z-index:2;max-width:600px}.hero__title{margin-bottom:1.5rem;animation:fadeInUp 1s ease-out}.hero__subtitle{font-size:1.3rem;color:var(--gray);margin-bottom:2rem;animation:fadeInUp 1s ease-out .2s both}.hero__buttons{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeInUp 1s ease-out .4s both}.btn{padding:1rem 2rem;border-radius:var(--radius-lg);text-decoration:none;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:var(--transition-medium);display:inline-flex;align-items:center;gap:.5rem;box-shadow:var(--shadow-light)}.btn-primary{background:var(--gradient-primary);color:var(--white)}.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-heavy)}.btn-secondary{background:var(--white);color:var(--primary-green);border:2px solid var(--primary-green)}.btn-secondary:hover{background:var(--primary-green);color:var(--white);transform:translateY(-3px)}#mainPreloader{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-green),var(--primary-dark));z-index:9999;display:flex;justify-content:center;align-items:center;transition:opacity 0.5s ease}.preloader-content{text-align:center;color:white}.preloader-logo{font-size:2rem;margin-bottom:1rem}.progress-container{width:300px;height:8px;background:rgba(255,255,255,0.2);border-radius:10px;overflow:hidden;margin-bottom:1rem}#progressBar{height:100%;background:linear-gradient(90deg,#fff,rgba(255,255,255,0.8));width:0%;transition:width 0.3s ease;border-radius:10px}#progressPercentage{font-size:1.1rem;font-weight:600}#mainPreloader.hidden{opacity:0;pointer-events:none}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@media (max-width:768px){.head__mn-ul{display:none}.burger{display:flex}.hero{text-align:center;padding:2rem 0}.hero__buttons{justify-content:center}.contain{padding:0 15px}}@media (max-width:480px){.btn{padding:.75rem 1.5rem;font-size:.9rem}.hero__buttons{flex-direction:column;align-items:center}}
+:root{--primary-green:#2d5a3d;--primary-light:#4a8764;--primary-dark:#1e3d2a;--accent-green:#6db884;--light-green:#e8f5eb;--white:#fff;--light-gray:#f8f9fa;--gray:#6c757d;--dark-gray:#343a40;--text-dark:#2c3e50;--gradient-primary:linear-gradient(135deg,var(--primary-green) 0%,var(--primary-light) 100%);--gradient-accent:linear-gradient(135deg,var(--accent-green) 0%,var(--primary-light) 100%);--shadow-light:0 2px 10px rgba(45,90,61,.1);--shadow-medium:0 4px 20px rgba(45,90,61,.15);--shadow-heavy:0 8px 30px rgba(45,90,61,.2);--radius-sm:8px;--radius-md:12px;--radius-lg:20px;--transition-fast:.2s ease;--transition-medium:.3s ease;--transition-slow:.5s ease;--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Jost','Inter',sans-serif;--font-accent:'Montserrat',sans-serif}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--font-primary);line-height:1.6;color:var(--text-dark);background:var(--white);overflow-x:hidden}h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:600;line-height:1.2;margin:0 0 1rem 0;color:var(--text-dark)}h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}h2{font-size:clamp(2rem,4vw,3rem);color:var(--primary-green)}h3{font-size:clamp(1.5rem,3vw,2rem);color:var(--primary-green)}p{margin:0 0 1rem 0;font-size:1.1rem;color:var(--gray)}.wrapper{min-height:100vh;display:flex;flex-direction:column}.contain{max-width:1200px;margin:0 auto;padding:0 20px}.head{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);position:fixed;top:0;left:0;right:0;z-index:1000;box-shadow:var(--shadow-light);transition:var(--transition-medium);border-bottom:1px solid rgba(45,90,61,.1)}.head.scrolled{background:rgba(255,255,255,.98);box-shadow:var(--shadow-medium)}.head__row{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;min-height:80px}.logo{font-family:var(--font-heading);font-size:1.8rem;font-weight:700;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;transition:var(--transition-fast)}.logo:hover{transform:scale(1.05)}.header__col{display:flex;align-items:center;gap:2rem}.head__mn-ul{display:flex;list-style:none;gap:.5rem;margin:0;padding:0}.head__mn-ul li a{padding:.75rem 1.25rem;color:var(--text-dark);text-decoration:none;font-weight:500;font-size:.95rem;border-radius:var(--radius-sm);transition:var(--transition-fast);position:relative}.head__mn-ul li a:hover,.head__mn-ul li a:focus{background:var(--light-green);color:var(--primary-green);transform:translateY(-2px)}.head__mn-ul li a.active{background:var(--primary-green);color:var(--white)}.top__phone{background:var(--gradient-primary);color:var(--white);padding:.75rem 1.5rem;border-radius:var(--radius-lg);text-decoration:none;font-weight:600;font-size:.95rem;box-shadow:var(--shadow-light);transition:var(--transition-medium);display:flex;align-items:center;gap:.5rem}.top__phone:before{content:"📞";font-size:1.1rem}.top__phone:hover{transform:translateY(-3px);box-shadow:var(--shadow-heavy);background:var(--gradient-accent)}.burger{display:none;flex-direction:column;cursor:pointer;width:30px;height:30px;justify-content:space-around;padding:5px 0;position:relative}.burger span{display:block;height:3px;width:100%;background:var(--primary-green);border-radius:2px;transition:var(--transition-fast)}.burger.burger-open span:first-child{transform:rotate(45deg) translate(5px,5px)}.burger.burger-open span:nth-child(2){opacity:0}.burger.burger-open span:last-child{transform:rotate(-45deg) translate(7px,-6px)}.header__col.open{position:fixed;top:80px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;box-shadow:var(--shadow-medium);z-index:999}.header__col.open .head__mn-ul{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;width:100%}.header__col.open .head__mn-ul li a{padding:1rem;text-align:center;border-radius:var(--radius-md)}.header__col.open .top__phone{margin-top:1rem;justify-content:center}.body-open{overflow:hidden}.hero{background:linear-gradient(135deg,rgba(0,0,0,.6) 0%,rgba(45,90,61,.7) 100%),url('img/image_25.webp') center/cover no-repeat;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;margin-top:80px}.hero:before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(0,0,0,.4) 0%,rgba(45,90,61,.6) 50%,rgba(0,0,0,.3) 100%)}.hero__content{position:relative;z-index:2;max-width:600px}.hero__title{margin-bottom:1.5rem;animation:fadeInUp 1s ease-out;color:#fff!important;text-shadow:2px 2px 4px rgba(0,0,0,.5);background:none!important;-webkit-text-fill-color:#fff!important}.hero__subtitle{font-size:1.3rem;color:rgba(255,255,255,.9)!important;margin-bottom:2rem;animation:fadeInUp 1s ease-out .2s both;text-shadow:1px 1px 3px rgba(0,0,0,.5);line-height:1.5}.hero__buttons{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeInUp 1s ease-out .4s both}.btn{padding:1rem 2rem;border-radius:var(--radius-lg);text-decoration:none;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:var(--transition-medium);display:inline-flex;align-items:center;gap:.5rem;box-shadow:var(--shadow-light)}.btn-primary{background:var(--gradient-primary);color:var(--white)}.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-heavy)}.btn-secondary{background:var(--white);color:var(--primary-green);border:2px solid var(--primary-green)}.btn-secondary:hover{background:var(--primary-green);color:var(--white);transform:translateY(-3px)}#mainPreloader{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-green),var(--primary-dark));z-index:9999;display:flex;justify-content:center;align-items:center;transition:opacity 0.5s ease}.preloader-content{text-align:center;color:white}.preloader-logo{font-size:2rem;margin-bottom:1rem}.progress-container{width:300px;height:8px;background:rgba(255,255,255,0.2);border-radius:10px;overflow:hidden;margin-bottom:1rem}#progressBar{height:100%;background:linear-gradient(90deg,#fff,rgba(255,255,255,0.8));width:0%;transition:width 0.3s ease;border-radius:10px}#progressPercentage{font-size:1.1rem;font-weight:600}#mainPreloader.hidden{opacity:0;pointer-events:none}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@media (max-width:768px){.head__mn-ul{display:none}.burger{display:flex}.hero{text-align:center;padding:2rem 0}.hero__buttons{justify-content:center}.contain{padding:0 15px}}@media (max-width:480px){.btn{padding:.75rem 1.5rem;font-size:.9rem}.hero__buttons{flex-direction:column;align-items:center}}
   </style>
   
   <!-- Preload critical resources -->
-  <link rel="preload" href="img/bg-top.webp" as="image" type="image/webp">
-  <link rel="preload" href="img/bg-top.jpg" as="image">
+  <link rel="preload" href="img/image_25.webp" as="image" type="image/webp">
   <link rel="preload" href="css/non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="css/non-critical.min.css"></noscript>
+  
+  <!-- Modern Design CSS -->
+  <link rel="stylesheet" href="css/modern-design.css">
   
   <!-- Async load non-critical CSS -->
   <script>
@@ -171,8 +173,8 @@
   <!-- Main Preloader -->
   <div id="mainPreloader">
     <div class="preloader-content">
-      <div class="preloader-logo">🌿 Gartenbau Z.M.</div>
-      <div class="preloader-text">Willkommen bei Ihrem Garten-Experten<div class="loading-dots"><span>.</span><span>.</span><span>.</span></div></div>
+      <div class="preloader-logo">Gartenbau Z.M.</div>
+      <div class="preloader-text">Willkommen bei Ihrem Garten-Experten</div>
       <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
       </div>
@@ -215,7 +217,7 @@
             Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume in Remseck, Ludwigsburg & Waiblingen
           </p>
           <div class="hero__buttons">
-            <a href="#Kontakt" class="btn btn-primary">🌿 Kostenlose Beratung</a>
+            <a href="#Kontakt" class="btn btn-primary">Kostenlose Beratung</a>
             <a href="#Projekte" class="btn btn-secondary">📸 Unsere Projekte</a>
           </div>
         </div>
@@ -232,7 +234,7 @@
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
             <div>
-              <p>Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume mit über 15 Jahren Erfahrung in der Region Stuttgart.</p>
+              <p>Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume mit langjähriger Erfahrung und Leidenschaft in der Region Stuttgart.</p>
               <p><strong>Kostenlose Beratung vor Ort</strong> in Kornwestheim, Fellbach, Esslingen und der gesamten Region Stuttgart.</p>
               <div style="margin-top: 2rem;">
                 <a href="#Kontakt" class="btn btn-primary">🏡 Jetzt Beratung anfragen</a>
@@ -255,7 +257,7 @@
           </div>
           <div class="services-grid">
             <div class="service-card">
-              <div class="service-card__icon">🌿</div>
+              <div class="service-card__icon">🌱</div>
               <h3 class="service-card__title">Gartengestaltung</h3>
               <p>Professionelle Gartenplanung und -gestaltung für Remseck, Stuttgart, Ludwigsburg und Waiblingen. Von der Idee bis zur Umsetzung.</p>
               <picture>
@@ -265,7 +267,7 @@
             </div>
             
             <div class="service-card">
-              <div class="service-card__icon">🏗️</div>
+              <div class="service-card__icon">🪨</div>
               <h3 class="service-card__title">Natursteinarbeiten</h3>
               <p>Hochwertige Natur- und Betonsteinarbeiten. Mauern, Treppen, Eingangsbereiche und mehr für Stuttgart und Umgebung.</p>
               <picture>
@@ -336,28 +338,60 @@
           </div>
         </div>
       </div>
-      <section class="section" id="Projekte">
+      <!-- Premium Projects Gallery -->
+      <section class="premium-gallery-section" id="Projekte">
+        <div class="gallery-background">
+          <div class="gallery-overlay"></div>
+        </div>
+        
         <div class="contain">
-          <div class="section__header">
-            <h2 class="section__title">Gartenbau Projekte in Remseck, Ludwigsburg & Stuttgart</h2>
-            <p class="section__subtitle">Entdecken Sie unsere erfolgreich realisierten Projekte in der Region Stuttgart</p>
+          <div class="gallery-header">
+            <div class="gallery-badge">
+              <span class="badge-shine"></span>
+              <span class="badge-text">Unsere Projekte</span>
+            </div>
+            
+            <h2 class="gallery-headline">
+              <span class="highlight-text">Meisterwerke</span> aus Stuttgart & Umgebung
+            </h2>
+            
+            <p class="gallery-description">
+              Entdecken Sie die Vielfalt unserer Gartenprojekte – von modernen Terrassen bis hin zu klassischen Gartenlandschaften.
+            </p>
           </div>
         </div>
 
-<div class="projecs__contain">
-  <!-- Прелоадер -->
-  <div id="loader" style="text-align:center; padding: 2rem; color: #459d72; font-size: 1.1rem;">📸 Fotos werden geladen...</div>
+        <div class="premium-gallery-container">
+          <!-- Premium Gallery Loader -->
+          <div id="loader" class="premium-loader">
+            <div class="loader-content">
+              <div class="loader-icon">📸</div>
+              <div class="loader-text">Lade Projektfotos...</div>
+              <div class="loader-bar">
+                <div class="loader-progress"></div>
+              </div>
+            </div>
+          </div>
 
-  <!-- Галерея -->
-  <div id="galleryContainer" class="modern-gallery" style="display:none;"></div>
-  
-  <!-- Пагинация -->
-  <div id="pagination" style="display:none; text-align:center; margin-top: 30px;">
-    <button id="prevPage" class="pagination-btn">← Zurück</button>
-    <span id="pageInfo" style="margin: 0 20px; color: #666;"></span>
-    <button id="nextPage" class="pagination-btn">Nächste →</button>
-  </div>
-</div>
+          <!-- Premium Gallery Grid -->
+          <div id="galleryContainer" class="premium-gallery-grid" style="display:none;"></div>
+          
+          <!-- Premium Pagination -->
+          <div id="pagination" class="premium-pagination" style="display:none;">
+            <button id="prevPage" class="premium-pagination-btn prev">
+              <span class="btn-icon">←</span>
+              <span class="btn-text">Zurück</span>
+            </button>
+            <div class="pagination-info">
+              <span id="pageInfo" class="page-info"></span>
+            </div>
+            <button id="nextPage" class="premium-pagination-btn next">
+              <span class="btn-text">Nächste</span>
+              <span class="btn-icon">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -379,29 +413,37 @@
       window.setGalleryLoadingMode(imagesPerPage);
     }
     
-    // Создаем плейсхолдеры с lazy loading
+    // Premium Gallery Item Creator
     function createImageElement(imageNumber) {
       const imgSrc = `img/image_${imageNumber}.webp`;
       const a = document.createElement('a');
       a.href = imgSrc;
-      a.className = 'gallery-item';
+      a.className = 'premium-gallery-item';
       a.setAttribute('data-fancybox', 'gallery2');
 
+      // Create image
       const img = document.createElement('img');
       img.src = imgSrc;
       img.loading = 'lazy';
       img.decoding = 'async';
-      img.alt = `Foto von unserem Projekt ${imageNumber}`;
-      img.style.width = '100%';
-      img.style.height = '100%';
-      img.style.objectFit = 'cover';
-      img.style.transition = 'opacity 0.3s ease';
-      img.style.opacity = '0.7';
+      img.alt = `Gartenbau Projekt ${imageNumber} - Stuttgart Region`;
+      img.className = 'gallery-image';
+      
+      // Create overlay with view info
+      const overlay = document.createElement('div');
+      overlay.className = 'gallery-overlay';
+      overlay.innerHTML = `
+        <div class="overlay-content">
+          <div class="view-button">
+            <span class="view-icon">👁</span>
+            <span class="view-text">Ansehen</span>
+          </div>
+        </div>
+      `;
       
       // Отслеживаем загрузку изображения для прелоадера
       img.addEventListener('load', function() {
         loadedImageCount++;
-        this.style.opacity = '1';
         if (typeof window.incrementGalleryProgress === 'function') {
           window.incrementGalleryProgress();
         }
@@ -409,25 +451,118 @@
       
       img.addEventListener('error', function() {
         loadedImageCount++;
-        this.style.opacity = '0.5';
-        this.alt = `Изображение ${imageNumber} недоступно`;
+        this.alt = `Projekt ${imageNumber} - Bild nicht verfügbar`;
         if (typeof window.incrementGalleryProgress === 'function') {
           window.incrementGalleryProgress();
         }
       });
       
       a.appendChild(img);
+      a.appendChild(overlay);
       return a;
     }
     
-    // Gallery is now using direct image loading instead of lazy loading for better performance
+    // Check if mobile for carousel mode
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+    
+    function showCarousel() {
+      gallery.innerHTML = '';
+      gallery.className = 'modern-gallery carousel-mode';
+      
+      // Create carousel container
+      const carouselContainer = document.createElement('div');
+      carouselContainer.className = 'nature-carousel';
+      
+      const carouselTrack = document.createElement('div');
+      carouselTrack.className = 'carousel-track';
+      
+      // Add images to carousel
+      for (let i = 0; i < Math.min(totalImages, 20); i++) {
+        const imageNumber = i + 1;
+        if (imageNumber === 42) continue;
+        
+        const imageElement = createCarouselItem(imageNumber);
+        carouselTrack.appendChild(imageElement);
+      }
+      
+      carouselContainer.appendChild(carouselTrack);
+      
+      // Add carousel navigation
+      const carouselNav = document.createElement('div');
+      carouselNav.className = 'carousel-nav';
+      carouselNav.innerHTML = `
+        <button class="carousel-btn prev" onclick="moveCarousel(-1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="carousel-btn next" onclick="moveCarousel(1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      `;
+      
+      carouselContainer.appendChild(carouselNav);
+      gallery.appendChild(carouselContainer);
+      
+      // Initialize carousel
+      window.currentSlide = 0;
+      updateCarousel();
+      
+      // Setup fancybox for carousel
+      setTimeout(() => {
+        if (typeof jQuery !== 'undefined' && jQuery.fancybox) {
+          jQuery('[data-fancybox="gallery2"]').fancybox({
+            arrows: true,
+            infobar: false,
+            smallBtn: true,
+            toolbar: true,
+            animationEffect: 'fade',
+            transitionEffect: 'slide'
+          });
+        }
+      }, 50);
+    }
+    
+    function createCarouselItem(imageNumber) {
+      const item = document.createElement('div');
+      item.className = 'carousel-item';
+      
+      const imgSrc = `img/image_${imageNumber}.webp`;
+      const a = document.createElement('a');
+      a.href = imgSrc;
+      a.setAttribute('data-fancybox', 'gallery2');
+      
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.loading = 'lazy';
+      img.alt = `Gartenbau Projekt ${imageNumber}`;
+      
+      const overlay = document.createElement('div');
+      overlay.className = 'carousel-overlay';
+      overlay.innerHTML = `
+        <div class="overlay-content">
+          <div class="project-icon">👁</div>
+          <div class="project-text">Ansehen</div>
+        </div>
+      `;
+      
+      a.appendChild(img);
+      a.appendChild(overlay);
+      item.appendChild(a);
+      
+      return item;
+    }
     
     function showGridImages() {
       const startIndex = (currentPage - 1) * imagesPerPage;
       const endIndex = startIndex + imagesPerPage;
       
       gallery.innerHTML = '';
-      gallery.className = 'modern-gallery grid-mode';
+      gallery.className = 'premium-gallery-grid active';
       loadedImageCount = 0;
       
       // Создаем только нужные изображения для текущей страницы
@@ -479,10 +614,59 @@
       }
     });
     
+    // Carousel functions
+    window.moveCarousel = function(direction) {
+      const items = document.querySelectorAll('.carousel-item');
+      const totalItems = items.length;
+      
+      if (direction === 1) {
+        window.currentSlide = (window.currentSlide + 1) % totalItems;
+      } else {
+        window.currentSlide = (window.currentSlide - 1 + totalItems) % totalItems;
+      }
+      
+      updateCarousel();
+    };
+    
+    window.updateCarousel = function() {
+      const track = document.querySelector('.carousel-track');
+      if (track) {
+        const itemWidth = track.children[0]?.offsetWidth || 300;
+        const gap = 20;
+        const offset = -((itemWidth + gap) * window.currentSlide);
+        track.style.transform = `translateX(${offset}px)`;
+      }
+    };
+    
+    // Auto-resize carousel on window resize and mode switching
+    window.addEventListener('resize', () => {
+      const wasMobile = gallery.classList.contains('carousel-mode');
+      const nowMobile = isMobile();
+      
+      if (wasMobile !== nowMobile) {
+        // Switch display mode
+        if (nowMobile) {
+          showCarousel();
+          pagination.style.display = 'none';
+        } else {
+          showGridImages();
+        }
+      } else if (window.updateCarousel && nowMobile) {
+        setTimeout(updateCarousel, 100);
+      }
+    });
+    
     // Начинаем загрузку галереи сразу после DOM
     loader.style.display = 'none';
     gallery.style.display = 'grid';
-    showGridImages();
+    
+    // Choose display mode based on screen size
+    if (isMobile()) {
+      showCarousel();
+      pagination.style.display = 'none';
+    } else {
+      showGridImages();
+    }
   });
   
   // Быстрая прокрутка для навигации
@@ -524,7 +708,7 @@
         if (targetElement) {
           // Быстрая прокрутка с небольшим offset для header
           const headerHeight = document.querySelector('.head')?.offsetHeight || 80;
-          const targetPosition = targetElement.offsetTop - headerHeight;
+          const targetPosition = targetElement.offsetTop - headerHeight - 20;
           
           // Используем кастомную быструю анимацию
           smoothScrollTo(targetPosition, 400); // 400ms вместо стандартных медленных
@@ -534,55 +718,178 @@
   });
 </script>
 
-      <section class="info">
-        <div class="contain" id="Kontakt">
-          <h2 class="h2">Zufriedene Kunden sind unser bester Beweis</h2>
-          <p>Teilen Sie Ihre Erfahrung mit anderen und helfen Sie uns, noch besser zu werden.</p>
-          <a href="https://g.page/r/CZk_BZnPcSqHEB0/review" class="info__btn btn">Google Bewertung abgeben</a>
+      <!-- Premium CTA & Reviews Section -->
+      <section class="premium-cta-section">
+        <div class="cta-background">
+          <div class="cta-gradient"></div>
+          <div class="floating-elements">
+            <div class="float-elem elem-1"></div>
+            <div class="float-elem elem-2"></div>
+            <div class="float-elem elem-3"></div>
+          </div>
+        </div>
+        
+        <div class="contain">
+          <div class="cta-content">
+            <div class="cta-badge">
+              <span class="badge-shine"></span>
+              <span class="badge-text">Über 100 zufriedene Kunden</span>
+            </div>
+            
+            <h2 class="cta-headline">
+              Ihr Traumgarten ist nur 
+              <span class="highlight-text">einen Anruf</span> 
+              entfernt
+            </h2>
+            
+            <p class="cta-description">
+              Verwirklichen Sie Ihren Traumgarten mit professioneller Planung und hochwertiger Umsetzung.
+            </p>
+            
+            <div class="cta-actions">
+              <a href="tel:+491782747470" class="cta-btn primary">
+                <span class="btn-glow"></span>
+                <span class="btn-content">
+                  <span class="btn-icon">📞</span>
+                  <span class="btn-text">Sofort anrufen</span>
+                  <span class="btn-subtext">+49 178 2747470</span>
+                </span>
+              </a>
+              
+              <a href="#Kontakt" class="cta-btn secondary">
+                <span class="btn-content">
+                  <span class="btn-icon">✉️</span>
+                  <span class="btn-text">Nachricht senden</span>
+                </span>
+              </a>
+            </div>
+            
+            <div class="trust-proof">
+              <div class="proof-item">
+                <div class="proof-icon">⭐</div>
+                <div class="proof-text">
+                  <span class="proof-number">5.0</span>
+                  <span class="proof-label">Google Bewertung</span>
+                </div>
+              </div>
+              
+              <div class="proof-item">
+                <div class="proof-icon">✅</div>
+                <div class="proof-text">
+                  <span class="proof-number">100%</span>
+                  <span class="proof-label">Kundenzufriedenheit</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-<section class="sform" id="Kontakt">
-  <div class="contain contain-2">
-    <div class="sform__wrap">
-      <div class="contain">
-        <div class="sform__left">
-          <h2 class="sform__title" id="contact-form-title">Beratung anfragen</h2>
-
-          <!-- Форма с интеграцией Formspree -->
-          <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xoqznyqb" method="post" class="sform__form" role="form" aria-labelledby="contact-form-title">
-            <div class="sform__inputs">
-              <div class="sform__input-w">
-                <label for="full-name" class="sr-only form-required">Name</label>
-                <input class="sform__input" type="text" name="name" id="full-name" placeholder="Name" required aria-required="true" aria-describedby="name-error">
-              </div>
-              <div class="sform__input-w">
-                <label for="email-address" class="sr-only form-required">E-Mail-Adresse</label>
-                <input class="sform__input" type="email" name="_replyto" id="email-address" placeholder="Email" required aria-required="true" aria-describedby="email-error">
-              </div>
-            </div>
-
-            <label for="message" class="sr-only form-required">Nachricht</label>
-            <textarea name="message" id="message" rows="5" placeholder="Nachricht" required aria-required="true" aria-describedby="message-error"></textarea>
-
-            <!-- Скрытое поле для темы письма -->
-            <input type="hidden" name="_subject" id="email-subject" value="EMail von gartenbauzm.de">
-
-            <!-- Чекбокс согласия GDPR -->
-            <div class="sform__consent">
-              <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.4;">
-                <input type="checkbox" name="consent" required style="margin-top: 2px; flex-shrink: 0;">
-                <span>Ich stimme der Verarbeitung meiner Daten gemäß der <a href="/datenschutz.html" target="_blank" style="color: #459d72; text-decoration: underline;">Datenschutzerklärung</a> zu.</span>
-              </label>
-            </div>
-
-            <button type="submit" class="btn" aria-describedby="submit-info">Nachricht senden</button>
-            <div id="submit-info" class="sr-only">Formular wird an unsere E-Mail-Adresse gesendet</div>
-          </form>
+      <!-- Modern Contact Form Section -->
+      <section class="modern-contact-section" id="Kontakt">
+        <div class="contact-bg">
+          <div class="contact-overlay"></div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+        
+        <div class="contain">
+          <div class="contact-grid">
+            <div class="contact-info">
+              <div class="info-header">
+                <h2 class="contact-headline">Lassen Sie uns <span class="accent-text">sprechen</span></h2>
+                <p class="contact-desc">Ihr Projekt verdient die beste Beratung. Wir sind da, um Ihre Garten-Träume wahr werden zu lassen.</p>
+              </div>
+              
+              <div class="contact-methods">
+                <div class="method-item phone">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="method-info">
+                    <h4>Telefon</h4>
+                    <a href="tel:+491782747470" class="method-link">+49 178 2747470</a>
+                    <span class="method-note">Mo-Fr: 8:00-18:00</span>
+                  </div>
+                </div>
+                
+                <div class="method-item email">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/>
+                      <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </div>
+                  <div class="method-info">
+                    <h4>E-Mail</h4>
+                    <a href="mailto:info.gartenbauzm@gmx.de" class="method-link">info.gartenbauzm@gmx.de</a>
+                    <span class="method-note">24h Antwortzeit</span>
+                  </div>
+                </div>
+                
+                <div class="method-item location">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                      <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </div>
+                  <div class="method-info">
+                    <h4>Standort</h4>
+                    <p class="method-link">Lerchenrain 9<br>71686 Remseck am Neckar</p>
+                    <span class="method-note">Region Stuttgart</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contact-form-container">
+              <div class="form-card">
+                <div class="form-header-new">
+                  <h3>Projekt anfragen</h3>
+                  <p>Kostenlose Beratung in 24h</p>
+                </div>
+        
+                <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xoqznyqb" method="post" class="modern-form">
+                  <div class="input-row">
+                    <div class="input-field">
+                      <input type="text" name="name" id="full-name" required>
+                      <label for="full-name">Ihr Name</label>
+                      <div class="input-line"></div>
+                    </div>
+                    
+                    <div class="input-field">
+                      <input type="email" name="_replyto" id="email-address" required>
+                      <label for="email-address">E-Mail</label>
+                      <div class="input-line"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="input-field full">
+                    <textarea name="message" id="message" rows="4" required></textarea>
+                    <label for="message">Ihr Gartenprojekt</label>
+                    <div class="input-line"></div>
+                  </div>
+                  
+                  <input type="hidden" name="_subject" value="Gartenberatung Anfrage von gartenbauzm.de">
+                  
+                  <div class="form-consent">
+                    <label class="consent-checkbox">
+                      <input type="checkbox" name="consent" required>
+                      <span class="checkmark-new"></span>
+                      <span class="consent-text">Ich stimme der <a href="/datenschutz.html">Datenschutzerklärung</a> zu.</span>
+                    </label>
+                  </div>
+                  
+                  <button type="submit" class="submit-btn-new">
+                    <span class="btn-text">Kostenlose Beratung anfordern</span>
+                    <span class="btn-arrow">→</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="footer" role="contentinfo">
       <div class="contain">
@@ -608,12 +915,12 @@
           
           <div class="footer__services">
             <h4 style="color: #ffffff; margin-bottom: 1rem;">Servicegebiet</h4>
-            <p>🌿 Stuttgart</p>
-            <p>🌿 Remseck am Neckar</p>
-            <p>🌿 Ludwigsburg</p>
-            <p>🌿 Waiblingen</p>
-            <p>🌿 Kornwestheim</p>
-            <p>🌿 Fellbach</p>
+            <p>Stuttgart</p>
+            <p>Remseck am Neckar</p>
+            <p>Ludwigsburg</p>
+            <p>Waiblingen</p>
+            <p>Kornwestheim</p>
+            <p>Fellbach</p>
           </div>
         </div>
         
