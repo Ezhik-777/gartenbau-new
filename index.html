@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">  
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />            
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
   <title>Gartenbau Remseck | Landschaftsbau Stuttgart | Garten Ludwigsburg | Waiblingen</title>
   <meta name="description" content="Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort. Jetzt anfragen!">
   <meta name="keywords" content="garten remseck, garten ludwigsburg, garten stuttgart, garten waiblingen, landschaftsbau stuttgart, gartenbau kornwestheim, terrassen fellbach, natursteinarbeiten esslingen, pflasterarbeiten böblingen, gartenbau backnang">
@@ -133,6 +133,7 @@
 <link rel="stylesheet" href="css/slick.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/improvements.css">
+<link rel="stylesheet" href="css/accessibility.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -141,6 +142,9 @@
 <![endif]-->
 </head>
 <body>
+  <!-- Skip Links für Barrierefreiheit -->
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+  <a href="#navigation" class="skip-link">Zur Navigation springen</a>
   <!-- Main Preloader -->
   <div id="mainPreloader">
     <div class="preloader-content">
@@ -154,25 +158,31 @@
   </div>
 
   <div class="wrapper">
-    <div class="head" id="top">
+    <header class="head" id="top" role="banner">
   <div class="contain">
     <div class="head__row">
       <a href="./index.html" class="logo">Gartenbau Z.M.</a>
       <div class="header__col">
-        <ul class="head__mn-ul">
-          <li><a href="./index.html">HOME</a></li>
-          <li><a href="#Leistungen">LEISTUNGEN</a></li>
-          <li><a href="#Ueber-uns">ÜBER UNS</a></li>
-          <li><a href="#Projekte">PROJEKTE</a></li>
-          <li><a href="#Kontakt">KONTAKT</a></li>
+        <nav id="navigation" role="navigation" aria-label="Hauptnavigation">
+        <ul class="head__mn-ul" role="menubar">
+          <li role="menuitem"><a href="./index.html" aria-current="page">HOME</a></li>
+          <li role="menuitem"><a href="#Leistungen">LEISTUNGEN</a></li>
+          <li role="menuitem"><a href="#Ueber-uns">ÜBER UNS</a></li>
+          <li role="menuitem"><a href="#Projekte">PROJEKTE</a></li>
+          <li role="menuitem"><a href="#Kontakt">KONTAKT</a></li>
         </ul>
+        </nav>
         <a href="https://wa.me/+491782747470" class="top__phone">+49 178 2747470</a>
       </div>
-      <span class="burger"></span>
+      <button class="burger" aria-expanded="false" aria-controls="navigation" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </div>
-</div>
-    <div class="banner">
+</header>
+    <section class="banner" role="banner">
       <div class="contain">
         <div class="hero-content">
           <h1 class="bg__top-title">
@@ -182,12 +192,12 @@
           </h1>
         </div>
       </div>
-    </div>
-    <main class="main">
-      <div class="ihr">
+    </section>
+    <main class="main" id="main-content" role="main">
+      <section class="ihr" id="Ueber-uns">
         <div class="lcpadding">
           <div class="ihr__w">
-            <div class="ihr__cont-w" id="Ueber-uns">
+            <div class="ihr__cont-w">
               <h2 class="h2">Gartenbau Remseck - Ihr Partner für Gartengestaltung Stuttgart</h2>
               <p>Professioneller <strong>Gartenbau Remseck</strong> und <strong>Landschaftsbau Stuttgart</strong>. Spezialisiert auf <strong>Garten Ludwigsburg</strong> und <strong>Garten Waiblingen</strong>. Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume.</p>
               <p><strong>Kostenlose Beratung vor Ort</strong> in Kornwestheim, Fellbach, Esslingen und der gesamten Region Stuttgart.</p>
@@ -196,9 +206,9 @@
           </div>
         </div>
       </div>
-      <div class="gal">
+      <section class="gal" id="Leistungen">
         <div class="contain">
-          <h2 class="h2 _not" id="Leistungen">Garten- und Landschaftsbau Leistungen für Stuttgart & Umgebung</h2>
+          <h2 class="h2 _not">Garten- und Landschaftsbau Leistungen für Stuttgart & Umgebung</h2>
           <p>Kompletter <strong>Gartenbau Stuttgart</strong> und <strong>Landschaftsbau</strong> für Remseck, Ludwigsburg, Waiblingen</p>
           <div class="gal__w">
             <div class="gal__item service-item">
@@ -268,9 +278,9 @@
           </div>
         </div>
       </div>
-      <div class="projecs" id="Prjekte">
+      <section class="projecs" id="Projekte">
         <div class="contain">
-          <h2 class="h2" id="Projekte">Gartenbau Projekte in Remseck, Ludwigsburg & Stuttgart</h2>
+          <h2 class="h2">Gartenbau Projekte in Remseck, Ludwigsburg & Stuttgart</h2>
         </div>
 
 <div class="projecs__contain">
@@ -488,32 +498,35 @@
   });
 </script>
 
-      <div class="info">
+      <section class="info">
         <div class="contain" id="Kontakt">
-          <div class="h2">Zufriedene Kunden sind unser bester Beweis</div>
+          <h2 class="h2">Zufriedene Kunden sind unser bester Beweis</h2>
           <p>Teilen Sie Ihre Erfahrung mit anderen und helfen Sie uns, noch besser zu werden.</p>
           <a href="https://g.page/r/CZk_BZnPcSqHEB0/review" class="info__btn btn">Google Bewertung abgeben</a>
         </div>
-      </div>
-<div class="sform">
+      </section>
+<section class="sform" id="Kontakt">
   <div class="contain contain-2">
     <div class="sform__wrap">
       <div class="contain">
         <div class="sform__left">
-          <h2 class="sform__title" id="Kontakt">Beratung anfragen</h2>
+          <h2 class="sform__title" id="contact-form-title">Beratung anfragen</h2>
 
           <!-- Форма с интеграцией Formspree -->
-          <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xoqznyqb" method="post" class="sform__form">
+          <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xoqznyqb" method="post" class="sform__form" role="form" aria-labelledby="contact-form-title">
             <div class="sform__inputs">
               <div class="sform__input-w">
-                <input class="sform__input" type="text" name="name" id="full-name" placeholder="Name" required>
+                <label for="full-name" class="sr-only form-required">Name</label>
+                <input class="sform__input" type="text" name="name" id="full-name" placeholder="Name" required aria-required="true" aria-describedby="name-error">
               </div>
               <div class="sform__input-w">
-                <input class="sform__input" type="email" name="_replyto" id="email-address" placeholder="Email" required>
+                <label for="email-address" class="sr-only form-required">E-Mail-Adresse</label>
+                <input class="sform__input" type="email" name="_replyto" id="email-address" placeholder="Email" required aria-required="true" aria-describedby="email-error">
               </div>
             </div>
 
-            <textarea name="message" id="message" rows="5" placeholder="Nachricht" required></textarea>
+            <label for="message" class="sr-only form-required">Nachricht</label>
+            <textarea name="message" id="message" rows="5" placeholder="Nachricht" required aria-required="true" aria-describedby="message-error"></textarea>
 
             <!-- Скрытое поле для темы письма -->
             <input type="hidden" name="_subject" id="email-subject" value="EMail von gartenbauzm.de">
@@ -526,7 +539,8 @@
               </label>
             </div>
 
-            <button type="submit" class="btn">Senden</button>
+            <button type="submit" class="btn" aria-describedby="submit-info">Nachricht senden</button>
+            <div id="submit-info" class="sr-only">Formular wird an unsere E-Mail-Adresse gesendet</div>
           </form>
         </div>
       </div>
@@ -534,7 +548,7 @@
   </div>
 </div>
     </main>
-    <div class="footer">
+    <footer class="footer" role="contentinfo">
   <div class="contain">
     <div class="footer__top">
       <div class="footer__1">
@@ -556,7 +570,8 @@
     </div>
     <a href="#top" class="serv-arr-up"></a>    
   </div>
-</div>
+</section>
+</footer>
   </div>
   <!--wrapper-->
 
