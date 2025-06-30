@@ -12,7 +12,7 @@ Allow: /js/
 Allow: /img/
 
 # Sitemap
-Sitemap: https://ezhik-777.github.io/gartenbau-new/sitemap.xml
+Sitemap: https://gartenbauzm.de/sitemap.xml
 
 # Crawl delay (optional)
 Crawl-delay: 1
