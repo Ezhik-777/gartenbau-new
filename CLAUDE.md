@@ -10,7 +10,7 @@ This is a static website for Gartenbau Z.M., a German landscaping company in Rem
 - **Static HTML site** with German content focused on local SEO
 - **Multi-page layout**: `index.html` (main), `impressum.html`, `datenschutz.html`
 - **Asset organization**: `css/`, `js/`, `img/` directories
-- **Deployment**: GitHub Pages (ezhik-777.github.io/gartenbau-new)
+- **Deployment**: Production domain (gartenbauzm.de)
 
 ### Key Features
 - Comprehensive local SEO with Schema.org structured data for LocalBusiness
