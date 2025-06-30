@@ -369,7 +369,7 @@ a:focus, button:focus {
   <!-- Fallback for no-JS -->
   <noscript>
     <link rel="stylesheet" href="css/optimized.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modern-design.css">
     <link rel="stylesheet" href="css/improvements.css">
     <link rel="stylesheet" href="css/accessibility.css">
     <link rel="stylesheet" href="css/jquery.fancybox.min.css">
@@ -431,134 +431,143 @@ a:focus, button:focus {
     </div>
   </div>
 </header>
-    <section class="banner" role="banner">
+    <section class="hero" role="banner">
       <div class="contain">
-        <div class="hero-content">
-          <h1 class="bg__top-title">
-            <span class="hero-brand">Gartenbau Z.M.</span>
-            <span class="hero-subtitle">Professioneller Garten- und Landschaftsbau</span>
-            <span class="hero-location">in Remseck, Stuttgart, Ludwigsburg & Waiblingen</span>
+        <div class="hero__content">
+          <h1 class="hero__title">
+            Professioneller Garten- und Landschaftsbau in Stuttgart
           </h1>
+          <p class="hero__subtitle">
+            Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume in Remseck, Ludwigsburg & Waiblingen
+          </p>
+          <div class="hero__buttons">
+            <a href="#Kontakt" class="btn btn-primary">🌿 Kostenlose Beratung</a>
+            <a href="#Projekte" class="btn btn-secondary">📸 Unsere Projekte</a>
+          </div>
         </div>
       </div>
     </section>
     <main class="main" id="main-content" role="main">
-      <section class="ihr" id="Ueber-uns">
-        <div class="lcpadding">
-          <div class="ihr__w">
-            <div class="ihr__cont-w">
-              <h2 class="h2">Gartenbau Remseck - Ihr Partner für Gartengestaltung Stuttgart</h2>
-              <p>Professioneller <strong>Gartenbau Remseck</strong> und <strong>Landschaftsbau Stuttgart</strong>. Spezialisiert auf <strong>Garten Ludwigsburg</strong> und <strong>Garten Waiblingen</strong>. Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume.</p>
+      <section class="section" id="Ueber-uns">
+        <div class="contain">
+          <div class="section__header">
+            <h2 class="section__title">Gartenbau Remseck - Ihr Partner für Gartengestaltung Stuttgart</h2>
+            <p class="section__subtitle">
+              Professioneller Gartenbau Remseck und Landschaftsbau Stuttgart. Spezialisiert auf Garten Ludwigsburg und Garten Waiblingen.
+            </p>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+            <div>
+              <p>Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume mit über 15 Jahren Erfahrung in der Region Stuttgart.</p>
               <p><strong>Kostenlose Beratung vor Ort</strong> in Kornwestheim, Fellbach, Esslingen und der gesamten Region Stuttgart.</p>
+              <div style="margin-top: 2rem;">
+                <a href="#Kontakt" class="btn btn-primary">🏡 Jetzt Beratung anfragen</a>
+              </div>
             </div>
-            <div class="ihr__img-w">
+            <div>
               <picture>
                 <source srcset="img/ihr.webp" type="image/webp">
-                <img src="img/ihr.jpg" alt="Gartenbau Remseck - Professioneller Landschaftsbau Stuttgart Ludwigsburg Waiblingen" width="600" height="400" loading="lazy">
+                <img src="img/ihr.jpg" alt="Gartenbau Remseck - Professioneller Landschaftsbau Stuttgart Ludwigsburg Waiblingen" width="600" height="400" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 30px rgba(45, 90, 61, 0.2);">
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="Leistungen">
+        <div class="contain">
+          <div class="section__header">
+            <h2 class="section__title">Garten- und Landschaftsbau Leistungen für Stuttgart & Umgebung</h2>
+            <p class="section__subtitle">Kompletter Gartenbau Stuttgart und Landschaftsbau für Remseck, Ludwigsburg, Waiblingen</p>
+          </div>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-card__icon">🌿</div>
+              <h3 class="service-card__title">Gartengestaltung</h3>
+              <p>Professionelle Gartenplanung und -gestaltung für Remseck, Stuttgart, Ludwigsburg und Waiblingen. Von der Idee bis zur Umsetzung.</p>
+              <picture>
+                <source srcset="img/gal-1.webp" type="image/webp">
+                <img src="img/gal-1.jpg" alt="Gartengestaltung Remseck Stuttgart Ludwigsburg" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
+              </picture>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-card__icon">🏗️</div>
+              <h3 class="service-card__title">Natursteinarbeiten</h3>
+              <p>Hochwertige Natur- und Betonsteinarbeiten. Mauern, Treppen, Eingangsbereiche und mehr für Stuttgart und Umgebung.</p>
+              <picture>
+                <source srcset="img/gal-2.webp" type="image/webp">
+                <img src="img/gal-2.jpg" alt="Natursteinarbeiten Stuttgart Waiblingen" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
+              </picture>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-card__icon">🛤️</div>
+              <h3 class="service-card__title">Wege und Zufahrten</h3>
+              <p>Professionelle Pflasterarbeiten für Zufahrten, Gartenwege und Einfahrten in Ludwigsburg, Böblingen und Remseck.</p>
+              <picture>
+                <source srcset="img/gal-3.webp" type="image/webp">
+                <img src="img/gal-3.jpg" alt="Pflasterarbeiten Ludwigsburg Böblingen" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
+              </picture>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-card__icon">🏡</div>
+              <h3 class="service-card__title">Terrassen & Plätze</h3>
+              <p>Moderne Terrassengestaltung und Plätze für Outdoor-Living. Terrassenbau in Waiblingen, Fellbach und Stuttgart.</p>
+              <picture>
+                <source srcset="img/gal-4.webp" type="image/webp">
+                <img src="img/gal-4.jpg" alt="Terrassen bauen Waiblingen Fellbach" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
+              </picture>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-card__icon">🔧</div>
+              <h3 class="service-card__title">Hausmeisterservice</h3>
+              <p>Zuverlässiger Hausmeisterservice und Gartenservice für Stuttgart, Remseck, Ludwigsburg und Waiblingen.</p>
+              <picture>
+                <source srcset="img/gal-5.webp" type="image/webp">
+                <img src="img/gal-5.jpg" alt="Hausmeisterservice Stuttgart Remseck" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
+              </picture>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-card__icon">🛡️</div>
+              <h3 class="service-card__title">Sichtschutz</h3>
+              <p>Individuelle Sichtschutzlösungen, Mauern und Zäune für Ihre Privatsphäre in Stuttgart, Remseck und Ludwigsburg.</p>
+              <picture>
+                <source srcset="img/gal-6.webp" type="image/webp">
+                <img src="img/gal-6.jpg" alt="Sichtschutz Stuttgart Remseck" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
+              </picture>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-card__icon">🚜</div>
+              <h3 class="service-card__title">Erdarbeiten</h3>
+              <p>Professionelle Erd- und Baggerarbeiten für alle Projekte in Stuttgart, Backnang, Remseck und Ludwigsburg.</p>
+              <picture>
+                <source srcset="img/gal-7.webp" type="image/webp">
+                <img src="img/gal-7.jpg" alt="Erdarbeiten Stuttgart Backnang" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
+              </picture>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-card__icon">🌱</div>
+              <h3 class="service-card__title">Rollrasen</h3>
+              <p>Professionelles Rollrasen verlegen und Rasen anlegen in Stuttgart, Esslingen, Remseck und Ludwigsburg.</p>
+              <picture>
+                <source srcset="img/gal-8.webp" type="image/webp">
+                <img src="img/gal-8.jpg" alt="Rollrasen verlegen Stuttgart Esslingen" width="300" height="200" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 1rem;">
               </picture>
             </div>
           </div>
         </div>
       </div>
-      <section class="gal" id="Leistungen">
+      <section class="section" id="Projekte">
         <div class="contain">
-          <h2 class="h2 _not">Garten- und Landschaftsbau Leistungen für Stuttgart & Umgebung</h2>
-          <p>Kompletter <strong>Gartenbau Stuttgart</strong> und <strong>Landschaftsbau</strong> für Remseck, Ludwigsburg, Waiblingen</p>
-          <div class="gal__w">
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-1.webp" type="image/webp">
-      <img src="img/gal-1.jpg" alt="Gartengestaltung Remseck Stuttgart Ludwigsburg - Garten planen und gestalten" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Gartengestaltung</span>
-  </span>
-</div>
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-2.webp" type="image/webp">
-      <img src="img/gal-2.jpg" alt="Natursteinarbeiten Stuttgart Waiblingen - Betonsteinarbeiten Remseck Ludwigsburg" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Natur - und Betonsteinarbeiten</span>
-  </span>
-</div>
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-3.webp" type="image/webp">
-      <img src="img/gal-3.jpg" alt="Pflasterarbeiten Ludwigsburg Böblingen - Wege und Zufahrten Stuttgart Remseck" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Wege und Zufahrten</span>
-  </span>
-</div>
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-4.webp" type="image/webp">
-      <img src="img/gal-4.jpg" alt="Terrassen bauen Waiblingen Fellbach - Terrassengestaltung Stuttgart Remseck Ludwigsburg" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Plätze und Terrassen</span>
-  </span>
-</div>
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-5.webp" type="image/webp">
-      <img src="img/gal-5.jpg" alt="Hausmeisterservice Stuttgart Remseck - Gartenservice Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Hausmeisterservice</span>
-  </span>
-</div>
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-6.webp" type="image/webp">
-      <img src="img/gal-6.jpg" alt="Sichtschutz Stuttgart Remseck - Mauern und Zäune Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Sichtschutz</span>
-  </span>
-</div>
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-7.webp" type="image/webp">
-      <img src="img/gal-7.jpg" alt="Erdarbeiten Stuttgart Backnang - Baggerarbeiten Remseck Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Erd- und Baggerarbeiten</span>
-  </span>
-</div>
-            <div class="gal__item service-item">
-  <span class="gal__img-w">
-    <picture>
-      <source srcset="img/gal-8.webp" type="image/webp">
-      <img src="img/gal-8.jpg" alt="Rollrasen verlegen Stuttgart Esslingen - Rasen anlegen Remseck Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
-    </picture>
-  </span>              
-  <span class="gal__name">
-    <span>Rollrasen anlegen</span>
-  </span>
-</div>
+          <div class="section__header">
+            <h2 class="section__title">Gartenbau Projekte in Remseck, Ludwigsburg & Stuttgart</h2>
+            <p class="section__subtitle">Entdecken Sie unsere erfolgreich realisierten Projekte in der Region Stuttgart</p>
           </div>
-        </div>
-      </div>
-      <section class="projecs" id="Projekte">
-        <div class="contain">
-          <h2 class="h2">Gartenbau Projekte in Remseck, Ludwigsburg & Stuttgart</h2>
         </div>
 
 <div class="projecs__contain">
@@ -830,32 +839,50 @@ a:focus, button:focus {
 </div>
     </main>
     <footer class="footer" role="contentinfo">
-  <div class="contain">
-    <div class="footer__top">
-      <div class="footer__1">
-        <picture>
-          <source srcset="img/logo.webp" type="image/webp">
-          <img src="img/logo.png" width="100" height="100" alt="Gartenbau Z.M. Remseck Stuttgart Ludwigsburg Waiblingen Logo" loading="lazy">
-        </picture>
-        <div class="footer__1-txt">Gartenbau Z.M.</div>
+      <div class="contain">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <picture>
+              <source srcset="img/logo.webp" type="image/webp">
+              <img src="img/logo.png" class="footer__logo" alt="Gartenbau Z.M. Logo" loading="lazy">
+            </picture>
+            <div>
+              <div class="footer__title">Gartenbau Z.M.</div>
+              <p style="color: #6c757d; margin: 0;">Ihr Partner für Garten- und Landschaftsbau</p>
+            </div>
+          </div>
+          
+          <div class="footer__contact">
+            <h4 style="color: #ffffff; margin-bottom: 1rem;">Kontakt</h4>
+            <p>📍 Lerchenrain 9<br>71686 Remseck am Neckar</p>
+            <p>📞 <a href="tel:+491782747470">+49 178 2747470</a></p>
+            <p>📧 <a href="mailto:info.gartenbauzm@gmx.de">info.gartenbauzm@gmx.de</a></p>
+            <p>💬 <a href="https://wa.me/+491782747470">WhatsApp Chat</a></p>
+          </div>
+          
+          <div class="footer__services">
+            <h4 style="color: #ffffff; margin-bottom: 1rem;">Servicegebiet</h4>
+            <p>🌿 Stuttgart</p>
+            <p>🌿 Remseck am Neckar</p>
+            <p>🌿 Ludwigsburg</p>
+            <p>🌿 Waiblingen</p>
+            <p>🌿 Kornwestheim</p>
+            <p>🌿 Fellbach</p>
+          </div>
+        </div>
+        
+        <div class="footer__bottom">
+          <p>&copy; 2024 Gartenbau Z.M. | Alle Rechte vorbehalten</p>
+          <div style="margin-top: 1rem;">
+            <a href="/impressum.html" style="color: #6c757d; margin-right: 1rem;">Impressum</a>
+            <a href="/datenschutz.html" style="color: #6c757d; margin-right: 1rem;">Datenschutz</a>
+            <a href="#Kontakt" style="color: #6c757d;">Kontakt</a>
+          </div>
+        </div>
+        
+        <a href="#top" style="position: fixed; bottom: 2rem; right: 2rem; background: var(--primary-green); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(45, 90, 61, 0.3); transition: all 0.3s ease;" aria-label="Nach oben scrollen">↑</a>    
       </div>
-      <div class="footer__2">
-        <a href="https://wa.me/+491782747470" class="footer__tel">+49 178 2747470</a>
-        <div class="footer__adr">Lerchenrain 9<br> 71686 Remseck am Neckar</div>
-        <a href="mailto:info.gartenbauzm@gmx.de" class="footer__mail">info.gartenbauzm@gmx.de</a>
-      </div>
-    </div>
-    <div class="footer__body">
-      <ul class="footer__ul">
-        <li><a href="/impressum.html">Impressum</a></li>
-        <li><a href="#Kontakt">Kontakt</a></li>
-        <li><a href="/datenschutz.html">Datenschutz</a></li>
-      </ul>
-    </div>
-    <a href="#top" class="serv-arr-up"></a>    
-  </div>
-</section>
-</footer>
+    </footer>
   </div>
   <!--wrapper-->
 
@@ -876,6 +903,16 @@ a:focus, button:focus {
     
     // Critical path optimizations
     detectWebPSupport();
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.head');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
     
     // Service Worker registration
     if ('serviceWorker' in navigator) {
