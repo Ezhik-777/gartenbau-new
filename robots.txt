@@ -11,8 +11,28 @@ Allow: /css/
 Allow: /js/
 Allow: /img/
 
+# Disallow sensitive files
+Disallow: /sw.js
+Disallow: /.htaccess
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /*?*
+
+# Block bad bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
 # Sitemap
 Sitemap: https://gartenbauzm.de/sitemap.xml
 
-# Crawl delay (optional)
+# Crawl delay (optimal for most bots)
 Crawl-delay: 1
+
+# Host directive (preferred domain)
+Host: https://gartenbauzm.de

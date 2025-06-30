@@ -12,31 +12,35 @@
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ezhik-777.github.io/gartenbau-new/">
+  <meta property="og:url" content="https://gartenbauzm.de/">
   <meta property="og:title" content="Gartenbau Z.M. - Professioneller Garten- und Landschaftsbau">
-  <meta property="og:description" content="Gartenbau Z.M. - Ihr lokaler Experte für Garten- und Landschaftsbau in Remseck am Neckar und Umgebung. Kostenloser Vor-Ort-Termin!">
-  <meta property="og:image" content="https://ezhik-777.github.io/gartenbau-new/img/gal-1.jpg">
+  <meta property="og:description" content="Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort.">
+  <meta property="og:image" content="https://gartenbauzm.de/img/gal-1.webp">
   <meta property="og:locale" content="de_DE">
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://ezhik-777.github.io/gartenbau-new/">
+  <meta property="twitter:url" content="https://gartenbauzm.de/">
   <meta property="twitter:title" content="Gartenbau Z.M. - Lokaler Garten- und Landschaftsbau Experte">
-  <meta property="twitter:description" content="Gartenbau Z.M. in Remseck am Neckar - Ihr Partner für Gartengestaltung, Natursteinarbeiten und Terrassen in der Region Stuttgart.">
-  <meta property="twitter:image" content="https://ezhik-777.github.io/gartenbau-new/img/gal-1.jpg">
+  <meta property="twitter:description" content="Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen. Kostenlose Beratung vor Ort.">
+  <meta property="twitter:image" content="https://gartenbauzm.de/img/gal-1.webp">
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io; frame-src https://wa.me;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  
+  <!-- Favicon optimized -->
+  <link rel="icon" type="image/webp" sizes="32x32" href="/img/logo.webp">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#459d72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   
   <!-- Performance optimizations -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <meta http-equiv="X-DNS-Prefetch-Control" content="on">
   
   <!-- Critical CSS inline для мгновенного FCP -->
@@ -282,7 +286,7 @@ a:focus, button:focus {
     "@type": "LocalBusiness",
     "name": "Gartenbau Z.M.",
     "description": "Professioneller Gartenbau und Landschaftsbau in Remseck am Neckar",
-    "url": "https://ezhik-777.github.io/gartenbau-new/",
+    "url": "https://gartenbauzm.de/",
     "telephone": "+49 178 2747470",
     "email": "info.gartenbauzm@gmx.de",
     "address": {
@@ -355,6 +359,7 @@ a:focus, button:focus {
   }
   </script>
   <!-- Async load non-critical CSS -->
+  <link rel="preload" href="css/optimized.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="css/improvements.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="css/accessibility.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -363,6 +368,7 @@ a:focus, button:focus {
   
   <!-- Fallback for no-JS -->
   <noscript>
+    <link rel="stylesheet" href="css/optimized.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/improvements.css">
     <link rel="stylesheet" href="css/accessibility.css">
@@ -611,6 +617,7 @@ a:focus, button:focus {
       img.addEventListener('load', function() {
         loadedImageCount++;
         this.style.opacity = '1';
+        this.removeAttribute('data-src');
         if (typeof window.incrementGalleryProgress === 'function') {
           window.incrementGalleryProgress();
         }
@@ -619,6 +626,7 @@ a:focus, button:focus {
       img.addEventListener('error', function() {
         loadedImageCount++;
         this.style.opacity = '0.5';
+        this.alt = `Изображение ${imageNumber} недоступно`;
         if (typeof window.incrementGalleryProgress === 'function') {
           window.incrementGalleryProgress();
         }
@@ -853,6 +861,22 @@ a:focus, button:focus {
 
   <!-- Async load scripts для лучшей производительности -->
   <script>
+    // Modern browser feature detection
+    function detectWebPSupport() {
+      const webP = new Image();
+      webP.onload = webP.onerror = function () {
+        if (webP.height === 2) {
+          document.documentElement.classList.add('webp');
+        } else {
+          document.documentElement.classList.add('no-webp');
+        }
+      };
+      webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    }
+    
+    // Critical path optimizations
+    detectWebPSupport();
+    
     // Service Worker registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -884,20 +908,17 @@ a:focus, button:focus {
       });
     });
 
-    // Preloader optimization with Web Vitals
-    window.addEventListener('DOMContentLoaded', () => {
-      // Hide preloader faster for better FCP
-      const preloader = document.getElementById('mainPreloader');
-      if (preloader) {
-        setTimeout(() => {
-          preloader.style.opacity = '0';
-          preloader.style.transition = 'opacity 0.3s ease';
-          setTimeout(() => {
-            preloader.style.display = 'none';
-          }, 300);
-        }, 500); // Reduced from default
-      }
-    });
+    // Performance monitoring
+    if ('PerformanceObserver' in window) {
+      const observer = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          if (entry.entryType === 'largest-contentful-paint') {
+            console.log('LCP:', entry.startTime);
+          }
+        });
+      });
+      observer.observe({entryTypes: ['largest-contentful-paint']});
+    }
   </script>
 </body>
 </html>

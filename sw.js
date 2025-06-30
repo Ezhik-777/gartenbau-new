@@ -1,18 +1,29 @@
 // Service Worker для улучшения производительности и кэширования
-// Версия 1.0
+// Версия 1.1 - Оптимизированная версия
 
-const CACHE_NAME = 'gartenbau-zm-v1.0';
-const urlsToCache = [
+const CACHE_NAME = 'gartenbau-zm-v1.1';
+const STATIC_CACHE = 'static-v1.1';
+const DYNAMIC_CACHE = 'dynamic-v1.1';
+// Критичные ресурсы для немедленного кэширования
+const CRITICAL_RESOURCES = [
   '/',
   '/index.html',
   '/css/main.css',
-  '/css/improvements.css',
+  '/css/optimized.css',
   '/css/accessibility.css',
   '/js/jquery-3.4.1.min.js',
   '/js/common.js',
   '/img/bg-top.webp',
-  '/img/bg-top.jpg',
   '/img/logo.webp',
+  '/manifest.json'
+];
+
+// Ресурсы для ленивого кэширования
+const LAZY_CACHE_RESOURCES = [
+  '/css/improvements.css',
+  '/css/jquery.fancybox.min.css',
+  '/css/slick.css',
+  '/img/bg-top.jpg',
   '/img/logo.png',
   '/img/ihr.webp',
   '/img/ihr.jpg',
@@ -26,35 +37,41 @@ const urlsToCache = [
   '/img/gal-8.webp'
 ];
 
-// Install event - cache resources
+// Install event - cache critical resources only
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('SW: Cache opened');
-        return cache.addAll(urlsToCache);
+    Promise.all([
+      caches.open(STATIC_CACHE).then((cache) => {
+        console.log('SW: Static cache opened');
+        return cache.addAll(CRITICAL_RESOURCES);
+      }),
+      caches.open(DYNAMIC_CACHE).then((cache) => {
+        console.log('SW: Dynamic cache opened');
+        return cache.addAll([]); // Start empty
       })
-      .then(() => {
-        console.log('SW: All resources cached');
-        return self.skipWaiting();
-      })
+    ]).then(() => {
+      console.log('SW: Critical resources cached');
+      return self.skipWaiting();
+    })
   );
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
+  const expectedCaches = [STATIC_CACHE, DYNAMIC_CACHE];
+  
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (!expectedCaches.includes(cacheName)) {
             console.log('SW: Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-      console.log('SW: Activated');
+      console.log('SW: Activated and claimed clients');
       return self.clients.claim();
     })
   );
