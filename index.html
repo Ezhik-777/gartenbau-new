@@ -30,7 +30,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#459d72">
   
   <!-- Performance optimizations -->
@@ -39,13 +39,241 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <meta http-equiv="X-DNS-Prefetch-Control" content="on">
   
+  <!-- Critical CSS inline для мгновенного FCP -->
+  <style>
+/* Critical CSS для быстрого FCP - минимальные стили для above-the-fold */
+
+/* Reset и базовые стили */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.4;
+  color: #333;
+  background: #fff;
+}
+
+/* Skip links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Wrapper */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header критичные стили */
+.head {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  height: 80px;
+}
+
+.contain {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.head__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #459d72;
+  text-decoration: none;
+}
+
+/* Navigation */
+.head__mn-ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.head__mn-ul a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.top__phone {
+  color: #459d72;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Burger menu */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #333;
+}
+
+/* Banner критичные стили */
+.banner {
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-align: center;
+  margin-top: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Современный background-image с WebP поддержкой */
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('img/bg-top.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -2;
+}
+
+/* Fallback для браузеров без WebP */
+.no-webp .banner::before {
+  background-image: url('img/bg-top.jpg');
+}
+
+.hero-content {
+  width: 100%;
+}
+
+.bg__top-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 2rem;
+}
+
+.hero-brand {
+  display: block;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  display: block;
+  font-weight: 400;
+  font-size: 0.8em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-location {
+  display: block;
+  font-size: 0.6em;
+  opacity: 0.9;
+}
+
+/* Preloader */
+#mainPreloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #459d72, #367a5c);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader-content {
+  text-align: center;
+  color: white;
+}
+
+.preloader-logo {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Mobile критичные стили */
+@media (max-width: 768px) {
+  .head__mn-ul {
+    display: none;
+  }
+  
+  .burger {
+    display: flex;
+  }
+  
+  .banner {
+    background-attachment: scroll;
+    min-height: 80vh;
+  }
+  
+  .bg__top-title {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+}
+
+/* Focus стили */
+a:focus, button:focus {
+  outline: 3px solid #459d72;
+  outline-offset: 2px;
+}
+  </style>
+  
   <!-- Preload critical resources -->
-  <link rel="preload" href="css/main.css" as="style">
-  <link rel="preload" href="css/improvements.css" as="style">
-  <link rel="preload" href="js/jquery-3.4.1.min.js" as="script">
-  <link rel="preload" href="js/common.js" as="script">
+  <link rel="preload" href="img/bg-top.webp" as="image" type="image/webp">
   <link rel="preload" href="img/bg-top.jpg" as="image">
-  <link rel="preload" href="img/logo.png" as="image">
+  <link rel="preload" href="js/jquery-3.4.1.min.js" as="script">
+  
+  <!-- Resource hints для лучшей производительности -->
+  <link rel="dns-prefetch" href="//formspree.io">
+  <link rel="dns-prefetch" href="//wa.me">
+  <link rel="preconnect" href="https://formspree.io" crossorigin>
   
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
@@ -126,14 +354,29 @@
     "keywords": "garten remseck, garten ludwigsburg, garten stuttgart, garten waiblingen, landschaftsbau stuttgart, gartenbau kornwestheim, terrassen fellbach, natursteinarbeiten esslingen, pflasterarbeiten böblingen, gartenbau backnang"
   }
   </script>
+  <!-- Async load non-critical CSS -->
+  <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/improvements.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/accessibility.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/slick.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for no-JS -->
+  <noscript>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/improvements.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="css/slick.css">
+  </noscript>
+  
+  <!-- Optimized Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/jquery.fancybox.min.css">
-<link rel="stylesheet" href="css/slick.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/improvements.css">
-<link rel="stylesheet" href="css/accessibility.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  </noscript>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -202,7 +445,12 @@
               <p>Professioneller <strong>Gartenbau Remseck</strong> und <strong>Landschaftsbau Stuttgart</strong>. Spezialisiert auf <strong>Garten Ludwigsburg</strong> und <strong>Garten Waiblingen</strong>. Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume.</p>
               <p><strong>Kostenlose Beratung vor Ort</strong> in Kornwestheim, Fellbach, Esslingen und der gesamten Region Stuttgart.</p>
             </div>
-            <div class="ihr__img-w"><img src="img/ihr.jpg" alt="Gartenbau Remseck - Professioneller Landschaftsbau Stuttgart Ludwigsburg Waiblingen"></div>
+            <div class="ihr__img-w">
+              <picture>
+                <source srcset="img/ihr.webp" type="image/webp">
+                <img src="img/ihr.jpg" alt="Gartenbau Remseck - Professioneller Landschaftsbau Stuttgart Ludwigsburg Waiblingen" width="600" height="400" loading="lazy">
+              </picture>
+            </div>
           </div>
         </div>
       </div>
@@ -213,7 +461,10 @@
           <div class="gal__w">
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-1.jpg" alt="Gartengestaltung Remseck Stuttgart Ludwigsburg - Garten planen und gestalten">
+    <picture>
+      <source srcset="img/gal-1.webp" type="image/webp">
+      <img src="img/gal-1.jpg" alt="Gartengestaltung Remseck Stuttgart Ludwigsburg - Garten planen und gestalten" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Gartengestaltung</span>
@@ -221,7 +472,10 @@
 </div>
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-2.jpg" alt="Natursteinarbeiten Stuttgart Waiblingen - Betonsteinarbeiten Remseck Ludwigsburg">
+    <picture>
+      <source srcset="img/gal-2.webp" type="image/webp">
+      <img src="img/gal-2.jpg" alt="Natursteinarbeiten Stuttgart Waiblingen - Betonsteinarbeiten Remseck Ludwigsburg" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Natur - und Betonsteinarbeiten</span>
@@ -229,7 +483,10 @@
 </div>
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-3.jpg" alt="Pflasterarbeiten Ludwigsburg Böblingen - Wege und Zufahrten Stuttgart Remseck">
+    <picture>
+      <source srcset="img/gal-3.webp" type="image/webp">
+      <img src="img/gal-3.jpg" alt="Pflasterarbeiten Ludwigsburg Böblingen - Wege und Zufahrten Stuttgart Remseck" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Wege und Zufahrten</span>
@@ -237,7 +494,10 @@
 </div>
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-4.jpg" alt="Terrassen bauen Waiblingen Fellbach - Terrassengestaltung Stuttgart Remseck Ludwigsburg">
+    <picture>
+      <source srcset="img/gal-4.webp" type="image/webp">
+      <img src="img/gal-4.jpg" alt="Terrassen bauen Waiblingen Fellbach - Terrassengestaltung Stuttgart Remseck Ludwigsburg" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Plätze und Terrassen</span>
@@ -245,7 +505,10 @@
 </div>
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-5.jpg" alt="Hausmeisterservice Stuttgart Remseck - Gartenservice Ludwigsburg Waiblingen">
+    <picture>
+      <source srcset="img/gal-5.webp" type="image/webp">
+      <img src="img/gal-5.jpg" alt="Hausmeisterservice Stuttgart Remseck - Gartenservice Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Hausmeisterservice</span>
@@ -253,7 +516,10 @@
 </div>
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-6.jpg" alt="Sichtschutz Stuttgart Remseck - Mauern und Zäune Ludwigsburg Waiblingen">
+    <picture>
+      <source srcset="img/gal-6.webp" type="image/webp">
+      <img src="img/gal-6.jpg" alt="Sichtschutz Stuttgart Remseck - Mauern und Zäune Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Sichtschutz</span>
@@ -261,7 +527,10 @@
 </div>
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-7.jpg" alt="Erdarbeiten Stuttgart Backnang - Baggerarbeiten Remseck Ludwigsburg Waiblingen">
+    <picture>
+      <source srcset="img/gal-7.webp" type="image/webp">
+      <img src="img/gal-7.jpg" alt="Erdarbeiten Stuttgart Backnang - Baggerarbeiten Remseck Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Erd- und Baggerarbeiten</span>
@@ -269,7 +538,10 @@
 </div>
             <div class="gal__item service-item">
   <span class="gal__img-w">
-    <img src="img/gal-8.jpg" alt="Rollrasen verlegen Stuttgart Esslingen - Rasen anlegen Remseck Ludwigsburg Waiblingen">
+    <picture>
+      <source srcset="img/gal-8.webp" type="image/webp">
+      <img src="img/gal-8.jpg" alt="Rollrasen verlegen Stuttgart Esslingen - Rasen anlegen Remseck Ludwigsburg Waiblingen" width="300" height="250" loading="lazy">
+    </picture>
   </span>              
   <span class="gal__name">
     <span>Rollrasen anlegen</span>
@@ -330,6 +602,7 @@
       img.dataset.src = imgSrc;
       img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect width="100%25" height="100%25" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23999"%3ELaden...%3C/text%3E%3C/svg%3E';
       img.loading = 'lazy';
+      img.decoding = 'async';
       img.alt = `Foto von unserem Projekt ${imageNumber}`;
       img.style.transition = 'opacity 0.3s ease';
       img.style.opacity = '0.7';
@@ -552,7 +825,10 @@
   <div class="contain">
     <div class="footer__top">
       <div class="footer__1">
-        <img src="img/logo.png" width="100" height="100" alt="Gartenbau Z.M. Remseck Stuttgart Ludwigsburg Waiblingen Logo">
+        <picture>
+          <source srcset="img/logo.webp" type="image/webp">
+          <img src="img/logo.png" width="100" height="100" alt="Gartenbau Z.M. Remseck Stuttgart Ludwigsburg Waiblingen Logo" loading="lazy">
+        </picture>
         <div class="footer__1-txt">Gartenbau Z.M.</div>
       </div>
       <div class="footer__2">
@@ -575,9 +851,53 @@
   </div>
   <!--wrapper-->
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/jquery.fancybox.min.js"></script>  
-<script src="js/slick.js"></script>  
-<script src="js/common.js"></script>
+  <!-- Async load scripts для лучшей производительности -->
+  <script>
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registered: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+
+    // Load scripts asynchronously
+    function loadScript(src, callback) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      if (callback) script.onload = callback;
+      document.head.appendChild(script);
+    }
+
+    // Load jQuery first, then other scripts
+    window.addEventListener('load', () => {
+      loadScript('js/jquery-3.4.1.min.js', () => {
+        loadScript('js/jquery.fancybox.min.js');
+        loadScript('js/slick.js');
+        loadScript('js/common.js');
+      });
+    });
+
+    // Preloader optimization with Web Vitals
+    window.addEventListener('DOMContentLoaded', () => {
+      // Hide preloader faster for better FCP
+      const preloader = document.getElementById('mainPreloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          preloader.style.transition = 'opacity 0.3s ease';
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 300);
+        }, 500); // Reduced from default
+      }
+    });
+  </script>
 </body>
 </html>
