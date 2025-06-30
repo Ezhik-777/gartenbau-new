@@ -1,18 +1,16 @@
 // Service Worker для улучшения производительности и кэширования
-// Версия 1.1 - Оптимизированная версия
+// Версия 2.0 - Оптимизированная для GitHub Pages
 
-const CACHE_NAME = 'gartenbau-zm-v1.1';
-const STATIC_CACHE = 'static-v1.1';
-const DYNAMIC_CACHE = 'dynamic-v1.1';
+const CACHE_NAME = 'gartenbau-zm-v2.0';
+const STATIC_CACHE = 'static-v2.0';
+const DYNAMIC_CACHE = 'dynamic-v2.0';
+
 // Критичные ресурсы для немедленного кэширования
 const CRITICAL_RESOURCES = [
   '/',
   '/index.html',
-  '/css/main.css',
-  '/css/optimized.css',
-  '/css/accessibility.css',
+  '/css/critical.min.css',
   '/js/jquery-3.4.1.min.js',
-  '/js/common.js',
   '/img/bg-top.webp',
   '/img/logo.webp',
   '/manifest.json'
@@ -20,9 +18,10 @@ const CRITICAL_RESOURCES = [
 
 // Ресурсы для ленивого кэширования
 const LAZY_CACHE_RESOURCES = [
-  '/css/improvements.css',
+  '/css/non-critical.min.css',
   '/css/jquery.fancybox.min.css',
-  '/css/slick.css',
+  '/js/jquery.fancybox.min.js',
+  '/js/common.js',
   '/img/bg-top.jpg',
   '/img/logo.png',
   '/img/ihr.webp',
