@@ -2741,11 +2741,40 @@ p {
 }
 
 .highlight-text {
+  /* Default fallback for light backgrounds */
   background: linear-gradient(45deg, #6db884, #4a8764);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   position: relative;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  color: #6db884 !important;
+}
+
+/* Override for hero sections to ensure visibility */
+.hero-slide .highlight-text,
+.premium-hero .highlight-text {
+  background: none !important;
+  -webkit-text-fill-color: #6db884 !important;
+  color: #6db884 !important;
+  text-shadow: 
+    0 4px 20px rgba(0,0,0,1),
+    0 2px 4px rgba(0,0,0,1),
+    2px 2px 8px rgba(0,0,0,1),
+    0 0 40px rgba(0,0,0,.9) !important;
+  font-weight: 900;
+}
+
+/* Specific styling for highlight text in dark sections */
+.premium-cta-section .highlight-text {
+  background: none !important;
+  -webkit-text-fill-color: #6db884 !important;
+  color: #6db884 !important;
+  text-shadow: 
+    0 2px 4px rgba(0,0,0,0.8),
+    0 0 20px rgba(109,184,132,0.3),
+    0 0 40px rgba(109,184,132,0.1);
+  font-weight: 700;
 }
 
 .cta-description {
@@ -2755,8 +2784,8 @@ p {
   line-height: 1.6;
 }
 
-/* Google Reviews in CTA */
-.reviews-preview {
+/* Google Reviews in CTA - DISABLED - USING INLINE STYLES */
+.reviews-preview-disabled {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
   border-radius: 20px;

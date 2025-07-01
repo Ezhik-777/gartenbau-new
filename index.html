@@ -33,7 +33,7 @@
   <!-- Favicon optimized -->
   <link rel="icon" type="image/webp" sizes="32x32" href="/img/logo.webp">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.webp">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#459d72">
   <meta name="mobile-web-app-capable" content="yes">
@@ -42,27 +42,383 @@
   <!-- Performance optimizations -->
   <meta http-equiv="X-DNS-Prefetch-Control" content="on">
   
-  <!-- Optimized CSS -->
-  <link rel="stylesheet" href="css/optimized.min.css">
+  <!-- Критические стили с мобильной оптимизацией -->
+  <style>
+    /* Critical mobile-first styles */
+    :root{--primary-green:#2d5a3d;--primary-light:#4a8764;--primary-dark:#1e3d2a;--accent-green:#6db884;--white:#fff;--text-dark:#2c3e50;--gradient-primary:linear-gradient(135deg,var(--primary-green),var(--primary-light));--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-heading:'Jost','Inter',sans-serif;--transition-fast:.15s ease;--transition-medium:.3s ease;--radius-lg:16px;--shadow-light:0 2px 8px rgba(45,90,61,.08)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+    body{font-family:var(--font-primary);line-height:1.6;color:var(--text-dark);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    .wrapper{min-height:100vh;display:flex;flex-direction:column}
+    .contain{max-width:1200px;margin:0 auto;padding:0 16px}
+    
+    /* Мобильно-оптимизированный хедер */
+    .head{background:rgba(255,255,255,.97);backdrop-filter:blur(16px);position:fixed;top:0;left:0;right:0;z-index:1000;box-shadow:0 1px 4px rgba(45,90,61,.1);transition:var(--transition-fast);border-bottom:1px solid rgba(45,90,61,.08)}
+    .head__row{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;min-height:64px}
+    @media (min-width:768px){.head__row{min-height:80px;padding:1rem 0}}
+    .logo{font-family:var(--font-heading);font-size:clamp(1.4rem,4vw,1.8rem);font-weight:700;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;will-change:transform;transition:var(--transition-fast)}
+    .logo:active{transform:scale(.98)}
+    
+    /* Premium Hero Slider */
+    .premium-hero{position:relative;min-height:100vh;overflow:hidden;margin-top:64px}
+    @media (min-width:768px){.premium-hero{margin-top:80px}}
+    .hero-slider-container{position:relative;height:100vh;width:100%}
+    .hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transform:translateX(100%);transition:all .8s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;background-size:cover;background-position:center;background-repeat:no-repeat;will-change:transform,opacity}
+    .hero-slide.active{opacity:1;transform:translateX(0)}
+    .hero-slide.prev{transform:translateX(-100%)}
+    .slide-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(0,0,0,.7) 0%,rgba(45,90,61,.6) 50%,rgba(0,0,0,.8) 100%);z-index:1}
+    
+    /* Hero Content */
+    .hero-content{position:relative;z-index:2;max-width:700px;animation:slideInUp .8s ease-out .3s both}
+    @keyframes slideInUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+    
+    /* Hero Badge */
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(255,255,255,.2);backdrop-filter:blur(12px);border-radius:50px;border:1px solid rgba(255,255,255,.3);margin-bottom:1.5rem;animation:fadeInScale .6s ease-out .5s both}
+    .badge-icon{font-size:1.2rem;text-shadow:0 2px 4px rgba(0,0,0,.6)}
+    .badge-text{color:white !important;font-weight:700;font-size:.9rem;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+    @keyframes fadeInScale{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+    
+    /* Hero Title - МАКСИМАЛЬНАЯ СПЕЦИФИЧНОСТЬ */
+    .hero-title{font-size:clamp(2.5rem,7vw,4.5rem);font-weight:800;color:white !important;margin-bottom:1.5rem;line-height:1.1;letter-spacing:-.02em;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8) !important;background:rgba(0,0,0,.5);padding:.75rem 1.25rem;border-radius:16px;backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.1)}
+    .premium-hero h1,
+    .hero-slide h1,
+    h1.hero-title,
+    .hero-title,
+    .premium-hero .hero-title,
+    .hero-slide .hero-title{
+      color:white !important;
+      text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8) !important;
+      background:rgba(0,0,0,.5) !important;
+      padding:.75rem 1.25rem !important;
+      border-radius:16px !important;
+      backdrop-filter:blur(15px) !important;
+      border:1px solid rgba(255,255,255,.1) !important;
+    }
+    /* ПРИНУДИТЕЛЬНО ВСЕ ДОЧЕРНИЕ ЭЛЕМЕНТЫ БЕЛЫЕ */
+    .premium-hero h1 *,
+    .hero-slide h1 *,
+    h1.hero-title *,
+    .hero-title *,
+    .premium-hero .hero-title *,
+    .hero-slide .hero-title *{
+      color:white !important;
+      text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8) !important;
+    }
+    .highlight-text{color:#6db884 !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 40px rgba(0,0,0,.9) !important;position:relative;font-weight:900;background:none !important;-webkit-text-fill-color:#6db884 !important}
+    .highlight-text::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:3px;background:linear-gradient(135deg,#6db884,#4a8764);border-radius:2px;transform:scaleX(0);animation:highlightGrow 1s ease-out 1s both;box-shadow:0 0 10px rgba(109,184,132,.5)}
+    @keyframes highlightGrow{to{transform:scaleX(1)}}
+    
+    /* Hero Subtitle */
+    .hero-subtitle{font-size:clamp(1.1rem,4vw,1.4rem);color:rgba(255,255,255,1);margin-bottom:2rem;line-height:1.5;text-shadow:0 3px 12px rgba(0,0,0,1),0 1px 3px rgba(0,0,0,1),0 0 25px rgba(0,0,0,.8);background:rgba(0,0,0,.4);padding:1rem 1.25rem;border-radius:12px;backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.08);font-weight:600}
+    
+    /* Оптимизированный preloader */
+    #mainPreloader{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-green),var(--primary-dark));z-index:9999;display:flex;justify-content:center;align-items:center;transition:opacity .4s ease;will-change:opacity}
+    .preloader-content{text-align:center;color:white;transform:translateY(-10vh)}
+    
+    /* Hero Stats & Features */
+    .hero-stats,.hero-features,.hero-benefits{display:flex;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+    .stat-item,.feature-item,.benefit-item{text-align:center;animation:fadeInUp .6s ease-out calc(.8s + var(--delay,0s)) both}
+    .stat-number,.benefit-number{display:block;font-size:2rem;font-weight:800;color:#6db884;text-shadow:0 2px 10px rgba(0,0,0,.8),0 0 20px rgba(0,0,0,.6)}
+    .stat-label,.benefit-text{display:block;color:rgba(255,255,255,1);font-size:.9rem;font-weight:700;margin-top:.2rem;text-shadow:0 2px 8px rgba(0,0,0,1),0 0 15px rgba(0,0,0,.7)}
+    .feature-item{display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.3);padding:.5rem 1rem;border-radius:8px;backdrop-filter:blur(10px)}
+    .feature-icon{color:#6db884;font-weight:bold;font-size:1.2rem;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+    .feature-text{color:white;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,1),0 0 12px rgba(0,0,0,.8)}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    
+    /* Hero Actions */
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:slideInUp .8s ease-out 1.2s both}
+    @media (max-width:640px){.hero-actions{flex-direction:column}}
+    .hero-cta{display:inline-flex;align-items:center;padding:1rem 1.5rem;border-radius:16px;text-decoration:none;font-weight:600;border:none;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;min-height:60px;touch-action:manipulation}
+    .hero-cta::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s;z-index:1}
+    .hero-cta:hover::before{left:100%}
+    .hero-cta.primary{background:linear-gradient(135deg,#6db884,#4a8764);color:white !important;box-shadow:0 8px 25px rgba(109,184,132,.4);text-shadow:0 2px 4px rgba(0,0,0,.3)}
+    .hero-cta.primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(109,184,132,.6)}
+    .hero-cta.secondary{background:rgba(255,255,255,.2);color:white !important;border:2px solid rgba(255,255,255,.4);backdrop-filter:blur(15px);text-shadow:0 2px 6px rgba(0,0,0,.8)}
+    .hero-cta.secondary:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.6)}
+    .hero-cta.whatsapp{background:linear-gradient(135deg,#25d366,#128c7e);color:white !important;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+    .hero-cta:active{transform:scale(.98)}
+    
+    /* CTA Content */
+    .cta-content{display:flex;align-items:center;gap:.75rem;position:relative;z-index:2;color:inherit}
+    .cta-icon{font-size:1.5rem;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+    .cta-text{display:flex;flex-direction:column;align-items:flex-start;color:inherit}
+    .cta-title{font-size:1rem;font-weight:700;line-height:1.2;color:inherit !important;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+    .cta-subtitle{font-size:.8rem;opacity:.95;font-weight:600;color:inherit !important;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+    
+    /* Мобильная навигация */
+    .head__mn-ul{display:none}
+    @media (min-width:768px){.head__mn-ul{display:flex;list-style:none;gap:.5rem;margin:0;padding:0}}
+    .burger{display:flex;flex-direction:column;cursor:pointer;width:28px;height:28px;justify-content:space-around;padding:4px 0;position:relative;background:none;border:none;touch-action:manipulation}
+    @media (min-width:768px){.burger{display:none}}
+    .burger span{display:block;height:2px;width:100%;background:var(--primary-green);border-radius:2px;transition:var(--transition-fast);will-change:transform}
+    
+    /* Анимация бургер меню */
+    .burger.burger-open span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+    .burger.burger-open span:nth-child(2){opacity:0}
+    .burger.burger-open span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+    
+    /* Мобильное меню */
+    .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:999;display:flex;align-items:center;justify-content:center;transform:translateX(-100%);transition:transform .3s ease;opacity:0;visibility:hidden}
+    .mobile-menu.open{transform:translateX(0);opacity:1;visibility:visible}
+    .mobile-nav{text-align:center;width:100%;max-width:300px}
+    .mobile-menu-list{list-style:none;margin:0;padding:0}
+    .mobile-menu-list li{margin:1.5rem 0}
+    .mobile-menu-list a{font-size:1.5rem;font-weight:600;color:var(--primary-green);text-decoration:none;display:block;padding:1rem;border-radius:12px;transition:all .2s ease}
+    .mobile-menu-list a:hover,.mobile-menu-list a:active{background:var(--primary-green);color:white;transform:scale(1.05)}
+    .mobile-contact{margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(45,90,61,.2)}
+    .mobile-contact a{display:block;margin:1rem 0;padding:.75rem;background:var(--primary-green);color:white;text-decoration:none;border-radius:8px;font-weight:600;transition:all .2s ease}
+    .mobile-contact a:hover{background:var(--primary-dark);transform:translateY(-2px)}
+    
+    /* Блокировка скролла при открытом меню */
+    .body-open{overflow:hidden}
+    
+    @media (min-width:768px){.mobile-menu{display:none}}
+    
+    /* Hero Navigation */
+    .hero-navigation{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;align-items:center;gap:2rem}
+    .nav-dots{display:flex;gap:.5rem}
+    .nav-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;transition:all .3s ease;position:relative}
+    .nav-dot.active{background:white;transform:scale(1.2)}
+    .nav-dot::after{content:'';position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;border-radius:50%;border:2px solid transparent;transition:border-color .3s ease}
+    .nav-dot.active::after{border-color:rgba(255,255,255,.5)}
+    
+    .nav-arrows{display:flex;gap:.5rem}
+    .nav-arrow{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:white;font-size:18px;font-weight:bold;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;justify-content:center}
+    .nav-arrow:hover{background:rgba(255,255,255,.2);transform:scale(1.1)}
+    .nav-arrow:active{transform:scale(.95)}
+    
+    /* Hero Progress */
+    .hero-progress{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,.2);z-index:10}
+    .progress-bar{height:100%;background:linear-gradient(135deg,#6db884,#4a8764);width:0%;transition:width .1s linear;border-radius:0 2px 2px 0}
+    
+    /* Mobile Responsive */
+    @media (max-width:768px){
+      .premium-hero{min-height:100vh}
+      .hero-content{padding:0 1rem;max-width:none}
+      .hero-stats,.hero-features,.hero-benefits{gap:1rem;justify-content:center}
+      .stat-item,.feature-item,.benefit-item{flex:1;min-width:80px}
+      .hero-navigation{bottom:1rem;gap:1rem}
+      .nav-arrows{display:none}
+      .hero-cta{min-height:50px;padding:.75rem 1.25rem}
+      .cta-title{font-size:.9rem}
+      .cta-subtitle{font-size:.75rem}
+    }
+    
+    /* Мобильные тач-оптимизации */
+    @media (hover:none) and (pointer:coarse){
+      .logo:hover,.btn:hover{transform:none}
+      .btn:active{transform:scale(.95)}
+    }
+    
+    /* Предотвращение layout shift */
+    img{height:auto;max-width:100%}
+    .premium-hero{contain:layout style paint}
+    
+    /* Полные стили для reviews чтобы не поехала верстка */
+    .premium-cta-section .reviews-preview{
+      background:rgba(255,255,255,.95) !important;
+      color:#333 !important;
+      backdrop-filter:blur(10px);
+      border-radius:16px;
+      padding:1.5rem;
+      margin-top:2rem;
+      border:1px solid rgba(45,90,61,.1);
+    }
+    .premium-cta-section .reviews-header{margin-bottom:1rem}
+    .premium-cta-section .google-rating{display:flex;align-items:center;gap:.75rem}
+    .premium-cta-section .google-icon{width:24px;height:24px}
+    .premium-cta-section .rating-info .stars{color:#fbbf24;font-size:1.1rem;margin-bottom:.25rem}
+    .premium-cta-section .rating-text{color:#6b7280 !important;font-size:.9rem;font-weight:600}
+    .premium-cta-section .reviews-carousel{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .premium-cta-section .review-card{
+      background:white !important;
+      color:#333 !important;
+      border-radius:12px;
+      padding:1.25rem;
+      border:1px solid rgba(45,90,61,.08);
+      box-shadow:0 2px 8px rgba(45,90,61,.06);
+    }
+    .premium-cta-section .review-text{color:#374151 !important;line-height:1.6;margin-bottom:1rem;font-size:.95rem}
+    .premium-cta-section .reviewer{display:flex;align-items:center;gap:.75rem}
+    .premium-cta-section .reviewer-avatar{
+      width:40px;height:40px;border-radius:50%;
+      background:linear-gradient(135deg,#2d5a3d,#4a8764);
+      color:white;display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:1.1rem;
+    }
+    .premium-cta-section .reviewer-name{color:#1f2937 !important;font-weight:600;font-size:.9rem}
+    .premium-cta-section .review-stars{color:#fbbf24;font-size:.85rem}
+    
+    /* Правильная структура CTA секции */
+    .premium-cta-section .cta-content{
+      display:block !important;
+      text-align:center;
+      max-width:800px;
+      margin:0 auto;
+    }
+    .premium-cta-section .cta-actions{
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      margin-top:3rem;
+      flex-wrap:wrap;
+    }
+    @media (max-width:768px){
+      .premium-cta-section .cta-actions{
+        flex-direction:column;
+        align-items:center;
+      }
+    }
+    
+    
+    /* Мобильная галерея */
+    .mobile-gallery-controls{padding:1rem;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(45,90,61,.08);margin-bottom:1.5rem}
+    .mobile-gallery-info{display:flex;justify-content:space-between;align-items:center;font-size:.9rem}
+    .gallery-count{font-weight:600;color:var(--primary-green)}
+    .gallery-mode{color:var(--gray);font-size:.8rem}
+    .mobile-gallery-wrapper{position:relative;min-height:400px}
+    .mobile-gallery{position:relative;width:100%}
+    
+    /* Modern Gallery Styles */
+    .modern-gallery-section{padding:4rem 0;background:linear-gradient(135deg,#f8fffe 0%,#f0f9f6 100%)}
+    
+    /* Fix for sections below */
+    .premium-cta-section{position:relative;overflow:hidden;z-index:1}
+    .reviews-preview{background:rgba(255,255,255,.1);backdrop-filter:blur(15px);border-radius:20px;padding:2rem;margin-bottom:3rem;border:1px solid rgba(255,255,255,.2)}
+    .reviews-carousel{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
+    .review-card{background:rgba(255,255,255,.1);border-radius:16px;padding:1.5rem;border:1px solid rgba(255,255,255,.2);transition:all .3s ease}
+    .google-rating{display:flex;align-items:center;justify-content:center;gap:1rem;color:white}
+    .cta-content{position:relative;z-index:2;text-align:center;color:white}
+    
+    /* Gallery Controls */
+    .gallery-controls{display:flex;justify-content:space-between;align-items:center;margin:2rem 0;padding:1.5rem;background:white;border-radius:16px;box-shadow:0 4px 20px rgba(45,90,61,.08);flex-wrap:wrap;gap:1rem}
+    @media (max-width:768px){.gallery-controls{flex-direction:column;align-items:stretch}}
+    
+    .gallery-filters{display:flex;gap:.75rem;flex-wrap:wrap}
+    @media (max-width:768px){.gallery-filters{justify-content:center}}
+    .filter-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.25rem;border:2px solid rgba(45,90,61,.2);border-radius:12px;background:white;color:#666;font-weight:500;cursor:pointer;transition:all .3s ease;text-decoration:none}
+    .filter-btn:hover{border-color:#4a8764;color:#2d5a3d;transform:translateY(-2px);box-shadow:0 4px 12px rgba(45,90,61,.15)}
+    .filter-btn.active{background:linear-gradient(135deg,#2d5a3d,#4a8764);color:white;border-color:transparent;box-shadow:0 4px 15px rgba(45,90,61,.3)}
+    .filter-icon{font-size:1.1rem}
+    .filter-count{background:rgba(255,255,255,.2);padding:.2rem .5rem;border-radius:6px;font-size:.8rem;font-weight:600}
+    .filter-btn.active .filter-count{background:rgba(255,255,255,.3)}
+    
+    .gallery-view-controls{display:flex;gap:.5rem}
+    @media (max-width:768px){.gallery-view-controls{display:none}}
+    .view-btn{width:40px;height:40px;border:2px solid rgba(45,90,61,.2);border-radius:8px;background:white;color:#666;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;justify-content:center}
+    .view-btn svg{width:18px;height:18px}
+    .view-btn:hover{border-color:#4a8764;color:#2d5a3d}
+    .view-btn.active{background:#2d5a3d;color:white;border-color:#2d5a3d}
+    
+    /* Gallery Stats */
+    .gallery-stats{display:flex;align-items:center;justify-content:center;gap:1rem;margin:1.5rem 0;padding:1rem;background:rgba(255,255,255,.7);border-radius:12px;backdrop-filter:blur(10px)}
+    .stat-item{text-align:center}
+    .stat-value{display:block;font-size:1.5rem;font-weight:700;color:#2d5a3d}
+    .stat-label{font-size:.9rem;color:#666;font-weight:500}
+    .stat-divider{color:#999;font-weight:500}
+    
+    /* Gallery Container */
+    .modern-gallery-container{position:relative}
+    .gallery-loader{display:flex;justify-content:center;align-items:center;min-height:400px}
+    .loader-content{text-align:center}
+    .loader-spinner{width:40px;height:40px;border:3px solid rgba(45,90,61,.3);border-top:3px solid #2d5a3d;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
+    @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    .loader-text{color:#666;font-weight:500}
+    
+    /* Gallery Grid */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-bottom:2rem}
+    @media (max-width:768px){.gallery-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}}
+    @media (max-width:640px){.gallery-grid{grid-template-columns:1fr 1fr;gap:.75rem}}
+    
+    .gallery-item{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(45,90,61,.1);transition:all .4s cubic-bezier(.4,0,.2,1);cursor:pointer;background:white}
+    .gallery-item:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 12px 40px rgba(45,90,61,.2)}
+    
+    .gallery-item-image{position:relative;width:100%;height:240px;overflow:hidden}
+    @media (max-width:640px){.gallery-item-image{height:180px}}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+    .gallery-item:hover img{transform:scale(1.1)}
+    
+    .gallery-item-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.7) 100%);opacity:0;transition:opacity .3s ease;display:flex;align-items:flex-end;padding:1.5rem}
+    .gallery-item:hover .gallery-item-overlay{opacity:1}
+    
+    .gallery-item-info{color:white}
+    .gallery-item-title{font-weight:600;font-size:1rem;margin-bottom:.3rem}
+    .gallery-item-category{font-size:.85rem;opacity:.9}
+    
+    .gallery-item-badge{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9);color:#2d5a3d;padding:.4rem .7rem;border-radius:8px;font-size:.75rem;font-weight:600;backdrop-filter:blur(10px)}
+    
+    /* Load More Button */
+    .gallery-load-more{text-align:center;margin:3rem 0}
+    .load-more-btn{background:linear-gradient(135deg,#2d5a3d,#4a8764);color:white;border:none;border-radius:12px;padding:1rem 2rem;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s ease;display:inline-flex;align-items:center;gap:.75rem;box-shadow:0 4px 15px rgba(45,90,61,.3)}
+    .load-more-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(45,90,61,.4)}
+    .load-more-btn:active{transform:translateY(0)}
+    .btn-icon{font-size:1.2rem}
+    .btn-count{background:rgba(255,255,255,.2);padding:.3rem .6rem;border-radius:6px;font-size:.85rem}
+    
+    /* Modern Lightbox */
+    .modern-lightbox{position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .2s ease}
+    .lightbox-backdrop{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);cursor:pointer}
+    .lightbox-container{position:relative;max-width:95vw;max-height:95vh;background:white;border-radius:20px;overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,.3);display:flex;flex-direction:column}
+    @media (max-width:768px){.lightbox-container{max-width:98vw;max-height:98vh;border-radius:12px}}
+    
+    .lightbox-close{position:absolute;top:15px;right:15px;width:44px;height:44px;background:rgba(0,0,0,.7);color:white;border:none;border-radius:50%;cursor:pointer;z-index:10001;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
+    .lightbox-close:hover{background:rgba(0,0,0,.9);transform:scale(1.1)}
+    .lightbox-close svg{width:20px;height:20px}
+    
+    .lightbox-content{display:flex;flex:1;min-height:0}
+    @media (max-width:768px){.lightbox-content{flex-direction:column}}
+    
+    .lightbox-image-container{flex:1;display:flex;align-items:center;justify-content:center;background:#f8f9fa;min-height:400px}
+    .lightbox-image{max-width:100%;max-height:100%;object-fit:contain;border-radius:0}
+    
+    .lightbox-info{width:320px;padding:2rem;background:white;display:flex;flex-direction:column;justify-content:center}
+    @media (max-width:768px){.lightbox-info{width:100%;padding:1.5rem}}
+    
+    .lightbox-title{font-size:1.5rem;font-weight:700;color:#2d5a3d;margin-bottom:.5rem}
+    .lightbox-category{color:#666;margin-bottom:2rem;font-size:1rem}
+    
+    .lightbox-actions{display:flex;flex-direction:column;gap:1rem}
+    .lightbox-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1rem;border-radius:12px;text-decoration:none;font-weight:600;transition:all .3s ease;text-align:center}
+    .lightbox-btn.primary{background:linear-gradient(135deg,#2d5a3d,#4a8764);color:white;box-shadow:0 4px 15px rgba(45,90,61,.3)}
+    .lightbox-btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(45,90,61,.4)}
+    .lightbox-btn.secondary{background:rgba(45,90,61,.1);color:#2d5a3d;border:2px solid rgba(45,90,61,.2)}
+    .lightbox-btn.secondary:hover{background:rgba(45,90,61,.15);border-color:rgba(45,90,61,.3)}
+    
+    .lightbox-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:#f8f9fa;border-top:1px solid #eee}
+    @media (max-width:768px){.lightbox-nav{padding:1rem}}
+    .lightbox-nav-btn{width:44px;height:44px;background:white;border:2px solid #ddd;border-radius:50%;color:#666;font-size:18px;font-weight:bold;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:center}
+    .lightbox-nav-btn:hover{border-color:#2d5a3d;color:#2d5a3d;transform:scale(1.1)}
+    .lightbox-counter{font-weight:600;color:#666}
+    
+    /* Мобильные секции */
+    @media (max-width:768px){
+      .contain{padding:0 12px}
+      .section{padding:3rem 0 2rem}
+      .gallery-header{margin-bottom:2rem}
+      .gallery-title{font-size:clamp(1.8rem,5vw,2.5rem)}
+      .gallery-subtitle{font-size:1rem}
+    }
+  </style>
+
+  <!-- Preload критических ресурсов -->
+  <link rel="preload" href="img/image_25.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="css/modern-design.css" as="style" fetchpriority="high">
+  <link rel="preload" href="css/optimized.min.css" as="style" fetchpriority="high">
+  <link rel="preload" href="js/optimized.min.js" as="script" fetchpriority="high">
   
-  <!-- Preload critical resources -->
-  <link rel="preload" href="img/image_25.webp" as="image" type="image/webp">
-  <link rel="preload" href="css/non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/non-critical.min.css"></noscript>
+  <!-- Критический CSS для дизайна -->
+  <link rel="stylesheet" href="css/modern-design.css" media="all">
   
-  <!-- Critical performance hints -->
-  <link rel="preload" href="js/optimized.min.js" as="script">
-  <link rel="prefetch" href="img/gal-1.webp" as="image" type="image/webp">
-  <link rel="prefetch" href="img/gal-2.webp" as="image" type="image/webp">
+  <!-- Оптимизированная загрузка CSS -->
+  <link rel="stylesheet" href="css/optimized.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/optimized.min.css"></noscript>
   
-  <!-- Resource priorities -->
-  <meta name="resource-fetch-priority" content="high">
-  
-  <!-- Modern Design CSS -->
-  <link rel="stylesheet" href="css/modern-design.css">
-  
-  <!-- Instant Gallery Script -->
-  <script src="js/instant-gallery.js"></script>
+  <!-- Отложенная загрузка скриптов -->
   
   <!-- Async load non-critical CSS -->
   <script>
@@ -70,14 +426,11 @@
   loadCSS('css/non-critical.min.css');
   </script>
   
-  <!-- Resource hints для лучшей производительности -->
-  <link rel="dns-prefetch" href="//formspree.io">
-  <link rel="dns-prefetch" href="//wa.me">
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link rel="preconnect" href="https://formspree.io" crossorigin>
+  <!-- Высокоприоритетные preconnect и dns-prefetch -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://formspree.io" crossorigin>
+  <link rel="dns-prefetch" href="//wa.me">
   
   <!-- Schema.org structured data - Fixed and optimized -->
   <script type="application/ld+json">
@@ -219,10 +572,11 @@
   <link rel="preload" href="css/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="css/jquery.fancybox.min.css"></noscript>
   
-  <!-- Optimized Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <!-- Мобильно-оптимизированные шрифты -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap&text=GartenbauZMProfessioneller" as="style" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
   </noscript>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -272,20 +626,155 @@
     </div>
   </div>
 </header>
-    <section class="hero" role="banner">
-      <div class="contain">
-        <div class="hero__content">
-          <h1 class="hero__title">
-            Professioneller Garten- und Landschaftsbau in Stuttgart
-          </h1>
-          <p class="hero__subtitle">
-            Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre Träume in Remseck, Ludwigsburg & Waiblingen
-          </p>
-          <div class="hero__buttons">
-            <a href="#Kontakt" class="btn btn-primary">Kostenlose Beratung</a>
-            <a href="#Projekte" class="btn btn-secondary">📸 Unsere Projekte</a>
+    <!-- Premium Hero Slider Section -->
+    <section class="premium-hero" role="banner" id="heroSlider">
+      <div class="hero-slider-container">
+        <!-- Slide 1 - Gartenbau -->
+        <div class="hero-slide active" data-bg="img/image_25.webp">
+          <div class="slide-overlay"></div>
+          <div class="contain">
+            <div class="hero-content">
+              <div class="hero-badge">
+                <span class="badge-icon">🌱</span>
+                <span class="badge-text">Professioneller Gartenbau</span>
+              </div>
+              <h1 class="hero-title" style="color:white !important;">
+                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Traumgärten für</span><br>
+                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Stuttgart & Region</span>
+              </h1>
+              <p class="hero-subtitle">
+                Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre grünen Träume mit über 15 Jahren Erfahrung
+              </p>
+              <div class="hero-actions">
+                <a href="tel:+491782747470" class="hero-cta primary">
+                  <div class="cta-content">
+                    <span class="cta-icon">📞</span>
+                    <div class="cta-text">
+                      <span class="cta-title">Sofort anrufen</span>
+                      <span class="cta-subtitle">+49 178 2747470</span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#Kontakt" class="hero-cta secondary">
+                  <span class="cta-icon">💬</span>
+                  <span class="cta-title">Kostenlose Beratung</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Slide 2 - Natursteinarbeiten -->
+        <div class="hero-slide" data-bg="img/image_15.webp">
+          <div class="slide-overlay"></div>
+          <div class="contain">
+            <div class="hero-content">
+              <div class="hero-badge">
+                <span class="badge-icon">🪨</span>
+                <span class="badge-text">Natursteinarbeiten</span>
+              </div>
+              <h1 class="hero-title" style="color:white !important;">
+                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Hochwertige</span><br>
+                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Natursteinarbeiten</span>
+              </h1>
+              <p class="hero-subtitle">
+                Exklusive Mauern, Treppen und Eingangsbereiche aus Naturstein. Handwerkskunst auf höchstem Niveau für Ihre Immobilie in Stuttgart
+              </p>
+              <div class="hero-features">
+                <div class="feature-item">
+                  <span class="feature-icon">✓</span>
+                  <span class="feature-text">Premium Materialien</span>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">✓</span>
+                  <span class="feature-text">Meisterbetrieb</span>
+                </div>
+              </div>
+              <div class="hero-actions">
+                <a href="#Projekte" class="hero-cta primary">
+                  <div class="cta-content">
+                    <span class="cta-icon">📸</span>
+                    <div class="cta-text">
+                      <span class="cta-title">Referenzen ansehen</span>
+                      <span class="cta-subtitle">180+ Projekte</span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#Kontakt" class="hero-cta secondary">
+                  <span class="cta-icon">📋</span>
+                  <span class="cta-title">Kostenvoranschlag</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 - Terrassenbau -->
+        <div class="hero-slide" data-bg="img/image_35.webp">
+          <div class="slide-overlay"></div>
+          <div class="contain">
+            <div class="hero-content">
+              <div class="hero-badge">
+                <span class="badge-icon">🏡</span>
+                <span class="badge-text">Terrassen & Plätze</span>
+              </div>
+              <h1 class="hero-title" style="color:white !important;">
+                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Moderne</span><br>
+                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Outdoor-Living</span>
+              </h1>
+              <p class="hero-subtitle">
+                Schaffen Sie Ihren persönlichen Wohlfühlbereich im Freien. Stilvolle Terrassen und Plätze für unvergessliche Momente mit Familie und Freunden
+              </p>
+              <div class="hero-benefits">
+                <div class="benefit-item">
+                  <span class="benefit-number">24h</span>
+                  <span class="benefit-text">Antwortzeit</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-number">100%</span>
+                  <span class="benefit-text">Zufriedenheit</span>
+                </div>
+                <div class="benefit-item">
+                  <span class="benefit-number">0€</span>
+                  <span class="benefit-text">Beratung</span>
+                </div>
+              </div>
+              <div class="hero-actions">
+                <a href="https://wa.me/+491782747470" class="hero-cta primary whatsapp">
+                  <div class="cta-content">
+                    <span class="cta-icon">💬</span>
+                    <div class="cta-text">
+                      <span class="cta-title">WhatsApp Chat</span>
+                      <span class="cta-subtitle">Sofort verfügbar</span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#Leistungen" class="hero-cta secondary">
+                  <span class="cta-icon">🔍</span>
+                  <span class="cta-title">Alle Leistungen</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Navigation -->
+      <div class="hero-navigation">
+        <div class="nav-dots">
+          <button class="nav-dot active" data-slide="0"></button>
+          <button class="nav-dot" data-slide="1"></button>
+          <button class="nav-dot" data-slide="2"></button>
+        </div>
+        <div class="nav-arrows">
+          <button class="nav-arrow prev" id="heroPrev">‹</button>
+          <button class="nav-arrow next" id="heroNext">›</button>
+        </div>
+      </div>
+
+      <!-- Slider Progress -->
+      <div class="hero-progress">
+        <div class="progress-bar" id="heroProgress"></div>
       </div>
     </section>
     <main class="main" id="main-content" role="main">
@@ -308,7 +797,7 @@
             <div class="about-image">
               <picture>
                 <source srcset="img/ihr.webp" type="image/webp">
-                <img src="img/ihr.jpg" alt="Gartenbau Remseck - Professioneller Landschaftsbau Stuttgart Ludwigsburg Waiblingen" width="600" height="400" loading="lazy" class="responsive-image">
+                <img src="img/ihr.jpg" alt="Gartenbau Remseck - Professioneller Landschaftsbau Stuttgart Ludwigsburg Waiblingen" width="600" height="400" loading="lazy" class="responsive-image" decoding="async">
               </picture>
             </div>
           </div>
@@ -327,7 +816,7 @@
               <p>Professionelle Gartenplanung und -gestaltung für Remseck, Stuttgart, Ludwigsburg und Waiblingen. Von der Idee bis zur Umsetzung.</p>
               <picture>
                 <source srcset="img/gal-1.webp" type="image/webp">
-                <img src="img/gal-1.jpg" alt="Gartengestaltung Remseck Stuttgart Ludwigsburg" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-1.jpg" alt="Gartengestaltung Remseck Stuttgart Ludwigsburg" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
             
@@ -337,7 +826,7 @@
               <p>Hochwertige Natur- und Betonsteinarbeiten. Mauern, Treppen, Eingangsbereiche und mehr für Stuttgart und Umgebung.</p>
               <picture>
                 <source srcset="img/gal-2.webp" type="image/webp">
-                <img src="img/gal-2.jpg" alt="Natursteinarbeiten Stuttgart Waiblingen" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-2.jpg" alt="Natursteinarbeiten Stuttgart Waiblingen" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
             
@@ -347,7 +836,7 @@
               <p>Professionelle Pflasterarbeiten für Zufahrten, Gartenwege und Einfahrten in Ludwigsburg, Böblingen und Remseck.</p>
               <picture>
                 <source srcset="img/gal-3.webp" type="image/webp">
-                <img src="img/gal-3.jpg" alt="Pflasterarbeiten Ludwigsburg Böblingen" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-3.jpg" alt="Pflasterarbeiten Ludwigsburg Böblingen" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
             
@@ -357,7 +846,7 @@
               <p>Moderne Terrassengestaltung und Plätze für Outdoor-Living. Terrassenbau in Waiblingen, Fellbach und Stuttgart.</p>
               <picture>
                 <source srcset="img/gal-4.webp" type="image/webp">
-                <img src="img/gal-4.jpg" alt="Terrassen bauen Waiblingen Fellbach" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-4.jpg" alt="Terrassen bauen Waiblingen Fellbach" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
             
@@ -367,7 +856,7 @@
               <p>Zuverlässiger Hausmeisterservice und Gartenservice für Stuttgart, Remseck, Ludwigsburg und Waiblingen.</p>
               <picture>
                 <source srcset="img/gal-5.webp" type="image/webp">
-                <img src="img/gal-5.jpg" alt="Hausmeisterservice Stuttgart Remseck" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-5.jpg" alt="Hausmeisterservice Stuttgart Remseck" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
             
@@ -377,7 +866,7 @@
               <p>Individuelle Sichtschutzlösungen, Mauern und Zäune für Ihre Privatsphäre in Stuttgart, Remseck und Ludwigsburg.</p>
               <picture>
                 <source srcset="img/gal-6.webp" type="image/webp">
-                <img src="img/gal-6.jpg" alt="Sichtschutz Stuttgart Remseck" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-6.jpg" alt="Sichtschutz Stuttgart Remseck" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
             
@@ -387,7 +876,7 @@
               <p>Professionelle Erd- und Baggerarbeiten für alle Projekte in Stuttgart, Backnang, Remseck und Ludwigsburg.</p>
               <picture>
                 <source srcset="img/gal-7.webp" type="image/webp">
-                <img src="img/gal-7.jpg" alt="Erdarbeiten Stuttgart Backnang" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-7.jpg" alt="Erdarbeiten Stuttgart Backnang" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
             
@@ -397,14 +886,14 @@
               <p>Professionelles Rollrasen verlegen und Rasen anlegen in Stuttgart, Esslingen, Remseck und Ludwigsburg.</p>
               <picture>
                 <source srcset="img/gal-8.webp" type="image/webp">
-                <img src="img/gal-8.jpg" alt="Rollrasen verlegen Stuttgart Esslingen" width="300" height="200" loading="lazy" class="service-image">
+                <img src="img/gal-8.jpg" alt="Rollrasen verlegen Stuttgart Esslingen" width="300" height="200" loading="lazy" class="service-image" decoding="async">
               </picture>
             </div>
           </div>
         </div>
       </div>
-      <!-- Universal Dynamic Gallery -->
-      <section class="universal-gallery-section" id="Projekte">
+      <!-- Modern Intuitive Gallery -->
+      <section class="modern-gallery-section" id="Projekte">
         <div class="contain">
           <div class="gallery-header">
             <div class="section-badge">
@@ -413,87 +902,92 @@
             </div>
             
             <h2 class="gallery-title">
-              Projekte aus <span class="highlight-text">Stuttgart & Umgebung</span>
+              Projekte aus <span style="color:#2d5a3d !important;font-weight:700;">Stuttgart & Umgebung</span>
             </h2>
             
             <p class="gallery-subtitle">
-              Über 180 Bilder unserer erfolgreich abgeschlossenen Garten- und Landschaftsbauprojekte.
+              180 erfolgreich abgeschlossene Garten- und Landschaftsbauprojekte
             </p>
           </div>
 
-          <!-- Gallery Controls -->
+          <!-- Gallery Filters & Controls -->
           <div class="gallery-controls">
-            <div class="view-controls">
-              <button class="view-btn active" data-view="grid">
-                <span class="btn-icon">⊞</span>
-                <span>Gitter</span>
+            <div class="gallery-filters">
+              <button class="filter-btn active" data-filter="all">
+                <span class="filter-icon">🌐</span>
+                <span class="filter-text">Alle Projekte</span>
+                <span class="filter-count">180</span>
               </button>
-              <button class="view-btn" data-view="masonry">
-                <span class="btn-icon">⧉</span>
-                <span>Mosaik</span>
+              <button class="filter-btn" data-filter="garden">
+                <span class="filter-icon">🌱</span>
+                <span class="filter-text">Gartengestaltung</span>
+                <span class="filter-count">60</span>
               </button>
-              <button class="view-btn" data-view="carousel">
-                <span class="btn-icon">⬌</span>
-                <span>Karussell</span>
+              <button class="filter-btn" data-filter="stone">
+                <span class="filter-icon">🪨</span>
+                <span class="filter-text">Naturstein</span>
+                <span class="filter-count">45</span>
+              </button>
+              <button class="filter-btn" data-filter="terrace">
+                <span class="filter-icon">🏡</span>
+                <span class="filter-text">Terrassen</span>
+                <span class="filter-count">75</span>
               </button>
             </div>
             
-            <div class="gallery-search">
-              <input type="text" id="gallerySearch" placeholder="Bilder durchsuchen...">
-              <span class="search-icon">🔍</span>
-            </div>
-            
-            <div class="gallery-sort">
-              <select id="gallerySort">
-                <option value="newest">Neueste zuerst</option>
-                <option value="oldest">Älteste zuerst</option>
-                <option value="random">Zufällig</option>
-              </select>
+            <div class="gallery-view-controls">
+              <button class="view-btn active" data-view="grid" title="Rasteransicht">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM18 13h-2v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/>
+                </svg>
+              </button>
+              <button class="view-btn" data-view="list" title="Listenansicht">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                </svg>
+              </button>
+              <button class="view-btn" data-view="masonry" title="Masonry">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v12h8V3h-8zm6 10h-4V5h4v8zm-6 6v2h8v-2h-8z"/>
+                </svg>
+              </button>
             </div>
           </div>
 
-          <!-- Gallery Container -->
-          <div class="universal-gallery-container">
+          <!-- Gallery Stats -->
+          <div class="gallery-stats">
+            <div class="stat-item">
+              <span class="stat-value" id="currentCount">12</span>
+              <span class="stat-label">Angezeigt</span>
+            </div>
+            <div class="stat-divider">von</div>
+            <div class="stat-item">
+              <span class="stat-value" id="totalCount">180</span>
+              <span class="stat-label">Gesamt</span>
+            </div>
+          </div>
+
+          <!-- Modern Gallery Container -->
+          <div class="modern-gallery-container">
             <!-- Loading State -->
-            <div class="gallery-loading" id="galleryLoading">
-              <div class="loading-spinner"></div>
-              <p class="loading-text">Lade Galerie...</p>
-              <div class="loading-progress">
-                <div class="progress-bar" id="progressBar"></div>
+            <div class="gallery-loader" id="galleryLoader">
+              <div class="loader-content">
+                <div class="loader-spinner"></div>
+                <p class="loader-text">Lade Projekte...</p>
               </div>
             </div>
             
             <!-- Gallery Grid -->
-            <div class="universal-gallery-grid" id="galleryGrid" style="display: none;"></div>
-            
-            <!-- Gallery Stats -->
-            <div class="gallery-stats" id="galleryStats" style="display: none;">
-              <div class="stats-item">
-                <span class="stats-number" id="totalImages">0</span>
-                <span class="stats-label">Bilder</span>
-              </div>
-              <div class="stats-item">
-                <span class="stats-number" id="visibleImages">0</span>
-                <span class="stats-label">Sichtbar</span>
-              </div>
-              <div class="stats-item">
-                <span class="stats-number" id="currentPage">1</span>
-                <span class="stats-label">Seite</span>
-              </div>
+            <div class="gallery-grid" id="modernGallery">
+              <!-- Images will be loaded here -->
             </div>
             
-            <!-- Pagination -->
-            <div class="gallery-pagination" id="galleryPagination" style="display: none;">
-              <button class="pagination-btn prev" id="prevPage" disabled>
-                <span class="btn-icon">←</span>
-                <span>Zurück</span>
-              </button>
-              
-              <div class="page-numbers" id="pageNumbers"></div>
-              
-              <button class="pagination-btn next" id="nextPage">
-                <span>Weiter</span>
-                <span class="btn-icon">→</span>
+            <!-- Load More Button -->
+            <div class="gallery-load-more">
+              <button class="load-more-btn" id="loadMoreBtn">
+                <span class="btn-icon">⬇️</span>
+                <span class="btn-text">Weitere Projekte laden</span>
+                <span class="btn-count">(12 von 180)</span>
               </button>
             </div>
           </div>
@@ -522,7 +1016,7 @@
             
             <h2 class="cta-headline">
               Ihr Traumgarten ist nur 
-              <span class="highlight-text">einen Anruf</span> 
+              <span style="color:#6db884 !important;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.8);">einen Anruf</span> 
               entfernt
             </h2>
             
@@ -590,6 +1084,7 @@
                 </a>
               </div>
             </div>
+          </div>
             
             <div class="cta-actions">
               <a href="tel:+491782747470" class="modern-cta-btn primary-call">
@@ -773,7 +1268,7 @@
           <div class="footer__brand">
             <picture>
               <source srcset="img/logo.webp" type="image/webp">
-              <img src="img/logo.png" class="footer__logo" alt="Gartenbau Z.M. Logo" loading="lazy">
+              <img src="img/logo.png" class="footer__logo" alt="Gartenbau Z.M. Logo" loading="lazy" decoding="async">
             </picture>
             <div>
               <div class="footer__title">Gartenbau Z.M.</div>
@@ -856,43 +1351,112 @@
       });
     }
 
-    // Load scripts asynchronously
-    function loadScript(src, callback) {
-      const script = document.createElement('script');
-      script.src = src;
-      script.async = true;
-      if (callback) script.onload = callback;
-      document.head.appendChild(script);
+    // Мобильная оптимизация: удаляем hover эффекты на сенсорных устройствах
+    if ('ontouchstart' in window) {
+      document.documentElement.classList.add('touch-device');
+      // Отключаем анимации hover на мобильных
+      const style = document.createElement('style');
+      style.textContent = `
+        .touch-device *:hover { transition: none !important; }
+        .touch-device .hero__buttons { justify-content: center; }
+        .touch-device .btn { min-width: 200px; }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    // Мобильно-оптимизированная загрузка скриптов
+    function loadScript(src, callback, priority = 'low') {
+      return new Promise((resolve, reject) => {
+        if (document.querySelector(`script[src="${src}"]`)) {
+          resolve(); // Уже загружен
+          return;
+        }
+        
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (priority === 'high') script.fetchPriority = 'high';
+        script.onload = () => {
+          if (callback) callback();
+          resolve();
+        };
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
     }
 
-    // Load optimized scripts with performance priority
+    // Определяем мобильное устройство
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    // Современные критические скрипты
     const criticalScripts = [
-      'js/optimized.min.js',
+      { src: 'js/optimized.min.js', priority: 'high' },
+      { src: 'js/modern-gallery.js', priority: 'high' }
+    ];
+    
+    // Некритические скрипты (разные для мобильных и десктопа)
+    const enhancementScripts = isMobile ? [
       'js/webp-optimizer.min.js'
-    ];
-    
-    const enhancementScripts = [
+    ] : [
+      'js/instant-gallery.js',
       'js/lazy-gallery.min.js',
-      { src: 'js/jquery-3.4.1.min.js', callback: () => loadScript('js/jquery.fancybox.min.js') }
+      'js/jquery-3.4.1.min.js'
     ];
     
-    // Load critical scripts immediately
-    criticalScripts.forEach(src => loadScript(src));
-    
-    // Load enhancement scripts after load event
-    window.addEventListener('load', () => {
-      enhancementScripts.forEach(script => {
-        if (typeof script === 'string') {
-          loadScript(script);
+    // Загрузка критических скриптов
+    Promise.all(criticalScripts.map(script => 
+      loadScript(script.src, null, script.priority)
+    )).then(() => {
+      console.log(`Критические скрипты загружены (${isMobile ? 'mobile' : 'desktop'})`);
+      
+      // Инициализируем галерею с отладкой
+      setTimeout(() => {
+        console.log('🔍 Проверяем доступность классов галереи:');
+        console.log('MobileOptimizedGallery:', !!window.MobileOptimizedGallery);
+        console.log('OptimizedGallery:', !!window.OptimizedGallery);
+        console.log('isMobile:', isMobile);
+        console.log('Container exists:', !!document.getElementById('galleryGrid'));
+        
+        // Используем новую современную галерею
+        if (window.ModernGallery) {
+          console.log('✅ Инициализирую современную галерею');
+          window.gallery = new ModernGallery();
+        } else if (window.OptimizedGallery) {
+          console.log('✅ Инициализирую обычную галерею');
+          window.gallery = new OptimizedGallery();
         } else {
-          loadScript(script.src, script.callback);
+          console.error('❌ Ни один класс галереи не найден!');
         }
+      }, 500);
+    });
+    
+    // Отложенная загрузка некритических скриптов
+    const loadEnhancements = () => {
+      enhancementScripts.forEach((src, index) => {
+        setTimeout(() => loadScript(src), index * 150);
       });
       
-      // Load instant gallery functionality
-      console.log('Loading instant gallery script...');
-      loadScript('js/instant-gallery.js');
-    });
+      // jQuery и Fancybox только для десктопа
+      if (!isMobile) {
+        setTimeout(() => {
+          loadScript('js/jquery-3.4.1.min.js').then(() => {
+            loadScript('js/jquery.fancybox.min.js').then(() => {
+              // Инициализация обычной галереи для десктопа
+              if (typeof initInstantGallery === 'function') {
+                initInstantGallery();
+              }
+            });
+          });
+        }, 600);
+      }
+    };
+    
+    // Загрузка после события load
+    if (document.readyState === 'complete') {
+      setTimeout(loadEnhancements, 200);
+    } else {
+      window.addEventListener('load', loadEnhancements);
+    }
 
     // Enhanced Performance monitoring with Web Vitals
     if ('PerformanceObserver' in window) {
@@ -929,16 +1493,17 @@
       clsObserver.observe({entryTypes: ['layout-shift']});
     }
 
-    // Advanced performance optimizations
-    // Preload next page resources on hover
+    // Продвинутая оптимизация
+    let prefetchedLinks = new Set();
     document.addEventListener('mouseover', function(e) {
-      if (e.target.tagName === 'A' && e.target.href) {
+      if (e.target.tagName === 'A' && e.target.href && !prefetchedLinks.has(e.target.href)) {
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = e.target.href;
         document.head.appendChild(link);
+        prefetchedLinks.add(e.target.href);
       }
-    }, { once: true });
+    }, { passive: true });
 
     // Optimize scroll performance
     let ticking = false;

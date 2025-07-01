@@ -1,244 +1,367 @@
-// Modern Gallery Functionality
-document.addEventListener('DOMContentLoaded', function() {
+// Modern Intuitive Gallery with Perfect UX/UI
+class ModernGallery {
+  constructor() {
+    this.container = document.getElementById('modernGallery');
+    this.loader = document.getElementById('galleryLoader');
+    this.loadMoreBtn = document.getElementById('loadMoreBtn');
+    this.currentCountEl = document.getElementById('currentCount');
+    this.totalCountEl = document.getElementById('totalCount');
     
-    // Gallery Categories Filter
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    this.filters = document.querySelectorAll('.filter-btn');
+    this.viewButtons = document.querySelectorAll('.view-btn');
     
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const category = this.dataset.category;
-            
-            // Update active button
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter gallery items
-            galleryItems.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'scale(1)';
-                    }, 100);
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
-                }
-            });
-            
-            // Update grid layout
-            updateGridLayout();
-        });
+    this.totalImages = 180;
+    this.imagesPerLoad = 12;
+    this.loadedImages = 0;
+    this.currentFilter = 'all';
+    this.currentView = 'grid';
+    this.isLoading = false;
+    
+    // Image categories mapping
+    this.imageCategories = this.generateImageCategories();
+    
+    this.init();
+  }
+  
+  init() {
+    if (!this.container) {
+      console.error('Gallery container not found');
+      return;
+    }
+    
+    console.log('🎨 Initializing Modern Gallery');
+    
+    this.bindEvents();
+    this.loadInitialImages();
+  }
+  
+  generateImageCategories() {
+    const categories = ['garden', 'stone', 'terrace'];
+    const mapping = {};
+    
+    for (let i = 1; i <= this.totalImages; i++) {
+      // Distribute images across categories
+      if (i <= 60) mapping[i] = 'garden';
+      else if (i <= 105) mapping[i] = 'stone';
+      else mapping[i] = 'terrace';
+    }
+    
+    return mapping;
+  }
+  
+  bindEvents() {
+    // Filter buttons
+    this.filters.forEach(filter => {
+      filter.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleFilterChange(filter.dataset.filter);
+      });
     });
     
-    // Load More Functionality
-    const loadMoreBtn = document.getElementById('loadMoreProjects');
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-            // Show loading state
-            this.innerHTML = `
-                <span class="btn-icon">⏳</span>
-                <span class="btn-text">Lade weitere Projekte...</span>
-            `;
-            this.disabled = true;
-            
-            // Simulate loading delay
-            setTimeout(() => {
-                loadAdditionalProjects();
-                this.style.display = 'none';
-            }, 2000);
-        });
-    }
-    
-    // Initialize Fancybox for gallery
-    if (typeof $ !== 'undefined' && $.fancybox) {
-        $('[data-fancybox="gallery"]').fancybox({
-            buttons: [
-                "slideShow",
-                "thumbs",
-                "zoom",
-                "fullScreen",
-                "share",
-                "close"
-            ],
-            loop: true,
-            protect: true,
-            animationEffect: "zoom-in-out",
-            transitionEffect: "slide",
-            toolbar: true,
-            smallBtn: true,
-            iframe: {
-                preload: false
-            }
-        });
-    }
-    
-    // Touch swipe for mobile gallery
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-    
-    galleryItems.forEach(item => {
-        item.addEventListener('touchstart', handleTouchStart, { passive: true });
-        item.addEventListener('touchmove', handleTouchMove, { passive: true });
-        item.addEventListener('touchend', handleTouchEnd, { passive: true });
+    // View buttons
+    this.viewButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleViewChange(btn.dataset.view);
+      });
     });
     
-    function handleTouchStart(e) {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-    }
+    // Load more button
+    this.loadMoreBtn?.addEventListener('click', () => {
+      this.loadMoreImages();
+    });
     
-    function handleTouchMove(e) {
-        if (!isDragging) return;
-        currentX = e.touches[0].clientX;
-    }
+    // Infinite scroll DISABLED
+    // window.addEventListener('scroll', this.throttle(() => {
+    //   if (this.isNearBottom() && !this.isLoading && this.hasMoreImages()) {
+    //     this.loadMoreImages();
+    //   }
+    // }, 300));
+  }
+  
+  async loadInitialImages() {
+    this.showLoader();
     
-    function handleTouchEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        
-        const deltaX = currentX - startX;
-        if (Math.abs(deltaX) > 50) {
-            // Trigger swipe action if needed
-            console.log('Swipe detected:', deltaX > 0 ? 'right' : 'left');
-        }
-    }
+    // Simulate loading delay for better UX
+    await this.delay(800);
     
-    // Update grid layout function
-    function updateGridLayout() {
-        const grid = document.querySelector('.modern-gallery-grid');
-        if (grid) {
-            // Force reflow to update grid layout
-            grid.style.display = 'none';
-            grid.offsetHeight; // Trigger reflow
-            grid.style.display = 'grid';
-        }
-    }
+    this.loadedImages = 0;
+    this.container.innerHTML = '';
     
-    // Load additional projects function
-    function loadAdditionalProjects() {
-        const grid = document.querySelector('.modern-gallery-grid');
-        const additionalProjects = [
-            {
-                category: 'garten',
-                image: 'img/gal-7.webp',
-                fallback: 'img/gal-7.jpg',
-                title: 'Komplette Neugestaltung',
-                location: 'Kornwestheim',
-                alt: 'Gartengestaltung Kornwestheim'
-            },
-            {
-                category: 'terrassen',
-                image: 'img/gal-8.webp',
-                fallback: 'img/gal-8.jpg',
-                title: 'Designer Terrasse',
-                location: 'Esslingen',
-                alt: 'Designer Terrasse Esslingen'
-            },
-            {
-                category: 'naturstein',
-                image: 'img/gal-9.webp',
-                fallback: 'img/gal-9.jpg',
-                title: 'Natursteintreppe',
-                location: 'Böblingen',
-                alt: 'Natursteintreppe Böblingen'
-            }
-        ];
-        
-        additionalProjects.forEach((project, index) => {
-            setTimeout(() => {
-                const projectHTML = `
-                    <div class="gallery-item" data-category="${project.category}" style="opacity: 0; transform: translateY(30px);">
-                        <picture>
-                            <source srcset="${project.image}" type="image/webp">
-                            <img src="${project.fallback}" alt="${project.alt}" loading="lazy" class="gallery-image">
-                        </picture>
-                        <div class="project-overlay">
-                            <div class="project-info">
-                                <div class="project-category">${getCategoryName(project.category)}</div>
-                                <h3 class="project-title">${project.title}</h3>
-                                <div class="project-location">
-                                    <span class="location-icon">📍</span>
-                                    <span>${project.location}</span>
-                                </div>
-                                <a href="${project.image}" class="view-btn" data-fancybox="gallery" data-caption="${project.alt}">
-                                    <span class="btn-icon">👁️</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                grid.insertAdjacentHTML('beforeend', projectHTML);
-                
-                // Animate in the new item
-                const newItem = grid.lastElementChild;
-                setTimeout(() => {
-                    newItem.style.opacity = '1';
-                    newItem.style.transform = 'translateY(0)';
-                }, 100);
-                
-                // Re-initialize Fancybox for new items
-                if (typeof $ !== 'undefined' && $.fancybox) {
-                    $('[data-fancybox="gallery"]').fancybox();
-                }
-            }, index * 200);
-        });
-    }
+    this.loadMoreImages();
+  }
+  
+  loadMoreImages() {
+    if (this.isLoading || !this.hasMoreImages()) return;
     
-    // Helper function to get category display name
-    function getCategoryName(category) {
-        const categoryNames = {
-            'terrassen': 'Terrassen & Plätze',
-            'naturstein': 'Natursteinarbeiten',
-            'garten': 'Gartengestaltung',
-            'wege': 'Wege & Zufahrten'
-        };
-        return categoryNames[category] || category;
-    }
+    this.isLoading = true;
+    this.updateLoadMoreButton(true);
     
-    // Lazy loading for images
-    const observerOptions = {
-        root: null,
-        rootMargin: '50px',
-        threshold: 0.1
+    const startIndex = this.loadedImages;
+    const endIndex = Math.min(startIndex + this.imagesPerLoad, this.getFilteredImageCount());
+    
+    const imagesToLoad = this.getFilteredImages().slice(startIndex, endIndex);
+    
+    // Animate in new images
+    setTimeout(() => {
+      imagesToLoad.forEach((imageNum, index) => {
+        setTimeout(() => {
+          const imageElement = this.createGalleryItem(imageNum);
+          imageElement.style.opacity = '0';
+          imageElement.style.transform = 'translateY(30px)';
+          this.container.appendChild(imageElement);
+          
+          // Animate in
+          setTimeout(() => {
+            imageElement.style.transition = 'all 0.5s ease';
+            imageElement.style.opacity = '1';
+            imageElement.style.transform = 'translateY(0)';
+          }, 50);
+        }, index * 100);
+      });
+      
+      this.loadedImages = endIndex;
+      this.updateStats();
+      this.updateLoadMoreButton(false);
+      this.hideLoader();
+      this.isLoading = false;
+    }, 500);
+  }
+  
+  createGalleryItem(imageNum) {
+    const category = this.imageCategories[imageNum];
+    const categoryNames = {
+      garden: 'Gartengestaltung',
+      stone: 'Naturstein',
+      terrace: 'Terrassen'
     };
     
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                }
-                observer.unobserve(img);
-            }
-        });
-    }, observerOptions);
+    const item = document.createElement('div');
+    item.className = `gallery-item gallery-item-${category}`;
+    item.dataset.category = category;
+    item.dataset.imageNum = imageNum;
     
-    // Observe all gallery images
-    document.querySelectorAll('.gallery-image[data-src]').forEach(img => {
-        imageObserver.observe(img);
+    item.innerHTML = `
+      <div class="gallery-item-image">
+        <picture>
+          <source srcset="img/image_${imageNum}.webp" type="image/webp">
+          <img 
+            src="img/image_${imageNum}.jpg" 
+            alt="Gartenbau Projekt ${imageNum} - ${categoryNames[category]}"
+            loading="lazy"
+            decoding="async"
+          >
+        </picture>
+        <div class="gallery-item-badge">${categoryNames[category]}</div>
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-info">
+            <div class="gallery-item-title">Projekt ${imageNum}</div>
+            <div class="gallery-item-category">${categoryNames[category]} • Stuttgart</div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Add click handler for lightbox
+    item.addEventListener('click', () => {
+      this.openLightbox(imageNum, category);
     });
     
-    // Initialize animations on scroll
-    const animateOnScroll = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
-            }
-        });
-    }, { threshold: 0.1 });
+    return item;
+  }
+  
+  openLightbox(imageNum, category) {
+    const categoryNames = {
+      garden: 'Gartengestaltung',
+      stone: 'Naturstein',
+      terrace: 'Terrassen'
+    };
     
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        animateOnScroll.observe(item);
+    const lightbox = document.createElement('div');
+    lightbox.className = 'modern-lightbox';
+    lightbox.innerHTML = `
+      <div class="lightbox-backdrop"></div>
+      <div class="lightbox-container">
+        <button class="lightbox-close" aria-label="Schließen">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+        <div class="lightbox-content">
+          <div class="lightbox-image-container">
+            <picture>
+              <source srcset="img/image_${imageNum}.webp" type="image/webp">
+              <img 
+                src="img/image_${imageNum}.jpg" 
+                alt="Gartenbau Projekt ${imageNum}"
+                class="lightbox-image"
+              >
+            </picture>
+          </div>
+          <div class="lightbox-info">
+            <h3 class="lightbox-title">Projekt ${imageNum}</h3>
+            <p class="lightbox-category">${categoryNames[category]} • Stuttgart & Region</p>
+            <div class="lightbox-actions">
+              <a href="tel:+491782747470" class="lightbox-btn primary">
+                📞 Ähnliches Projekt anfragen
+              </a>
+              <a href="#Kontakt" class="lightbox-btn secondary" onclick="document.body.removeChild(document.querySelector('.modern-lightbox'))">
+                💬 Kostenvoranschlag
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="lightbox-nav">
+          <button class="lightbox-nav-btn prev" data-dir="-1">‹</button>
+          <span class="lightbox-counter">${imageNum} / ${this.totalImages}</span>
+          <button class="lightbox-nav-btn next" data-dir="1">›</button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(lightbox);
+    document.body.style.overflow = 'hidden';
+    
+    // Event listeners
+    lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
+      this.closeLightbox(lightbox);
     });
     
-    console.log('Modern Gallery initialized successfully!');
-});
+    lightbox.querySelector('.lightbox-backdrop').addEventListener('click', () => {
+      this.closeLightbox(lightbox);
+    });
+    
+    // Navigation
+    lightbox.querySelectorAll('.lightbox-nav-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const direction = parseInt(e.target.dataset.dir);
+        const newImageNum = imageNum + direction;
+        if (newImageNum >= 1 && newImageNum <= this.totalImages) {
+          this.closeLightbox(lightbox);
+          setTimeout(() => this.openLightbox(newImageNum, this.imageCategories[newImageNum]), 100);
+        }
+      });
+    });
+  }
+  
+  closeLightbox(lightbox) {
+    lightbox.style.opacity = '0';
+    setTimeout(() => {
+      if (lightbox.parentNode) {
+        document.body.removeChild(lightbox);
+      }
+      document.body.style.overflow = '';
+    }, 200);
+  }
+  
+  handleFilterChange(filter) {
+    if (filter === this.currentFilter) return;
+    
+    // Update active filter button
+    this.filters.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.filter === filter);
+    });
+    
+    this.currentFilter = filter;
+    this.loadedImages = 0;
+    this.container.innerHTML = '';
+    
+    this.showLoader();
+    setTimeout(() => {
+      this.loadMoreImages();
+    }, 300);
+  }
+  
+  handleViewChange(view) {
+    if (view === this.currentView) return;
+    
+    this.viewButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === view);
+    });
+    
+    this.currentView = view;
+    this.container.className = `gallery-grid view-${view}`;
+  }
+  
+  getFilteredImages() {
+    if (this.currentFilter === 'all') {
+      return Array.from({length: this.totalImages}, (_, i) => i + 1);
+    }
+    
+    return Object.entries(this.imageCategories)
+      .filter(([_, category]) => category === this.currentFilter)
+      .map(([imageNum, _]) => parseInt(imageNum));
+  }
+  
+  getFilteredImageCount() {
+    return this.getFilteredImages().length;
+  }
+  
+  hasMoreImages() {
+    return this.loadedImages < this.getFilteredImageCount();
+  }
+  
+  updateStats() {
+    if (this.currentCountEl) {
+      this.currentCountEl.textContent = this.loadedImages;
+    }
+    if (this.totalCountEl) {
+      this.totalCountEl.textContent = this.getFilteredImageCount();
+    }
+  }
+  
+  updateLoadMoreButton(loading) {
+    if (!this.loadMoreBtn) return;
+    
+    const btnText = this.loadMoreBtn.querySelector('.btn-text');
+    const btnCount = this.loadMoreBtn.querySelector('.btn-count');
+    
+    if (loading) {
+      btnText.textContent = 'Lade weitere Projekte...';
+      this.loadMoreBtn.disabled = true;
+    } else if (this.hasMoreImages()) {
+      btnText.textContent = 'Weitere Projekte laden';
+      const remaining = this.getFilteredImageCount() - this.loadedImages;
+      btnCount.textContent = `(${remaining} verbleibend)`;
+      this.loadMoreBtn.disabled = false;
+      this.loadMoreBtn.style.display = 'inline-flex';
+    } else {
+      this.loadMoreBtn.style.display = 'none';
+    }
+  }
+  
+  showLoader() {
+    if (this.loader) {
+      this.loader.style.display = 'flex';
+    }
+  }
+  
+  hideLoader() {
+    if (this.loader) {
+      this.loader.style.display = 'none';
+    }
+  }
+  
+  isNearBottom() {
+    return window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000;
+  }
+  
+  throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+  
+  delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+}
+
+// Export for use
+window.ModernGallery = ModernGallery;
