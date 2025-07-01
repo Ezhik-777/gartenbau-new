@@ -11,7 +11,7 @@ class ModernGallery {
     this.viewButtons = document.querySelectorAll('.view-btn');
     
     this.totalImages = 180;
-    this.imagesPerLoad = 12;
+    this.imagesPerLoad = 6;
     this.loadedImages = 0;
     this.currentFilter = 'all';
     this.currentView = 'grid';
@@ -82,8 +82,8 @@ class ModernGallery {
   async loadInitialImages() {
     this.showLoader();
     
-    // Simulate loading delay for better UX
-    await this.delay(800);
+    // Reduced loading delay for faster performance
+    await this.delay(200);
     
     this.loadedImages = 0;
     this.container.innerHTML = '';
@@ -102,22 +102,20 @@ class ModernGallery {
     
     const imagesToLoad = this.getFilteredImages().slice(startIndex, endIndex);
     
-    // Animate in new images
+    // Faster image loading without excessive animations
     setTimeout(() => {
       imagesToLoad.forEach((imageNum, index) => {
         setTimeout(() => {
           const imageElement = this.createGalleryItem(imageNum);
           imageElement.style.opacity = '0';
-          imageElement.style.transform = 'translateY(30px)';
           this.container.appendChild(imageElement);
           
-          // Animate in
-          setTimeout(() => {
-            imageElement.style.transition = 'all 0.5s ease';
+          // Quick fade in
+          requestAnimationFrame(() => {
+            imageElement.style.transition = 'opacity 0.2s ease';
             imageElement.style.opacity = '1';
-            imageElement.style.transform = 'translateY(0)';
-          }, 50);
-        }, index * 100);
+          });
+        }, index * 50);
       });
       
       this.loadedImages = endIndex;
@@ -125,7 +123,7 @@ class ModernGallery {
       this.updateLoadMoreButton(false);
       this.hideLoader();
       this.isLoading = false;
-    }, 500);
+    }, 100);
   }
   
   createGalleryItem(imageNum) {

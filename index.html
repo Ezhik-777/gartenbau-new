@@ -405,17 +405,18 @@
     }
   </style>
 
-  <!-- Preload критических ресурсов -->
+  <!-- Preload критических ресурсов для LCP -->
   <link rel="preload" href="img/image_25.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="img/image_15.webp" as="image" type="image/webp" fetchpriority="low">
+  <link rel="preload" href="img/image_35.webp" as="image" type="image/webp" fetchpriority="low">
   <link rel="preload" href="css/modern-design.css" as="style" fetchpriority="high">
-  <link rel="preload" href="css/optimized.min.css" as="style" fetchpriority="high">
   <link rel="preload" href="js/optimized.min.js" as="script" fetchpriority="high">
   
   <!-- Критический CSS для дизайна -->
   <link rel="stylesheet" href="css/modern-design.css" media="all">
   
-  <!-- Оптимизированная загрузка CSS -->
-  <link rel="stylesheet" href="css/optimized.min.css" media="print" onload="this.media='all'">
+  <!-- Defer non-critical CSS для лучшего FCP -->
+  <link rel="preload" href="css/optimized.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="css/optimized.min.css"></noscript>
   
   <!-- Отложенная загрузка скриптов -->
@@ -573,10 +574,11 @@
   <noscript><link rel="stylesheet" href="css/jquery.fancybox.min.css"></noscript>
   
   <!-- Мобильно-оптимизированные шрифты -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap&text=GartenbauZMProfessioneller" as="style" fetchpriority="high">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <!-- Оптимизированная загрузка шрифтов -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Jost:wght@600;700&display=swap&text=GartenbauZMStuttgart" as="style" fetchpriority="low">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Jost:wght@600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Jost:wght@600;700&display=swap" rel="stylesheet">
   </noscript>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -1432,30 +1434,21 @@
     
     // Отложенная загрузка некритических скриптов
     const loadEnhancements = () => {
-      enhancementScripts.forEach((src, index) => {
-        setTimeout(() => loadScript(src), index * 150);
-      });
+      // Загружаем только самые необходимые скрипты
+      const reducedScripts = isMobile ? [] : ['js/jquery-3.4.1.min.js'];
       
-      // jQuery и Fancybox только для десктопа
-      if (!isMobile) {
-        setTimeout(() => {
-          loadScript('js/jquery-3.4.1.min.js').then(() => {
-            loadScript('js/jquery.fancybox.min.js').then(() => {
-              // Инициализация обычной галереи для десктопа
-              if (typeof initInstantGallery === 'function') {
-                initInstantGallery();
-              }
-            });
-          });
-        }, 600);
-      }
+      reducedScripts.forEach((src, index) => {
+        setTimeout(() => loadScript(src), index * 100);
+      });
     };
     
-    // Загрузка после события load
+    // Загрузка после полной загрузки страницы
     if (document.readyState === 'complete') {
-      setTimeout(loadEnhancements, 200);
+      setTimeout(loadEnhancements, 1000);
     } else {
-      window.addEventListener('load', loadEnhancements);
+      window.addEventListener('load', () => {
+        setTimeout(loadEnhancements, 1000);
+      });
     }
 
     // Enhanced Performance monitoring with Web Vitals
