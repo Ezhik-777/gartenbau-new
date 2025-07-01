@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Gallery</title>
+    <link rel="stylesheet" href="css/modern-design.css">
+    <style>
+        body { 
+            margin: 0; 
+            padding: 20px; 
+            font-family: Arial, sans-serif; 
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2d5a3d;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Universal Gallery Test</h1>
+        
+        <!-- Universal Dynamic Gallery -->
+        <section class="universal-gallery-section">
+            <div class="contain">
+                <div class="gallery-header">
+                    <div class="section-badge">
+                        <span class="badge-icon">📸</span>
+                        <span class="badge-text">Test Gallery</span>
+                    </div>
+                    
+                    <h2 class="gallery-title">
+                        Test der <span class="highlight-text">Universal Gallery</span>
+                    </h2>
+                    
+                    <p class="gallery-subtitle">
+                        Testseite für die automatische Galerie mit 181 Bildern.
+                    </p>
+                </div>
+
+                <!-- Gallery Controls -->
+                <div class="gallery-controls">
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="grid">
+                            <span class="btn-icon">⊞</span>
+                            <span>Gitter</span>
+                        </button>
+                        <button class="view-btn" data-view="masonry">
+                            <span class="btn-icon">⧉</span>
+                            <span>Mosaik</span>
+                        </button>
+                        <button class="view-btn" data-view="carousel">
+                            <span class="btn-icon">⬌</span>
+                            <span>Karussell</span>
+                        </button>
+                    </div>
+                    
+                    <div class="gallery-search">
+                        <input type="text" id="gallerySearch" placeholder="Bilder durchsuchen...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <div class="gallery-sort">
+                        <select id="gallerySort">
+                            <option value="newest">Neueste zuerst</option>
+                            <option value="oldest">Älteste zuerst</option>
+                            <option value="random">Zufällig</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Gallery Container -->
+                <div class="universal-gallery-container">
+                    <!-- Loading State -->
+                    <div class="gallery-loading" id="galleryLoading">
+                        <div class="loading-spinner"></div>
+                        <p class="loading-text">Lade Galerie...</p>
+                        <div class="loading-progress">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="universal-gallery-grid" id="galleryGrid" style="display: none;"></div>
+                    
+                    <!-- Gallery Stats -->
+                    <div class="gallery-stats" id="galleryStats" style="display: none;">
+                        <div class="stats-item">
+                            <span class="stats-number" id="totalImages">0</span>
+                            <span class="stats-label">Bilder</span>
+                        </div>
+                        <div class="stats-item">
+                            <span class="stats-number" id="visibleImages">0</span>
+                            <span class="stats-label">Sichtbar</span>
+                        </div>
+                        <div class="stats-item">
+                            <span class="stats-number" id="currentPage">1</span>
+                            <span class="stats-label">Seite</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="gallery-pagination" id="galleryPagination" style="display: none;">
+                        <button class="pagination-btn prev" id="prevPage" disabled>
+                            <span class="btn-icon">←</span>
+                            <span>Zurück</span>
+                        </button>
+                        
+                        <div class="page-numbers" id="pageNumbers"></div>
+                        
+                        <button class="pagination-btn next" id="nextPage">
+                            <span>Weiter</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Load jQuery and Fancybox -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    
+    <!-- Load Gallery Script -->
+    <script src="js/simple-universal-gallery.js"></script>
+    
+    <script>
+        console.log('Test page loaded');
+        console.log('Available elements:', {
+            galleryGrid: !!document.getElementById('galleryGrid'),
+            galleryLoading: !!document.getElementById('galleryLoading'),
+            galleryStats: !!document.getElementById('galleryStats'),
+            galleryPagination: !!document.getElementById('galleryPagination')
+        });
+    </script>
+</body>
+</html>

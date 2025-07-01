@@ -28,7 +28,6 @@
   <!-- Security Headers -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io; frame-src https://wa.me;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   
   <!-- Favicon optimized -->
@@ -37,7 +36,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#459d72">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   
   <!-- Performance optimizations -->
@@ -51,8 +50,19 @@
   <link rel="preload" href="css/non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="css/non-critical.min.css"></noscript>
   
+  <!-- Critical performance hints -->
+  <link rel="preload" href="js/optimized.min.js" as="script">
+  <link rel="prefetch" href="img/gal-1.webp" as="image" type="image/webp">
+  <link rel="prefetch" href="img/gal-2.webp" as="image" type="image/webp">
+  
+  <!-- Resource priorities -->
+  <meta name="resource-fetch-priority" content="high">
+  
   <!-- Modern Design CSS -->
   <link rel="stylesheet" href="css/modern-design.css">
+  
+  <!-- Instant Gallery Script -->
+  <script src="js/instant-gallery.js"></script>
   
   <!-- Async load non-critical CSS -->
   <script>
@@ -393,57 +403,99 @@
           </div>
         </div>
       </div>
-      <!-- Premium Projects Gallery -->
-      <section class="premium-gallery-section" id="Projekte">
-        <div class="gallery-background">
-          <div class="gallery-overlay"></div>
-        </div>
-        
+      <!-- Universal Dynamic Gallery -->
+      <section class="universal-gallery-section" id="Projekte">
         <div class="contain">
           <div class="gallery-header">
-            <div class="gallery-badge">
-              <span class="badge-shine"></span>
-              <span class="badge-text">Unsere Projekte</span>
+            <div class="section-badge">
+              <span class="badge-icon">📸</span>
+              <span class="badge-text">Unsere Arbeiten</span>
             </div>
             
-            <h2 class="gallery-headline">
-              <span class="highlight-text">Meisterwerke</span> aus Stuttgart & Umgebung
+            <h2 class="gallery-title">
+              Projekte aus <span class="highlight-text">Stuttgart & Umgebung</span>
             </h2>
             
-            <p class="gallery-description">
-              Entdecken Sie die Vielfalt unserer Gartenprojekte – von modernen Terrassen bis hin zu klassischen Gartenlandschaften.
+            <p class="gallery-subtitle">
+              Über 180 Bilder unserer erfolgreich abgeschlossenen Garten- und Landschaftsbauprojekte.
             </p>
           </div>
-        </div>
 
-        <div class="premium-gallery-container">
-          <!-- Premium Gallery Loader -->
-          <div id="loader" class="premium-loader">
-            <div class="loader-content">
-              <div class="loader-icon">📸</div>
-              <div class="loader-text">Lade Projektfotos...</div>
-              <div class="loader-bar">
-                <div class="loader-progress"></div>
-              </div>
+          <!-- Gallery Controls -->
+          <div class="gallery-controls">
+            <div class="view-controls">
+              <button class="view-btn active" data-view="grid">
+                <span class="btn-icon">⊞</span>
+                <span>Gitter</span>
+              </button>
+              <button class="view-btn" data-view="masonry">
+                <span class="btn-icon">⧉</span>
+                <span>Mosaik</span>
+              </button>
+              <button class="view-btn" data-view="carousel">
+                <span class="btn-icon">⬌</span>
+                <span>Karussell</span>
+              </button>
+            </div>
+            
+            <div class="gallery-search">
+              <input type="text" id="gallerySearch" placeholder="Bilder durchsuchen...">
+              <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="gallery-sort">
+              <select id="gallerySort">
+                <option value="newest">Neueste zuerst</option>
+                <option value="oldest">Älteste zuerst</option>
+                <option value="random">Zufällig</option>
+              </select>
             </div>
           </div>
 
-          <!-- Premium Gallery Grid -->
-          <div id="galleryContainer" class="premium-gallery-grid" style="display:none;"></div>
-          
-          <!-- Premium Pagination -->
-          <div id="pagination" class="premium-pagination" style="display:none;">
-            <button id="prevPage" class="premium-pagination-btn prev">
-              <span class="btn-icon">←</span>
-              <span class="btn-text">Zurück</span>
-            </button>
-            <div class="pagination-info">
-              <span id="pageInfo" class="page-info"></span>
+          <!-- Gallery Container -->
+          <div class="universal-gallery-container">
+            <!-- Loading State -->
+            <div class="gallery-loading" id="galleryLoading">
+              <div class="loading-spinner"></div>
+              <p class="loading-text">Lade Galerie...</p>
+              <div class="loading-progress">
+                <div class="progress-bar" id="progressBar"></div>
+              </div>
             </div>
-            <button id="nextPage" class="premium-pagination-btn next">
-              <span class="btn-text">Nächste</span>
-              <span class="btn-icon">→</span>
-            </button>
+            
+            <!-- Gallery Grid -->
+            <div class="universal-gallery-grid" id="galleryGrid" style="display: none;"></div>
+            
+            <!-- Gallery Stats -->
+            <div class="gallery-stats" id="galleryStats" style="display: none;">
+              <div class="stats-item">
+                <span class="stats-number" id="totalImages">0</span>
+                <span class="stats-label">Bilder</span>
+              </div>
+              <div class="stats-item">
+                <span class="stats-number" id="visibleImages">0</span>
+                <span class="stats-label">Sichtbar</span>
+              </div>
+              <div class="stats-item">
+                <span class="stats-number" id="currentPage">1</span>
+                <span class="stats-label">Seite</span>
+              </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="gallery-pagination" id="galleryPagination" style="display: none;">
+              <button class="pagination-btn prev" id="prevPage" disabled>
+                <span class="btn-icon">←</span>
+                <span>Zurück</span>
+              </button>
+              
+              <div class="page-numbers" id="pageNumbers"></div>
+              
+              <button class="pagination-btn next" id="nextPage">
+                <span>Weiter</span>
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -477,22 +529,114 @@
             <p class="cta-description">
               Verwirklichen Sie Ihren Traumgarten mit professioneller Planung und hochwertiger Umsetzung.
             </p>
+
+            <!-- Google Reviews Section -->
+            <div class="reviews-preview">
+              <div class="reviews-header">
+                <div class="google-rating">
+                  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjAxIDJDNi40OSAyIDIgNi40OCAyIDEyUzYuNDkgMjIgMTIuMDEgMjJDMTcuNTMgMjIgMjIgMTcuNTIgMjIgMTJTMTcuNTMgMiAxMi4wMSAyWk0xNCAxN0g5VjE1SDE0VjE3Wk0xNCAxM0g5VjExSDE0VjEzWk0xNCAxMEg5VjhIMTRWMTBaIiBmaWxsPSIjNDI4NUY0Ii8+Cjwvc3ZnPgo=" alt="Google" class="google-icon">
+                  <div class="rating-info">
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-text">5,0 • 25+ Bewertungen</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="reviews-carousel">
+                <div class="review-card">
+                  <div class="review-content">
+                    <p class="review-text">"Professionelle Arbeit von A bis Z. Unsere neue Terrasse ist ein absoluter Traum geworden!"</p>
+                    <div class="reviewer">
+                      <div class="reviewer-avatar">M</div>
+                      <div class="reviewer-info">
+                        <div class="reviewer-name">Markus S.</div>
+                        <div class="review-stars">★★★★★</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="review-card">
+                  <div class="review-content">
+                    <p class="review-text">"Zuverlässig, pünktlich und sehr gute Qualität. Können wir nur weiterempfehlen!"</p>
+                    <div class="reviewer">
+                      <div class="reviewer-avatar">S</div>
+                      <div class="reviewer-info">
+                        <div class="reviewer-name">Sandra K.</div>
+                        <div class="review-stars">★★★★★</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="review-card">
+                  <div class="review-content">
+                    <p class="review-text">"Faire Preise und top Beratung. Unser Garten sieht fantastisch aus!"</p>
+                    <div class="reviewer">
+                      <div class="reviewer-avatar">T</div>
+                      <div class="reviewer-info">
+                        <div class="reviewer-name">Thomas W.</div>
+                        <div class="review-stars">★★★★★</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="reviews-cta">
+                <a href="https://g.page/r/CZk_BZnPcSqHEB0/review" target="_blank" class="reviews-link">
+                  <span class="link-text">Alle Bewertungen ansehen</span>
+                  <span class="link-icon">→</span>
+                </a>
+              </div>
+            </div>
             
             <div class="cta-actions">
-              <a href="tel:+491782747470" class="cta-btn primary">
-                <span class="btn-glow"></span>
-                <span class="btn-content">
-                  <span class="btn-icon">📞</span>
-                  <span class="btn-text">Sofort anrufen</span>
-                  <span class="btn-subtext">+49 178 2747470</span>
-                </span>
+              <a href="tel:+491782747470" class="modern-cta-btn primary-call">
+                <div class="btn-background">
+                  <div class="btn-gradient"></div>
+                  <div class="btn-shimmer"></div>
+                </div>
+                <div class="btn-content-wrapper">
+                  <div class="btn-icon-container">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                  </div>
+                  <div class="btn-text-container">
+                    <span class="btn-primary-text">Sofort anrufen</span>
+                    <span class="btn-secondary-text">+49 178 2747470</span>
+                  </div>
+                  <div class="btn-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                  </div>
+                </div>
               </a>
               
-              <a href="#Kontakt" class="cta-btn secondary">
-                <span class="btn-content">
-                  <span class="btn-icon">✉️</span>
-                  <span class="btn-text">Nachricht senden</span>
-                </span>
+              <a href="#Kontakt" class="modern-cta-btn secondary-message">
+                <div class="btn-background">
+                  <div class="btn-gradient"></div>
+                  <div class="btn-shimmer"></div>
+                </div>
+                <div class="btn-content-wrapper">
+                  <div class="btn-icon-container">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </div>
+                  <div class="btn-text-container">
+                    <span class="btn-primary-text">Nachricht senden</span>
+                    <span class="btn-secondary-text">Kostenlose Beratung</span>
+                  </div>
+                  <div class="btn-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                  </div>
+                </div>
               </a>
             </div>
             
@@ -744,19 +888,78 @@
           loadScript(script.src, script.callback);
         }
       });
+      
+      // Load instant gallery functionality
+      console.log('Loading instant gallery script...');
+      loadScript('js/instant-gallery.js');
     });
 
-    // Performance monitoring
+    // Enhanced Performance monitoring with Web Vitals
     if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
+      // LCP - Largest Contentful Paint
+      const lcpObserver = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
           if (entry.entryType === 'largest-contentful-paint') {
-            console.log('LCP:', entry.startTime);
+            console.log('LCP:', entry.startTime + 'ms');
+            // Send to analytics if needed
+            // gtag('event', 'web_vitals', { metric_name: 'LCP', value: entry.startTime });
           }
         });
       });
-      observer.observe({entryTypes: ['largest-contentful-paint']});
+      lcpObserver.observe({entryTypes: ['largest-contentful-paint']});
+
+      // FID - First Input Delay
+      const fidObserver = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          console.log('FID:', entry.processingStart - entry.startTime + 'ms');
+        });
+      });
+      fidObserver.observe({entryTypes: ['first-input']});
+
+      // CLS - Cumulative Layout Shift
+      let clsValue = 0;
+      const clsObserver = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+            console.log('CLS:', clsValue);
+          }
+        });
+      });
+      clsObserver.observe({entryTypes: ['layout-shift']});
     }
+
+    // Advanced performance optimizations
+    // Preload next page resources on hover
+    document.addEventListener('mouseover', function(e) {
+      if (e.target.tagName === 'A' && e.target.href) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = e.target.href;
+        document.head.appendChild(link);
+      }
+    }, { once: true });
+
+    // Optimize scroll performance
+    let ticking = false;
+    function updateScrollEffects() {
+      const scrollY = window.scrollY;
+      const header = document.querySelector('.head');
+      
+      if (scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollEffects);
+        ticking = true;
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>

@@ -51,7 +51,7 @@
       "name": "Kontakt",
       "short_name": "Kontakt",
       "description": "Kontaktieren Sie uns direkt",
-      "url": "/#Kontakt",
+      "url": "/index.html#Kontakt",
       "icons": [
         {
           "src": "img/logo.webp",
@@ -63,7 +63,7 @@
       "name": "WhatsApp",
       "short_name": "WhatsApp", 
       "description": "Schreiben Sie uns auf WhatsApp",
-      "url": "https://wa.me/+491782747470",
+      "url": "/index.html",
       "icons": [
         {
           "src": "img/logo.webp",
