@@ -587,12 +587,15 @@ const categoryCounts = {
 
 <script>
   // Sorting functionality for gallery - works with both initial load and View Transitions
-  let galleryInitialized = false;
-
   function initGallerySort() {
     const sortSelect = document.querySelector('[data-sort-select]') as HTMLSelectElement;
 
-    if (sortSelect && !galleryInitialized) {
+    if (sortSelect) {
+      // Check if listener is already attached using data attribute
+      if (sortSelect.dataset.sortInitialized) {
+        return;
+      }
+
       const handleSortChange = (e: Event) => {
         const sortValue = (e.target as HTMLSelectElement).value;
 
@@ -603,7 +606,7 @@ const categoryCounts = {
       };
 
       sortSelect.addEventListener('change', handleSortChange);
-      galleryInitialized = true;
+      sortSelect.dataset.sortInitialized = 'true';
     }
   }
 
