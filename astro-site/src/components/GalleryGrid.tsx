@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { getGallerySrcSet } from '../utils/getImageSrcSet';
 import './GalleryGrid.css';
 
 interface Image {
@@ -135,33 +136,41 @@ export default function GalleryGrid({ images }: Props) {
     <>
       {/* Gallery Grid */}
       <div className="gallery-grid">
-        {visibleImages.map((image, index) => (
-          <div
-            key={image.id}
-            className="gallery-item"
-            onClick={() => openLightbox(index)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openLightbox(index);
-              }
-            }}
-            aria-label={`Öffnen ${image.alt}`}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              width={image.width}
-              height={image.height}
-            />
-            <div className="gallery-item-overlay">
-              <span className="gallery-item-icon">🔍</span>
+        {visibleImages.map((image, index) => {
+          // Extract image name from src (e.g., 'image_1' from '/img/image_1.webp')
+          const imageName = image.src.split('/').pop()?.replace('.webp', '') || '';
+          const { src: optimizedSrc, srcset, sizes } = getGallerySrcSet(imageName);
+
+          return (
+            <div
+              key={image.id}
+              className="gallery-item"
+              onClick={() => openLightbox(index)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openLightbox(index);
+                }
+              }}
+              aria-label={`Öffnen ${image.alt}`}
+            >
+              <img
+                src={optimizedSrc}
+                srcSet={srcset}
+                sizes={sizes}
+                alt={image.alt}
+                loading="lazy"
+                width={image.width}
+                height={image.height}
+              />
+              <div className="gallery-item-overlay">
+                <span className="gallery-item-icon">🔍</span>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Sentinel for infinite scroll */}
@@ -202,11 +211,19 @@ export default function GalleryGrid({ images }: Props) {
           </button>
 
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={filteredImages[lightboxIndex].src}
-              alt={filteredImages[lightboxIndex].alt}
-              className="lightbox-image"
-            />
+            {(() => {
+              // Use medium quality for lightbox to balance quality and loading speed
+              const imageName = filteredImages[lightboxIndex].src.split('/').pop()?.replace('.webp', '') || '';
+              const lightboxSrc = `/img/optimized/${imageName}-md.webp`;
+
+              return (
+                <img
+                  src={lightboxSrc}
+                  alt={filteredImages[lightboxIndex].alt}
+                  className="lightbox-image"
+                />
+              );
+            })()}
             <div className="lightbox-caption">
               {filteredImages[lightboxIndex].alt}
               <span className="lightbox-counter">

@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "optimize-images": "node scripts/optimize-images.js",
+    "test:images": "node tests/image-optimization.test.js",
     "build": "npm run optimize-images && astro check && astro build",
     "build:quick": "astro check && astro build",
     "preview": "astro preview",
