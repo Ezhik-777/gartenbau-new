@@ -7,6 +7,7 @@ interface Image {
   src: string;
   alt: string;
   category: string;
+  title: string;
   width: number;
   height: number;
 }
@@ -37,7 +38,7 @@ export default function GalleryGrid({ images }: Props) {
     setLoadedCount(20);
   }, [filter]);
 
-  // Intersection Observer for infinite scroll
+  // Intersection Observer for infinite scroll with optimized threshold
   useEffect(() => {
     if (!sentinelRef.current) return;
 
@@ -47,7 +48,10 @@ export default function GalleryGrid({ images }: Props) {
           setLoadedCount(prev => Math.min(prev + 20, filteredImages.length));
         }
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.5,
+        rootMargin: '100px'
+      }
     );
 
     observer.observe(sentinelRef.current);
@@ -132,14 +136,29 @@ export default function GalleryGrid({ images }: Props) {
     );
   };
 
+  // Get category label for badges
+  const getCategoryLabel = (category: string) => {
+    switch (category) {
+      case 'garden':
+        return { icon: '🌱', label: 'Gartengestaltung' };
+      case 'stone':
+        return { icon: '🪨', label: 'Naturstein' };
+      case 'terrace':
+        return { icon: '🏗️', label: 'Terrassenbau' };
+      default:
+        return { icon: '📷', label: 'Projekt' };
+    }
+  };
+
   return (
     <>
-      {/* Gallery Grid */}
-      <div className="gallery-grid">
+      {/* Gallery Grid - Masonry Layout */}
+      <div className="gallery-grid masonry">
         {visibleImages.map((image, index) => {
           // Extract image name from src (e.g., 'image_1' from '/img/image_1.webp')
           const imageName = image.src.split('/').pop()?.replace('.webp', '') || '';
           const { src: optimizedSrc, srcset, sizes } = getGallerySrcSet(imageName);
+          const categoryInfo = getCategoryLabel(image.category);
 
           return (
             <div
@@ -167,7 +186,12 @@ export default function GalleryGrid({ images }: Props) {
               />
               <div className="gallery-item-overlay">
                 <span className="gallery-item-icon">🔍</span>
+                <span className="gallery-item-title">{image.title}</span>
               </div>
+              <span className={`gallery-category-badge ${image.category}`}>
+                <span className="category-icon">{categoryInfo.icon}</span>
+                <span className="category-label">{categoryInfo.label}</span>
+              </span>
             </div>
           );
         })}
@@ -188,7 +212,7 @@ export default function GalleryGrid({ images }: Props) {
       {/* Lightbox */}
       {lightboxIndex !== null && (
         <div
-          className="lightbox"
+          className="lightbox fade-in"
           onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
@@ -212,23 +236,34 @@ export default function GalleryGrid({ images }: Props) {
 
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             {(() => {
-              // Use medium quality for lightbox to balance quality and loading speed
+              // Use large quality for lightbox to show full detail
               const imageName = filteredImages[lightboxIndex].src.split('/').pop()?.replace('.webp', '') || '';
-              const lightboxSrc = `/img/optimized/${imageName}-md.webp`;
+              const lightboxSrc = `/img/optimized/${imageName}-lg.webp`;
+              const currentImage = filteredImages[lightboxIndex];
+              const categoryInfo = getCategoryLabel(currentImage.category);
 
               return (
-                <img
-                  src={lightboxSrc}
-                  alt={filteredImages[lightboxIndex].alt}
-                  className="lightbox-image"
-                />
+                <div className="lightbox-image-wrapper">
+                  <img
+                    src={lightboxSrc}
+                    alt={currentImage.alt}
+                    className="lightbox-image"
+                  />
+                </div>
               );
             })()}
             <div className="lightbox-caption">
-              {filteredImages[lightboxIndex].alt}
-              <span className="lightbox-counter">
-                {lightboxIndex + 1} / {filteredImages.length}
-              </span>
+              <div className="lightbox-title">
+                {filteredImages[lightboxIndex].title}
+              </div>
+              <div className="lightbox-meta">
+                <span className="lightbox-category">
+                  {getCategoryLabel(filteredImages[lightboxIndex].category).icon} {getCategoryLabel(filteredImages[lightboxIndex].category).label}
+                </span>
+                <span className="lightbox-counter">
+                  {lightboxIndex + 1} / {filteredImages.length}
+                </span>
+              </div>
             </div>
           </div>
 

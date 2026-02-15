@@ -9,16 +9,20 @@ const images = Array.from({ length: 180 }, (_, i) => {
   // Categorize images based on ID ranges
   let category = 'garden';
   let alt = '';
+  let title = '';
 
   if (id >= 1 && id <= 60) {
     category = 'garden';
     alt = `Gartengestaltung Projekt ${id} - Gartenbau Z.M. in Remseck und Stuttgart`;
+    title = `Gartengestaltung #${id}`;
   } else if (id >= 61 && id <= 105) {
     category = 'stone';
     alt = `Natursteinarbeiten Projekt ${id} - Hochwertige Steinarbeiten in der Region Stuttgart`;
+    title = `Natursteinarbeiten #${id}`;
   } else {
     category = 'terrace';
     alt = `Terrassenbau Projekt ${id} - Moderner Terrassenbau in Ludwigsburg und Waiblingen`;
+    title = `Terrassenbau #${id}`;
   }
 
   return {
@@ -26,13 +30,22 @@ const images = Array.from({ length: 180 }, (_, i) => {
     src: `/img/image_${id}.webp`,
     alt,
     category,
+    title,
     width: 800,
     height: 600
   };
 });
 ---
 
-<div class="gallery-container">
+<div class="gallery-wrapper">
+  <!-- Section Header -->
+  <div class="gallery-header">
+    <h2 class="gallery-title">Unsere Projekte</h2>
+    <p class="gallery-subtitle">
+      Entdecken Sie über 180 erfolgreich abgeschlossene Gartenprojekte in Stuttgart und der Region
+    </p>
+  </div>
+
   <!-- Filter buttons -->
   <div class="gallery-filters">
     <button class="filter-btn active" data-filter="all">
@@ -54,9 +67,33 @@ const images = Array.from({ length: 180 }, (_, i) => {
 </div>
 
 <style>
-  /* Gallery Container */
-  .gallery-container {
+  /* Gallery Wrapper */
+  .gallery-wrapper {
     width: 100%;
+  }
+
+  /* Gallery Header */
+  .gallery-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .gallery-title {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-extrabold);
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-3);
+  }
+
+  .gallery-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
   /* Filter Buttons */
@@ -64,7 +101,7 @@ const images = Array.from({ length: 180 }, (_, i) => {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-10);
     justify-content: center;
   }
 
@@ -74,31 +111,61 @@ const images = Array.from({ length: 180 }, (_, i) => {
     font-weight: var(--font-semibold);
     background: white;
     color: var(--text-secondary);
-    border: 2px solid var(--color-neutral-300);
+    border: 2px solid var(--color-neutral-200);
     border-radius: var(--radius-full);
     cursor: pointer;
     transition: all var(--transition-base);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filter-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-400));
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: -1;
   }
 
   .filter-btn:hover {
-    border-color: var(--color-brand);
-    color: var(--color-brand);
+    border-color: var(--color-primary-500);
+    color: var(--color-primary-700);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
   }
 
   .filter-btn.active {
-    background: var(--color-brand);
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
     color: white;
-    border-color: var(--color-brand);
-    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-600);
+    box-shadow: var(--glow-green);
+  }
+
+  .filter-btn.active::before {
+    opacity: 1;
   }
 
   /* Mobile */
   @media (max-width: 768px) {
+    .gallery-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .gallery-title {
+      font-size: var(--text-3xl);
+    }
+
+    .gallery-subtitle {
+      font-size: var(--text-base);
+      padding: 0 var(--space-4);
+    }
+
     .gallery-filters {
       gap: var(--space-2);
+      margin-bottom: var(--space-6);
     }
 
     .filter-btn {
