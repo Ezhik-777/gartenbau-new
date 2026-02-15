@@ -427,12 +427,9 @@
   <link rel="preload" href="img/image_15.webp" as="image" type="image/webp" fetchpriority="low">
   <link rel="preload" href="img/image_35.webp" as="image" type="image/webp" fetchpriority="low">
   <!-- v3.0: Modular CSS Architecture Preloads -->
-  <link rel="preload" href="css/modules/variables.css" as="style" fetchpriority="high">
-  <link rel="preload" href="css/modules/base.css" as="style" fetchpriority="high">
-  <link rel="preload" href="css/main.css" as="style" fetchpriority="high">
-
-  <!-- v3.0: Main Modular Stylesheet -->
-  <link rel="stylesheet" href="css/main.css" media="all">
+  <!-- v4.0: Async CSS Loading - Critical CSS inline, остальное async -->
+  <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/main.css"></noscript>
 
   <!-- Preconnect для шрифтов и Formspree -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -187,23 +187,55 @@
   // =====================================================
   // Lazy Load Sections
   // =====================================================
-  function initLazySections() {
-    const sections = document.querySelectorAll('.section');
-
-    const sectionObserver = new IntersectionObserver((entries) => {
+  // =====================================================
+  // Unified IntersectionObserver для всех анимаций
+  // =====================================================
+  function initUnifiedObserver() {
+    // Единый observer для sections, reveals, и counters (3 observers → 1)
+    const unifiedObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('section-visible');
+        if (!entry.isIntersecting) return;
+
+        const target = entry.target;
+
+        // Section visibility
+        if (target.classList.contains('section')) {
+          target.classList.add('section-visible');
+        }
+
+        // Reveal animations (все варианты)
+        const revealClasses = ['reveal', 'reveal-left', 'reveal-right', 'reveal-scale', 'stagger-children'];
+        if (revealClasses.some(cls => target.classList.contains(cls))) {
+          target.classList.add('revealed');
+        }
+
+        // Counter animations
+        if (target.classList.contains('counter') && target.hasAttribute('data-target')) {
+          animateCounter(target);
+          unifiedObserver.unobserve(target); // Unobserve after animation
         }
       });
     }, {
       threshold: 0.1,
-      rootMargin: '0px 0px -10% 0px'
+      rootMargin: '0px 0px -50px 0px'
     });
 
-    sections.forEach(section => {
-      sectionObserver.observe(section);
+    // Observe all relevant elements
+    const elementsToObserve = [
+      ...document.querySelectorAll('.section'),
+      ...document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children'),
+      ...document.querySelectorAll('.counter[data-target]')
+    ];
+
+    elementsToObserve.forEach(el => {
+      unifiedObserver.observe(el);
     });
+
+    console.log(`[Premium] Unified Observer: ${elementsToObserve.length} elements (3 observers → 1)`);
+  }
+
+  function initLazySections() {
+    // Moved to initUnifiedObserver
   }
 
   // =====================================================
@@ -471,49 +503,14 @@
   // Scroll Reveal Animations
   // =====================================================
   function initScrollReveal() {
-    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
-
-    if (!revealElements.length) return;
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          // Don't unobserve to allow re-animation if needed
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-
-    revealElements.forEach(el => {
-      revealObserver.observe(el);
-    });
+    // Moved to initUnifiedObserver
   }
 
   // =====================================================
   // Counter Animation
   // =====================================================
   function initCounters() {
-    const counters = document.querySelectorAll('.counter[data-target]');
-
-    if (!counters.length) return;
-
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    counters.forEach(counter => {
-      counterObserver.observe(counter);
-    });
+    // Moved to initUnifiedObserver
   }
 
   function animateCounter(element) {
@@ -1043,9 +1040,8 @@
     initSmoothAnchor();
 
     // Animations
-    initScrollReveal();
-    initCounters();
-    initLazySections();
+    // Unified observer replaces: initScrollReveal, initCounters, initLazySections
+    initUnifiedObserver();
 
     // Hero
     initScrollIndicator();
