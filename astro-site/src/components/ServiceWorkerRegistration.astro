@@ -75,7 +75,12 @@
    */
   function showUpdateNotification(registration: ServiceWorkerRegistration) {
     // Check if user wants to see update notifications
-    const skipNotifications = localStorage.getItem('skipUpdateNotifications') === 'true';
+    let skipNotifications = false;
+    try {
+      skipNotifications = localStorage.getItem('skipUpdateNotifications') === 'true';
+    } catch (e) {
+      // localStorage might be disabled (private browsing, etc.)
+    }
     if (skipNotifications) return;
 
     // Create notification banner
