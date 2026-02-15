@@ -165,11 +165,12 @@ export default function HeroSlider() {
           >
             {/* Background image with parallax and Ken Burns effect */}
             <div
-              className="slide-background"
+              className="slide-background parallax-hero"
               style={{
                 backgroundImage: `url(${slide.image})`,
                 transform: `translateY(${scrollY * 0.5}px) scale(${index === currentSlide ? 1.05 : 1})`
               }}
+              data-parallax="0.5"
             />
             <div className="slide-overlay"></div>
 

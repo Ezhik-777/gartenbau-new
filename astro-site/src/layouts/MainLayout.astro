@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/scroll-animations.css';
 import 'aos/dist/aos.css';
 import SEO from '../components/SEO.astro';
 import GoogleAnalytics from '../components/analytics/GoogleAnalytics.astro';
@@ -74,6 +75,40 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
   // Re-initialize AOS after view transitions (Astro's page navigation)
   document.addEventListener('astro:page-load', () => {
     AOS.refresh();
+  });
+
+  // Parallax scrolling fallback for browsers without scroll-timeline support
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if browser supports animation-timeline
+    const supportsScrollTimeline = CSS.supports('animation-timeline', 'scroll()');
+
+    // Only add JavaScript fallback if not supported
+    if (!supportsScrollTimeline) {
+      const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+      if (parallaxElements.length > 0) {
+        let rafId: number | null = null;
+
+        const updateParallax = () => {
+          const scrollY = window.scrollY;
+
+          parallaxElements.forEach((element) => {
+            const speed = parseFloat((element as HTMLElement).dataset.parallax || '0.5');
+            const yPos = scrollY * speed;
+
+            (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
+          });
+
+          rafId = null;
+        };
+
+        window.addEventListener('scroll', () => {
+          if (rafId === null) {
+            rafId = requestAnimationFrame(updateParallax);
+          }
+        }, { passive: true });
+      }
+    }
   });
 </script>
 </html>

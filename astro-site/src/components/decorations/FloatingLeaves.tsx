@@ -8,6 +8,7 @@ interface Props {
 interface Leaf {
   id: number;
   variant: 'oak' | 'maple' | 'birch';
+  parallaxSpeed: 'slow' | 'medium' | 'fast';
   left: number;
   size: number;
   duration: number;
@@ -20,9 +21,11 @@ export default function FloatingLeaves({ count = 8, className = '' }: Props) {
 
   useEffect(() => {
     const variants: Array<'oak' | 'maple' | 'birch'> = ['oak', 'maple', 'birch'];
+    const parallaxSpeeds: Array<'slow' | 'medium' | 'fast'> = ['slow', 'medium', 'fast'];
     const generatedLeaves: Leaf[] = Array.from({ length: count }, (_, i) => ({
       id: i,
       variant: variants[Math.floor(Math.random() * variants.length)],
+      parallaxSpeed: parallaxSpeeds[i % 3],
       left: Math.random() * 100,
       size: 30 + Math.random() * 40,
       duration: 15 + Math.random() * 10,
@@ -43,7 +46,8 @@ export default function FloatingLeaves({ count = 8, className = '' }: Props) {
       {leaves.map((leaf) => (
         <div
           key={leaf.id}
-          className="floating-leaf"
+          className={`floating-leaf parallax-leaf-${leaf.parallaxSpeed}`}
+          data-parallax={leaf.parallaxSpeed === 'slow' ? '0.3' : leaf.parallaxSpeed === 'medium' ? '0.5' : '0.7'}
           style={{
             left: `${leaf.left}%`,
             width: `${leaf.size}px`,
