@@ -6,9 +6,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "optimize-images": "node scripts/optimize-images.js",
+    "build-sw": "node scripts/build-sw.js",
     "test:images": "node tests/image-optimization.test.js",
-    "build": "npm run optimize-images && astro check && astro build",
-    "build:quick": "astro check && astro build",
+    "build": "npm run optimize-images && astro check && astro build && npm run build-sw",
+    "build:quick": "astro check && astro build && npm run build-sw",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -26,6 +27,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.4.0",
-    "typescript": "^5.3.0"
+    "typescript": "^5.3.0",
+    "workbox-build": "^7.4.0",
+    "workbox-window": "^7.4.0"
   }
 }

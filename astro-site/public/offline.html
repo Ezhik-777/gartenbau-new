@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Gartenbau Z.M.</title>
+  <meta name="description" content="Sie sind offline. Bitte überprüfen Sie Ihre Internetverbindung.">
+  <link rel="icon" type="image/webp" sizes="32x32" href="/img/logo.webp">
+  <meta name="theme-color" content="#459d72">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-primary: #22c55e;
+      --color-primary-dark: #16a34a;
+      --color-neutral-50: #fafafa;
+      --color-neutral-100: #f5f5f5;
+      --color-neutral-900: #171717;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      color: var(--color-neutral-900);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 600px;
+      text-align: center;
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: var(--color-neutral-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      filter: grayscale(1);
+      opacity: 0.5;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-neutral-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      color: #737373;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #525252;
+      margin-bottom: 2rem;
+    }
+
+    .features {
+      background: var(--color-neutral-50);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+
+    .features h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--color-neutral-900);
+    }
+
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      padding: 0.5rem 0;
+      font-size: 0.875rem;
+      color: #525252;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--color-primary);
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: white;
+      box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--color-neutral-900);
+      border: 2px solid var(--color-neutral-100);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-neutral-50);
+      border-color: var(--color-primary);
+    }
+
+    .status {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      color: #78350f;
+      text-align: left;
+    }
+
+    .status.online {
+      background: #d1fae5;
+      border-color: var(--color-primary);
+      color: #065f46;
+    }
+
+    /* Loading animation */
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="/img/logo.webp" alt="Gartenbau Z.M. Logo" loading="eager">
+    </div>
+
+    <div class="icon">📡</div>
+
+    <h1>Sie sind offline</h1>
+    <p class="subtitle">Keine Internetverbindung verfügbar</p>
+
+    <p>
+      Es sieht so aus, als hätten Sie momentan keine Internetverbindung.
+      Diese Seite funktioniert am besten, wenn Sie online sind, aber einige
+      Inhalte sind auch offline verfügbar.
+    </p>
+
+    <div class="features">
+      <h2>Was Sie offline tun können:</h2>
+      <ul>
+        <li>Bereits besuchte Seiten anzeigen</li>
+        <li>Gespeicherte Bilder in der Galerie ansehen</li>
+        <li>Kontaktinformationen abrufen</li>
+        <li>Leistungsübersicht durchsuchen</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="checkConnection()">
+        <span id="retry-text">Erneut versuchen</span>
+        <span id="retry-spinner" class="spinner" style="display: none;"></span>
+      </button>
+
+      <a href="/" class="btn btn-secondary">
+        Zur Startseite
+      </a>
+    </div>
+
+    <div id="connection-status" class="status">
+      <strong>💡 Tipp:</strong> Überprüfen Sie Ihre WLAN-Verbindung oder mobile Daten.
+    </div>
+  </div>
+
+  <script>
+    // Check connection status
+    function updateConnectionStatus() {
+      const statusEl = document.getElementById('connection-status');
+
+      if (navigator.onLine) {
+        statusEl.className = 'status online';
+        statusEl.innerHTML = '<strong>✅ Online:</strong> Sie sind wieder mit dem Internet verbunden!';
+
+        // Auto-redirect after 2 seconds
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+      } else {
+        statusEl.className = 'status';
+        statusEl.innerHTML = '<strong>💡 Tipp:</strong> Überprüfen Sie Ihre WLAN-Verbindung oder mobile Daten.';
+      }
+    }
+
+    // Check connection and reload
+    async function checkConnection() {
+      const retryText = document.getElementById('retry-text');
+      const retrySpinner = document.getElementById('retry-spinner');
+      const btn = document.querySelector('.btn-primary');
+
+      // Show loading state
+      retryText.style.display = 'none';
+      retrySpinner.style.display = 'inline-block';
+      btn.disabled = true;
+
+      try {
+        // Try to fetch a small resource to check connection
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+        const response = await fetch('/manifest.json', {
+          method: 'HEAD',
+          cache: 'no-cache',
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          // Connection restored, reload
+          window.location.reload();
+        } else {
+          throw new Error('No connection');
+        }
+      } catch (error) {
+        // Still offline
+        retryText.style.display = 'inline';
+        retrySpinner.style.display = 'none';
+        btn.disabled = false;
+
+        // Show feedback
+        const statusEl = document.getElementById('connection-status');
+        statusEl.className = 'status';
+        statusEl.innerHTML = '<strong>❌ Immer noch offline:</strong> Bitte überprüfen Sie Ihre Verbindung.';
+      }
+    }
+
+    // Listen for online/offline events
+    window.addEventListener('online', updateConnectionStatus);
+    window.addEventListener('offline', updateConnectionStatus);
+
+    // Initial check
+    updateConnectionStatus();
+
+    // Periodic connection check every 30 seconds
+    setInterval(async () => {
+      if (navigator.onLine) {
+        try {
+          const response = await fetch('/manifest.json', {
+            method: 'HEAD',
+            cache: 'no-cache'
+          });
+          if (response.ok) {
+            updateConnectionStatus();
+          }
+        } catch (error) {
+          // Still offline
+        }
+      }
+    }, 30000);
+  </script>
+</body>
+</html>

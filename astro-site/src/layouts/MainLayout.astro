@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import SEO from '../components/SEO.astro';
 import GoogleAnalytics from '../components/analytics/GoogleAnalytics.astro';
+import ServiceWorkerRegistration from '../components/ServiceWorkerRegistration.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
@@ -46,6 +47,9 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
 
   <!-- View Transitions for smooth navigation -->
   <ViewTransitions />
+
+  <!-- Service Worker Registration -->
+  <ServiceWorkerRegistration />
 </head>
 
 <body>
