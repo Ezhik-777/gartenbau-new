@@ -1326,15 +1326,15 @@
       }
     });
     
-    // Service Worker registration
+    // Service Worker registration (v3.0)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/service-worker.js')
           .then((registration) => {
-            console.log('SW registered: ', registration);
+            console.log('✅ Service Worker registered:', registration.scope);
           })
           .catch((registrationError) => {
-            console.log('SW registration failed: ', registrationError);
+            console.log('❌ SW registration failed:', registrationError);
           });
       });
     }
@@ -1394,6 +1394,17 @@
 
       // Галерея инициализируется автоматически через modern-gallery.js
       // Service Worker регистрируется автоматически через app.js
+
+      // Скрываем preloader после загрузки всех скриптов
+      setTimeout(() => {
+        const preloader = document.getElementById('mainPreloader');
+        if (preloader) {
+          preloader.style.opacity = '0';
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 400);
+        }
+      }, 300);
     });
 
     // Enhanced Performance monitoring with Web Vitals
