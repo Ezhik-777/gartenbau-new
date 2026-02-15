@@ -1,44 +1,46 @@
 ---
-// Header.astro - Static Navigation (Zero JS)
-// Mobile menu will be handled by MobileMenu.tsx island
+// Header.astro v5.0 - Modern Sticky Navigation with Scroll Behavior
+// Features: backdrop blur, scroll shrink, smooth animations, AOS integration
 ---
 
-<header class="header" id="top" role="banner" transition:name="header">
+<header class="header" id="top" role="banner" data-aos="fade-down" data-aos-duration="800" transition:name="header">
   <div class="container">
     <div class="header__row">
-      <!-- Logo -->
+      <!-- Logo with green accent -->
       <a href="/" class="logo" aria-label="Gartenbau Z.M. - Zurück zur Startseite">
-        Gartenbau Z.M.
+        <span class="logo__text">Gartenbau Z.M.</span>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="header__nav" role="navigation" aria-label="Hauptnavigation">
         <ul class="nav__list" role="menubar">
           <li role="menuitem">
-            <a href="/" aria-current="page">HOME</a>
+            <a href="/" class="nav__link" aria-current="page">HOME</a>
           </li>
           <li role="menuitem">
-            <a href="#Leistungen">LEISTUNGEN</a>
+            <a href="#Leistungen" class="nav__link">LEISTUNGEN</a>
           </li>
           <li role="menuitem">
-            <a href="#Ueber-uns">ÜBER UNS</a>
+            <a href="#Ueber-uns" class="nav__link">ÜBER UNS</a>
           </li>
           <li role="menuitem">
-            <a href="#Projekte">PROJEKTE</a>
+            <a href="#Projekte" class="nav__link">PROJEKTE</a>
           </li>
           <li role="menuitem">
-            <a href="#Kontakt">KONTAKT</a>
+            <a href="#Kontakt" class="nav__link">KONTAKT</a>
           </li>
         </ul>
       </nav>
 
-      <!-- Phone (Desktop) -->
-      <a href="https://wa.me/+491782747470" class="header__phone">
-        <span class="phone__icon">📞</span>
+      <!-- Phone/WhatsApp CTA (Desktop) -->
+      <a href="https://wa.me/+491782747470" class="header__phone" aria-label="WhatsApp kontaktieren">
+        <svg class="phone__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
         <span class="phone__number">+49 178 2747470</span>
       </a>
 
-      <!-- Mobile Menu Button (will be enhanced by island) -->
+      <!-- Mobile Menu Button -->
       <button
         class="burger"
         aria-expanded="false"
@@ -46,66 +48,184 @@
         aria-label="Menü öffnen"
         data-mobile-toggle
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
       </button>
     </div>
   </div>
+
+  <!-- Mobile Menu (slide-in overlay) -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+    <nav class="mobile-menu__nav" role="navigation" aria-label="Mobile Navigation">
+      <ul class="mobile-menu__list">
+        <li><a href="/" class="mobile-menu__link">HOME</a></li>
+        <li><a href="#Leistungen" class="mobile-menu__link">LEISTUNGEN</a></li>
+        <li><a href="#Ueber-uns" class="mobile-menu__link">ÜBER UNS</a></li>
+        <li><a href="#Projekte" class="mobile-menu__link">PROJEKTE</a></li>
+        <li><a href="#Kontakt" class="mobile-menu__link">KONTAKT</a></li>
+      </ul>
+      <a href="https://wa.me/+491782747470" class="mobile-menu__cta">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        WhatsApp kontaktieren
+      </a>
+    </nav>
+  </div>
 </header>
 
+<script>
+  // Header scroll behavior - shrink on scroll
+  let lastScroll = 0;
+  const header = document.querySelector('.header');
+
+  function handleScroll() {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 100) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+  }
+
+  // Mobile menu toggle
+  const mobileToggle = document.querySelector('[data-mobile-toggle]');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-menu__link');
+
+  function toggleMobileMenu() {
+    const isExpanded = mobileToggle?.getAttribute('aria-expanded') === 'true';
+
+    mobileToggle?.setAttribute('aria-expanded', String(!isExpanded));
+    mobileMenu?.setAttribute('aria-hidden', String(isExpanded));
+
+    if (!isExpanded) {
+      mobileMenu?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  mobileToggle?.addEventListener('click', toggleMobileMenu);
+
+  // Close mobile menu on link click
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      toggleMobileMenu();
+    });
+  });
+
+  // Close mobile menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+      toggleMobileMenu();
+    }
+  });
+
+  // Throttled scroll handler
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>
+
 <style>
-  /* Header Styles */
+  /* ========================================
+     HEADER v5.0 - Modern Sticky Navigation
+     ======================================== */
+
   .header {
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    box-shadow: 0 1px 4px rgba(45, 90, 61, 0.1);
-    transition: all var(--transition-fast);
-    border-bottom: 1px solid rgba(45, 90, 61, 0.08);
+    z-index: var(--z-fixed, 1000);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+    border-bottom: 1px solid rgba(22, 163, 74, 0.1);
   }
 
   .header__row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-3) 0;
-    min-height: 64px;
+    padding: var(--space-4) 0;
+    min-height: 72px;
+    transition: all var(--transition-base);
   }
 
   @media (min-width: 768px) {
     .header__row {
-      min-height: 80px;
-      padding: var(--space-4) 0;
+      min-height: 88px;
+      padding: var(--space-5) 0;
     }
   }
 
-  /* Logo */
+  /* Scrolled state - shrink header */
+  .header.scrolled {
+    box-shadow: var(--shadow-md);
+    border-bottom-color: rgba(22, 163, 74, 0.15);
+  }
+
+  .header.scrolled .header__row {
+    min-height: 64px;
+    padding: var(--space-3) 0;
+  }
+
+  @media (min-width: 768px) {
+    .header.scrolled .header__row {
+      min-height: 72px;
+    }
+  }
+
+  /* ========== LOGO ========== */
   .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform var(--transition-base);
+  }
+
+  .logo__text {
     font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 4vw, 1.8rem);
-    font-weight: var(--font-bold);
-    background: linear-gradient(135deg, var(--color-brand), var(--color-brand-light));
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: var(--font-extrabold);
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-400));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-decoration: none;
-    transition: transform var(--transition-fast);
+    letter-spacing: -0.02em;
   }
 
   .logo:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
   }
 
   .logo:active {
     transform: scale(0.98);
   }
 
-  /* Desktop Navigation */
+  /* Scrolled logo shrink */
+  .header.scrolled .logo__text {
+    font-size: clamp(1.125rem, 3vw, 1.5rem);
+  }
+
+  /* ========== DESKTOP NAVIGATION ========== */
   .header__nav {
     display: none;
   }
@@ -114,7 +234,7 @@
     .header__nav {
       display: block;
       flex: 1;
-      margin: 0 var(--space-8);
+      margin: 0 var(--space-10);
     }
   }
 
@@ -122,44 +242,56 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-6);
+    gap: var(--space-8);
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .nav__list a {
+  .nav__link {
     font-size: var(--text-sm);
     font-weight: var(--font-semibold);
-    color: var(--text-primary);
+    color: var(--color-neutral-700);
     text-decoration: none;
-    transition: color var(--transition-fast);
+    letter-spacing: 0.02em;
     position: relative;
     padding: var(--space-2) 0;
+    transition: color var(--transition-base);
   }
 
-  .nav__list a::after {
+  /* Animated underline effect */
+  .nav__link::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-400));
+    transform: translateX(-50%);
+    transition: all var(--transition-base);
+    border-radius: var(--radius-full);
+  }
+
+  .nav__link:hover {
+    color: var(--color-primary-600);
+  }
+
+  .nav__link:hover::after {
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--color-brand);
-    transform: scaleX(0);
-    transition: transform var(--transition-fast);
   }
 
-  .nav__list a:hover {
-    color: var(--color-brand);
+  .nav__link[aria-current="page"] {
+    color: var(--color-primary-600);
   }
 
-  .nav__list a:hover::after,
-  .nav__list a[aria-current="page"]::after {
-    transform: scaleX(1);
+  .nav__link[aria-current="page"]::after {
+    left: 0;
+    right: 0;
   }
 
-  /* Phone (Desktop) */
+  /* ========== PHONE/WHATSAPP CTA (DESKTOP) ========== */
   .header__phone {
     display: none;
   }
@@ -169,39 +301,69 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      padding: var(--space-3) var(--space-5);
-      background: var(--color-brand);
-      color: white;
+      padding: var(--space-3) var(--space-6);
+      background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+      color: var(--color-neutral-0);
       text-decoration: none;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-xl);
       font-weight: var(--font-semibold);
       font-size: var(--text-sm);
+      box-shadow: var(--shadow-md);
       transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header__phone::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-400));
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+    .header__phone:hover::before {
+      opacity: 1;
     }
 
     .header__phone:hover {
-      background: var(--color-brand-dark);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--glow-green);
+    }
+
+    .header__phone:active {
+      transform: translateY(0);
+    }
+
+    .phone__icon,
+    .phone__number {
+      position: relative;
+      z-index: 1;
     }
 
     .phone__icon {
-      font-size: var(--text-lg);
+      width: 20px;
+      height: 20px;
     }
   }
 
-  /* Mobile Burger */
+  /* ========== MOBILE BURGER MENU ========== */
   .burger {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 24px;
+    width: 32px;
+    height: 26px;
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001;
+    z-index: calc(var(--z-fixed, 1000) + 2);
+    position: relative;
   }
 
   @media (min-width: 1024px) {
@@ -210,34 +372,170 @@
     }
   }
 
-  .burger span {
+  .burger__line {
     display: block;
     width: 100%;
     height: 3px;
-    background: var(--color-brand);
-    border-radius: 3px;
+    background: var(--color-primary-600);
+    border-radius: var(--radius-full);
     transition: all var(--transition-base);
   }
 
-  .burger:hover span {
-    background: var(--color-brand-dark);
+  .burger:hover .burger__line {
+    background: var(--color-primary-500);
   }
 
-  /* Burger Animation (enhanced by island) */
-  .burger[aria-expanded="true"] span:nth-child(1) {
-    transform: translateY(10.5px) rotate(45deg);
+  /* Burger animation - X transformation */
+  .burger[aria-expanded="true"] .burger__line:nth-child(1) {
+    transform: translateY(11.5px) rotate(45deg);
   }
 
-  .burger[aria-expanded="true"] span:nth-child(2) {
+  .burger[aria-expanded="true"] .burger__line:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
   }
 
-  .burger[aria-expanded="true"] span:nth-child(3) {
-    transform: translateY(-10.5px) rotate(-45deg);
+  .burger[aria-expanded="true"] .burger__line:nth-child(3) {
+    transform: translateY(-11.5px) rotate(-45deg);
   }
 
-  /* Scrolled State (will be added by JS island if needed) */
-  .header.scrolled {
-    box-shadow: 0 2px 12px rgba(45, 90, 61, 0.15);
+  /* ========== MOBILE MENU (SLIDE-IN OVERLAY) ========== */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 320px;
+    background: var(--color-neutral-0);
+    box-shadow: var(--shadow-2xl);
+    z-index: calc(var(--z-fixed, 1000) + 1);
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+    overflow-y: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+
+  .mobile-menu.active {
+    transform: translateX(0);
+  }
+
+  .mobile-menu::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 320px;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+  }
+
+  .mobile-menu.active::before {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobile-menu__nav {
+    padding: var(--space-24) var(--space-6) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .mobile-menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .mobile-menu__link {
+    display: block;
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-neutral-700);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-menu__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-primary-500);
+    transform: scaleY(0);
+    transition: transform var(--transition-base);
+  }
+
+  .mobile-menu__link:hover,
+  .mobile-menu__link:focus {
+    background: var(--color-primary-50);
+    color: var(--color-primary-700);
+    padding-left: var(--space-6);
+  }
+
+  .mobile-menu__link:hover::before {
+    transform: scaleY(1);
+  }
+
+  .mobile-menu__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-6);
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+    color: var(--color-neutral-0);
+    text-decoration: none;
+    border-radius: var(--radius-xl);
+    font-weight: var(--font-semibold);
+    font-size: var(--text-base);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+    margin-top: var(--space-4);
+  }
+
+  .mobile-menu__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-green);
+  }
+
+  .mobile-menu__cta svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .header,
+    .header__row,
+    .logo,
+    .nav__link,
+    .nav__link::after,
+    .header__phone,
+    .burger__line,
+    .mobile-menu,
+    .mobile-menu__link {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
   }
 </style>
