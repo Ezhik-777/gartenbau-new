@@ -1,117 +1,30 @@
 /* ========================================
-   GARTENBAU Z.M. - Astro Global Styles
-   Modern CSS with Design Tokens
+   GARTENBAU Z.M. v5.0 - Global Styles
+   Modern CSS with Design System
    ======================================== */
 
+/* Import v5.0 Design System */
+@import './design-system.css';
+@import './animations.css';
+@import './components.css';
+
+/* Legacy brand colors for backwards compatibility */
 :root {
-  /* === PRIMARY COLORS === */
-  --color-primary-50: #f0fdf4;
-  --color-primary-100: #dcfce7;
-  --color-primary-200: #bbf7d0;
-  --color-primary-300: #86efac;
-  --color-primary-400: #4ade80;
-  --color-primary-500: #22c55e;
-  --color-primary-600: #16a34a;
-  --color-primary-700: #15803d;
-  --color-primary-800: #166534;
-  --color-primary-900: #14532d;
-  --color-primary-950: #052e16;
+  --color-brand: var(--color-primary-700);
+  --color-brand-light: var(--color-primary-400);
+  --color-brand-dark: var(--color-primary-900);
+  --color-brand-accent: var(--color-primary-300);
 
-  /* === BRAND COLORS === */
-  --color-brand: #2d5a3d;
-  --color-brand-light: #4a8764;
-  --color-brand-dark: #1e3d2a;
-  --color-brand-accent: #6db884;
-
-  /* === NEUTRAL COLORS === */
-  --color-neutral-0: #ffffff;
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-300: #d4d4d4;
-  --color-neutral-400: #a3a3a3;
-  --color-neutral-500: #737373;
-  --color-neutral-600: #525252;
-  --color-neutral-700: #404040;
-  --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
-  --color-neutral-950: #0a0a0a;
-
-  /* === SEMANTIC COLORS === */
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-info: #3b82f6;
-
-  /* === BACKGROUND COLORS === */
+  /* Semantic background colors */
   --bg-primary: var(--color-neutral-0);
   --bg-secondary: var(--color-neutral-50);
   --bg-tertiary: var(--color-neutral-100);
 
-  /* === TEXT COLORS === */
+  /* Semantic text colors */
   --text-primary: var(--color-neutral-900);
   --text-secondary: var(--color-neutral-600);
   --text-tertiary: var(--color-neutral-500);
   --text-inverse: var(--color-neutral-0);
-
-  /* === TYPOGRAPHY === */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Inter', system-ui, sans-serif;
-
-  /* Font Sizes - Fluid Typography */
-  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
-  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 0.9375rem);
-  --text-base: clamp(1rem, 0.925rem + 0.375vw, 1.0625rem);
-  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
-  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
-  --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);
-  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem);
-  --text-5xl: clamp(3rem, 2rem + 5vw, 4.5rem);
-
-  /* Font Weights */
-  --font-normal: 400;
-  --font-medium: 500;
-  --font-semibold: 600;
-  --font-bold: 700;
-  --font-extrabold: 800;
-
-  /* Line Heights */
-  --leading-tight: 1.25;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.75;
-
-  /* Spacing Scale */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-
-  /* Border Radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-full: 9999px;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 300ms ease;
-  --transition-slow: 500ms ease;
 }
 
 /* ==================== RESET ==================== */

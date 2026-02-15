@@ -1,0 +1,401 @@
+/* ========================================
+   GARTENBAU Z.M. v5.0 - Animations
+   AOS Integration & Scroll-Driven Effects
+   ======================================== */
+
+/* ========================================
+   AOS (Animate On Scroll) INTEGRATION
+   ======================================== */
+
+/* AOS animations will be initialized in JavaScript
+   with settings: duration 800ms, easing ease-out-cubic, once: true */
+
+/* Custom AOS animation overrides */
+[data-aos] {
+  transition-property: opacity, transform;
+  transition-timing-function: var(--ease-out);
+}
+
+/* Stagger delay utility for sequential animations */
+[data-aos][data-aos-delay="100"] { transition-delay: 0.1s; }
+[data-aos][data-aos-delay="200"] { transition-delay: 0.2s; }
+[data-aos][data-aos-delay="300"] { transition-delay: 0.3s; }
+[data-aos][data-aos-delay="400"] { transition-delay: 0.4s; }
+[data-aos][data-aos-delay="500"] { transition-delay: 0.5s; }
+
+/* ========================================
+   CUSTOM SCROLL-DRIVEN ANIMATIONS
+   Using CSS Scroll Timeline API (Progressive Enhancement)
+   ======================================== */
+
+/* Parallax effect for hero sections */
+@supports (animation-timeline: scroll()) {
+  .parallax-section {
+    animation: parallax-move linear;
+    animation-timeline: scroll();
+    animation-range: 0vh 100vh;
+  }
+
+  @keyframes parallax-move {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100px);
+    }
+  }
+
+  /* Parallax for background images */
+  .parallax-bg {
+    animation: parallax-bg-move linear;
+    animation-timeline: scroll();
+    animation-range: 0vh 150vh;
+  }
+
+  @keyframes parallax-bg-move {
+    from {
+      transform: translateY(0) scale(1.1);
+    }
+    to {
+      transform: translateY(-150px) scale(1.1);
+    }
+  }
+
+  /* Scale up on scroll */
+  .scale-on-scroll {
+    animation: scale-up linear;
+    animation-timeline: scroll();
+    animation-range: 0vh 50vh;
+  }
+
+  @keyframes scale-up {
+    from {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Fade in as element enters viewport */
+  .fade-in-scroll {
+    animation: fade-in-viewport linear;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+
+  @keyframes fade-in-viewport {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ========================================
+   PARALLAX HELPER CLASSES
+   JavaScript-based parallax for wider browser support
+   ======================================== */
+
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.parallax-slow {
+  /* Applied via JS: transform based on scroll position * 0.3 */
+  transform: translateY(0);
+  transition: transform 0.1s linear;
+}
+
+.parallax-medium {
+  /* Applied via JS: transform based on scroll position * 0.5 */
+  transform: translateY(0);
+  transition: transform 0.1s linear;
+}
+
+.parallax-fast {
+  /* Applied via JS: transform based on scroll position * 0.7 */
+  transform: translateY(0);
+  transition: transform 0.1s linear;
+}
+
+/* ========================================
+   HOVER ANIMATIONS
+   ======================================== */
+
+/* Card hover lift effect */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Glow effect on hover */
+.hover-glow {
+  position: relative;
+  transition: box-shadow var(--transition-base);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--glow-green);
+}
+
+.hover-glow-strong:hover {
+  box-shadow: var(--glow-green-strong);
+}
+
+/* Scale up on hover */
+.hover-scale {
+  transition: transform var(--transition-base);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Image zoom effect (for gallery items) */
+.image-zoom-container {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.image-zoom {
+  transition: transform var(--transition-slow);
+}
+
+.image-zoom-container:hover .image-zoom {
+  transform: scale(1.1);
+}
+
+/* ========================================
+   LOADING ANIMATIONS
+   ======================================== */
+
+/* Skeleton loader shimmer effect */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-neutral-200) 25%,
+    var(--color-neutral-100) 50%,
+    var(--color-neutral-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Spinner for loading states */
+.spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--color-neutral-200);
+  border-top-color: var(--color-primary-500);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Pulse loader */
+.pulse-loader {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary-500);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ========================================
+   PAGE TRANSITION ANIMATIONS
+   Astro View Transitions API
+   ======================================== */
+
+/* Smooth fade transition for page changes */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-in-out);
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out-smooth;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in-smooth;
+}
+
+@keyframes fade-out-smooth {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-smooth {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide transition for content areas */
+::view-transition-old(main-content) {
+  animation: slide-out-left 0.3s var(--ease-in-out);
+}
+
+::view-transition-new(main-content) {
+  animation: slide-in-right 0.3s var(--ease-in-out);
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Keep header and footer static during page transitions */
+::view-transition-old(header),
+::view-transition-new(header),
+::view-transition-old(footer),
+::view-transition-new(footer) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ========================================
+   FLOATING ELEMENTS (for decorative leaves)
+   ======================================== */
+
+.floating-element {
+  animation: float-slow 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.floating-element:nth-child(2n) {
+  animation-delay: -2s;
+  animation-duration: 10s;
+}
+
+.floating-element:nth-child(3n) {
+  animation-delay: -4s;
+  animation-duration: 12s;
+}
+
+/* Gentle rotation for floating leaves */
+@keyframes float-rotate {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+.floating-leaf {
+  animation: float-rotate 10s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Hardware acceleration for animated elements */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes to free resources */
+.animation-complete {
+  will-change: auto;
+}
+
+/* ========================================
+   REDUCED MOTION SUPPORT
+   Respect user preferences
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Disable scroll-driven animations */
+  .parallax-section,
+  .parallax-bg,
+  .scale-on-scroll,
+  .fade-in-scroll {
+    animation: none !important;
+  }
+
+  /* Disable floating animations */
+  .floating-element,
+  .floating-leaf {
+    animation: none !important;
+  }
+
+  /* Disable page transitions */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  /* Keep hover effects but remove transitions */
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    transition: none;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+    transition: none;
+  }
+}
