@@ -5,16 +5,23 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "optimize-images": "node scripts/optimize-images.js",
+    "build": "npm run optimize-images && astro check && astro build",
+    "build:quick": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.3.0",
     "@astrojs/react": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
+    "@types/aos": "^3.0.7",
+    "aos": "^2.3.4",
+    "astro": "^4.3.0",
+    "glob": "^13.0.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-compare-slider": "^3.1.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.4.0",
