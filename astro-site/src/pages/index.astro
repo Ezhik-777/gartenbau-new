@@ -8,6 +8,9 @@ import Gallery from '../components/Gallery.astro';
 import FAQAccordion from '../components/FAQAccordion';
 import FAQSchema from '../components/FAQSchema.astro';
 import ContactForm from '../components/ContactForm.astro';
+import BeforeAfterSlider from '../components/gallery/BeforeAfterSlider';
+import FloatingLeaves from '../components/decorations/FloatingLeaves';
+import BackgroundPattern from '../components/decorations/BackgroundPattern.astro';
 ---
 
 <MainLayout
@@ -17,8 +20,12 @@ import ContactForm from '../components/ContactForm.astro';
   <!-- Header -->
   <Header />
 
-  <!-- Hero Slider (React Island) -->
-  <HeroSlider client:load />
+  <!-- Hero Slider (React Island) with decorative elements -->
+  <div style="position: relative;">
+    <BackgroundPattern />
+    <HeroSlider client:load />
+    <FloatingLeaves client:load count={10} />
+  </div>
 
   <!-- Main Content -->
   <main>
@@ -100,57 +107,164 @@ import ContactForm from '../components/ContactForm.astro';
       </div>
     </section>
 
-    <!-- Über uns Section -->
+    <!-- Decorative floating leaves between sections -->
+    <div style="position: relative; height: 100px; overflow: hidden; pointer-events: none;">
+      <FloatingLeaves client:load count={5} />
+    </div>
+
+    <!-- Über uns Section - Two-column layout with stats -->
     <section id="Ueber-uns" style="padding: var(--space-20) 0;">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <h2 class="section-title">Über uns</h2>
           <p class="section-subtitle">
             Ihr zuverlässiger Partner für Garten- und Landschaftsbau seit Jahren
           </p>
         </div>
 
-        <div style="max-width: 800px; margin: var(--space-12) auto 0; text-align: center;">
-          <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-6);">
-            Gartenbau Z.M. steht für höchste Qualität und Zuverlässigkeit im Garten- und Landschaftsbau.
-            Mit jahrelanger Erfahrung und Leidenschaft für Grün gestalten wir Ihren Traumgarten in
-            Remseck am Neckar, Stuttgart, Ludwigsburg und der gesamten Region.
-          </p>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-8); margin-top: var(--space-10);">
-            <div>
-              <div style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); color: var(--color-brand); margin-bottom: var(--space-2);">5.0⭐</div>
-              <div style="color: var(--text-secondary);">Google Bewertung</div>
-            </div>
-            <div>
-              <div style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); color: var(--color-brand); margin-bottom: var(--space-2);">180+</div>
-              <div style="color: var(--text-secondary);">Projekte</div>
-            </div>
-            <div>
-              <div style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); color: var(--color-brand); margin-bottom: var(--space-2);">100%</div>
-              <div style="color: var(--text-secondary);">Zufriedenheit</div>
-            </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); margin-top: var(--space-12); align-items: center;">
+          <!-- Text Column -->
+          <div data-aos="fade-right">
+            <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-6);">
+              Gartenbau Z.M. steht für höchste Qualität und Zuverlässigkeit im Garten- und Landschaftsbau.
+              Mit jahrelanger Erfahrung und Leidenschaft für Grün gestalten wir Ihren Traumgarten in
+              Remseck am Neckar, Stuttgart, Ludwigsburg und der gesamten Region.
+            </p>
+            <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-8);">
+              Von der ersten Beratung bis zur finalen Umsetzung - wir begleiten Sie durch alle Phasen
+              Ihres Gartenprojekts. Unser erfahrenes Team garantiert professionelle Arbeit und
+              termingerechte Fertigstellung.
+            </p>
+            <a href="#Kontakt" class="btn btn-primary">
+              🏡 Kostenlose Beratung anfragen
+            </a>
           </div>
 
-          <a href="#Kontakt" class="btn btn-primary" style="margin-top: var(--space-10);">
-            🏡 Kostenlose Beratung anfragen
+          <!-- Stats Column -->
+          <div data-aos="fade-left">
+            <div style="background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 100%); border-radius: var(--radius-2xl); padding: var(--space-10); box-shadow: var(--shadow-lg);">
+              <div style="display: grid; gap: var(--space-8);">
+                <div style="text-align: center;">
+                  <div style="font-size: var(--text-5xl); font-weight: var(--font-extrabold); color: var(--color-primary-600); margin-bottom: var(--space-2);">10+</div>
+                  <div style="font-size: var(--text-lg); color: var(--text-secondary);">Jahre Erfahrung</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: var(--text-5xl); font-weight: var(--font-extrabold); color: var(--color-primary-600); margin-bottom: var(--space-2);">180+</div>
+                  <div style="font-size: var(--text-lg); color: var(--text-secondary);">Projekte</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: var(--text-5xl); font-weight: var(--font-extrabold); color: var(--color-primary-600); margin-bottom: var(--space-2);">5.0⭐</div>
+                  <div style="font-size: var(--text-lg); color: var(--text-secondary);">Google Bewertung</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile responsive: stack on smaller screens -->
+        <style>
+          @media (max-width: 768px) {
+            #Ueber-uns > .container > div:nth-of-type(2) {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        </style>
+      </div>
+    </section>
+
+    <!-- Before/After Showcase Section - NEW in v5.0 -->
+    <section class="before-after-showcase" style="padding: var(--space-20) 0;">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2 class="section-title">Unsere Transformationen</h2>
+          <p class="section-subtitle">
+            Sehen Sie, wie wir Gärten in Stuttgart und Umgebung verwandeln
+          </p>
+        </div>
+
+        <div class="showcase-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-8); margin-top: var(--space-12);">
+          <!-- TODO: Replace with actual before/after images -->
+          <!-- Placeholder: Using regular gallery images for demonstration -->
+          <div data-aos="fade-up" data-aos-delay="0">
+            <BeforeAfterSlider
+              client:visible
+              beforeImage="/img/image_1.webp"
+              afterImage="/img/image_2.webp"
+              beforeAlt="Garten vor der Umgestaltung"
+              afterAlt="Garten nach der Umgestaltung - Gartenbau Z.M."
+              title="Garten Komplettsanierung Stuttgart"
+            />
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="100">
+            <BeforeAfterSlider
+              client:visible
+              beforeImage="/img/image_3.webp"
+              afterImage="/img/image_4.webp"
+              beforeAlt="Terrasse vorher"
+              afterAlt="Terrasse nachher - professioneller Terrassenbau"
+              title="Terrasse mit Naturstein Ludwigsburg"
+            />
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="200">
+            <BeforeAfterSlider
+              client:visible
+              beforeImage="/img/image_5.webp"
+              afterImage="/img/image_6.webp"
+              beforeAlt="Einfahrt vorher"
+              afterAlt="Einfahrt nachher - Pflasterarbeiten"
+              title="Einfahrt & Wege Remseck"
+            />
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-12);" data-aos="fade-up" data-aos-delay="300">
+          <a href="/gallery" class="btn btn-primary" style="font-size: var(--text-lg); padding: var(--space-4) var(--space-8);">
+            Alle Projekte ansehen →
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Projekte Section (Gallery placeholder) -->
+    <!-- Projekte Section (Gallery) -->
     <section id="Projekte" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <h2 class="section-title">Unsere Projekte</h2>
           <p class="section-subtitle">
             Referenzen aus Stuttgart, Ludwigsburg, Waiblingen und Umgebung
           </p>
         </div>
 
-        <div style="margin-top: var(--space-12);">
+        <div style="margin-top: var(--space-12);" data-aos="fade-up" data-aos-delay="100">
           <Gallery />
+        </div>
+
+        <!-- Trust Signals -->
+        <div style="margin-top: var(--space-16); padding: var(--space-10); background: white; border-radius: var(--radius-2xl); box-shadow: var(--shadow-md);" data-aos="fade-up" data-aos-delay="200">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-8); text-align: center;">
+            <div>
+              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">🏆</div>
+              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">Qualitätsarbeit</div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary);">Meisterbetrieb mit Tradition</div>
+            </div>
+            <div>
+              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">⭐</div>
+              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">5.0 Google Rating</div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary);">47 Bewertungen</div>
+            </div>
+            <div>
+              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">📍</div>
+              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">Regional & Zuverlässig</div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary);">Stuttgart & Umgebung</div>
+            </div>
+            <div>
+              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">✓</div>
+              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">Kostenlose Beratung</div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary);">Vor Ort & Unverbindlich</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -161,14 +275,14 @@ import ContactForm from '../components/ContactForm.astro';
       <FAQSchema />
 
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <h2 class="section-title">Häufig gestellte Fragen</h2>
           <p class="section-subtitle">
             Alles, was Sie über unsere Gartenbau-Services wissen müssen
           </p>
         </div>
 
-        <div style="margin-top: var(--space-12);">
+        <div style="margin-top: var(--space-12);" data-aos="fade-up" data-aos-delay="100">
           <FAQAccordion client:visible />
         </div>
       </div>
@@ -177,14 +291,14 @@ import ContactForm from '../components/ContactForm.astro';
     <!-- Kontakt Section with Form -->
     <section id="Kontakt" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <h2 class="section-title">Kontakt</h2>
           <p class="section-subtitle">
             Kostenlose Beratung vor Ort - Wir freuen uns auf Ihre Anfrage!
           </p>
         </div>
 
-        <div style="margin-top: var(--space-12);">
+        <div style="margin-top: var(--space-12);" data-aos="fade-up" data-aos-delay="100">
           <ContactForm />
         </div>
       </div>
