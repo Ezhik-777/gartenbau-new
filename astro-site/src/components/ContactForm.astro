@@ -1,5 +1,5 @@
 ---
-// ContactForm.astro - Static form with Formspree (Zero JS)
+// ContactForm.astro - v5.0 Modern form with floating labels and green theme
 // HTML5 validation - no JavaScript needed!
 ---
 
@@ -11,71 +11,68 @@
     accept-charset="UTF-8"
   >
     <!-- Honeypot for spam protection -->
-    <input type="text" name="_gotcha" style="display:none">
+    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
     <!-- Formspree configuration -->
     <input type="hidden" name="_subject" value="Neue Anfrage von gartenbauzm.de">
     <input type="hidden" name="_next" value="https://gartenbauzm.de/?success=true">
 
-    <!-- Name -->
-    <div class="form-group">
-      <label for="name" class="form-label">
-        Name <span class="required">*</span>
-      </label>
+    <!-- Name with Floating Label -->
+    <div class="form-group floating-label">
       <input
         type="text"
         id="name"
         name="name"
         class="form-input"
         required
-        placeholder="Ihr vollständiger Name"
+        placeholder=" "
         minlength="2"
         maxlength="100"
       >
+      <label for="name" class="form-label">
+        Name <span class="required">*</span>
+      </label>
     </div>
 
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email" class="form-label">
-        E-Mail <span class="required">*</span>
-      </label>
+    <!-- Email with Floating Label -->
+    <div class="form-group floating-label">
       <input
         type="email"
         id="email"
         name="email"
         class="form-input"
         required
-        placeholder="ihre.email@beispiel.de"
+        placeholder=" "
       >
+      <label for="email" class="form-label">
+        E-Mail <span class="required">*</span>
+      </label>
     </div>
 
-    <!-- Phone -->
-    <div class="form-group">
-      <label for="phone" class="form-label">
-        Telefon
-      </label>
+    <!-- Phone with Floating Label -->
+    <div class="form-group floating-label">
       <input
         type="tel"
         id="phone"
         name="phone"
         class="form-input"
-        placeholder="+49 123 4567890"
+        placeholder=" "
         pattern="[0-9+\s\-()]+"
       >
+      <label for="phone" class="form-label">
+        Telefon (optional)
+      </label>
     </div>
 
-    <!-- Service -->
-    <div class="form-group">
-      <label for="service" class="form-label">
-        Gewünschte Leistung <span class="required">*</span>
-      </label>
+    <!-- Service with Floating Label -->
+    <div class="form-group floating-label">
       <select
         id="service"
         name="service"
         class="form-select"
         required
       >
-        <option value="">Bitte wählen...</option>
+        <option value="" disabled selected></option>
         <option value="Gartengestaltung">Gartengestaltung</option>
         <option value="Natursteinarbeiten">Natursteinarbeiten</option>
         <option value="Terrassen & Plätze">Terrassen & Plätze</option>
@@ -85,23 +82,26 @@
         <option value="Hausmeisterservice">Hausmeisterservice</option>
         <option value="Sonstiges">Sonstiges</option>
       </select>
+      <label for="service" class="form-label">
+        Gewünschte Leistung <span class="required">*</span>
+      </label>
     </div>
 
-    <!-- Message -->
-    <div class="form-group">
-      <label for="message" class="form-label">
-        Ihre Nachricht <span class="required">*</span>
-      </label>
+    <!-- Message with Floating Label -->
+    <div class="form-group floating-label">
       <textarea
         id="message"
         name="message"
         class="form-textarea"
         required
-        placeholder="Beschreiben Sie Ihr Projekt..."
+        placeholder=" "
         rows="6"
         minlength="10"
         maxlength="1000"
       ></textarea>
+      <label for="message" class="form-label">
+        Ihre Nachricht <span class="required">*</span>
+      </label>
       <div class="form-hint">Mindestens 10 Zeichen</div>
     </div>
 
@@ -115,37 +115,103 @@
           class="form-checkbox"
         >
         <span>
-          Ich habe die <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="required">*</span>
+          Ich habe die <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="required">*</span>
         </span>
       </label>
     </div>
 
-    <!-- Submit Button -->
-    <button type="submit" class="form-submit btn btn-primary">
-      📧 Anfrage senden
-    </button>
+    <!-- Contact Options: Form Submit + WhatsApp -->
+    <div class="contact-options">
+      <button type="submit" class="btn-primary">
+        <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.5 5.83333L9.16667 10.8333C9.63333 11.1667 10.3667 11.1667 10.8333 10.8333L17.5 5.83333M4.16667 15.8333H15.8333C16.75 15.8333 17.5 15.0833 17.5 14.1667V5.83333C17.5 4.91667 16.75 4.16667 15.8333 4.16667H4.16667C3.25 4.16667 2.5 4.91667 2.5 5.83333V14.1667C2.5 15.0833 3.25 15.8333 4.16667 15.8333Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Nachricht senden</span>
+      </button>
+      <a href="https://wa.me/491782747470" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.0711 2.92893C15.1826 1.04043 12.6609 0 9.99998 0C4.47998 0 0.00998001 4.47 0.00998001 9.99C0.00998001 11.66 0.459981 13.29 1.30998 14.71L0 20L5.41998 18.72C6.78998 19.49 8.37998 19.9 9.99998 19.9C15.52 19.9 20 15.43 20 9.91C20 7.27 18.95 4.77 17.0711 2.92893ZM9.99998 18.15C8.55998 18.15 7.13998 17.75 5.90998 17L5.63998 16.84L2.43998 17.67L3.28998 14.55L3.11998 14.27C2.30998 12.99 1.88998 11.52 1.88998 9.99C1.88998 5.52 5.52998 1.88 9.99998 1.88C12.17 1.88 14.21 2.71 15.77 4.26C17.33 5.81 18.16 7.85 18.16 10.02C18.16 14.49 14.47 18.15 9.99998 18.15ZM14.45 12.01C14.21 11.89 13.08 11.33 12.86 11.26C12.64 11.18 12.48 11.14 12.32 11.39C12.16 11.64 11.72 12.16 11.58 12.32C11.44 12.48 11.29 12.5 11.05 12.37C10.81 12.25 10.03 11.99 9.10998 11.18C8.38998 10.54 7.89998 9.76 7.74998 9.52C7.60998 9.28 7.73998 9.15 7.85998 9.03C7.96998 8.92 8.09998 8.75 8.21998 8.61C8.33998 8.47 8.37998 8.36 8.44998 8.2C8.51998 8.04 8.48998 7.9 8.42998 7.78C8.36998 7.66 7.89998 6.53 7.69998 6.05C7.49998 5.58 7.29998 5.64 7.15998 5.63H6.69998C6.53998 5.63 6.27998 5.69 6.05998 5.93C5.83998 6.17 5.24998 6.73 5.24998 7.86C5.24998 8.99 6.08998 10.09 6.20998 10.25C6.32998 10.41 7.89998 12.83 10.27 13.82C10.84 14.07 11.28 14.22 11.62 14.33C12.19 14.51 12.71 14.49 13.12 14.42C13.58 14.35 14.5 13.85 14.7 13.3C14.9 12.75 14.9 12.27 14.84 12.17C14.78 12.07 14.69 12.13 14.45 12.01Z" fill="currentColor"/>
+        </svg>
+        <span>WhatsApp direkt</span>
+      </a>
+    </div>
 
-    <!-- Info Text -->
-    <p class="form-info">
-      <strong>Oder kontaktieren Sie uns direkt:</strong><br>
-      📞 <a href="tel:+491782747470">+49 178 2747470</a> |
-      💬 <a href="https://wa.me/+491782747470" target="_blank" rel="noopener">WhatsApp</a>
-    </p>
+    <!-- Success/Error Messages -->
+    <div class="form-status" id="form-status" style="display:none;">
+      <div class="status-success" id="status-success">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p><strong>Vielen Dank!</strong> Ihre Nachricht wurde erfolgreich gesendet.</p>
+      </div>
+      <div class="status-error" id="status-error">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p><strong>Fehler!</strong> Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.</p>
+      </div>
+    </div>
   </form>
 </div>
 
+<script>
+  // Check URL for success/error parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const success = urlParams.get('success');
+  const error = urlParams.get('error');
+
+  if (success === 'true') {
+    const statusDiv = document.getElementById('form-status');
+    const successDiv = document.getElementById('status-success');
+    if (statusDiv && successDiv) {
+      statusDiv.style.display = 'block';
+      successDiv.style.display = 'flex';
+      // Scroll to status message
+      statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  if (error === 'true') {
+    const statusDiv = document.getElementById('form-status');
+    const errorDiv = document.getElementById('status-error');
+    if (statusDiv && errorDiv) {
+      statusDiv.style.display = 'block';
+      errorDiv.style.display = 'flex';
+      // Scroll to status message
+      statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+</script>
+
 <style>
-  /* Contact Form Styles */
+  /* ========== CONTACT FORM v5.0 - Modern Floating Labels ========== */
+
   .contact-form-wrapper {
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
   }
 
   .contact-form {
-    background: white;
-    padding: var(--space-8);
-    border-radius: var(--radius-xl);
+    background: var(--color-neutral-0);
+    padding: var(--space-10);
+    border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-xl);
+    position: relative;
+  }
+
+  /* Subtle gradient border effect */
+  .contact-form::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-2xl);
+    padding: 2px;
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-300));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.15;
+    pointer-events: none;
   }
 
   @media (max-width: 768px) {
@@ -154,35 +220,68 @@
     }
   }
 
-  /* Form Groups */
+  /* ========== FLOATING LABEL DESIGN ========== */
+
   .form-group {
     margin-bottom: var(--space-6);
   }
 
-  .form-label {
-    display: block;
-    font-weight: var(--font-semibold);
-    color: var(--text-primary);
-    margin-bottom: var(--space-2);
+  .floating-label {
+    position: relative;
+  }
+
+  .floating-label .form-label {
+    position: absolute;
+    left: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
     font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--color-neutral-500);
+    background: var(--color-neutral-0);
+    padding: 0 var(--space-2);
+    pointer-events: none;
+    transition: all var(--transition-base);
+    z-index: 1;
+  }
+
+  /* Floating label for textarea */
+  .floating-label:has(.form-textarea) .form-label {
+    top: var(--space-6);
+    transform: translateY(0);
+  }
+
+  /* Float label when input has focus or value */
+  .floating-label .form-input:focus ~ .form-label,
+  .floating-label .form-input:not(:placeholder-shown) ~ .form-label,
+  .floating-label .form-select:focus ~ .form-label,
+  .floating-label .form-select:not([value=""]):valid ~ .form-label,
+  .floating-label .form-textarea:focus ~ .form-label,
+  .floating-label .form-textarea:not(:placeholder-shown) ~ .form-label {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: var(--text-sm);
+    color: var(--color-primary-600);
+    font-weight: var(--font-semibold);
   }
 
   .required {
-    color: var(--color-error);
+    color: #ef4444;
   }
 
-  /* Form Inputs */
+  /* ========== FORM INPUTS ========== */
+
   .form-input,
   .form-select,
   .form-textarea {
     width: 100%;
-    padding: var(--space-3) var(--space-4);
+    padding: var(--space-4);
     font-size: var(--text-base);
-    font-family: var(--font-sans);
-    color: var(--text-primary);
-    background: var(--bg-primary);
+    font-family: var(--font-body);
+    color: var(--color-neutral-900);
+    background: var(--color-neutral-0);
     border: 2px solid var(--color-neutral-300);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     transition: all var(--transition-base);
   }
 
@@ -190,34 +289,46 @@
   .form-select:focus,
   .form-textarea:focus {
     outline: none;
-    border-color: var(--color-brand);
-    box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
   }
 
+  /* Validation states */
   .form-input:invalid:not(:placeholder-shown),
   .form-select:invalid:not(:placeholder-shown),
   .form-textarea:invalid:not(:placeholder-shown) {
-    border-color: var(--color-error);
+    border-color: #ef4444;
   }
 
   .form-input:valid:not(:placeholder-shown),
-  .form-select:valid,
+  .form-select:valid:not([value=""]),
   .form-textarea:valid:not(:placeholder-shown) {
-    border-color: var(--color-success);
+    border-color: var(--color-primary-500);
   }
 
   .form-textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 140px;
   }
 
   .form-hint {
     font-size: var(--text-sm);
-    color: var(--text-tertiary);
+    color: var(--color-neutral-500);
     margin-top: var(--space-2);
+    padding-left: var(--space-4);
   }
 
-  /* Checkbox */
+  /* Select dropdown arrow */
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-4) center;
+    padding-right: var(--space-10);
+  }
+
+  /* ========== CHECKBOX ========== */
+
   .form-checkbox-group {
     margin-bottom: var(--space-8);
   }
@@ -229,6 +340,7 @@
     cursor: pointer;
     font-size: var(--text-sm);
     line-height: var(--leading-relaxed);
+    color: var(--color-neutral-700);
   }
 
   .form-checkbox {
@@ -236,49 +348,199 @@
     height: 20px;
     margin-top: 2px;
     cursor: pointer;
-    accent-color: var(--color-brand);
+    accent-color: var(--color-primary-600);
+    border-radius: var(--radius-sm);
   }
 
   .form-checkbox-label a {
-    color: var(--color-brand);
+    color: var(--color-primary-600);
     text-decoration: underline;
+    font-weight: var(--font-medium);
   }
 
   .form-checkbox-label a:hover {
-    color: var(--color-brand-dark);
+    color: var(--color-primary-700);
   }
 
-  /* Submit Button */
-  .form-submit {
-    width: 100%;
-    padding: var(--space-4) var(--space-6);
-    font-size: var(--text-lg);
-    font-weight: var(--font-bold);
+  /* ========== CONTACT OPTIONS (Submit + WhatsApp) ========== */
+
+  .contact-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
     margin-bottom: var(--space-6);
   }
 
-  .form-submit:disabled {
+  @media (max-width: 640px) {
+    .contact-options {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+  }
+
+  /* Primary Submit Button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-bold);
+    font-family: var(--font-heading);
+    color: var(--color-neutral-0);
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-600));
+    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35), var(--glow-green);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25);
+  }
+
+  .btn-primary:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none;
   }
 
-  /* Info Text */
-  .form-info {
-    text-align: center;
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    margin: 0;
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--color-neutral-200);
-  }
-
-  .form-info a {
-    color: var(--color-brand);
+  /* WhatsApp Button */
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-bold);
+    font-family: var(--font-heading);
+    color: var(--color-neutral-0);
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
     text-decoration: none;
-    font-weight: var(--font-semibold);
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
   }
 
-  .form-info a:hover {
-    text-decoration: underline;
+  .btn-whatsapp:hover {
+    background: linear-gradient(135deg, #128C7E, #075E54);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .btn-whatsapp:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+  }
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ========== SUCCESS/ERROR STATUS ========== */
+
+  .form-status {
+    margin-top: var(--space-6);
+  }
+
+  .status-success,
+  .status-error {
+    display: none;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-base);
+    animation: slideIn 0.4s ease-out;
+  }
+
+  .status-success {
+    background: #d1fae5;
+    border: 2px solid var(--color-primary-500);
+    color: #065f46;
+  }
+
+  .status-error {
+    background: #fee2e2;
+    border: 2px solid #ef4444;
+    color: #991b1b;
+  }
+
+  .status-success svg {
+    color: var(--color-primary-600);
+    flex-shrink: 0;
+  }
+
+  .status-error svg {
+    color: #ef4444;
+    flex-shrink: 0;
+  }
+
+  .status-success p,
+  .status-error p {
+    margin: 0;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ========== FOCUS STYLES (Accessibility) ========== */
+
+  .btn-primary:focus-visible,
+  .btn-whatsapp:focus-visible {
+    outline: 3px solid var(--color-primary-500);
+    outline-offset: 3px;
+  }
+
+  .form-checkbox:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* ========== REDUCED MOTION ========== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .btn-whatsapp,
+    .form-input,
+    .form-select,
+    .form-textarea,
+    .form-label {
+      transition: none;
+    }
+
+    .btn-primary:hover,
+    .btn-whatsapp:hover {
+      transform: none;
+    }
+
+    .status-success,
+    .status-error {
+      animation: none;
+    }
   }
 </style>
