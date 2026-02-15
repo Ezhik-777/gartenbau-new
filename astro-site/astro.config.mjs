@@ -14,12 +14,44 @@ export default defineConfig({
     assets: 'assets'
   },
   vite: {
+    css: {
+      postcss: './postcss.config.cjs'
+    },
     build: {
+      cssCodeSplit: true,
       rollupOptions: {
         output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom']
+          manualChunks: (id) => {
+            // Code splitting strategy
+            if (id.includes('node_modules')) {
+              // Vendor chunks
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+              if (id.includes('aos')) {
+                return 'aos-vendor';
+              }
+              if (id.includes('react-compare-slider')) {
+                return 'compare-slider-vendor';
+              }
+              return 'vendor';
+            }
+            // Gallery page gets its own chunk
+            if (id.includes('GalleryGrid')) {
+              return 'gallery';
+            }
+            if (id.includes('BeforeAfterSlider')) {
+              return 'before-after';
+            }
           }
+        }
+      },
+      // Minification options
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true
         }
       }
     }

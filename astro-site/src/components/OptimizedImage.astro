@@ -1,0 +1,70 @@
+---
+/**
+ * OptimizedImage Component
+ * Provides lazy loading, srcset, and blur-up placeholder for optimal image performance
+ */
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  className?: string;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width = 800,
+  height = 600,
+  loading = 'lazy',
+  className = '',
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px'
+} = Astro.props;
+
+// Extract image name for srcset
+const imageName = src.split('/').pop()?.replace('.webp', '') || '';
+const hasOptimized = imageName.startsWith('image_');
+
+// Generate srcset for responsive images
+const getSrcSet = () => {
+  if (!hasOptimized) return src;
+
+  return {
+    srcset: `
+      /img/optimized/${imageName}-sm.webp 640w,
+      /img/optimized/${imageName}-md.webp 1024w,
+      /img/optimized/${imageName}-lg.webp 1920w
+    `,
+    src: `/img/optimized/${imageName}-md.webp`
+  };
+};
+
+const imageAttrs = hasOptimized ? getSrcSet() : { src, srcset: '' };
+
+// Create blur placeholder (low quality preview)
+const blurDataUrl = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width} ${height}'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='20'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%2322c55e' opacity='0.1' filter='url(%23b)'/%3E%3C/svg%3E`;
+---
+
+<img
+  src={imageAttrs.src}
+  srcset={imageAttrs.srcset || undefined}
+  sizes={hasOptimized ? sizes : undefined}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding="async"
+  class={className}
+  style={`background-image: url('${blurDataUrl}'); background-size: cover;`}
+/>
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+</style>

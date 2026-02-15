@@ -41,8 +41,39 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
   <meta name="theme-color" content="#459d72">
   <link rel="icon" type="image/webp" sizes="32x32" href="/img/logo.webp">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Critical CSS inlined for faster FCP -->
+  <style>
+    :root {
+      --color-primary-500: #22c55e;
+      --color-primary-600: #16a34a;
+      --color-primary-700: #15803d;
+      --color-neutral-0: #ffffff;
+      --color-neutral-900: #171717;
+      --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --text-base: 1rem;
+      --space-4: 1rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.5;
+      color: var(--color-neutral-900);
+      background: var(--color-neutral-0);
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-4); }
+  </style>
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/img/image_1.webp" as="image" type="image/webp" />
+
+  <!-- Fonts with optimized subsets and display=swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap&subset=latin" rel="stylesheet">
 
   <!-- Google Analytics 4 -->
   <GoogleAnalytics />
