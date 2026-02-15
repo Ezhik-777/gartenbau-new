@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './FAQAccordion.css';
 
 interface FAQ {
@@ -42,8 +42,84 @@ const faqs: FAQ[] = [
     id: 7,
     question: 'Welche Zahlungsmöglichkeiten bieten Sie an?',
     answer: 'Wir akzeptieren Barzahlung und Banküberweisung. Die Zahlungsmodalitäten werden individuell vereinbart – typischerweise eine Anzahlung bei Projektbeginn, Teilzahlungen bei größeren Projekten und die Restzahlung nach erfolgreicher Fertigstellung. Alle Details werden transparent im Kostenvoranschlag und Vertrag festgehalten.'
+  },
+  {
+    id: 8,
+    question: 'Arbeiten Sie mit umweltfreundlichen Materialien und Methoden?',
+    answer: 'Ja, Nachhaltigkeit ist uns wichtig. Wir verwenden bevorzugt regionale Materialien, um Transportwege zu minimieren. Bei Bepflanzungen setzen wir auf einheimische, bienenfreundliche Pflanzen. Wir verzichten auf chemische Unkrautvernichter und nutzen stattdessen mechanische oder thermische Methoden. Zudem beraten wir zu wassersparenden Bewässerungssystemen und nachhaltigen Gartenlösungen.'
+  },
+  {
+    id: 9,
+    question: 'Bieten Sie auch Winterdienst an?',
+    answer: 'Ja, wir bieten professionellen Winterdienst für Privathaushalte und Gewerbeobjekte an. Unser Service umfasst Schneeräumung, Streudienst und die Sicherstellung der Verkehrssicherheit auf Ihren Wegen und Zufahrten. Wir sind zuverlässig erreichbar und sorgen dafür, dass Ihr Grundstück auch bei Schnee und Eis sicher begehbar bleibt.'
+  },
+  {
+    id: 10,
+    question: 'Können Sie auch bei bestehenden Gärten helfen?',
+    answer: 'Selbstverständlich! Wir übernehmen nicht nur Neuanlagen, sondern auch die Umgestaltung und Modernisierung bestehender Gärten. Ob Sie einzelne Bereiche erneuern möchten, einen veralteten Garten komplett neu gestalten oder nur kleinere Verbesserungen wünschen – wir finden gemeinsam mit Ihnen die beste Lösung und setzen diese professionell um.'
   }
 ];
+
+interface FAQItemProps {
+  faq: FAQ;
+  isOpen: boolean;
+  onToggle: () => void;
+}
+
+function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      if (isOpen) {
+        setHeight(contentRef.current.scrollHeight);
+      } else {
+        setHeight(0);
+      }
+    }
+  }, [isOpen]);
+
+  return (
+    <div className={`faq-item ${isOpen ? 'active' : ''}`}>
+      <button
+        className="faq-question"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`faq-answer-${faq.id}`}
+        id={`faq-question-${faq.id}`}
+      >
+        <h3>{faq.question}</h3>
+        <svg
+          className="faq-icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <div
+        id={`faq-answer-${faq.id}`}
+        className="faq-answer"
+        role="region"
+        aria-labelledby={`faq-question-${faq.id}`}
+        style={{ height: height !== undefined ? `${height}px` : undefined }}
+      >
+        <div className="faq-answer-content" ref={contentRef}>
+          <p>{faq.answer}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function FAQAccordion() {
   const [openId, setOpenId] = useState<number | null>(null);
@@ -55,33 +131,12 @@ export default function FAQAccordion() {
   return (
     <div className="faq-accordion">
       {faqs.map((faq) => (
-        <div
+        <FAQItem
           key={faq.id}
-          className={`faq-item ${openId === faq.id ? 'active' : ''}`}
-        >
-          <button
-            className="faq-question"
-            onClick={() => toggleFAQ(faq.id)}
-            aria-expanded={openId === faq.id}
-            aria-controls={`faq-answer-${faq.id}`}
-          >
-            <h3>{faq.question}</h3>
-            <span className="faq-icon" aria-hidden="true">
-              {openId === faq.id ? '−' : '+'}
-            </span>
-          </button>
-
-          <div
-            id={`faq-answer-${faq.id}`}
-            className="faq-answer"
-            role="region"
-            aria-labelledby={`faq-question-${faq.id}`}
-          >
-            <div className="faq-answer-content">
-              <p>{faq.answer}</p>
-            </div>
-          </div>
-        </div>
+          faq={faq}
+          isOpen={openId === faq.id}
+          onToggle={() => toggleFAQ(faq.id)}
+        />
       ))}
     </div>
   );
