@@ -1,0 +1,60 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="Gartenbau Remseck | Landschaftsbau Stuttgart | Garten Ludwigsburg"
+  description="Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort."
+>
+  <main>
+    <section class="hero" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-light) 100%);">
+      <div class="container">
+        <h1 style="color: white; text-align: center; margin-bottom: var(--space-6);">
+          Gartenbau Z.M.
+        </h1>
+        <h2 style="color: white; text-align: center; font-size: var(--text-2xl); font-weight: var(--font-normal); opacity: 0.95;">
+          Professioneller Garten- und Landschaftsbau<br>
+          in Remseck, Stuttgart & Region
+        </h2>
+
+        <div style="text-align: center; margin-top: var(--space-10);">
+          <a href="#contact" class="btn btn-primary" style="font-size: var(--text-lg); padding: var(--space-4) var(--space-8);">
+            🏡 Jetzt Beratung anfragen
+          </a>
+        </div>
+
+        <div style="margin-top: var(--space-16); text-align: center;">
+          <p style="color: white; font-size: var(--text-sm); opacity: 0.9;">
+            ✅ Astro v4.0 Migration läuft<br>
+            📦 Bundle: 73KB → 25KB Target<br>
+            ⚡ Zero JS by default<br>
+            🏝️ Islands Architecture
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Kontakt</h2>
+          <p class="section-subtitle">
+            Professioneller Gartenbau in Remseck am Neckar
+          </p>
+        </div>
+
+        <div style="text-align: center;">
+          <p style="font-size: var(--text-lg); margin-bottom: var(--space-4);">
+            <strong>📞 Telefon:</strong> <a href="tel:+491782747470">+49 178 2747470</a>
+          </p>
+          <p style="font-size: var(--text-lg); margin-bottom: var(--space-4);">
+            <strong>✉️ Email:</strong> <a href="mailto:info.gartenbauzm@gmx.de">info.gartenbauzm@gmx.de</a>
+          </p>
+          <p style="font-size: var(--text-lg);">
+            <strong>📍 Adresse:</strong> Lerchenrain 9, 71686 Remseck am Neckar
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>
