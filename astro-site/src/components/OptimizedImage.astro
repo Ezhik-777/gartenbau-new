@@ -29,8 +29,10 @@ const imageName = src.split('/').pop()?.replace('.webp', '') || '';
 const hasOptimized = imageName.startsWith('image_');
 
 // Generate srcset for responsive images
-const getSrcSet = () => {
-  if (!hasOptimized) return src;
+const getSrcSet = (): { src: string; srcset: string } => {
+  if (!hasOptimized) {
+    return { src, srcset: '' };
+  }
 
   return {
     srcset: `
@@ -42,7 +44,7 @@ const getSrcSet = () => {
   };
 };
 
-const imageAttrs = hasOptimized ? getSrcSet() : { src, srcset: '' };
+const imageAttrs = getSrcSet();
 
 // Create blur placeholder (low quality preview)
 const blurDataUrl = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width} ${height}'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='20'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%2322c55e' opacity='0.1' filter='url(%23b)'/%3E%3C/svg%3E`;
