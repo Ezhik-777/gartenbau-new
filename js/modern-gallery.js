@@ -11,7 +11,7 @@ class ModernGallery {
     this.viewButtons = document.querySelectorAll('.view-btn');
     
     this.totalImages = 180;
-    this.imagesPerLoad = 6;
+    this.imagesPerLoad = this.calculateOptimalBatchSize();
     this.loadedImages = 0;
     this.currentFilter = 'all';
     this.currentView = 'grid';
@@ -35,6 +35,17 @@ class ModernGallery {
     this.loadInitialImages();
   }
   
+  calculateOptimalBatchSize() {
+    // Adaptive batch size based on viewport
+    const viewportWidth = window.innerWidth;
+    const isMobile = viewportWidth < 768;
+
+    // Mobile: 6 images, Tablet: 12, Desktop: 18
+    if (isMobile) return 6;
+    if (viewportWidth < 1024) return 12;
+    return 18;
+  }
+
   generateImageCategories() {
     const categories = ['garden', 'stone', 'terrace'];
     const mapping = {};
@@ -102,13 +113,9 @@ class ModernGallery {
     this.loadMoreBtn?.addEventListener('click', () => {
       this.loadMoreImages();
     });
-    
-    // Infinite scroll DISABLED
-    // window.addEventListener('scroll', this.throttle(() => {
-    //   if (this.isNearBottom() && !this.isLoading && this.hasMoreImages()) {
-    //     this.loadMoreImages();
-    //   }
-    // }, 300));
+
+    // Infinite scroll with Intersection Observer (более эффективно чем scroll event)
+    this.setupInfiniteScroll();
   }
   
   async loadInitialImages() {
@@ -125,31 +132,41 @@ class ModernGallery {
   
   loadMoreImages() {
     if (this.isLoading || !this.hasMoreImages()) return;
-    
+
     this.isLoading = true;
     this.updateLoadMoreButton(true);
-    
+
     const startIndex = this.loadedImages;
     const endIndex = Math.min(startIndex + this.imagesPerLoad, this.getFilteredImageCount());
-    
+
     const imagesToLoad = this.getFilteredImages().slice(startIndex, endIndex);
-    
-    // Faster image loading without excessive animations
+
+    // Optimized: Use DocumentFragment for batch DOM insertion (single reflow)
     setTimeout(() => {
-      imagesToLoad.forEach((imageNum, index) => {
+      const fragment = document.createDocumentFragment();
+      const elements = [];
+
+      // Create all elements and add to fragment
+      imagesToLoad.forEach((imageNum) => {
+        const imageElement = this.createGalleryItem(imageNum);
+        imageElement.style.opacity = '0';
+        fragment.appendChild(imageElement);
+        elements.push(imageElement);
+      });
+
+      // Single DOM update - only 1 reflow instead of N reflows
+      this.container.appendChild(fragment);
+
+      // Staggered fade-in animation after batch insertion
+      elements.forEach((element, index) => {
         setTimeout(() => {
-          const imageElement = this.createGalleryItem(imageNum);
-          imageElement.style.opacity = '0';
-          this.container.appendChild(imageElement);
-          
-          // Quick fade in
           requestAnimationFrame(() => {
-            imageElement.style.transition = 'opacity 0.2s ease';
-            imageElement.style.opacity = '1';
+            element.style.transition = 'opacity 0.2s ease';
+            element.style.opacity = '1';
           });
         }, index * 50);
       });
-      
+
       this.loadedImages = endIndex;
       this.updateStats();
       this.updateLoadMoreButton(false);
@@ -394,6 +411,32 @@ class ModernGallery {
   
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  setupInfiniteScroll() {
+    // Create sentinel element for intersection observer
+    const sentinel = document.createElement('div');
+    sentinel.className = 'gallery-sentinel';
+    sentinel.style.height = '1px';
+
+    // Observer для автозагрузки при приближении к концу
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.isLoading && this.hasMoreImages()) {
+          this.loadMoreImages();
+        }
+      });
+    }, {
+      rootMargin: '400px' // Загружать за 400px до конца
+    });
+
+    // Добавляем sentinel в контейнер
+    this.container.parentElement.appendChild(sentinel);
+    observer.observe(sentinel);
+
+    // Сохраняем для cleanup
+    this.scrollSentinel = sentinel;
+    this.scrollObserver = observer;
   }
 }
 
