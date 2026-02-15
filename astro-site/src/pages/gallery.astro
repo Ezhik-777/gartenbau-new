@@ -587,18 +587,23 @@ const categoryCounts = {
 
 <script>
   // Sorting functionality for gallery - works with both initial load and View Transitions
+  let galleryInitialized = false;
+
   function initGallerySort() {
     const sortSelect = document.querySelector('[data-sort-select]') as HTMLSelectElement;
 
-    if (sortSelect) {
-      sortSelect.addEventListener('change', (e) => {
+    if (sortSelect && !galleryInitialized) {
+      const handleSortChange = (e: Event) => {
         const sortValue = (e.target as HTMLSelectElement).value;
 
         // Dispatch custom event that GalleryGrid.tsx can listen to
         window.dispatchEvent(new CustomEvent('gallery-sort', {
           detail: { sortValue }
         }));
-      });
+      };
+
+      sortSelect.addEventListener('change', handleSortChange);
+      galleryInitialized = true;
     }
   }
 

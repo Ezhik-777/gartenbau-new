@@ -5,7 +5,7 @@
  */
 
 // Workbox configuration - using local copy for security (no CDN)
-importScripts('/workbox-v7.0.0/workbox-sw.js');
+importScripts('/workbox-v7.4.0/workbox-sw.js');
 
 const { registerRoute } = workbox.routing;
 const { CacheFirst, NetworkFirst, StaleWhileRevalidate } = workbox.strategies;
@@ -37,8 +37,7 @@ workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
  * CACHING STRATEGIES
  * =================================== */
 
-// 1. HTML Pages - Network First (fresh content, fallback to cache)
-// Note: Manual fetch listener below handles offline fallback
+// 1. HTML Pages - Network First (fresh content, fallback to cache, offline fallback)
 registerRoute(
   ({ request }) => request.destination === 'document',
   new NetworkFirst({
@@ -51,6 +50,12 @@ registerRoute(
         maxAgeSeconds: 24 * 60 * 60, // 24 hours
         maxEntries: 50,
       }),
+      {
+        // Fallback to offline page if both network and cache fail
+        handlerDidError: async () => {
+          return caches.match(OFFLINE_PAGE);
+        },
+      },
     ],
     networkTimeoutSeconds: 3, // Fallback to cache after 3s
   })
@@ -210,8 +215,6 @@ self.addEventListener('activate', (event) => {
   return self.clients.claim();
 });
 
-// Offline fallback handler - removed to avoid conflict with Workbox
-// The NetworkFirst strategy above already handles navigation with cache fallback
 
 /* ===================================
  * PUSH NOTIFICATIONS (Optional)
