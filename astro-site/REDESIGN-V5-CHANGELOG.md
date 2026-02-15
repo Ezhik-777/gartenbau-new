@@ -55,9 +55,9 @@ Complete redesign of Gartenbau Z.M. website with modern clean design, parallax e
 
 ### 1.1 Dependencies Setup
 ✅ **Added:**
-- `aos@^3.0.0-beta.6` - Animate On Scroll library
+- `aos@^2.3.4` - Animate On Scroll library (stable release)
 - `react-compare-slider@^3.1.0` - Before/After sliders
-- `sharp@^0.33.0` - Image optimization
+- `sharp@^0.34.5` - Image optimization
 - `@types/aos@^3.0.7` - TypeScript definitions
 
 ✅ **Scripts:**
