@@ -1,60 +1,154 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSlider from '../components/HeroSlider';
 ---
 
 <MainLayout
   title="Gartenbau Remseck | Landschaftsbau Stuttgart | Garten Ludwigsburg"
   description="Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort."
 >
-  <main>
-    <section class="hero" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-light) 100%);">
-      <div class="container">
-        <h1 style="color: white; text-align: center; margin-bottom: var(--space-6);">
-          Gartenbau Z.M.
-        </h1>
-        <h2 style="color: white; text-align: center; font-size: var(--text-2xl); font-weight: var(--font-normal); opacity: 0.95;">
-          Professioneller Garten- und Landschaftsbau<br>
-          in Remseck, Stuttgart & Region
-        </h2>
+  <!-- Header -->
+  <Header />
 
-        <div style="text-align: center; margin-top: var(--space-10);">
-          <a href="#contact" class="btn btn-primary" style="font-size: var(--text-lg); padding: var(--space-4) var(--space-8);">
-            🏡 Jetzt Beratung anfragen
-          </a>
+  <!-- Hero Slider (React Island) -->
+  <HeroSlider client:load />
+
+  <!-- Main Content -->
+  <main>
+    <!-- Leistungen Section (Placeholder) -->
+    <section id="Leistungen" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Unsere Leistungen</h2>
+          <p class="section-subtitle">
+            Professioneller Gartenbau und Landschaftsbau in Stuttgart & Region
+          </p>
         </div>
 
-        <div style="margin-top: var(--space-16); text-align: center;">
-          <p style="color: white; font-size: var(--text-sm); opacity: 0.9;">
-            ✅ Astro v4.0 Migration läuft<br>
-            📦 Bundle: 73KB → 25KB Target<br>
-            ⚡ Zero JS by default<br>
-            🏝️ Islands Architecture
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-12);">
+          <!-- Service Cards (will be componentized later) -->
+          <div style="background: white; padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            <div style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">🌱</div>
+            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">Gartengestaltung</h3>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-4);">
+              Professionelle Gartenplanung und -gestaltung mit individueller Beratung.
+            </p>
+            <a href="#Kontakt" class="btn btn-secondary">Mehr erfahren</a>
+          </div>
+
+          <div style="background: white; padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            <div style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">🪨</div>
+            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">Natursteinarbeiten</h3>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-4);">
+              Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen und Einfassungen.
+            </p>
+            <a href="#Kontakt" class="btn btn-secondary">Mehr erfahren</a>
+          </div>
+
+          <div style="background: white; padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            <div style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">🏗️</div>
+            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">Terrassenbau</h3>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-4);">
+              Moderne Terrassengestaltung mit hochwertigen Materialien für Ihr Outdoor-Living.
+            </p>
+            <a href="#Kontakt" class="btn btn-secondary">Mehr erfahren</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Über uns Section (Placeholder) -->
+    <section id="Ueber-uns" style="padding: var(--space-20) 0;">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Über uns</h2>
+          <p class="section-subtitle">
+            Ihr zuverlässiger Partner für Garten- und Landschaftsbau seit Jahren
+          </p>
+        </div>
+
+        <div style="max-width: 800px; margin: var(--space-12) auto 0; text-align: center;">
+          <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-6);">
+            Gartenbau Z.M. steht für höchste Qualität und Zuverlässigkeit im Garten- und Landschaftsbau.
+            Mit jahrelanger Erfahrung und Leidenschaft für Grün gestalten wir Ihren Traumgarten in
+            Remseck am Neckar, Stuttgart, Ludwigsburg und der gesamten Region.
+          </p>
+          <a href="#Kontakt" class="btn btn-primary">
+            🏡 Kostenlose Beratung anfragen
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projekte Section (Placeholder - Gallery will be added) -->
+    <section id="Projekte" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Unsere Projekte</h2>
+          <p class="section-subtitle">
+            Referenzen aus Stuttgart, Ludwigsburg, Waiblingen und Umgebung
+          </p>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-12);">
+          <p style="font-size: var(--text-lg); color: var(--text-secondary); margin-bottom: var(--space-6);">
+            📸 Gallery wird in Task 4.2 hinzugefügt
+          </p>
+          <p style="font-size: var(--text-base); color: var(--text-tertiary);">
+            (180 Bilder mit Virtual Scrolling & Lazy Loading)
           </p>
         </div>
       </div>
     </section>
 
-    <section id="contact" style="background: var(--bg-secondary);">
+    <!-- Kontakt Section (Placeholder - Form will be added) -->
+    <section id="Kontakt" style="padding: var(--space-20) 0;">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Kontakt</h2>
           <p class="section-subtitle">
-            Professioneller Gartenbau in Remseck am Neckar
+            Kostenlose Beratung vor Ort - Wir freuen uns auf Ihre Anfrage!
           </p>
         </div>
 
-        <div style="text-align: center;">
-          <p style="font-size: var(--text-lg); margin-bottom: var(--space-4);">
-            <strong>📞 Telefon:</strong> <a href="tel:+491782747470">+49 178 2747470</a>
-          </p>
-          <p style="font-size: var(--text-lg); margin-bottom: var(--space-4);">
-            <strong>✉️ Email:</strong> <a href="mailto:info.gartenbauzm@gmx.de">info.gartenbauzm@gmx.de</a>
-          </p>
-          <p style="font-size: var(--text-lg);">
-            <strong>📍 Adresse:</strong> Lerchenrain 9, 71686 Remseck am Neckar
-          </p>
+        <div style="max-width: 600px; margin: var(--space-12) auto 0;">
+          <div style="background: white; padding: var(--space-8); border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);">
+            <div style="text-align: center; margin-bottom: var(--space-8);">
+              <p style="font-size: var(--text-lg); margin-bottom: var(--space-4);">
+                <strong>📞 Telefon:</strong>
+              </p>
+              <a href="tel:+491782747470" class="btn btn-primary" style="font-size: var(--text-xl); margin-bottom: var(--space-6);">
+                +49 178 2747470
+              </a>
+
+              <p style="font-size: var(--text-lg); margin-bottom: var(--space-4); margin-top: var(--space-6);">
+                <strong>💬 WhatsApp:</strong>
+              </p>
+              <a href="https://wa.me/+491782747470" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-lg);">
+                WhatsApp Chat starten
+              </a>
+
+              <div style="margin-top: var(--space-8); padding-top: var(--space-8); border-top: 1px solid var(--color-neutral-200);">
+                <p style="font-size: var(--text-base); color: var(--text-secondary);">
+                  📧 <a href="mailto:info.gartenbauzm@gmx.de">info.gartenbauzm@gmx.de</a>
+                </p>
+                <p style="font-size: var(--text-base); color: var(--text-secondary); margin-top: var(--space-2);">
+                  📍 Lerchenrain 9, 71686 Remseck am Neckar
+                </p>
+              </div>
+
+              <p style="font-size: var(--text-sm); color: var(--text-tertiary); margin-top: var(--space-6);">
+                🔧 Contact Form (Formspree) wird in Task 4.2 hinzugefügt
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
+  <Footer />
 </MainLayout>

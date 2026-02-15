@@ -1,0 +1,243 @@
+---
+// Footer.astro - Static Footer (Zero JS)
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <!-- Footer Top -->
+    <div class="footer__top">
+      <!-- Brand -->
+      <div class="footer__brand">
+        <div class="footer__logo-wrapper">
+          <picture>
+            <source srcset="/img/logo.webp" type="image/webp">
+            <img
+              src="/img/logo.png"
+              class="footer__logo"
+              alt="Gartenbau Z.M. Logo"
+              loading="lazy"
+              decoding="async"
+              width="60"
+              height="60"
+            >
+          </picture>
+          <div>
+            <div class="footer__title">Gartenbau Z.M.</div>
+            <p class="footer__subtitle">Ihr Partner für Garten- und Landschaftsbau</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer__contact">
+        <h4>Kontakt</h4>
+        <p>📍 Lerchenrain 9<br>71686 Remseck am Neckar</p>
+        <p>📞 <a href="tel:+491782747470">+49 178 2747470</a></p>
+        <p>📧 <a href="mailto:info.gartenbauzm@gmx.de">info.gartenbauzm@gmx.de</a></p>
+        <p>💬 <a href="https://wa.me/+491782747470" target="_blank" rel="noopener">WhatsApp Chat</a></p>
+      </div>
+
+      <!-- Service Area -->
+      <div class="footer__services">
+        <h4>Servicegebiet</h4>
+        <ul>
+          <li>Stuttgart</li>
+          <li>Remseck am Neckar</li>
+          <li>Ludwigsburg</li>
+          <li>Waiblingen</li>
+          <li>Kornwestheim</li>
+          <li>Fellbach</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer__bottom">
+      <p>&copy; {currentYear} Gartenbau Z.M. | Alle Rechte vorbehalten</p>
+      <nav class="footer__links" aria-label="Footer Navigation">
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+        <a href="#Kontakt">Kontakt</a>
+      </nav>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#top" class="back-to-top" aria-label="Nach oben scrollen">
+      ↑
+    </a>
+  </div>
+</footer>
+
+<style>
+  /* Footer Styles */
+  .footer {
+    background: linear-gradient(135deg, var(--color-neutral-900), var(--color-neutral-800));
+    color: var(--color-neutral-100);
+    padding: var(--space-16) 0 var(--space-8);
+    position: relative;
+  }
+
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .footer__top {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer__top {
+      grid-template-columns: 1.5fr 1fr 1fr;
+    }
+  }
+
+  /* Brand */
+  .footer__brand {
+    max-width: 350px;
+  }
+
+  .footer__logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .footer__logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  .footer__title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .footer__subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-neutral-300);
+    margin: 0;
+  }
+
+  /* Contact & Services */
+  .footer__contact h4,
+  .footer__services h4 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: white;
+    margin-bottom: var(--space-4);
+  }
+
+  .footer__contact p,
+  .footer__services ul {
+    font-size: var(--text-sm);
+    color: var(--color-neutral-300);
+    margin-bottom: var(--space-3);
+    line-height: var(--leading-relaxed);
+  }
+
+  .footer__services ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer__services li {
+    margin-bottom: var(--space-2);
+  }
+
+  .footer__contact a {
+    color: var(--color-brand-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__contact a:hover {
+    color: white;
+  }
+
+  /* Footer Bottom */
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding-top: var(--space-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .footer__bottom p {
+    font-size: var(--text-sm);
+    color: var(--color-neutral-400);
+    margin: 0;
+  }
+
+  .footer__links {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .footer__links a {
+    font-size: var(--text-sm);
+    color: var(--color-neutral-300);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__links a:hover {
+    color: white;
+  }
+
+  /* Back to Top Button */
+  .back-to-top {
+    position: fixed;
+    bottom: var(--space-8);
+    right: var(--space-6);
+    width: 50px;
+    height: 50px;
+    background: var(--color-brand);
+    color: white;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-2xl);
+    text-decoration: none;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-base);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+  }
+
+  /* Show on scroll (will be handled by island or CSS) */
+  @media (min-width: 768px) {
+    .back-to-top {
+      opacity: 0.9;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      opacity: 1;
+      background: var(--color-brand-dark);
+      transform: translateY(-4px);
+    }
+  }
+</style>
