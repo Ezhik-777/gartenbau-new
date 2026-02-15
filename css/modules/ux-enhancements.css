@@ -549,25 +549,26 @@ html {
   position: relative;
 }
 
-/* Connecting Line */
+/* Connecting Line - Mobile First */
 .process-grid::before {
   content: '';
-  position: absolute;
-  top: 40px;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background: linear-gradient(90deg,
-    var(--color-primary-100) 0%,
-    var(--color-brand) 50%,
-    var(--color-primary-100) 100%
-  );
-  z-index: 0;
+  display: none;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
   .process-grid::before {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 40px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      var(--color-primary-100) 0%,
+      var(--color-brand) 50%,
+      var(--color-primary-100) 100%
+    );
+    z-index: 0;
   }
 }
 
@@ -778,10 +779,7 @@ img[src] {
     width: 100%;
   }
 
-  .hero-premium__stats {
-    flex-wrap: wrap;
-    padding: var(--space-6);
-  }
+  /* hero-premium__stats moved to premium.css as mobile-first */
 
   .premium-stat {
     flex: 1 1 45%;

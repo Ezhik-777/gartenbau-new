@@ -10,9 +10,16 @@
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-3);
   padding: var(--space-6) 0;
+}
+
+@media (min-width: 769px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
 }
 
 .gallery-item {
@@ -90,12 +97,12 @@
 
 .whatsapp-float {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   background: #25D366;
   color: white;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -106,15 +113,31 @@
   text-decoration: none;
 }
 
+@media (min-width: 769px) {
+  .whatsapp-float {
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+  }
+}
+
 .whatsapp-float:hover {
   transform: scale(1.1);
   box-shadow: var(--shadow-2xl);
 }
 
 .whatsapp-float svg {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   fill: white;
+}
+
+@media (min-width: 769px) {
+  .whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 /* ==========================================================================
@@ -153,9 +176,15 @@
 
 .service-areas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-3);
   padding: var(--space-6) 0;
+}
+
+@media (min-width: 769px) {
+  .service-areas {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 .service-area-item {
@@ -179,9 +208,15 @@
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-6);
   margin: var(--space-8) 0;
+}
+
+@media (min-width: 769px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }
 
 .testimonial-card {
@@ -210,35 +245,8 @@
 }
 
 /* ==========================================================================
-   Mobile Responsive Adjustments
+   Mobile Responsive Adjustments (Now Mobile-First - moved to base styles)
    ========================================================================= */
-
-@media (max-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: var(--space-3);
-  }
-
-  .whatsapp-float {
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-  }
-
-  .whatsapp-float svg {
-    width: 26px;
-    height: 26px;
-  }
-
-  .service-areas {
-    grid-template-columns: 1fr;
-  }
-
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* ==========================================================================
    Print Styles

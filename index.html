@@ -25,6 +25,12 @@
   <meta property="twitter:description" content="Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen. Kostenlose Beratung vor Ort.">
   <meta property="twitter:image" content="https://gartenbauzm.de/img/gal-1.webp">
   
+  <!-- Geo/Location Meta Tags for Local SEO -->
+  <meta name="geo.placename" content="Remseck am Neckar">
+  <meta name="geo.region" content="DE-BW">
+  <meta name="geo.position" content="48.8951;9.2742">
+  <meta name="ICBM" content="48.8951, 9.2742">
+
   <!-- Security Headers -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io; frame-src https://wa.me;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -39,9 +45,15 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://gartenbauzm.de/">
+
+  <!-- AI/LLM Policy -->
+  <link rel="ai-policy" href="/llm.txt" type="text/plain">
+
   <!-- Performance optimizations -->
   <meta http-equiv="X-DNS-Prefetch-Control" content="on">
-  
+
   <!-- Критические стили с мобильной оптимизацией -->
   <style>
     /* Critical mobile-first styles */
@@ -75,36 +87,41 @@
     /* Hero Badge */
     .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(255,255,255,.2);backdrop-filter:blur(12px);border-radius:50px;border:1px solid rgba(255,255,255,.3);margin-bottom:1.5rem;animation:fadeInScale .6s ease-out .5s both}
     .badge-icon{font-size:1.2rem;text-shadow:0 2px 4px rgba(0,0,0,.6)}
-    .badge-text{color:white !important;font-weight:700;font-size:.9rem;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+    .premium-hero .hero-badge .badge-text{color:white;font-weight:700;font-size:.9rem;text-shadow:0 2px 6px rgba(0,0,0,.8)}
     @keyframes fadeInScale{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
-    
-    /* Hero Title - МАКСИМАЛЬНАЯ СПЕЦИФИЧНОСТЬ */
-    .hero-title{font-size:clamp(2.5rem,7vw,4.5rem);font-weight:800;color:white !important;margin-bottom:1.5rem;line-height:1.1;letter-spacing:-.02em;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8) !important;background:rgba(0,0,0,.5);padding:.75rem 1.25rem;border-radius:16px;backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.1)}
-    .premium-hero h1,
-    .hero-slide h1,
-    h1.hero-title,
-    .hero-title,
-    .premium-hero .hero-title,
-    .hero-slide .hero-title{
-      color:white !important;
-      text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8) !important;
-      background:rgba(0,0,0,.5) !important;
-      padding:.75rem 1.25rem !important;
-      border-radius:16px !important;
-      backdrop-filter:blur(15px) !important;
-      border:1px solid rgba(255,255,255,.1) !important;
+
+    /* Hero Title - High Specificity без !important */
+    .premium-hero .hero-slide .hero-title,
+    .premium-hero .hero-slide h1.hero-title,
+    .premium-hero .hero-slide h2.hero-title{
+      font-size:clamp(2.5rem,7vw,4.5rem);
+      font-weight:800;
+      color:white;
+      margin-bottom:1.5rem;
+      line-height:1.1;
+      letter-spacing:-.02em;
+      text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8);
+      background:rgba(0,0,0,0.85);
+      padding:.75rem 1.25rem;
+      border-radius:16px;
+      backdrop-filter:blur(15px);
+      border:1px solid rgba(255,255,255,.1);
     }
-    /* ПРИНУДИТЕЛЬНО ВСЕ ДОЧЕРНИЕ ЭЛЕМЕНТЫ БЕЛЫЕ */
-    .premium-hero h1 *,
-    .hero-slide h1 *,
-    h1.hero-title *,
-    .hero-title *,
-    .premium-hero .hero-title *,
-    .hero-slide .hero-title *{
-      color:white !important;
-      text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8) !important;
+    /* Дочерние элементы hero-title */
+    .premium-hero .hero-slide .hero-title span,
+    .premium-hero .hero-slide h1.hero-title span,
+    .premium-hero .hero-slide h2.hero-title span{
+      color:white;
+      text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 30px rgba(0,0,0,.8);
     }
-    .highlight-text{color:#6db884 !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 40px rgba(0,0,0,.9) !important;position:relative;font-weight:900;background:none !important;-webkit-text-fill-color:#6db884 !important}
+    .premium-hero .hero-slide .hero-title .highlight-text{
+      color:#6db884;
+      text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1),0 0 40px rgba(0,0,0,.9);
+      position:relative;
+      font-weight:900;
+      background:none;
+      -webkit-text-fill-color:#6db884;
+    }
     .highlight-text::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:3px;background:linear-gradient(135deg,#6db884,#4a8764);border-radius:2px;transform:scaleX(0);animation:highlightGrow 1s ease-out 1s both;box-shadow:0 0 10px rgba(109,184,132,.5)}
     @keyframes highlightGrow{to{transform:scaleX(1)}}
     
@@ -131,19 +148,19 @@
     .hero-cta{display:inline-flex;align-items:center;padding:1rem 1.5rem;border-radius:16px;text-decoration:none;font-weight:600;border:none;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;min-height:60px;touch-action:manipulation}
     .hero-cta::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s;z-index:1}
     .hero-cta:hover::before{left:100%}
-    .hero-cta.primary{background:linear-gradient(135deg,#6db884,#4a8764);color:white !important;box-shadow:0 8px 25px rgba(109,184,132,.4);text-shadow:0 2px 4px rgba(0,0,0,.3)}
-    .hero-cta.primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(109,184,132,.6)}
-    .hero-cta.secondary{background:rgba(255,255,255,.2);color:white !important;border:2px solid rgba(255,255,255,.4);backdrop-filter:blur(15px);text-shadow:0 2px 6px rgba(0,0,0,.8)}
-    .hero-cta.secondary:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.6)}
-    .hero-cta.whatsapp{background:linear-gradient(135deg,#25d366,#128c7e);color:white !important;text-shadow:0 2px 4px rgba(0,0,0,.3)}
-    .hero-cta:active{transform:scale(.98)}
-    
+    .premium-hero .hero-slide .hero-cta.primary{background:linear-gradient(135deg,#6db884,#4a8764);color:white;box-shadow:0 8px 25px rgba(109,184,132,.4);text-shadow:0 2px 4px rgba(0,0,0,.3)}
+    .premium-hero .hero-slide .hero-cta.primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(109,184,132,.6)}
+    .premium-hero .hero-slide .hero-cta.secondary{background:rgba(255,255,255,.2);color:white;border:2px solid rgba(255,255,255,.4);backdrop-filter:blur(15px);text-shadow:0 2px 6px rgba(0,0,0,.8)}
+    .premium-hero .hero-slide .hero-cta.secondary:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.6)}
+    .premium-hero .hero-slide .hero-cta.whatsapp{background:linear-gradient(135deg,#25d366,#128c7e);color:white;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+    .premium-hero .hero-slide .hero-cta:active{transform:scale(.98)}
+
     /* CTA Content */
     .cta-content{display:flex;align-items:center;gap:.75rem;position:relative;z-index:2;color:inherit}
     .cta-icon{font-size:1.5rem;text-shadow:0 2px 4px rgba(0,0,0,.5)}
     .cta-text{display:flex;flex-direction:column;align-items:flex-start;color:inherit}
-    .cta-title{font-size:1rem;font-weight:700;line-height:1.2;color:inherit !important;text-shadow:0 2px 4px rgba(0,0,0,.5)}
-    .cta-subtitle{font-size:.8rem;opacity:.95;font-weight:600;color:inherit !important;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+    .premium-hero .hero-slide .cta-title{font-size:1rem;font-weight:700;line-height:1.2;color:inherit;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+    .premium-hero .hero-slide .cta-subtitle{font-size:.8rem;opacity:.95;font-weight:600;color:inherit;text-shadow:0 2px 4px rgba(0,0,0,.5)}
     
     /* Мобильная навигация */
     .head__mn-ul{display:none}
@@ -216,8 +233,8 @@
     
     /* Полные стили для reviews чтобы не поехала верстка */
     .premium-cta-section .reviews-preview{
-      background:rgba(255,255,255,.95) !important;
-      color:#333 !important;
+      background:rgba(255,255,255,.95);
+      color:#333;
       backdrop-filter:blur(10px);
       border-radius:16px;
       padding:1.5rem;
@@ -228,7 +245,7 @@
     .premium-cta-section .google-rating{display:flex;align-items:center;gap:.75rem}
     .premium-cta-section .google-icon{width:24px;height:24px}
     .premium-cta-section .rating-info .stars{color:#fbbf24;font-size:1.1rem;margin-bottom:.25rem}
-    .premium-cta-section .rating-text{color:#6b7280 !important;font-size:.9rem;font-weight:600}
+    .premium-cta-section .rating-info .rating-text{color:#6b7280;font-size:.9rem;font-weight:600}
     .premium-cta-section .reviews-carousel{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -236,27 +253,27 @@
       margin-top:1rem;
     }
     .premium-cta-section .review-card{
-      background:white !important;
-      color:#333 !important;
+      background:white;
+      color:#333;
       border-radius:12px;
       padding:1.25rem;
       border:1px solid rgba(45,90,61,.08);
       box-shadow:0 2px 8px rgba(45,90,61,.06);
     }
-    .premium-cta-section .review-text{color:#374151 !important;line-height:1.6;margin-bottom:1rem;font-size:.95rem}
-    .premium-cta-section .reviewer{display:flex;align-items:center;gap:.75rem}
-    .premium-cta-section .reviewer-avatar{
+    .premium-cta-section .review-card .review-text{color:#374151;line-height:1.6;margin-bottom:1rem;font-size:.95rem}
+    .premium-cta-section .review-card .reviewer{display:flex;align-items:center;gap:.75rem}
+    .premium-cta-section .review-card .reviewer-avatar{
       width:40px;height:40px;border-radius:50%;
       background:linear-gradient(135deg,#2d5a3d,#4a8764);
       color:white;display:flex;align-items:center;justify-content:center;
       font-weight:700;font-size:1.1rem;
     }
-    .premium-cta-section .reviewer-name{color:#1f2937 !important;font-weight:600;font-size:.9rem}
-    .premium-cta-section .review-stars{color:#fbbf24;font-size:.85rem}
-    
+    .premium-cta-section .review-card .reviewer-name{color:#1f2937;font-weight:600;font-size:.9rem}
+    .premium-cta-section .review-card .review-stars{color:#fbbf24;font-size:.85rem}
+
     /* Правильная структура CTA секции */
     .premium-cta-section .cta-content{
-      display:block !important;
+      display:block;
       text-align:center;
       max-width:800px;
       margin:0 auto;
@@ -631,9 +648,9 @@
                 <span class="badge-icon">🌱</span>
                 <span class="badge-text">Professioneller Gartenbau</span>
               </div>
-              <h1 class="hero-title" style="color:white !important;">
-                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Traumgärten für</span><br>
-                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Stuttgart & Region</span>
+              <h1 class="hero-title">
+                <span>Gartenbau Z.M. – Professioneller Garten- und Landschaftsbau</span><br>
+                <span>in Remseck, Stuttgart & Region</span>
               </h1>
               <p class="hero-subtitle">
                 Von kreativer Gartengestaltung bis zu hochwertigen Natursteinarbeiten – wir verwirklichen Ihre grünen Träume
@@ -666,10 +683,10 @@
                 <span class="badge-icon">🪨</span>
                 <span class="badge-text">Natursteinarbeiten</span>
               </div>
-              <h1 class="hero-title" style="color:white !important;">
-                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Hochwertige</span><br>
-                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Natursteinarbeiten</span>
-              </h1>
+              <h2 class="hero-title">
+                <span>Hochwertige</span><br>
+                <span>Natursteinarbeiten</span>
+              </h2>
               <p class="hero-subtitle">
                 Exklusive Mauern, Treppen und Eingangsbereiche aus Naturstein. Handwerkskunst auf höchstem Niveau für Ihre Immobilie in Stuttgart
               </p>
@@ -711,10 +728,10 @@
                 <span class="badge-icon">🏡</span>
                 <span class="badge-text">Terrassen & Plätze</span>
               </div>
-              <h1 class="hero-title" style="color:white !important;">
-                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Moderne</span><br>
-                <span style="color:white !important;text-shadow:0 4px 20px rgba(0,0,0,1),0 2px 4px rgba(0,0,0,1),2px 2px 8px rgba(0,0,0,1) !important;-webkit-text-fill-color:white !important;background:none !important;">Outdoor-Living</span>
-              </h1>
+              <h2 class="hero-title">
+                <span>Moderne</span><br>
+                <span>Outdoor-Living</span>
+              </h2>
               <p class="hero-subtitle">
                 Schaffen Sie Ihren persönlichen Wohlfühlbereich im Freien. Stilvolle Terrassen und Plätze für unvergessliche Momente mit Familie und Freunden
               </p>
@@ -748,15 +765,15 @@
       </div>
 
       <!-- Slider Navigation -->
-      <div class="hero-navigation">
-        <div class="nav-dots">
-          <button class="nav-dot active" data-slide="0"></button>
-          <button class="nav-dot" data-slide="1"></button>
-          <button class="nav-dot" data-slide="2"></button>
+      <div class="hero-navigation" role="group" aria-label="Hero Slider Navigation">
+        <div class="nav-dots" role="tablist">
+          <button class="nav-dot active" data-slide="0" role="tab" aria-label="Zu Slide 1 wechseln" aria-selected="true"></button>
+          <button class="nav-dot" data-slide="1" role="tab" aria-label="Zu Slide 2 wechseln" aria-selected="false"></button>
+          <button class="nav-dot" data-slide="2" role="tab" aria-label="Zu Slide 3 wechseln" aria-selected="false"></button>
         </div>
         <div class="nav-arrows">
-          <button class="nav-arrow prev" id="heroPrev">‹</button>
-          <button class="nav-arrow next" id="heroNext">›</button>
+          <button class="nav-arrow prev" id="heroPrev" aria-label="Vorheriger Slide">‹</button>
+          <button class="nav-arrow next" id="heroNext" aria-label="Nächster Slide">›</button>
         </div>
       </div>
 
@@ -890,7 +907,7 @@
             </div>
             
             <h2 class="gallery-title">
-              Projekte aus <span style="color:#2d5a3d !important;font-weight:700;">Stuttgart & Umgebung</span>
+              Projekte aus <span style="color:#2d5a3d;font-weight:700;">Stuttgart & Umgebung</span>
             </h2>
             
             <p class="gallery-subtitle">
@@ -1004,7 +1021,7 @@
             
             <h2 class="cta-headline">
               Ihr Traumgarten ist nur 
-              <span style="color:#6db884 !important;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.8);">einen Anruf</span> 
+              <span style="color:#6db884;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.8);">einen Anruf</span> 
               entfernt
             </h2>
             
@@ -1345,7 +1362,7 @@
       // Отключаем анимации hover на мобильных
       const style = document.createElement('style');
       style.textContent = `
-        .touch-device *:hover { transition: none !important; }
+        .touch-device *:hover { transition: none; }
         .touch-device .hero__buttons { justify-content: center; }
         .touch-device .btn { min-width: 200px; }
       `;
@@ -1376,9 +1393,8 @@
     // Определяем мобильное устройство
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
     
-    // v3.0: Современные модульные скрипты
+    // v3.0: Современные модульные скрипты (jQuery удалён - не используется)
     const criticalScripts = [
-      { src: 'js/jquery-3.4.1.min.js', priority: 'high' }, // jQuery для совместимости
       { src: 'js/main.js', priority: 'high' }, // Основная функциональность
       { src: 'js/premium.js', priority: 'high' }, // Премиум эффекты
       { src: 'js/modern-gallery.js', priority: 'high' }, // Галерея

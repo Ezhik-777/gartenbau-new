@@ -38,15 +38,47 @@ class ModernGallery {
   generateImageCategories() {
     const categories = ['garden', 'stone', 'terrace'];
     const mapping = {};
-    
+
     for (let i = 1; i <= this.totalImages; i++) {
       // Distribute images across categories
       if (i <= 60) mapping[i] = 'garden';
       else if (i <= 105) mapping[i] = 'stone';
       else mapping[i] = 'terrace';
     }
-    
+
     return mapping;
+  }
+
+  generateAltText(imageNum, category) {
+    // WCAG-compliant descriptive alt texts for SEO and accessibility
+    const locations = ['Remseck', 'Stuttgart', 'Ludwigsburg', 'Waiblingen', 'Fellbach'];
+    const location = locations[imageNum % locations.length];
+
+    const templates = {
+      garden: [
+        `Professionelle Gartengestaltung in ${location} - Projekt ${imageNum}`,
+        `Gartenanlage mit modernem Design in ${location} von Gartenbau Z.M.`,
+        `Kreative Gartengestaltung und Bepflanzung in ${location}`,
+        `Hochwertige Gartenpflege und Landschaftsbau ${location}`
+      ],
+      stone: [
+        `Natursteinarbeiten und Mauerbau in ${location} - Referenz ${imageNum}`,
+        `Hochwertige Natursteinmauer in ${location} von Gartenbau Z.M.`,
+        `Professionelle Steinarbeiten und Natursteinverlegung ${location}`,
+        `Exklusive Natursteingestaltung für Garten und Außenbereich ${location}`
+      ],
+      terrace: [
+        `Terrassenbau und Pflasterarbeiten in ${location} - Projekt ${imageNum}`,
+        `Moderne Terrasse mit hochwertiger Verlegung in ${location}`,
+        `Professioneller Terrassenbau und Outdoor-Living ${location}`,
+        `Stilvolle Terrassengestaltung in ${location} von Gartenbau Z.M.`
+      ]
+    };
+
+    const categoryTemplates = templates[category];
+    const templateIndex = Math.floor((imageNum - 1) / (this.totalImages / categoryTemplates.length)) % categoryTemplates.length;
+
+    return categoryTemplates[templateIndex];
   }
   
   bindEvents() {
@@ -133,19 +165,21 @@ class ModernGallery {
       stone: 'Naturstein',
       terrace: 'Terrassen'
     };
-    
+
+    const altText = this.generateAltText(imageNum, category);
+
     const item = document.createElement('div');
     item.className = `gallery-item gallery-item-${category}`;
     item.dataset.category = category;
     item.dataset.imageNum = imageNum;
-    
+
     item.innerHTML = `
       <div class="gallery-item-image">
         <picture>
           <source srcset="img/image_${imageNum}.webp" type="image/webp">
-          <img 
-            src="img/image_${imageNum}.jpg" 
-            alt="Gartenbau Projekt ${imageNum} - ${categoryNames[category]}"
+          <img
+            src="img/image_${imageNum}.jpg"
+            alt="${altText}"
             loading="lazy"
             decoding="async"
           >
@@ -159,12 +193,12 @@ class ModernGallery {
         </div>
       </div>
     `;
-    
+
     // Add click handler for lightbox
     item.addEventListener('click', () => {
       this.openLightbox(imageNum, category);
     });
-    
+
     return item;
   }
   
@@ -174,7 +208,9 @@ class ModernGallery {
       stone: 'Naturstein',
       terrace: 'Terrassen'
     };
-    
+
+    const altText = this.generateAltText(imageNum, category);
+
     const lightbox = document.createElement('div');
     lightbox.className = 'modern-lightbox';
     lightbox.innerHTML = `
@@ -189,9 +225,9 @@ class ModernGallery {
           <div class="lightbox-image-container">
             <picture>
               <source srcset="img/image_${imageNum}.webp" type="image/webp">
-              <img 
-                src="img/image_${imageNum}.jpg" 
-                alt="Gartenbau Projekt ${imageNum}"
+              <img
+                src="img/image_${imageNum}.jpg"
+                alt="${altText}"
                 class="lightbox-image"
               >
             </picture>

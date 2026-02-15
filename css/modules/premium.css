@@ -319,10 +319,12 @@
   font-weight: var(--font-medium);
 }
 
-/* Premium Stats */
+/* Premium Stats - Mobile First */
 .hero-premium__stats {
   display: flex;
-  gap: var(--space-8);
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  justify-content: center;
   padding: var(--space-8);
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
@@ -333,11 +335,11 @@
   animation: fadeSlideUp 0.8s var(--ease-premium) 0.6s both;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
   .hero-premium__stats {
-    flex-wrap: wrap;
-    gap: var(--space-6);
-    justify-content: center;
+    flex-wrap: nowrap;
+    gap: var(--space-8);
+    justify-content: flex-start;
   }
 }
 

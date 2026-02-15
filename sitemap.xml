@@ -1,68 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <!-- Homepage -->
   <url>
     <loc>https://gartenbauzm.de/</loc>
-    <lastmod>2025-06-30</lastmod>
+    <lastmod>2026-02-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-
-  <!-- Homepage with index.html -->
-  <url>
-    <loc>https://gartenbauzm.de/index.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <!-- Datenschutz (Privacy Policy) -->
   <url>
     <loc>https://gartenbauzm.de/datenschutz.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <!-- Impressum (Legal Notice) -->
   <url>
     <loc>https://gartenbauzm.de/impressum.html</loc>
-    <lastmod>2025-06-30</lastmod>
+    <lastmod>2026-02-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
-  <!-- Services Section -->
+  <!-- LLM/AI Policy -->
   <url>
-    <loc>https://gartenbauzm.de/#Leistungen</loc>
-    <lastmod>2025-06-30</lastmod>
+    <loc>https://gartenbauzm.de/llm.txt</loc>
+    <lastmod>2026-02-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- About Section -->
-  <url>
-    <loc>https://gartenbauzm.de/#Ueber-uns</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Projects Section -->
-  <url>
-    <loc>https://gartenbauzm.de/#Projekte</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Contact Section -->
-  <url>
-    <loc>https://gartenbauzm.de/#Kontakt</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
