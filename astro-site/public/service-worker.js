@@ -4,8 +4,8 @@
  * Features: Smart caching, offline support, background sync
  */
 
-// Workbox configuration will be injected here by workbox-build
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/7.0.0/workbox-sw.js');
+// Workbox configuration - using local copy for security (no CDN)
+importScripts('/workbox-v7.0.0/workbox-sw.js');
 
 const { registerRoute } = workbox.routing;
 const { CacheFirst, NetworkFirst, StaleWhileRevalidate } = workbox.strategies;
@@ -38,6 +38,7 @@ workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
  * =================================== */
 
 // 1. HTML Pages - Network First (fresh content, fallback to cache)
+// Note: Manual fetch listener below handles offline fallback
 registerRoute(
   ({ request }) => request.destination === 'document',
   new NetworkFirst({
@@ -195,8 +196,8 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          // Delete old caches that don't match current version
-          if (cacheName.startsWith('gartenbau-zm-') && cacheName !== CACHE_NAME) {
+          // Delete old caches that don't match current version prefix
+          if (cacheName.startsWith('gartenbau-zm-') && !cacheName.startsWith(CACHE_NAME)) {
             console.log(`[Service Worker] Deleting old cache: ${cacheName}`);
             return caches.delete(cacheName);
           }
@@ -209,17 +210,8 @@ self.addEventListener('activate', (event) => {
   return self.clients.claim();
 });
 
-// Offline fallback handler
-self.addEventListener('fetch', (event) => {
-  // Only handle navigation requests for offline fallback
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(OFFLINE_PAGE);
-      })
-    );
-  }
-});
+// Offline fallback handler - removed to avoid conflict with Workbox
+// The NetworkFirst strategy above already handles navigation with cache fallback
 
 /* ===================================
  * PUSH NOTIFICATIONS (Optional)

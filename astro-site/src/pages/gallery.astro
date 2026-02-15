@@ -586,8 +586,8 @@ const categoryCounts = {
 </style>
 
 <script>
-  // Sorting functionality for gallery
-  document.addEventListener('DOMContentLoaded', () => {
+  // Sorting functionality for gallery - works with both initial load and View Transitions
+  function initGallerySort() {
     const sortSelect = document.querySelector('[data-sort-select]') as HTMLSelectElement;
 
     if (sortSelect) {
@@ -600,5 +600,9 @@ const categoryCounts = {
         }));
       });
     }
-  });
+  }
+
+  // Initialize on both DOMContentLoaded and astro:page-load (for View Transitions)
+  document.addEventListener('DOMContentLoaded', initGallerySort);
+  document.addEventListener('astro:page-load', initGallerySort);
 </script>

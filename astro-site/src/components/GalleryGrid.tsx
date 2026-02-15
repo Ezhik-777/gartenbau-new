@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { getGallerySrcSet } from '../utils/getImageSrcSet';
 import './GalleryGrid.css';
 
@@ -24,8 +24,8 @@ export default function GalleryGrid({ images }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  // Filter and sort images
-  const filteredImages = (() => {
+  // Filter and sort images - memoized to prevent re-render loop
+  const filteredImages = useMemo(() => {
     // First filter by category
     const filtered = filter === 'all'
       ? images
@@ -48,7 +48,7 @@ export default function GalleryGrid({ images }: Props) {
     });
 
     return sorted;
-  })();
+  }, [images, filter, sortBy]);
 
   // Update visible images when filter, sort, or loadedCount changes
   useEffect(() => {
@@ -276,9 +276,9 @@ export default function GalleryGrid({ images }: Props) {
 
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             {(() => {
-              // Use large quality for lightbox to show full detail
+              // Use small variant for lightbox - larger variants may not exist for small source images
               const imageName = filteredImages[lightboxIndex].src.split('/').pop()?.replace('.webp', '') || '';
-              const lightboxSrc = `/img/optimized/${imageName}-lg.webp`;
+              const lightboxSrc = `/img/optimized/${imageName}-sm.webp`;
               const currentImage = filteredImages[lightboxIndex];
               const categoryInfo = getCategoryLabel(currentImage.category);
 

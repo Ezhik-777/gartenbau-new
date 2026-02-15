@@ -3,7 +3,7 @@
  * Uses Workbox to inject precache manifest into service worker
  */
 
-import { injectManifest } from 'workbox-build';
+import { injectManifest, copyWorkboxLibraries } from 'workbox-build';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -14,6 +14,10 @@ const projectRoot = join(__dirname, '..');
 async function buildServiceWorker() {
   try {
     console.log('[Workbox] Building Service Worker with precache manifest...');
+
+    // Copy Workbox libraries to dist for local use (security improvement)
+    await copyWorkboxLibraries(join(projectRoot, 'dist'));
+    console.log('[Workbox] ✅ Copied Workbox runtime libraries to dist/');
 
     const { count, size, warnings } = await injectManifest({
       // Source service worker file (template)

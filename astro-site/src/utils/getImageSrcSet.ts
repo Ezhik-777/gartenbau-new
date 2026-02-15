@@ -54,6 +54,7 @@ export function hasImageVariant(_imageName: string, size: 'sm' | 'md' | 'lg'): b
 /**
  * Generate srcset for gallery masonry layout
  * Optimized for different viewport sizes and layouts
+ * Only includes sm variant to avoid 404s for small source images
  *
  * @param imageName - Base image name
  * @returns Optimized srcset for gallery display
@@ -63,10 +64,7 @@ export function getGallerySrcSet(imageName: string) {
 
   return {
     src: `/img/optimized/${baseName}-sm.webp`,
-    srcset: [
-      `/img/optimized/${baseName}-sm.webp 640w`,
-      `/img/optimized/${baseName}-md.webp 1024w`,
-    ].join(', '),
+    srcset: `/img/optimized/${baseName}-sm.webp 640w`,
     // Gallery typically shows images in columns
     // Mobile: 1 column = 100vw
     // Tablet: 2 columns = 50vw
