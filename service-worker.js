@@ -1,11 +1,13 @@
 /**
- * GARTENBAU Z.M. - Service Worker v4.0
+ * GARTENBAU Z.M. - Service Worker v4.1
  * =====================================
- * Progressive Web App functionality with intelligent caching
+ * Progressive Web App with LRU Cache and intelligent caching
  */
 
-const CACHE_VERSION = 'v4.0';
+const CACHE_VERSION = 'v4.1';
 const CACHE_NAME = `gartenbau-zm-${CACHE_VERSION}`;
+const IMAGE_CACHE = `gartenbau-zm-images-${CACHE_VERSION}`;
+const MAX_IMAGE_CACHE_SIZE = 50; // Limit image cache to 50 items
 
 // Critical resources for immediate caching
 const STATIC_CACHE = [
@@ -14,12 +16,12 @@ const STATIC_CACHE = [
   '/impressum.html',
   '/datenschutz.html',
   '/css/main.css',
-  '/js/jquery-3.4.1.min.js',
   '/js/main.js',
   '/js/premium.js',
   '/js/modern-gallery.js',
   '/js/app.js',
   '/manifest.json',
+  '/llm.txt',
   '/img/logo.webp',
   '/img/logo.png'
 ];
@@ -50,17 +52,70 @@ const ALL_CACHE_RESOURCES = [
 ];
 
 /**
+ * LRU Cache implementation for images
+ */
+class LRUCache {
+  constructor() {
+    this.cache = new Map(); // url -> timestamp
+  }
+
+  async put(cacheName, request, response) {
+    const cache = await caches.open(cacheName);
+    const url = request.url;
+
+    // Check cache size and enforce limit
+    if (this.cache.size >= MAX_IMAGE_CACHE_SIZE) {
+      // Find oldest entry
+      let oldestUrl = null;
+      let oldestTime = Infinity;
+
+      for (const [cachedUrl, timestamp] of this.cache.entries()) {
+        if (timestamp < oldestTime) {
+          oldestTime = timestamp;
+          oldestUrl = cachedUrl;
+        }
+      }
+
+      // Remove oldest entry
+      if (oldestUrl) {
+        await cache.delete(oldestUrl);
+        this.cache.delete(oldestUrl);
+        console.log('[SW LRU] Evicted oldest:', oldestUrl);
+      }
+    }
+
+    // Add new entry
+    this.cache.set(url, Date.now());
+    await cache.put(request, response);
+  }
+
+  touch(url) {
+    // Update timestamp when accessed
+    if (this.cache.has(url)) {
+      this.cache.set(url, Date.now());
+    }
+  }
+}
+
+const imageLRU = new LRUCache();
+
+/**
  * Install Event - Cache critical resources
  */
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing Service Worker v4.0...');
+  console.log('[SW] Installing Service Worker v4.1 with LRU Cache...');
 
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('[SW] Caching critical resources...');
-        return cache.addAll(ALL_CACHE_RESOURCES);
+    Promise.all([
+      caches.open(CACHE_NAME).then(cache => {
+        console.log('[SW] Caching static resources...');
+        return cache.addAll(STATIC_CACHE.concat(CSS_MODULES));
+      }),
+      caches.open(IMAGE_CACHE).then(cache => {
+        console.log('[SW] Caching initial gallery images...');
+        return cache.addAll(GALLERY_CACHE);
       })
+    ])
       .then(() => {
         console.log('[SW] Installation complete ✅');
         return self.skipWaiting();
@@ -75,14 +130,14 @@ self.addEventListener('install', (event) => {
  * Activate Event - Clean up old caches
  */
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating Service Worker v4.0...');
+  console.log('[SW] Activating Service Worker v4.1...');
 
   event.waitUntil(
     caches.keys()
       .then(cacheNames => {
         return Promise.all(
           cacheNames
-            .filter(name => name !== CACHE_NAME)
+            .filter(name => name !== CACHE_NAME && name !== IMAGE_CACHE)
             .map(name => {
               console.log('[SW] Deleting old cache:', name);
               return caches.delete(name);
@@ -142,18 +197,31 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Cache First strategy for static assets (CSS, JS, images)
+  const isImage = request.url.match(/\.(webp|jpg|jpeg|png|gif|svg)$/i);
+
   event.respondWith(
     caches.match(request)
       .then(cached => {
         if (cached) {
+          // Touch LRU cache for images
+          if (isImage) {
+            imageLRU.touch(request.url);
+          }
+
           // Return cached version immediately
           // Update cache in background
           fetch(request)
             .then(response => {
               if (response.status === 200) {
-                caches.open(CACHE_NAME).then(cache => {
-                  cache.put(request, response);
-                });
+                if (isImage) {
+                  // Use LRU cache for images
+                  imageLRU.put(IMAGE_CACHE, request, response.clone());
+                } else {
+                  // Regular cache for other assets
+                  caches.open(CACHE_NAME).then(cache => {
+                    cache.put(request, response);
+                  });
+                }
               }
             })
             .catch(() => {
@@ -169,9 +237,16 @@ self.addEventListener('fetch', (event) => {
             // Cache successful responses
             if (response.status === 200) {
               const responseClone = response.clone();
-              caches.open(CACHE_NAME).then(cache => {
-                cache.put(request, responseClone);
-              });
+
+              if (isImage) {
+                // Use LRU cache for images
+                imageLRU.put(IMAGE_CACHE, request, responseClone);
+              } else {
+                // Regular cache for other assets
+                caches.open(CACHE_NAME).then(cache => {
+                  cache.put(request, responseClone);
+                });
+              }
             }
             return response;
           })
@@ -219,4 +294,4 @@ async function syncFormSubmissions() {
   console.log('[SW] Syncing form submissions...');
 }
 
-console.log('[SW] Service Worker v4.0 loaded ✅');
+console.log('[SW] Service Worker v4.1 with LRU Cache loaded ✅');
