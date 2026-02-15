@@ -1,0 +1,135 @@
+---
+/**
+ * Google Analytics 4 Component
+ *
+ * Integrates GA4 tracking with event handling for:
+ * - Page views (automatic)
+ * - WhatsApp clicks
+ * - Form submissions
+ * - Gallery image views
+ * - Service card clicks
+ *
+ * Environment Variable Required:
+ * PUBLIC_GA_MEASUREMENT_ID - GA4 Measurement ID (G-XXXXXXXXXX)
+ */
+
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+
+// Only load GA4 in production
+const isProduction = import.meta.env.PROD;
+const shouldLoadGA = isProduction && GA_MEASUREMENT_ID;
+---
+
+{shouldLoadGA && (
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Configure GA4
+      gtag('config', GA_MEASUREMENT_ID, {
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+
+      // Event tracking helpers
+      window.trackEvent = function(eventName, eventParams = {}) {
+        if (typeof gtag === 'function') {
+          gtag('event', eventName, eventParams);
+        }
+      };
+
+      // WhatsApp click tracking
+      document.addEventListener('click', function(e) {
+        const whatsappLink = e.target.closest('a[href*="wa.me"], a[href*="whatsapp"]');
+        if (whatsappLink) {
+          window.trackEvent('whatsapp_click', {
+            'event_category': 'engagement',
+            'event_label': 'WhatsApp Link',
+            'link_url': whatsappLink.href
+          });
+        }
+      });
+
+      // Form submission tracking
+      document.addEventListener('submit', function(e) {
+        const form = e.target;
+        if (form && form.id === 'contact-form') {
+          window.trackEvent('form_submit', {
+            'event_category': 'engagement',
+            'event_label': 'Contact Form'
+          });
+        }
+      });
+
+      // Gallery image view tracking
+      document.addEventListener('click', function(e) {
+        const galleryItem = e.target.closest('.gallery-item');
+        if (galleryItem) {
+          const imageAlt = galleryItem.querySelector('img')?.alt || 'Unknown';
+          window.trackEvent('gallery_image_view', {
+            'event_category': 'engagement',
+            'event_label': imageAlt
+          });
+        }
+      });
+
+      // Service card click tracking
+      document.addEventListener('click', function(e) {
+        const serviceCard = e.target.closest('.service-card');
+        if (serviceCard) {
+          const serviceTitle = serviceCard.querySelector('h3')?.textContent || 'Unknown Service';
+          window.trackEvent('service_card_click', {
+            'event_category': 'engagement',
+            'event_label': serviceTitle
+          });
+        }
+      });
+
+      // Scroll depth tracking (25%, 50%, 75%, 100%)
+      let scrollDepths = { 25: false, 50: false, 75: false, 100: false };
+
+      window.addEventListener('scroll', function() {
+        const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+
+        Object.keys(scrollDepths).forEach(function(depth) {
+          if (scrollPercent >= depth && !scrollDepths[depth]) {
+            scrollDepths[depth] = true;
+            window.trackEvent('scroll_depth', {
+              'event_category': 'engagement',
+              'event_label': depth + '%',
+              'value': parseInt(depth)
+            });
+          }
+        });
+      });
+
+      // Outbound link tracking
+      document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href^="http"]');
+        if (link && !link.href.includes(window.location.hostname)) {
+          window.trackEvent('outbound_click', {
+            'event_category': 'engagement',
+            'event_label': link.href,
+            'link_url': link.href
+          });
+        }
+      });
+    </script>
+  </>
+)}
+
+{!shouldLoadGA && (
+  <!-- GA4 not loaded (development mode or missing measurement ID) -->
+  <script is:inline>
+    // Mock tracking function for development
+    window.trackEvent = function(eventName, eventParams) {
+      if (import.meta.env.DEV) {
+        console.log('[GA4 Mock]', eventName, eventParams);
+      }
+    };
+  </script>
+)}

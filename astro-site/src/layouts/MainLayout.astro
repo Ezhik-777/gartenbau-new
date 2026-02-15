@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import SEO from '../components/SEO.astro';
+import GoogleAnalytics from '../components/analytics/GoogleAnalytics.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
@@ -39,6 +40,9 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics 4 -->
+  <GoogleAnalytics />
 
   <!-- View Transitions for smooth navigation -->
   <ViewTransitions />
