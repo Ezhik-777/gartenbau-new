@@ -1,5 +1,5 @@
 ---
-// ServiceCard.astro - Static service card component (Zero JS)
+// ServiceCard.astro - v5.0 Premium service card with green gradient icons
 interface Props {
   icon: string;
   title: string;
@@ -11,79 +11,200 @@ const { icon, title, description, link = '#Kontakt' } = Astro.props;
 ---
 
 <div class="service-card">
-  <div class="service-icon">{icon}</div>
+  <div class="service-icon-container">
+    <div class="service-icon">{icon}</div>
+  </div>
   <h3 class="service-title">{title}</h3>
   <p class="service-description">{description}</p>
   <a href={link} class="service-link">
-    Mehr erfahren →
+    <span>Mehr erfahren</span>
+    <svg class="service-link-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </a>
 </div>
 
 <style>
-  /* Service Card Styles */
+  /* ========== SERVICE CARD v5.0 - Premium Design ========== */
+
   .service-card {
-    background: white;
+    background: var(--color-neutral-0);
     padding: var(--space-8);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Hover Effect: Lift + Glow */
   .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl), var(--glow-green);
+  }
+
+  /* Subtle background gradient on hover */
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--color-primary-50) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: 0;
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Ensure content is above background */
+  .service-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Icon Container with Green Gradient */
+  .service-icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-400));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-6);
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+  }
+
+  .service-card:hover .service-icon-container {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
   }
 
   .service-icon {
-    font-size: var(--text-5xl);
-    margin-bottom: var(--space-4);
+    font-size: var(--text-4xl);
     line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
 
+  /* Title */
   .service-title {
     font-size: var(--text-2xl);
     font-weight: var(--font-bold);
-    color: var(--text-primary);
-    margin-bottom: var(--space-3);
+    font-family: var(--font-heading);
+    color: var(--color-neutral-900);
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-tight);
   }
 
+  /* Description */
   .service-description {
-    color: var(--text-secondary);
+    color: var(--color-neutral-600);
     line-height: var(--leading-relaxed);
     margin-bottom: var(--space-6);
     flex: 1;
+    font-size: var(--text-base);
   }
 
+  /* Link with Arrow Icon */
   .service-link {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    color: var(--color-brand);
+    color: var(--color-primary-600);
     font-weight: var(--font-semibold);
+    font-size: var(--text-base);
     text-decoration: none;
     transition: all var(--transition-fast);
+    padding: var(--space-2) 0;
   }
 
   .service-link:hover {
-    color: var(--color-brand-dark);
+    color: var(--color-primary-700);
     gap: var(--space-3);
   }
 
-  /* Mobile */
+  .service-link-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  .service-link:hover .service-link-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Focus styles for accessibility */
+  .service-link:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Mobile Responsive */
   @media (max-width: 768px) {
     .service-card {
       padding: var(--space-6);
     }
 
+    .service-icon-container {
+      width: 64px;
+      height: 64px;
+      margin-bottom: var(--space-4);
+    }
+
     .service-icon {
-      font-size: var(--text-4xl);
+      font-size: var(--text-3xl);
     }
 
     .service-title {
       font-size: var(--text-xl);
+      margin-bottom: var(--space-3);
+    }
+
+    .service-description {
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-4);
+    }
+
+    .service-link {
+      font-size: var(--text-sm);
+    }
+  }
+
+  /* Tablet */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .service-card {
+      padding: var(--space-6);
+    }
+
+    .service-icon-container {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card,
+    .service-icon-container,
+    .service-link,
+    .service-link-arrow {
+      transition: none;
+    }
+
+    .service-card:hover {
+      transform: none;
+    }
+
+    .service-card:hover .service-icon-container {
+      transform: none;
     }
   }
 </style>
