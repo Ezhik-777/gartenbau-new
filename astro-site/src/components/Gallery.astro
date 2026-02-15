@@ -19,10 +19,18 @@ const images = Array.from({ length: 180 }, (_, i) => {
     category = 'stone';
     alt = `Natursteinarbeiten Projekt ${id} - Hochwertige Steinarbeiten in der Region Stuttgart`;
     title = `Natursteinarbeiten #${id}`;
-  } else {
+  } else if (id >= 106 && id <= 140) {
     category = 'terrace';
     alt = `Terrassenbau Projekt ${id} - Moderner Terrassenbau in Ludwigsburg und Waiblingen`;
     title = `Terrassenbau #${id}`;
+  } else if (id >= 141 && id <= 165) {
+    category = 'paving';
+    alt = `Pflasterarbeiten Projekt ${id} - Professionelle Pflasterarbeiten in Stuttgart`;
+    title = `Pflasterarbeiten #${id}`;
+  } else {
+    category = 'privacy';
+    alt = `Sichtschutz Projekt ${id} - Sichtschutz und Zaunbau in Remseck`;
+    title = `Sichtschutz #${id}`;
   }
 
   return {
@@ -58,7 +66,13 @@ const images = Array.from({ length: 180 }, (_, i) => {
       🪨 Natursteinarbeiten (45)
     </button>
     <button class="filter-btn" data-filter="terrace">
-      🏗️ Terrassenbau (75)
+      🏗️ Terrassenbau (35)
+    </button>
+    <button class="filter-btn" data-filter="paving">
+      🛤️ Pflasterarbeiten (25)
+    </button>
+    <button class="filter-btn" data-filter="privacy">
+      🏡 Sichtschutz (15)
     </button>
   </div>
 

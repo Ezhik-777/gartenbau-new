@@ -18,20 +18,42 @@ interface Props {
 
 export default function GalleryGrid({ images }: Props) {
   const [filter, setFilter] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('newest');
   const [visibleImages, setVisibleImages] = useState<Image[]>([]);
   const [loadedCount, setLoadedCount] = useState(20); // Start with 20 images
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  // Filter images based on active filter
-  const filteredImages = filter === 'all'
-    ? images
-    : images.filter(img => img.category === filter);
+  // Filter and sort images
+  const filteredImages = (() => {
+    // First filter by category
+    const filtered = filter === 'all'
+      ? images
+      : images.filter(img => img.category === filter);
 
-  // Update visible images when filter or loadedCount changes
+    // Then sort
+    const sorted = [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case 'newest':
+          return b.id - a.id; // Reverse order (newest first)
+        case 'oldest':
+          return a.id - b.id; // Normal order (oldest first)
+        case 'title-asc':
+          return a.title.localeCompare(b.title);
+        case 'title-desc':
+          return b.title.localeCompare(a.title);
+        default:
+          return 0;
+      }
+    });
+
+    return sorted;
+  })();
+
+  // Update visible images when filter, sort, or loadedCount changes
   useEffect(() => {
     setVisibleImages(filteredImages.slice(0, loadedCount));
-  }, [filter, loadedCount, filteredImages]);
+  }, [filter, sortBy, loadedCount, filteredImages]);
 
   // Reset loaded count when filter changes
   useEffect(() => {
@@ -82,6 +104,20 @@ export default function GalleryGrid({ images }: Props) {
       buttons.forEach(btn => {
         btn.removeEventListener('click', handleFilterClick);
       });
+    };
+  }, []);
+
+  // Listen for sort events from gallery page
+  useEffect(() => {
+    const handleSort = (e: Event) => {
+      const customEvent = e as CustomEvent<{ sortValue: string }>;
+      setSortBy(customEvent.detail.sortValue);
+    };
+
+    window.addEventListener('gallery-sort', handleSort);
+
+    return () => {
+      window.removeEventListener('gallery-sort', handleSort);
     };
   }, []);
 
@@ -145,6 +181,10 @@ export default function GalleryGrid({ images }: Props) {
         return { icon: '🪨', label: 'Naturstein' };
       case 'terrace':
         return { icon: '🏗️', label: 'Terrassenbau' };
+      case 'paving':
+        return { icon: '🛤️', label: 'Pflaster' };
+      case 'privacy':
+        return { icon: '🏡', label: 'Sichtschutz' };
       default:
         return { icon: '📷', label: 'Projekt' };
     }
