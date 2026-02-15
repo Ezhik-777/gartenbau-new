@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import './HeroSlider.css';
+import FloatingLeaves from './decorations/FloatingLeaves';
 
 interface Slide {
   id: number;
@@ -89,6 +90,7 @@ export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   const nextSlide = useCallback(() => {
     if (isTransitioning) return;
@@ -133,6 +135,16 @@ export default function HeroSlider() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide]);
 
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section
       className="hero-slider"
@@ -149,12 +161,20 @@ export default function HeroSlider() {
             className={`hero-slide ${index === currentSlide ? 'active' : ''} ${
               index < currentSlide ? 'prev' : ''
             }`}
-            style={{
-              backgroundImage: `url(${slide.image})`
-            }}
             aria-hidden={index !== currentSlide}
           >
+            {/* Background image with parallax and Ken Burns effect */}
+            <div
+              className="slide-background"
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                transform: `translateY(${scrollY * 0.5}px) scale(${index === currentSlide ? 1.05 : 1})`
+              }}
+            />
             <div className="slide-overlay"></div>
+
+            {/* Floating leaves overlay */}
+            {index === currentSlide && <FloatingLeaves count={10} />}
             <div className="container">
               <div className="hero-content">
                 {/* Badge */}
