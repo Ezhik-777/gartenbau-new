@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import 'aos/dist/aos.css';
 import SEO from '../components/SEO.astro';
 import GoogleAnalytics from '../components/analytics/GoogleAnalytics.astro';
 import ServiceWorkerRegistration from '../components/ServiceWorkerRegistration.astro';
@@ -55,4 +56,24 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
 <body>
   <slot />
 </body>
+
+<script>
+  import AOS from 'aos';
+
+  // Initialize AOS on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 100,
+      disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    });
+  });
+
+  // Re-initialize AOS after view transitions (Astro's page navigation)
+  document.addEventListener('astro:page-load', () => {
+    AOS.refresh();
+  });
+</script>
 </html>
