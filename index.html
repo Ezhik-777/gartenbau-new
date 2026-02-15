@@ -409,23 +409,18 @@
   <link rel="preload" href="img/image_25.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="img/image_15.webp" as="image" type="image/webp" fetchpriority="low">
   <link rel="preload" href="img/image_35.webp" as="image" type="image/webp" fetchpriority="low">
-  <link rel="preload" href="css/modern-design.css" as="style" fetchpriority="high">
-  <link rel="preload" href="js/optimized.min.js" as="script" fetchpriority="high">
-  
-  <!-- Критический CSS для дизайна -->
-  <link rel="stylesheet" href="css/modern-design.css" media="all">
-  
-  <!-- Defer non-critical CSS для лучшего FCP -->
-  <link rel="preload" href="css/optimized.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/optimized.min.css"></noscript>
-  
-  <!-- Отложенная загрузка скриптов -->
-  
-  <!-- Async load non-critical CSS -->
-  <script>
-  !function(e){"use strict";var t=function(t,n,r){function o(e){return i.body?e():void setTimeout(function(){o(e)})}function a(){d.addEventListener&&d.removeEventListener("load",a),d.media=r||"all"}var d,i=e.document,s=i.createElement("link");if(n)d=n;else{var l=(i.body||i.getElementsByTagName("head")[0]).childNodes;d=l[l.length-1]}var u=i.styleSheets;s.rel="stylesheet",s.href=t,s.media="only x",o(function(){d.parentNode.insertBefore(s,n?d:d.nextSibling)});var f=function(e){for(var t=s.href,n=u.length;n--;)if(u[n].href===t)return e();setTimeout(function(){f(e)})};return s.addEventListener&&s.addEventListener("load",a),s.onloadcssdefined=f,f(a),s};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this);
-  loadCSS('css/non-critical.min.css');
-  </script>
+  <!-- v3.0: Modular CSS Architecture Preloads -->
+  <link rel="preload" href="css/modules/variables.css" as="style" fetchpriority="high">
+  <link rel="preload" href="css/modules/base.css" as="style" fetchpriority="high">
+  <link rel="preload" href="css/main.css" as="style" fetchpriority="high">
+
+  <!-- v3.0: Main Modular Stylesheet -->
+  <link rel="stylesheet" href="css/main.css" media="all">
+
+  <!-- Preconnect для шрифтов и Formspree -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://formspree.io">
   
   <!-- Высокоприоритетные preconnect и dns-prefetch -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -569,10 +564,6 @@
     ]
   }
   </script>
-  <!-- Third-party CSS loaded asynchronously -->
-  <link rel="preload" href="css/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/jquery.fancybox.min.css"></noscript>
-  
   <!-- Мобильно-оптимизированные шрифты -->
   <!-- Оптимизированная загрузка шрифтов -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Jost:wght@600;700&display=swap&text=GartenbauZMStuttgart" as="style" fetchpriority="low">
@@ -1385,66 +1376,25 @@
     // Определяем мобильное устройство
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
     
-    // Современные критические скрипты
+    // v3.0: Современные модульные скрипты
     const criticalScripts = [
-      { src: 'js/optimized.min.js', priority: 'high' },
-      { src: 'js/modern-gallery.js', priority: 'high' }
+      { src: 'js/jquery-3.4.1.min.js', priority: 'high' }, // jQuery для совместимости
+      { src: 'js/main.js', priority: 'high' }, // Основная функциональность
+      { src: 'js/premium.js', priority: 'high' }, // Премиум эффекты
+      { src: 'js/modern-gallery.js', priority: 'high' }, // Галерея
+      { src: 'js/app.js', priority: 'high' } // Инициализация приложения
     ];
     
-    // Некритические скрипты (разные для мобильных и десктопа)
-    const enhancementScripts = isMobile ? [
-      'js/webp-optimizer.min.js'
-    ] : [
-      'js/instant-gallery.js',
-      'js/lazy-gallery.min.js',
-      'js/jquery-3.4.1.min.js'
-    ];
-    
-    // Загрузка критических скриптов
-    Promise.all(criticalScripts.map(script => 
+    // v3.0: Загрузка критических скриптов
+    Promise.all(criticalScripts.map(script =>
       loadScript(script.src, null, script.priority)
     )).then(() => {
-      console.log(`Критические скрипты загружены (${isMobile ? 'mobile' : 'desktop'})`);
-      
-      // Инициализируем галерею с отладкой
-      setTimeout(() => {
-        console.log('🔍 Проверяем доступность классов галереи:');
-        console.log('MobileOptimizedGallery:', !!window.MobileOptimizedGallery);
-        console.log('OptimizedGallery:', !!window.OptimizedGallery);
-        console.log('isMobile:', isMobile);
-        console.log('Container exists:', !!document.getElementById('galleryGrid'));
-        
-        // Используем новую современную галерею
-        if (window.ModernGallery) {
-          console.log('✅ Инициализирую современную галерею');
-          window.gallery = new ModernGallery();
-        } else if (window.OptimizedGallery) {
-          console.log('✅ Инициализирую обычную галерею');
-          window.gallery = new OptimizedGallery();
-        } else {
-          console.error('❌ Ни один класс галереи не найден!');
-        }
-      }, 500);
+      console.log('✅ Gartenbau Z.M. v3.0 загружен');
+      console.log('📱 Устройство:', isMobile ? 'Mobile' : 'Desktop');
+
+      // Галерея инициализируется автоматически через modern-gallery.js
+      // Service Worker регистрируется автоматически через app.js
     });
-    
-    // Отложенная загрузка некритических скриптов
-    const loadEnhancements = () => {
-      // Загружаем только самые необходимые скрипты
-      const reducedScripts = isMobile ? [] : ['js/jquery-3.4.1.min.js'];
-      
-      reducedScripts.forEach((src, index) => {
-        setTimeout(() => loadScript(src), index * 100);
-      });
-    };
-    
-    // Загрузка после полной загрузки страницы
-    if (document.readyState === 'complete') {
-      setTimeout(loadEnhancements, 1000);
-    } else {
-      window.addEventListener('load', () => {
-        setTimeout(loadEnhancements, 1000);
-      });
-    }
 
     // Enhanced Performance monitoring with Web Vitals
     if ('PerformanceObserver' in window) {
