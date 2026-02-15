@@ -1,12 +1,13 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://gartenbauzm.de',
   integrations: [
     react()
-    // sitemap will be added later when we have all pages
+    // sitemap disabled due to plugin bug - using manual sitemap.xml
   ],
   build: {
     inlineStylesheets: 'auto',

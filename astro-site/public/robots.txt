@@ -1,0 +1,14 @@
+# robots.txt for gartenbauzm.de
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gartenbauzm.de/sitemap.xml
+
+# Disallow admin/test areas (if any in future)
+# Disallow: /admin/
+# Disallow: /test/
+
+# Crawl-delay for polite bots
+Crawl-delay: 1

@@ -133,8 +133,6 @@ export default function HeroSlider() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide]);
 
-  const currentSlideData = slides[currentSlide];
-
   return (
     <section
       className="hero-slider"

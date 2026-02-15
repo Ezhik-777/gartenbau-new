@@ -1,0 +1,109 @@
+/* FAQ Accordion Styles */
+.faq-accordion {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--color-neutral-0);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Question Button */
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: var(--space-6);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  transition: all var(--transition-base);
+}
+
+.faq-question:hover {
+  background: var(--color-neutral-50);
+}
+
+.faq-question h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary-800);
+  margin: 0;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Icon */
+.faq-icon {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-brand);
+  transition: transform var(--transition-base);
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-50);
+  border-radius: var(--radius-full);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+/* Answer */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+}
+
+.faq-answer-content {
+  padding: 0 var(--space-6) var(--space-6) var(--space-6);
+}
+
+.faq-answer p {
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  font-size: var(--text-base);
+  margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .faq-question {
+    padding: var(--space-4);
+  }
+
+  .faq-question h3 {
+    font-size: var(--text-base);
+  }
+
+  .faq-answer-content {
+    padding: 0 var(--space-4) var(--space-4) var(--space-4);
+  }
+
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    font-size: var(--text-xl);
+  }
+}

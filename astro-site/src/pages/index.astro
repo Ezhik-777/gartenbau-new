@@ -3,6 +3,11 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import HeroSlider from '../components/HeroSlider';
+import ServiceCard from '../components/ServiceCard.astro';
+import Gallery from '../components/Gallery.astro';
+import FAQAccordion from '../components/FAQAccordion';
+import FAQSchema from '../components/FAQSchema.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 
 <MainLayout
@@ -17,7 +22,7 @@ import HeroSlider from '../components/HeroSlider';
 
   <!-- Main Content -->
   <main>
-    <!-- Leistungen Section (Placeholder) -->
+    <!-- Leistungen Section -->
     <section id="Leistungen" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
       <div class="container">
         <div class="section-header">
@@ -28,38 +33,58 @@ import HeroSlider from '../components/HeroSlider';
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-12);">
-          <!-- Service Cards (will be componentized later) -->
-          <div style="background: white; padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
-            <div style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">🌱</div>
-            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">Gartengestaltung</h3>
-            <p style="color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Professionelle Gartenplanung und -gestaltung mit individueller Beratung.
-            </p>
-            <a href="#Kontakt" class="btn btn-secondary">Mehr erfahren</a>
-          </div>
+          <ServiceCard
+            icon="🌱"
+            title="Gartengestaltung"
+            description="Professionelle Gartenplanung und -gestaltung mit individueller Beratung. Von der Idee bis zur Umsetzung."
+          />
 
-          <div style="background: white; padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
-            <div style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">🪨</div>
-            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">Natursteinarbeiten</h3>
-            <p style="color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen und Einfassungen.
-            </p>
-            <a href="#Kontakt" class="btn btn-secondary">Mehr erfahren</a>
-          </div>
+          <ServiceCard
+            icon="🪨"
+            title="Natursteinarbeiten"
+            description="Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen und Gabionen."
+          />
 
-          <div style="background: white; padding: var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
-            <div style="font-size: var(--text-4xl); margin-bottom: var(--space-4);">🏗️</div>
-            <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">Terrassenbau</h3>
-            <p style="color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Moderne Terrassengestaltung mit hochwertigen Materialien für Ihr Outdoor-Living.
-            </p>
-            <a href="#Kontakt" class="btn btn-secondary">Mehr erfahren</a>
-          </div>
+          <ServiceCard
+            icon="🏗️"
+            title="Terrassenbau"
+            description="Moderne Terrassengestaltung mit hochwertigen Materialien für Ihr Outdoor-Living-Erlebnis."
+          />
+
+          <ServiceCard
+            icon="🛤️"
+            title="Wege & Zufahrten"
+            description="Professionelle Pflasterarbeiten für Einfahrten, Gartenwege, Parkplätze und Hofflächen."
+          />
+
+          <ServiceCard
+            icon="🏡"
+            title="Landschaftsbau"
+            description="Kompletter Landschaftsbau Service - von Erdarbeiten über Drainagen bis zur Bepflanzung."
+          />
+
+          <ServiceCard
+            icon="🌾"
+            title="Rollrasen"
+            description="Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen inklusive Bodenvorbereitung."
+          />
+
+          <ServiceCard
+            icon="🧹"
+            title="Hausmeisterservice"
+            description="Regelmäßige Gartenpflege - Rasenmähen, Heckenschnitt, Unkrautbekämpfung und Laubbeseitigung."
+          />
+
+          <ServiceCard
+            icon="🌳"
+            title="Sichtschutz"
+            description="Installation von Sichtschutzzäunen, Hecken und Gabionen für Ihre Privatsphäre."
+          />
         </div>
       </div>
     </section>
 
-    <!-- Über uns Section (Placeholder) -->
+    <!-- Über uns Section -->
     <section id="Ueber-uns" style="padding: var(--space-20) 0;">
       <div class="container">
         <div class="section-header">
@@ -75,14 +100,30 @@ import HeroSlider from '../components/HeroSlider';
             Mit jahrelanger Erfahrung und Leidenschaft für Grün gestalten wir Ihren Traumgarten in
             Remseck am Neckar, Stuttgart, Ludwigsburg und der gesamten Region.
           </p>
-          <a href="#Kontakt" class="btn btn-primary">
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-8); margin-top: var(--space-10);">
+            <div>
+              <div style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); color: var(--color-brand); margin-bottom: var(--space-2);">5.0⭐</div>
+              <div style="color: var(--text-secondary);">Google Bewertung</div>
+            </div>
+            <div>
+              <div style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); color: var(--color-brand); margin-bottom: var(--space-2);">180+</div>
+              <div style="color: var(--text-secondary);">Projekte</div>
+            </div>
+            <div>
+              <div style="font-size: var(--text-4xl); font-weight: var(--font-extrabold); color: var(--color-brand); margin-bottom: var(--space-2);">100%</div>
+              <div style="color: var(--text-secondary);">Zufriedenheit</div>
+            </div>
+          </div>
+
+          <a href="#Kontakt" class="btn btn-primary" style="margin-top: var(--space-10);">
             🏡 Kostenlose Beratung anfragen
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Projekte Section (Placeholder - Gallery will be added) -->
+    <!-- Projekte Section (Gallery placeholder) -->
     <section id="Projekte" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
       <div class="container">
         <div class="section-header">
@@ -92,19 +133,33 @@ import HeroSlider from '../components/HeroSlider';
           </p>
         </div>
 
-        <div style="text-align: center; margin-top: var(--space-12);">
-          <p style="font-size: var(--text-lg); color: var(--text-secondary); margin-bottom: var(--space-6);">
-            📸 Gallery wird in Task 4.2 hinzugefügt
-          </p>
-          <p style="font-size: var(--text-base); color: var(--text-tertiary);">
-            (180 Bilder mit Virtual Scrolling & Lazy Loading)
-          </p>
+        <div style="margin-top: var(--space-12);">
+          <Gallery />
         </div>
       </div>
     </section>
 
-    <!-- Kontakt Section (Placeholder - Form will be added) -->
-    <section id="Kontakt" style="padding: var(--space-20) 0;">
+    <!-- FAQ Section with React Island -->
+    <section id="FAQ" style="padding: var(--space-20) 0;">
+      <!-- FAQPage Schema.org for rich snippets -->
+      <FAQSchema />
+
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Häufig gestellte Fragen</h2>
+          <p class="section-subtitle">
+            Alles, was Sie über unsere Gartenbau-Services wissen müssen
+          </p>
+        </div>
+
+        <div style="margin-top: var(--space-12);">
+          <FAQAccordion client:visible />
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt Section with Form -->
+    <section id="Kontakt" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Kontakt</h2>
@@ -113,37 +168,8 @@ import HeroSlider from '../components/HeroSlider';
           </p>
         </div>
 
-        <div style="max-width: 600px; margin: var(--space-12) auto 0;">
-          <div style="background: white; padding: var(--space-8); border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);">
-            <div style="text-align: center; margin-bottom: var(--space-8);">
-              <p style="font-size: var(--text-lg); margin-bottom: var(--space-4);">
-                <strong>📞 Telefon:</strong>
-              </p>
-              <a href="tel:+491782747470" class="btn btn-primary" style="font-size: var(--text-xl); margin-bottom: var(--space-6);">
-                +49 178 2747470
-              </a>
-
-              <p style="font-size: var(--text-lg); margin-bottom: var(--space-4); margin-top: var(--space-6);">
-                <strong>💬 WhatsApp:</strong>
-              </p>
-              <a href="https://wa.me/+491782747470" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-lg);">
-                WhatsApp Chat starten
-              </a>
-
-              <div style="margin-top: var(--space-8); padding-top: var(--space-8); border-top: 1px solid var(--color-neutral-200);">
-                <p style="font-size: var(--text-base); color: var(--text-secondary);">
-                  📧 <a href="mailto:info.gartenbauzm@gmx.de">info.gartenbauzm@gmx.de</a>
-                </p>
-                <p style="font-size: var(--text-base); color: var(--text-secondary); margin-top: var(--space-2);">
-                  📍 Lerchenrain 9, 71686 Remseck am Neckar
-                </p>
-              </div>
-
-              <p style="font-size: var(--text-sm); color: var(--text-tertiary); margin-top: var(--space-6);">
-                🔧 Contact Form (Formspree) wird in Task 4.2 hinzugefügt
-              </p>
-            </div>
-          </div>
+        <div style="margin-top: var(--space-12);">
+          <ContactForm />
         </div>
       </div>
     </section>

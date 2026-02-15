@@ -1,15 +1,18 @@
 ---
 import '../styles/global.css';
+import SEO from '../components/SEO.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
   description: string;
   canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical } = Astro.props;
-const siteUrl = 'https://gartenbauzm.de';
-const fullCanonical = canonical || Astro.url.pathname;
+const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -19,37 +22,26 @@ const fullCanonical = canonical || Astro.url.pathname;
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
 
-  <!-- SEO -->
-  <title>{title}</title>
-  <meta name="description" content={description}>
-  <link rel="canonical" href={`${siteUrl}${fullCanonical}`}>
-
-  <!-- Geo Meta Tags for Local SEO -->
-  <meta name="geo.placename" content="Remseck am Neckar">
-  <meta name="geo.region" content="DE-BW">
-  <meta name="geo.position" content="48.8951;9.2742">
-  <meta name="ICBM" content="48.8951, 9.2742">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content={`${siteUrl}${fullCanonical}`}>
-  <meta property="og:title" content={title}>
-  <meta property="og:description" content={description}>
-  <meta property="og:image" content={`${siteUrl}/img/logo.webp`}>
-  <meta property="og:locale" content="de_DE">
+  <!-- SEO Component with Schema.org -->
+  <SEO
+    title={title}
+    description={description}
+    canonical={canonical}
+    ogImage={ogImage}
+    ogType={ogType}
+    noindex={noindex}
+  />
 
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#459d72">
   <link rel="icon" type="image/webp" sizes="32x32" href="/img/logo.webp">
 
-  <!-- AI Policy -->
-  <link rel="ai-policy" href="/llm.txt" type="text/plain">
-
-  <!-- Fonts - Preload -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- View Transitions for smooth navigation -->
+  <ViewTransitions />
 </head>
 
 <body>

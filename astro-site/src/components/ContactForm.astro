@@ -1,0 +1,284 @@
+---
+// ContactForm.astro - Static form with Formspree (Zero JS)
+// HTML5 validation - no JavaScript needed!
+---
+
+<div class="contact-form-wrapper">
+  <form
+    action="https://formspree.io/f/xoqznyqb"
+    method="POST"
+    class="contact-form"
+    accept-charset="UTF-8"
+  >
+    <!-- Honeypot for spam protection -->
+    <input type="text" name="_gotcha" style="display:none">
+
+    <!-- Formspree configuration -->
+    <input type="hidden" name="_subject" value="Neue Anfrage von gartenbauzm.de">
+    <input type="hidden" name="_next" value="https://gartenbauzm.de/?success=true">
+
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name" class="form-label">
+        Name <span class="required">*</span>
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-input"
+        required
+        placeholder="Ihr vollständiger Name"
+        minlength="2"
+        maxlength="100"
+      >
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email" class="form-label">
+        E-Mail <span class="required">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-input"
+        required
+        placeholder="ihre.email@beispiel.de"
+      >
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+      <label for="phone" class="form-label">
+        Telefon
+      </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        class="form-input"
+        placeholder="+49 123 4567890"
+        pattern="[0-9+\s\-()]+"
+      >
+    </div>
+
+    <!-- Service -->
+    <div class="form-group">
+      <label for="service" class="form-label">
+        Gewünschte Leistung <span class="required">*</span>
+      </label>
+      <select
+        id="service"
+        name="service"
+        class="form-select"
+        required
+      >
+        <option value="">Bitte wählen...</option>
+        <option value="Gartengestaltung">Gartengestaltung</option>
+        <option value="Natursteinarbeiten">Natursteinarbeiten</option>
+        <option value="Terrassen & Plätze">Terrassen & Plätze</option>
+        <option value="Wege und Zufahrten">Wege und Zufahrten</option>
+        <option value="Landschaftsbau">Landschaftsbau</option>
+        <option value="Rollrasen">Rollrasen-Verlegung</option>
+        <option value="Hausmeisterservice">Hausmeisterservice</option>
+        <option value="Sonstiges">Sonstiges</option>
+      </select>
+    </div>
+
+    <!-- Message -->
+    <div class="form-group">
+      <label for="message" class="form-label">
+        Ihre Nachricht <span class="required">*</span>
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        class="form-textarea"
+        required
+        placeholder="Beschreiben Sie Ihr Projekt..."
+        rows="6"
+        minlength="10"
+        maxlength="1000"
+      ></textarea>
+      <div class="form-hint">Mindestens 10 Zeichen</div>
+    </div>
+
+    <!-- Privacy Checkbox -->
+    <div class="form-group form-checkbox-group">
+      <label class="form-checkbox-label">
+        <input
+          type="checkbox"
+          name="privacy"
+          required
+          class="form-checkbox"
+        >
+        <span>
+          Ich habe die <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="required">*</span>
+        </span>
+      </label>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="form-submit btn btn-primary">
+      📧 Anfrage senden
+    </button>
+
+    <!-- Info Text -->
+    <p class="form-info">
+      <strong>Oder kontaktieren Sie uns direkt:</strong><br>
+      📞 <a href="tel:+491782747470">+49 178 2747470</a> |
+      💬 <a href="https://wa.me/+491782747470" target="_blank" rel="noopener">WhatsApp</a>
+    </p>
+  </form>
+</div>
+
+<style>
+  /* Contact Form Styles */
+  .contact-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-form {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      padding: var(--space-6);
+    }
+  }
+
+  /* Form Groups */
+  .form-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-label {
+    display: block;
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+    font-size: var(--text-base);
+  }
+
+  .required {
+    color: var(--color-error);
+  }
+
+  /* Form Inputs */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-base);
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    border: 2px solid var(--color-neutral-300);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+  }
+
+  .form-input:invalid:not(:placeholder-shown),
+  .form-select:invalid:not(:placeholder-shown),
+  .form-textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--color-error);
+  }
+
+  .form-input:valid:not(:placeholder-shown),
+  .form-select:valid,
+  .form-textarea:valid:not(:placeholder-shown) {
+    border-color: var(--color-success);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-hint {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    margin-top: var(--space-2);
+  }
+
+  /* Checkbox */
+  .form-checkbox-group {
+    margin-bottom: var(--space-8);
+  }
+
+  .form-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  .form-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--color-brand);
+  }
+
+  .form-checkbox-label a {
+    color: var(--color-brand);
+    text-decoration: underline;
+  }
+
+  .form-checkbox-label a:hover {
+    color: var(--color-brand-dark);
+  }
+
+  /* Submit Button */
+  .form-submit {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--space-6);
+  }
+
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Info Text */
+  .form-info {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-neutral-200);
+  }
+
+  .form-info a {
+    color: var(--color-brand);
+    text-decoration: none;
+    font-weight: var(--font-semibold);
+  }
+
+  .form-info a:hover {
+    text-decoration: underline;
+  }
+</style>

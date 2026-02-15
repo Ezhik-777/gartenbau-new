@@ -1,0 +1,109 @@
+---
+// Gallery.astro - Photo gallery with lazy loading island
+import GalleryGrid from './GalleryGrid';
+
+// Generate all 180 image data
+const images = Array.from({ length: 180 }, (_, i) => {
+  const id = i + 1;
+
+  // Categorize images based on ID ranges
+  let category = 'garden';
+  let alt = '';
+
+  if (id >= 1 && id <= 60) {
+    category = 'garden';
+    alt = `Gartengestaltung Projekt ${id} - Gartenbau Z.M. in Remseck und Stuttgart`;
+  } else if (id >= 61 && id <= 105) {
+    category = 'stone';
+    alt = `Natursteinarbeiten Projekt ${id} - Hochwertige Steinarbeiten in der Region Stuttgart`;
+  } else {
+    category = 'terrace';
+    alt = `Terrassenbau Projekt ${id} - Moderner Terrassenbau in Ludwigsburg und Waiblingen`;
+  }
+
+  return {
+    id,
+    src: `/img/image_${id}.webp`,
+    alt,
+    category,
+    width: 800,
+    height: 600
+  };
+});
+---
+
+<div class="gallery-container">
+  <!-- Filter buttons -->
+  <div class="gallery-filters">
+    <button class="filter-btn active" data-filter="all">
+      Alle Projekte (180)
+    </button>
+    <button class="filter-btn" data-filter="garden">
+      🌱 Gartengestaltung (60)
+    </button>
+    <button class="filter-btn" data-filter="stone">
+      🪨 Natursteinarbeiten (45)
+    </button>
+    <button class="filter-btn" data-filter="terrace">
+      🏗️ Terrassenbau (75)
+    </button>
+  </div>
+
+  <!-- Gallery Grid - React Island for virtual scrolling & lightbox -->
+  <GalleryGrid client:visible images={images} />
+</div>
+
+<style>
+  /* Gallery Container */
+  .gallery-container {
+    width: 100%;
+  }
+
+  /* Filter Buttons */
+  .gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    background: white;
+    color: var(--text-secondary);
+    border: 2px solid var(--color-neutral-300);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .filter-btn.active {
+    background: var(--color-brand);
+    color: white;
+    border-color: var(--color-brand);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .gallery-filters {
+      gap: var(--space-2);
+    }
+
+    .filter-btn {
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-sm);
+    }
+  }
+</style>

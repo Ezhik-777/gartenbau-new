@@ -1,0 +1,89 @@
+---
+// ServiceCard.astro - Static service card component (Zero JS)
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  link?: string;
+}
+
+const { icon, title, description, link = '#Kontakt' } = Astro.props;
+---
+
+<div class="service-card">
+  <div class="service-icon">{icon}</div>
+  <h3 class="service-title">{title}</h3>
+  <p class="service-description">{description}</p>
+  <a href={link} class="service-link">
+    Mehr erfahren →
+  </a>
+</div>
+
+<style>
+  /* Service Card Styles */
+  .service-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .service-icon {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--space-4);
+    line-height: 1;
+  }
+
+  .service-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .service-description {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+    flex: 1;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-brand);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .service-link:hover {
+    color: var(--color-brand-dark);
+    gap: var(--space-3);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .service-card {
+      padding: var(--space-6);
+    }
+
+    .service-icon {
+      font-size: var(--text-4xl);
+    }
+
+    .service-title {
+      font-size: var(--text-xl);
+    }
+  }
+</style>
