@@ -1389,19 +1389,28 @@
 
     // Определяем мобильное устройство
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
-    
-    // v3.0: Современные модульные скрипты (jQuery удалён - не используется)
+
+    // v4.0: Code Splitting - premium эффекты загружаются условно
     const criticalScripts = [
       { src: 'js/main.js', priority: 'high' }, // Основная функциональность
-      { src: 'js/premium.js', priority: 'high' }, // Премиум эффекты
       { src: 'js/modern-gallery.js', priority: 'high' }, // Галерея
       { src: 'js/app.js', priority: 'high' } // Инициализация приложения
     ];
-    
-    // v3.0: Загрузка критических скриптов
+
+    // v4.0: Загрузка критических скриптов
     Promise.all(criticalScripts.map(script =>
       loadScript(script.src, null, script.priority)
     )).then(() => {
+      // Code splitting: premium.js только для пользователей без reduced-motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        loadScript('js/premium.js', null, 'low').then(() => {
+          console.log('✨ Premium эффекты загружены');
+        });
+      } else {
+        console.log('⚡ Premium эффекты пропущены (prefers-reduced-motion)');
+      }
       console.log('✅ Gartenbau Z.M. v3.0 загружен');
       console.log('📱 Устройство:', isMobile ? 'Mobile' : 'Desktop');
 
