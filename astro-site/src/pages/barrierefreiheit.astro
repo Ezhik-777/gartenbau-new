@@ -1,0 +1,276 @@
+---
+/**
+ * barrierefreiheit.astro - Accessibility Statement (Barrierefreiheitserklärung)
+ * Required by German BFSG (Barrierefreiheitsstärkungsgesetz)
+ * Effective from 28.06.2025
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Barrierefreiheitserklärung | Gartenbau Z.M."
+  description="Erklärung zur Barrierefreiheit unserer Website gemäß BFSG (Barrierefreiheitsstärkungsgesetz) und WCAG 2.1 Level AA"
+  breadcrumbs={[{ name: 'Barrierefreiheit', url: '/barrierefreiheit/' }]}
+  noindex={false}
+>
+  <section class="page-header">
+    <div class="container">
+      <h1>Erklärung zur Barrierefreiheit</h1>
+      <p class="page-lead">
+        Barrierefreiheitserklärung gemäß § 12b Behindertengleichstellungsgesetz (BGG) und
+        Barrierefreiheitsstärkungsgesetz (BFSG)
+      </p>
+    </div>
+  </section>
+
+  <article class="page-content section">
+    <div class="container content-container">
+      <div class="content-body">
+        <h2>Stand der Barrierefreiheit</h2>
+        <p>
+          Diese Erklärung zur Barrierefreiheit gilt für die Website
+          <a href="https://gartenbauzm.de">https://gartenbauzm.de</a> von Gartenbau Z.M.
+        </p>
+
+        <p>
+          Wir sind bestrebt, unsere Website im Einklang mit den geltenden Rechtsvorschriften
+          barrierefrei zugänglich zu machen. Die Anforderungen zur Barrierefreiheit ergeben sich aus
+          § 12a-c Behindertengleichstellungsgesetz (BGG), der EU-Richtlinie 2016/2102, der
+          Barrierefreie-Informationstechnik-Verordnung (BITV 2.0) sowie dem
+          Barrierefreiheitsstärkungsgesetz (BFSG).
+        </p>
+
+        <h3>Konformitätsstatus</h3>
+        <p>
+          Diese Website ist <strong>weitgehend konform</strong> mit WCAG 2.1 Level AA.
+          "Weitgehend konform" bedeutet, dass einige Teile der Inhalte nicht vollständig den
+          Barrierefreiheitsstandards entsprechen.
+        </p>
+
+        <h2>Barrierefreie Gestaltung unserer Website</h2>
+        <p>Wir haben folgende Maßnahmen zur Barrierefreiheit implementiert:</p>
+
+        <h3>Wahrnehmbarkeit</h3>
+        <ul>
+          <li>Alle Bilder verfügen über alternative Textbeschreibungen (Alt-Texte)</li>
+          <li>Ausreichende Farbkontraste (mindestens 4,5:1 für normalen Text)</li>
+          <li>Responsive Design für verschiedene Bildschirmgrößen</li>
+          <li>Skalierbare Schriftgrößen (Fluid Typography)</li>
+          <li>Strukturierte Überschriftenhierarchie (h1-h6)</li>
+        </ul>
+
+        <h3>Bedienbarkeit</h3>
+        <ul>
+          <li>Vollständige Tastaturnavigation möglich</li>
+          <li>Skip-Links zum Überspringen von Navigation</li>
+          <li>Sichtbare Fokusindikatoren</li>
+          <li>Keine zeitgesteuerten Inhalte</li>
+          <li>Keine blinkenden oder störenden Elemente</li>
+          <li>Unterstützung der prefers-reduced-motion Einstellung</li>
+        </ul>
+
+        <h3>Verständlichkeit</h3>
+        <ul>
+          <li>Sprache der Seite ist als Deutsch definiert (lang="de")</li>
+          <li>Einfache und verständliche Formulierungen</li>
+          <li>Konsistente Navigation auf allen Seiten</li>
+          <li>Aussagekräftige Linktexte</li>
+          <li>Fehlerbehandlung in Formularen mit Korrekturhinweisen</li>
+        </ul>
+
+        <h3>Robustheit</h3>
+        <ul>
+          <li>Valider HTML5-Code</li>
+          <li>Kompatibel mit gängigen Screenreadern</li>
+          <li>ARIA-Attribute für interaktive Elemente</li>
+          <li>Semantisches HTML</li>
+        </ul>
+
+        <h2>Bekannte Einschränkungen</h2>
+        <p>
+          Trotz unserer Bemühungen können einige Bereiche der Website derzeit nicht
+          vollständig barrierefrei sein:
+        </p>
+        <ul>
+          <li>
+            <strong>Galerie-Bilder:</strong> Einige ältere Projektfotos haben möglicherweise
+            keine detaillierten Bildbeschreibungen. Wir arbeiten kontinuierlich daran,
+            diese zu ergänzen.
+          </li>
+          <li>
+            <strong>PDF-Dokumente:</strong> Ältere PDF-Dateien sind möglicherweise nicht
+            vollständig barrierefrei. Auf Anfrage stellen wir gerne barrierefreie Alternativen bereit.
+          </li>
+        </ul>
+
+        <h2>Feedback und Kontaktmöglichkeiten</h2>
+        <p>
+          Wenn Sie der Meinung sind, dass diese Website nicht barrierefrei ist, oder wenn Sie
+          auf Barrieren stoßen, kontaktieren Sie uns bitte:
+        </p>
+
+        <div class="contact-info">
+          <p>
+            <strong>Gartenbau Z.M.</strong><br />
+            Lerchenrain 9<br />
+            71686 Remseck am Neckar
+          </p>
+          <p>
+            <strong>Telefon:</strong> <a href="tel:+491782747470">+49 178 2747470</a><br />
+            <strong>E-Mail:</strong> <a href="mailto:info.gartenbauzm@gmx.de">info.gartenbauzm@gmx.de</a>
+          </p>
+        </div>
+
+        <p>
+          Wir werden versuchen, die Barriere zu beseitigen oder Ihnen eine barrierefreie
+          Alternative anzubieten.
+        </p>
+
+        <h2>Durchsetzungsverfahren</h2>
+        <p>
+          Sollten Sie mit unserer Antwort nicht zufrieden sein oder keine Antwort innerhalb
+          von sechs Wochen erhalten, können Sie sich an die zuständige Schlichtungsstelle wenden:
+        </p>
+
+        <div class="contact-info">
+          <p>
+            <strong>Schlichtungsstelle nach dem Behindertengleichstellungsgesetz</strong><br />
+            beim Beauftragten der Bundesregierung für die Belange von Menschen mit Behinderungen<br />
+            Mauerstraße 53<br />
+            10117 Berlin
+          </p>
+          <p>
+            <strong>Telefon:</strong> <a href="tel:+493018527-2805">+49 30 18527-2805</a><br />
+            <strong>E-Mail:</strong> <a href="mailto:schlichtungsstelle-bgg@bmas.bund.de">schlichtungsstelle-bgg@bmas.bund.de</a><br />
+            <strong>Website:</strong> <a href="https://www.schlichtungsstelle-bgg.de" target="_blank" rel="noopener noreferrer">www.schlichtungsstelle-bgg.de</a>
+          </p>
+        </div>
+
+        <h2>Technische Informationen</h2>
+        <p>
+          Diese Website wurde unter Verwendung folgender Standards und Technologien erstellt:
+        </p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3 mit CSS Custom Properties</li>
+          <li>ARIA (Accessible Rich Internet Applications)</li>
+          <li>Responsive Web Design</li>
+          <li>Astro Framework</li>
+        </ul>
+
+        <h3>Unterstützte Hilfstechnologien</h3>
+        <p>Diese Website sollte mit den folgenden Hilfstechnologien kompatibel sein:</p>
+        <ul>
+          <li>NVDA (NonVisual Desktop Access)</li>
+          <li>JAWS (Job Access With Speech)</li>
+          <li>VoiceOver (macOS/iOS)</li>
+          <li>TalkBack (Android)</li>
+          <li>Bildschirmlupen und Vergrößerungssoftware</li>
+        </ul>
+
+        <h2>Erstellungsdatum</h2>
+        <p>
+          Diese Erklärung wurde am <time datetime="2025-01-09">09. Januar 2025</time> erstellt
+          und wird regelmäßig überprüft und aktualisiert.
+        </p>
+
+        <p>
+          <em>Letzte Überprüfung: <time datetime="2025-01-09">09. Januar 2025</time></em>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: calc(var(--space-24) + 4rem) 0 var(--space-16);
+    text-align: center;
+  }
+
+  .page-header h1 {
+    color: white;
+    margin-bottom: var(--space-4);
+  }
+
+  .page-lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--text-lg);
+    max-width: var(--container-md);
+    margin: 0 auto;
+  }
+
+  .content-container {
+    max-width: var(--container-md);
+    margin: 0 auto;
+  }
+
+  .content-body {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-lg);
+    margin-top: calc(-1 * var(--space-10));
+  }
+
+  .content-body h2 {
+    margin-top: var(--space-10);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .content-body h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .content-body h3 {
+    margin-top: var(--space-6);
+    font-size: var(--text-xl);
+  }
+
+  .content-body p {
+    line-height: 1.8;
+    color: var(--color-gray-700);
+  }
+
+  .content-body ul {
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .content-body li {
+    margin-bottom: var(--space-2);
+    line-height: 1.7;
+    color: var(--color-gray-700);
+  }
+
+  .contact-info {
+    background: var(--color-gray-50);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin: var(--space-6) 0;
+  }
+
+  .contact-info p {
+    margin-bottom: var(--space-3);
+  }
+
+  .contact-info p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .content-body {
+      padding: var(--space-6);
+    }
+
+    .page-header {
+      padding: calc(var(--space-20) + 4rem) 0 var(--space-12);
+    }
+  }
+</style>

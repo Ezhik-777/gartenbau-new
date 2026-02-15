@@ -1,0 +1,730 @@
+---
+/**
+ * leistungen.astro - Services Page (Unsere Leistungen)
+ * Comprehensive landscaping services showcase
+ * SEO optimized for local search
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Services data with icons
+const services = [
+  {
+    id: 'gartengestaltung',
+    title: 'Gartengestaltung',
+    subtitle: 'Ihr Traumgarten wird Wirklichkeit',
+    description: 'Von der ersten Idee bis zur vollendeten Gartenanlage - wir gestalten Ihren individuellen Traumgarten. Unsere erfahrenen Landschaftsgärtner berücksichtigen dabei Ihre Wünsche, die örtlichen Gegebenheiten und eine nachhaltige Pflanzenwahl.',
+    features: [
+      'Individuelle Gartenplanung',
+      'Neuanlage von Gärten',
+      'Umgestaltung bestehender Anlagen',
+      'Pflanzenauswahl und Bepflanzung',
+      'Rasenanlage (Rollrasen & Aussaat)',
+      'Bewässerungssysteme'
+    ],
+    icon: 'garden',
+    iconImage: '/images/icons/garden-design.png',
+    image: '/images/gallery/gal-1.png'
+  },
+  {
+    id: 'terrassenbau',
+    title: 'Terrassenbau',
+    subtitle: 'Outdoor-Wohnzimmer nach Maß',
+    description: 'Eine hochwertige Terrasse erweitert Ihren Wohnraum ins Freie. Wir bauen Terrassen aus verschiedensten Materialien - ob edles Naturholz, langlebiges WPC oder elegante Steinplatten.',
+    features: [
+      'Holzterrassen (Douglasie, Lärche, Thermoholz)',
+      'WPC-Terrassen',
+      'Naturstein-Terrassen',
+      'Keramik- und Feinsteinzeug',
+      'Unterkonstruktion und Drainage',
+      'Beleuchtungskonzepte'
+    ],
+    icon: 'terrace',
+    iconImage: '/images/icons/terrace.png',
+    image: '/images/gallery/gal-2.png'
+  },
+  {
+    id: 'pflasterarbeiten',
+    title: 'Pflasterarbeiten',
+    subtitle: 'Flächen mit Charakter',
+    description: 'Ob Einfahrt, Gehweg oder Hofeinfahrt - professionelle Pflasterarbeiten werten Ihr Grundstück optisch auf und sind extrem langlebig. Wir arbeiten mit einer Vielfalt von Pflastersteinen und -mustern.',
+    features: [
+      'Einfahrten und Zufahrten',
+      'Gartenwege und Gehwege',
+      'Hofeinfahrten',
+      'Betonpflaster und Klinker',
+      'Natursteinpflaster',
+      'Entwässerungsrinnen'
+    ],
+    icon: 'paving',
+    iconImage: '/images/icons/paving.png',
+    image: '/images/gallery/gal-3.png'
+  },
+  {
+    id: 'natursteinarbeiten',
+    title: 'Natursteinarbeiten',
+    subtitle: 'Zeitlose Eleganz',
+    description: 'Naturstein verleiht jedem Garten eine besondere Ausstrahlung. Ob Mauern, Treppen oder Einfassungen - wir verarbeiten hochwertige Natursteine fachgerecht und dauerhaft.',
+    features: [
+      'Trockenmauern',
+      'Gabionen',
+      'Natursteintreppen',
+      'Einfassungen und Randsteine',
+      'Steingärten',
+      'Wasserspiele und Brunnen'
+    ],
+    icon: 'stone',
+    iconImage: '/images/icons/stone.png',
+    image: '/images/gallery/gal-4.png'
+  },
+  {
+    id: 'gartenpflege',
+    title: 'Gartenpflege',
+    subtitle: 'Ihr Garten in besten Händen',
+    description: 'Regelmäßige Pflege hält Ihren Garten in Schuss und sorgt für gesundes Pflanzenwachstum. Wir übernehmen alle Pflegearbeiten - von der wöchentlichen Rasenmahd bis zum jährlichen Gehölzschnitt.',
+    features: [
+      'Rasenpflege und -mähen',
+      'Heckenschnitt',
+      'Gehölz- und Baumschnitt',
+      'Unkrautbekämpfung',
+      'Düngung und Pflanzenschutz',
+      'Herbst- und Winterdienst'
+    ],
+    icon: 'care',
+    iconImage: '/images/icons/maintenance.png',
+    image: '/images/gallery/gal-5.png'
+  },
+  {
+    id: 'zaunbau',
+    title: 'Zaunbau',
+    subtitle: 'Sichere Grenzen, schöne Optik',
+    description: 'Ein Zaun schützt Ihr Grundstück und gibt ihm einen Rahmen. Wir montieren verschiedenste Zaunsysteme fachgerecht und optisch ansprechend.',
+    features: [
+      'Doppelstabmatten',
+      'Holzzäune',
+      'Gabionen-Zäune',
+      'Sichtschutzelemente',
+      'Tore und Türen',
+      'Fundament und Pfosten'
+    ],
+    icon: 'fence',
+    iconImage: '/images/icons/fence.png',
+    image: '/images/gallery/gal-6.png'
+  }
+];
+
+// Service Schema for SEO
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Garten- und Landschaftsbau",
+  "provider": {
+    "@type": "LandscapingBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Lerchenrain 9",
+      "addressLocality": "Remseck am Neckar",
+      "postalCode": "71686",
+      "addressCountry": "DE"
+    }
+  },
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.8988,
+      "longitude": 9.273
+    },
+    "geoRadius": "50000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Gartenbau Dienstleistungen",
+    "itemListElement": services.map((service) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.title,
+        "description": service.description
+      }
+    }))
+  }
+};
+---
+
+<BaseLayout
+  title="Unsere Leistungen | Gartenbau Z.M. - Gartengestaltung & Landschaftsbau"
+  description="Professionelle Gartengestaltung, Terrassenbau, Pflasterarbeiten, Natursteinarbeiten, Gartenpflege und Zaunbau in Stuttgart, Ludwigsburg, Remseck. Kostenlose Beratung!"
+  breadcrumbs={[{ name: 'Leistungen', url: '/leistungen/' }]}
+>
+  <!-- Service Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="header-badge" data-reveal>
+        <span class="badge-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </span>
+        <span>Vollservice Gartenbau</span>
+      </div>
+      <h1 data-reveal>Unsere Leistungen</h1>
+      <p class="page-lead" data-reveal>
+        Von der ersten Beratung bis zur finalen Umsetzung - wir bieten Ihnen das
+        komplette Spektrum des Garten- und Landschaftsbaus aus einer Hand.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services List -->
+  <section class="services-section section">
+    <div class="container">
+      {services.map((service, index) => (
+        <article
+          class={`service-block ${index % 2 === 1 ? 'service-block--reverse' : ''}`}
+          id={service.id}
+          data-reveal
+        >
+          <div class="service-content">
+            <div class="service-header">
+              <div class="service-icon" aria-hidden="true">
+                <img 
+                  src={service.iconImage} 
+                  alt="" 
+                  width="48" 
+                  height="48"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <h2 class="service-title">{service.title}</h2>
+                <p class="service-subtitle">{service.subtitle}</p>
+              </div>
+            </div>
+
+            <p class="service-description">{service.description}</p>
+
+            <ul class="service-features">
+              {service.features.map(feature => (
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a href="/kontakt/" class="btn btn-primary">
+              Kostenlos beraten lassen
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="service-visual">
+            <div class="visual-card">
+              <img 
+                src={service.image} 
+                alt={service.title}
+                loading="lazy"
+                width="400"
+                height="300"
+              />
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-section section">
+    <div class="container">
+      <div class="section-header text-center" data-reveal>
+        <span class="section-badge">Warum Gartenbau Z.M.?</span>
+        <h2 class="section-title">Ihre Vorteile auf einen Blick</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card" data-reveal>
+          <div class="benefit-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="8" r="5"/>
+              <path d="M20 21a8 8 0 1 0-16 0"/>
+            </svg>
+          </div>
+          <h3>Persönliche Beratung</h3>
+          <p>Wir nehmen uns Zeit für Sie und Ihre Wünsche. Jedes Projekt beginnt mit einem ausführlichen Beratungsgespräch.</p>
+        </div>
+
+        <div class="benefit-card" data-reveal>
+          <div class="benefit-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2v4"/>
+              <path d="M12 18v4"/>
+              <path d="m4.93 4.93 2.83 2.83"/>
+              <path d="m16.24 16.24 2.83 2.83"/>
+              <path d="M2 12h4"/>
+              <path d="M18 12h4"/>
+              <path d="m4.93 19.07 2.83-2.83"/>
+              <path d="m16.24 7.76 2.83-2.83"/>
+            </svg>
+          </div>
+          <h3>Erfahrung & Qualität</h3>
+          <p>Mit über 500 realisierten Projekten und jahrelanger Erfahrung garantieren wir höchste Qualitätsstandards.</p>
+        </div>
+
+        <div class="benefit-card" data-reveal>
+          <div class="benefit-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8"/>
+              <path d="M12 17v4"/>
+            </svg>
+          </div>
+          <h3>Transparente Preise</h3>
+          <p>Sie erhalten ein detailliertes Angebot ohne versteckte Kosten. Wir halten, was wir versprechen.</p>
+        </div>
+
+        <div class="benefit-card" data-reveal>
+          <div class="benefit-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <path d="m9 11 3 3L22 4"/>
+            </svg>
+          </div>
+          <h3>Termintreue</h3>
+          <p>Pünktlichkeit ist für uns selbstverständlich. Wir planen realistisch und halten unsere Zusagen ein.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section section">
+    <div class="container">
+      <div class="cta-content" data-reveal>
+        <h2>Bereit für Ihr Projekt?</h2>
+        <p>
+          Lassen Sie uns gemeinsam Ihren Traumgarten verwirklichen. Kontaktieren Sie uns
+          für eine kostenlose und unverbindliche Erstberatung.
+        </p>
+        <div class="cta-buttons">
+          <a href="/kontakt/" class="btn btn-light btn-lg">
+            Beratung anfragen
+          </a>
+          <a href="tel:+491782747470" class="btn btn-outline-light btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Jetzt anrufen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Page Header */
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: calc(var(--space-24) + 4rem) 0 var(--space-16);
+    text-align: center;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+  }
+
+  .badge-icon {
+    display: flex;
+  }
+
+  .page-header h1 {
+    color: white;
+    font-size: var(--text-5xl);
+    font-weight: 800;
+    margin-bottom: var(--space-6);
+  }
+
+  .page-lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--text-xl);
+    max-width: var(--container-md);
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Services Section */
+  .services-section {
+    background: white;
+  }
+
+  .service-block {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-12);
+    align-items: center;
+    padding: var(--space-16) 0;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .service-block:last-child {
+    border-bottom: none;
+  }
+
+  .service-block--reverse {
+    grid-template-columns: 300px 1fr;
+  }
+
+  .service-block--reverse .service-content {
+    order: 2;
+  }
+
+  .service-block--reverse .service-visual {
+    order: 1;
+  }
+
+  .service-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .service-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Removed background/gradient to allow 3D icon to show fully */
+    /* background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); */
+    color: white;
+    /* border-radius: var(--radius-xl); */
+  }
+
+  .service-title {
+    font-size: var(--text-3xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-1);
+  }
+
+  .service-subtitle {
+    color: var(--color-primary);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .service-description {
+    color: var(--color-gray-700);
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    margin-bottom: var(--space-6);
+  }
+
+  .service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-8);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .service-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-gray-700);
+  }
+
+  .service-features svg {
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  /* Visual Card */
+  .service-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .visual-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    transition: transform var(--transition-base);
+  }
+
+  .visual-card:hover {
+    transform: scale(1.02);
+  }
+
+  .visual-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Why Section */
+  .why-section {
+    background: var(--color-gray-50);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .benefit-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+
+  .benefit-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+  }
+
+  .benefit-card h3 {
+    font-size: var(--text-xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .benefit-card p {
+    color: var(--color-gray-600);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: var(--container-md);
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    color: white;
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-8);
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-6);
+    font-weight: 600;
+    font-size: var(--text-base);
+    line-height: 1;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+    border: 2px solid transparent;
+  }
+
+  .btn-lg {
+    padding: var(--space-5) var(--space-8);
+    font-size: var(--text-lg);
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+
+  .btn-light {
+    background-color: white;
+    color: var(--color-primary);
+    border-color: white;
+  }
+
+  .btn-light:hover {
+    background-color: var(--color-gray-100);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-light {
+    background-color: transparent;
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Animations */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .service-block,
+    .service-block--reverse {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .service-block--reverse .service-content,
+    .service-block--reverse .service-visual {
+      order: unset;
+    }
+
+    .service-visual {
+      display: none;
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: calc(var(--space-20) + 4rem) 0 var(--space-12);
+    }
+
+    .page-header h1 {
+      font-size: var(--text-4xl);
+    }
+
+    .page-lead {
+      font-size: var(--text-lg);
+    }
+
+    .service-features {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-content h2 {
+      font-size: var(--text-3xl);
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .btn-lg {
+      width: 100%;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Scroll reveal animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('[data-reveal]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, index * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+  });
+</script>

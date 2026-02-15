@@ -1,0 +1,51 @@
+---
+/**
+ * SkipLinks.astro - Accessibility Skip Links (WCAG 2.1 - 2.4.1)
+ * Required for keyboard navigation and screen readers
+ */
+---
+
+<div class="skip-links">
+  <a href="#main-content" class="skip-link">
+    Zum Hauptinhalt springen
+  </a>
+  <a href="#navigation" class="skip-link">
+    Zur Navigation springen
+  </a>
+  <a href="#footer" class="skip-link">
+    Zum Footer springen
+  </a>
+</div>
+
+<style>
+  .skip-links {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-100%);
+    transition: transform 0.2s ease-in-out;
+    z-index: 9999;
+  }
+
+  .skip-link:focus {
+    position: fixed;
+    top: 0;
+    transform: translateY(0);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+</style>

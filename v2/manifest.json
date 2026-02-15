@@ -1,0 +1,27 @@
+{
+  "name": "Gartenbau Z.M.",
+  "short_name": "Gartenbau ZM",
+  "description": "Professioneller Garten- und Landschaftsbau in Remseck am Neckar und Region Stuttgart",
+  "start_url": "/v2/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2d5a3d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "../img/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "lifestyle"],
+  "lang": "de",
+  "dir": "ltr"
+}
