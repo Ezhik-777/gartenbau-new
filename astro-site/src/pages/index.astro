@@ -4,12 +4,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import HeroSlider from '../components/HeroSlider';
 import ServiceCard from '../components/ServiceCard.astro';
-import Gallery from '../components/Gallery.astro';
 import FAQAccordion from '../components/FAQAccordion';
 import FAQSchema from '../components/FAQSchema.astro';
 import ContactForm from '../components/ContactForm.astro';
 import BeforeAfterSlider from '../components/gallery/BeforeAfterSlider';
-import FloatingLeaves from '../components/decorations/FloatingLeaves';
 import BackgroundPattern from '../components/decorations/BackgroundPattern.astro';
 ---
 
@@ -24,7 +22,6 @@ import BackgroundPattern from '../components/decorations/BackgroundPattern.astro
   <div style="position: relative;">
     <BackgroundPattern />
     <HeroSlider client:load />
-    <FloatingLeaves client:load count={10} />
   </div>
 
   <!-- Main Content -->
@@ -107,10 +104,6 @@ import BackgroundPattern from '../components/decorations/BackgroundPattern.astro
       </div>
     </section>
 
-    <!-- Decorative floating leaves between sections -->
-    <div style="position: relative; height: 100px; overflow: hidden; pointer-events: none;">
-      <FloatingLeaves client:load count={5} />
-    </div>
 
     <!-- Über uns Section - Two-column layout with stats -->
     <section id="Ueber-uns" style="padding: var(--space-20) 0;">
@@ -227,47 +220,6 @@ import BackgroundPattern from '../components/decorations/BackgroundPattern.astro
       </div>
     </section>
 
-    <!-- Projekte Section (Gallery) -->
-    <section id="Projekte" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Unsere Projekte</h2>
-          <p class="section-subtitle">
-            Referenzen aus Stuttgart, Ludwigsburg, Waiblingen und Umgebung
-          </p>
-        </div>
-
-        <div style="margin-top: var(--space-12);" data-aos="fade-up" data-aos-delay="100">
-          <Gallery />
-        </div>
-
-        <!-- Trust Signals -->
-        <div style="margin-top: var(--space-16); padding: var(--space-10); background: white; border-radius: var(--radius-2xl); box-shadow: var(--shadow-md);" data-aos="fade-up" data-aos-delay="200">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-8); text-align: center;">
-            <div>
-              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">🏆</div>
-              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">Qualitätsarbeit</div>
-              <div style="font-size: var(--text-sm); color: var(--text-secondary);">Meisterbetrieb mit Tradition</div>
-            </div>
-            <div>
-              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">⭐</div>
-              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">5.0 Google Rating</div>
-              <div style="font-size: var(--text-sm); color: var(--text-secondary);">47 Bewertungen</div>
-            </div>
-            <div>
-              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">📍</div>
-              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">Regional & Zuverlässig</div>
-              <div style="font-size: var(--text-sm); color: var(--text-secondary);">Stuttgart & Umgebung</div>
-            </div>
-            <div>
-              <div style="font-size: var(--text-4xl); margin-bottom: var(--space-2);">✓</div>
-              <div style="font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-1);">Kostenlose Beratung</div>
-              <div style="font-size: var(--text-sm); color: var(--text-secondary);">Vor Ort & Unverbindlich</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- FAQ Section with React Island -->
     <section id="FAQ" style="padding: var(--space-20) 0;">

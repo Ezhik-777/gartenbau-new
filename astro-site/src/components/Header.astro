@@ -139,6 +139,27 @@
       ticking = true;
     }
   });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Close mobile menu if open
+        if (mobileMenu?.classList.contains('active')) {
+          toggleMobileMenu();
+        }
+      }
+    });
+  });
 </script>
 
 <style>
@@ -268,9 +289,9 @@
     right: 50%;
     height: 2px;
     background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-400));
-    transform: translateX(-50%);
     transition: all var(--transition-base);
     border-radius: var(--radius-full);
+    pointer-events: none;
   }
 
   .nav__link:hover {

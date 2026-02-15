@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import './HeroSlider.css';
-import FloatingLeaves from './decorations/FloatingLeaves';
 
 interface Slide {
   id: number;
@@ -174,8 +173,6 @@ export default function HeroSlider() {
             />
             <div className="slide-overlay"></div>
 
-            {/* Floating leaves overlay */}
-            {index === currentSlide && <FloatingLeaves count={10} />}
             <div className="container">
               <div className="hero-content">
                 {/* Badge */}
