@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import SEO from '../components/SEO.astro';
 import GoogleAnalytics from '../components/analytics/GoogleAnalytics.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
@@ -48,6 +49,7 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
 
 <body class="font-body text-text bg-ivory antialiased">
   <slot />
+  <WhatsAppButton />
 
   <!-- Scroll reveal observer -->
   <script>
