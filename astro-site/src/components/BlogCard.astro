@@ -1,0 +1,71 @@
+---
+// BlogCard.astro — Organic Luxury Blog Card
+interface Props {
+  title: string;
+  description: string;
+  heroImage: string;
+  date: Date;
+  tags: string[];
+  href: string;
+}
+
+const { title, description, heroImage, date, tags, href } = Astro.props;
+
+// Format date in German: "DD. MMMM YYYY"
+const germanMonths = [
+  'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',
+];
+const formattedDate = `${date.getDate()}. ${germanMonths[date.getMonth()]} ${date.getFullYear()}`;
+
+// Estimate reading time from description length (rough proxy)
+const readingTime = Math.max(Math.ceil(description.length / 200), 1);
+---
+
+<a
+  href={href}
+  class="block group bg-white rounded-2xl overflow-hidden border border-transparent hover:border-sand transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-forest/5"
+>
+  <!-- Image -->
+  <div class="relative aspect-[16/9] overflow-hidden">
+    <img
+      src={heroImage}
+      alt={title}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="p-6">
+    <!-- Tags -->
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <span class="text-xs bg-sand-light text-forest px-2 py-0.5 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- Title -->
+    <h3 class="font-heading text-xl text-forest group-hover:text-terracotta transition-colors mt-3">
+      {title}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-text-muted text-sm line-clamp-2 mt-2">
+      {description}
+    </p>
+
+    <!-- Meta: Date + Reading Time -->
+    <div class="flex items-center gap-3 text-text-muted text-xs mt-3">
+      <time datetime={date.toISOString().split('T')[0]}>
+        {formattedDate}
+      </time>
+      <span class="w-1 h-1 rounded-full bg-sand" aria-hidden="true"></span>
+      <span>{readingTime} min Lesezeit</span>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,58 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<MainLayout
+  title="Blog | Gartenbau Z.M."
+  description="Tipps, Inspirationen und Fachwissen rund um Garten- und Landschaftsbau. Aktuelle Beiträge von Gartenbau Z.M. aus Remseck, Stuttgart und Region."
+>
+  <Header />
+
+  <!-- Hero Banner -->
+  <section class="bg-forest pt-28 pb-20 md:pt-36 md:pb-28 text-center">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="text-sand/60 text-sm mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-sand transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-sand">Blog</span>
+      </nav>
+
+      <h1 class="font-heading text-4xl md:text-5xl text-white">
+        Blog
+      </h1>
+      <p class="text-ivory/80 mt-4 max-w-2xl mx-auto">
+        Tipps, Fachwissen und Inspirationen rund um Garten- und Landschaftsbau — direkt von unseren Experten.
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog Listing -->
+  <main class="py-16 md:py-24 bg-ivory">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sorted.map((post, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 100}ms`}>
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              heroImage={post.data.heroImage}
+              date={post.data.date}
+              tags={post.data.tags}
+              href={`/blog/${post.id}`}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>
