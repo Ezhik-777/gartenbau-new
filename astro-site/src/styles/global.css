@@ -1,329 +1,90 @@
-/* ========================================
-   GARTENBAU Z.M. v5.0 - Global Styles
-   Modern CSS with Design System
-   ======================================== */
+@import "tailwindcss";
 
-/* Import v5.0 Design System */
-@import './design-system.css';
-@import './animations.css';
-@import './components.css';
+/* ========== Organic Luxury Theme ========== */
 
-/* Legacy brand colors for backwards compatibility */
-:root {
-  --color-brand: var(--color-primary-700);
-  --color-brand-light: var(--color-primary-400);
-  --color-brand-dark: var(--color-primary-900);
-  --color-brand-accent: var(--color-primary-300);
+@theme {
+  /* Colors */
+  --color-forest: #1a3a2a;
+  --color-forest-light: #2d5a3f;
+  --color-sand: #d4c5a9;
+  --color-sand-light: #e8dcc8;
+  --color-terracotta: #c17f59;
+  --color-terracotta-dark: #a66b48;
+  --color-ivory: #faf8f5;
+  --color-ivory-warm: #f5f0e8;
+  --color-text: #2a2a2a;
+  --color-text-muted: #6b6b6b;
 
-  /* Semantic background colors */
-  --bg-primary: var(--color-neutral-0);
-  --bg-secondary: var(--color-neutral-50);
-  --bg-tertiary: var(--color-neutral-100);
+  /* Fonts */
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
 
-  /* Semantic text colors */
-  --text-primary: var(--color-neutral-900);
-  --text-secondary: var(--color-neutral-600);
-  --text-tertiary: var(--color-neutral-500);
-  --text-inverse: var(--color-neutral-0);
+  /* Spacing extras */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
 }
 
-/* ==================== RESET ==================== */
+/* ========== Base Styles ========== */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
-  color: var(--text-primary);
-  background: var(--bg-primary);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ==================== TYPOGRAPHY ==================== */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: var(--font-bold);
-  line-height: var(--leading-tight);
-  color: var(--text-primary);
-  margin-bottom: var(--space-4);
-}
-
-h1 {
-  font-size: var(--text-5xl);
-  font-weight: var(--font-extrabold);
-}
-
-h2 {
-  font-size: var(--text-4xl);
-}
-
-h3 {
-  font-size: var(--text-3xl);
-}
-
-h4 {
-  font-size: var(--text-2xl);
-}
-
-h5 {
-  font-size: var(--text-xl);
-}
-
-h6 {
-  font-size: var(--text-lg);
-}
-
-p {
-  margin-bottom: var(--space-4);
-  line-height: var(--leading-relaxed);
-}
-
-a {
-  color: var(--color-brand);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--color-brand-dark);
-}
-
-/* ==================== UTILITIES ==================== */
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-4);
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding: 0 var(--space-6);
-  }
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* ==================== BUTTONS ==================== */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  font-weight: var(--font-semibold);
-  line-height: 1;
-  text-decoration: none;
-  border-radius: var(--radius-lg);
-  border: none;
-  cursor: pointer;
-  transition: all var(--transition-base);
-}
-
-.btn-primary {
-  background: var(--color-brand);
-  color: var(--text-inverse);
-}
-
-.btn-primary:hover {
-  background: var(--color-brand-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--color-brand);
-  border: 2px solid var(--color-brand);
-}
-
-.btn-secondary:hover {
-  background: var(--color-brand);
-  color: var(--text-inverse);
-}
-
-/* ==================== SECTIONS ==================== */
-
-section {
-  padding: var(--space-16) 0;
-}
-
-@media (min-width: 768px) {
-  section {
-    padding: var(--space-20) 0;
-  }
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: var(--space-12);
-}
-
-.section-title {
-  font-size: var(--text-4xl);
-  font-weight: var(--font-bold);
-  margin-bottom: var(--space-4);
-  color: var(--text-primary);
-}
-
-.section-subtitle {
-  font-size: var(--text-lg);
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* ==================== RESPONSIVE ==================== */
-
-img,
-picture,
-video,
-svg {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ==================== FOCUS STYLES ==================== */
-
-:focus-visible {
-  outline: 2px solid var(--color-brand);
-  outline-offset: 2px;
-}
-
-/* ==================== VIEW TRANSITIONS ==================== */
-
-/* Default page transition */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.3s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Fade transition for page navigation */
-::view-transition-old(root) {
-  animation-name: fade-out;
-}
-
-::view-transition-new(root) {
-  animation-name: fade-in;
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Slide transition for page content */
-@keyframes slide-from-right {
-  from {
-    transform: translateX(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-to-left {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-30px);
-    opacity: 0;
-  }
-}
-
-/* Header stays in place during transitions */
-::view-transition-old(header),
-::view-transition-new(header) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-/* Footer stays in place during transitions */
-::view-transition-old(footer),
-::view-transition-new(footer) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-/* Smooth scroll behavior for anchor links */
-html {
-  scroll-behavior: smooth;
-}
-
-/* ==================== REDUCED MOTION ==================== */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  /* Disable view transitions for users who prefer reduced motion */
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
-  }
-
+@layer base {
   html {
-    scroll-behavior: auto !important;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-ivory);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-forest);
+    line-height: 1.15;
+  }
+
+  :target {
+    scroll-margin-top: 100px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ========== Scroll Animations ========== */
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   }
 }
