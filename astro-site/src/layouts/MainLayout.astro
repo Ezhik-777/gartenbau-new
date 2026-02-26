@@ -1,10 +1,7 @@
 ---
 import '../styles/global.css';
-import '../styles/scroll-animations.css';
-import 'aos/dist/aos.css';
 import SEO from '../components/SEO.astro';
 import GoogleAnalytics from '../components/analytics/GoogleAnalytics.astro';
-import ServiceWorkerRegistration from '../components/ServiceWorkerRegistration.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
@@ -20,17 +17,12 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="grain">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
-
-  <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://storage.googleapis.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io; frame-src 'self';">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-  <!-- SEO Component with Schema.org -->
   <SEO
     title={title}
     description={description}
@@ -42,108 +34,41 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
 
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#459d72">
+  <meta name="theme-color" content="#1a3a2a">
   <link rel="icon" type="image/webp" sizes="32x32" href="/img/logo.webp">
 
-  <!-- Critical CSS inlined for faster FCP -->
-  <style>
-    :root {
-      --color-primary-500: #22c55e;
-      --color-primary-600: #16a34a;
-      --color-primary-700: #15803d;
-      --color-neutral-0: #ffffff;
-      --color-neutral-900: #171717;
-      --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
-      --text-base: 1rem;
-      --space-4: 1rem;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      line-height: 1.5;
-      color: var(--color-neutral-900);
-      background: var(--color-neutral-0);
-      -webkit-font-smoothing: antialiased;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-4); }
-  </style>
-
-  <!-- Preload critical resources -->
-  <link rel="preload" href="/img/image_1.webp" as="image" type="image/webp" />
-
-  <!-- Fonts with optimized subsets and display=swap -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap&subset=latin" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics 4 -->
   <GoogleAnalytics />
-
-  <!-- View Transitions for smooth navigation -->
   <ViewTransitions />
-
-  <!-- Service Worker Registration -->
-  <ServiceWorkerRegistration />
 </head>
 
-<body>
+<body class="font-body text-text bg-ivory antialiased">
   <slot />
-</body>
 
-<script>
-  import AOS from 'aos';
-
-  // Initialize AOS on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-out-cubic',
-      once: true,
-      offset: 100,
-      disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    });
-  });
-
-  // Re-initialize AOS after view transitions (Astro's page navigation)
-  document.addEventListener('astro:page-load', () => {
-    AOS.refresh();
-  });
-
-  // Parallax scrolling fallback for browsers without scroll-timeline support
-  document.addEventListener('DOMContentLoaded', () => {
-    // Check if browser supports animation-timeline
-    const supportsScrollTimeline = CSS.supports('animation-timeline', 'scroll()');
-
-    // Only add JavaScript fallback if not supported
-    if (!supportsScrollTimeline) {
-      const parallaxElements = document.querySelectorAll('[data-parallax]');
-
-      if (parallaxElements.length > 0) {
-        let rafId: number | null = null;
-
-        const updateParallax = () => {
-          const scrollY = window.scrollY;
-
-          parallaxElements.forEach((element) => {
-            const speed = parseFloat((element as HTMLElement).dataset.parallax || '0.5');
-            const yPos = scrollY * speed;
-
-            (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
-          });
-
-          rafId = null;
-        };
-
-        window.addEventListener('scroll', () => {
-          if (rafId === null) {
-            rafId = requestAnimationFrame(updateParallax);
+  <!-- Scroll reveal observer -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
-        }, { passive: true });
-      }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    function initReveal() {
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     }
-  });
-</script>
+
+    initReveal();
+    document.addEventListener('astro:page-load', initReveal);
+  </script>
+</body>
 </html>
