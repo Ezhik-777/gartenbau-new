@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /before-after-demo
 
 Sitemap: https://gartenbauzm.de/sitemap-index.xml
 

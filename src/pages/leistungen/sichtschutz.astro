@@ -1,0 +1,212 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
+    { "@type": "ListItem", "position": 3, "name": "Sichtschutz Garten", "item": "https://gartenbauzm.de/leistungen/sichtschutz/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Sichtschutz Garten",
+  "description": "Sichtschutz für Ihren Garten in Ludwigsburg, Stuttgart & Region. Zäune, Hecken, Gabionen & Sichtschutzwände. Individuelle Lösungen für Ihre Privatsphäre.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
+    "telephone": "+491782747470",
+    "url": "https://gartenbauzm.de"
+  },
+  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+};
+
+const faqs = [
+  { question: "Welche Sichtschutz-Optionen gibt es für meinen Garten?", answer: "Es gibt zahlreiche Möglichkeiten: Holzzäune (Rhombus, Lamellen oder Lattenzaun), WPC-Sichtschutzelemente, Gabionen mit Stein- oder Glasfüllung, immergrüne Hecken (z. B. Thuja, Kirschlorbeer, Liguster), Sichtschutzwände aus Metall oder Cortenstahl sowie Kombinationen verschiedener Elemente. Wir beraten Sie vor Ort, welche Lösung zu Ihrem Garten, Budget und den örtlichen Vorschriften passt." },
+  { question: "Wie hoch darf ein Sichtschutz in Baden-Württemberg sein?", answer: "In Baden-Württemberg ist ein Sichtschutz bis zu einer Höhe von 1,80 Meter in der Regel genehmigungsfrei — vorausgesetzt, die Grenzabstände werden eingehalten. Der Mindestabstand zum Nachbargrundstück beträgt bei Zäunen üblicherweise 0,50 Meter. Bei Hecken gelten je nach Pflanzhöhe Abstände von 0,50 bis 2,00 Meter. Wir kennen die lokalen Bestimmungen in Ludwigsburg, Stuttgart und Umgebung und beraten Sie rechtssicher." },
+  { question: "Was kostet ein Sichtschutz im Garten?", answer: "Die Kosten variieren je nach Material und Länge erheblich. Ein einfacher Holzzaun beginnt bei ca. 80-120 Euro pro laufenden Meter inklusive Montage. WPC-Sichtschutzelemente liegen bei 150-250 Euro pro Meter, Gabionen bei 200-400 Euro pro Meter. Hecken sind günstiger in der Anschaffung, benötigen jedoch regelmäßige Pflege. Wir erstellen Ihnen ein transparentes Angebot nach Vor-Ort-Besichtigung." },
+  { question: "Wie lange hält ein Sichtschutz?", answer: "Die Haltbarkeit hängt vom Material ab. Druckimprägnierte Holzzäune halten 15-20 Jahre, Hartholz wie Lärche oder Douglasie 20-25 Jahre. WPC-Elemente sind nahezu wartungsfrei und halten 25-30 Jahre. Gabionen mit feuerverzinktem Draht halten problemlos 30 Jahre und mehr. Immergrüne Hecken sind bei richtiger Pflege quasi unbegrenzt haltbar und werden mit den Jahren immer dichter." },
+  { question: "Kann man Sichtschutz auch im Winter aufbauen?", answer: "Ja, feste Sichtschutzelemente wie Zäune, Gabionen und WPC-Wände können ganzjährig montiert werden, sofern der Boden für die Fundamentarbeiten nicht tief gefroren ist. Lediglich die Pflanzung von Hecken sollte auf das Frühjahr oder den Herbst verschoben werden. Wir planen Ihr Projekt so, dass es termingerecht realisiert wird — auch in den Wintermonaten." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<MainLayout
+  title="Sichtschutz Garten Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
+  description="Sichtschutz für Ihren Garten in Ludwigsburg, Stuttgart & Region. Zäune, Hecken, Gabionen & Sichtschutzwände. Individuelle Lösungen für Ihre Privatsphäre."
+  ogImage="/img/image_100.webp"
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-ivory/60">
+          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ivory">Sichtschutz Garten</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Sichtschutz Garten</h1>
+      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Individuelle Sichtschutzlösungen für mehr Privatsphäre in Ihrem Garten in Ludwigsburg, Stuttgart und der gesamten Region.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <!-- Service description -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest">Sichtschutz nach Maß — für Ihre Privatsphäre</h2>
+        <p class="mt-6 font-body text-text-muted leading-relaxed">
+          Ein gut geplanter Sichtschutz ist weit mehr als eine Abgrenzung zum Nachbargrundstück. Er schafft Privatsphäre, schützt vor Wind und Lärm und gibt Ihrem Garten eine klare Struktur. Gartenbau Z.M. plant und baut individuelle Sichtschutzlösungen in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und Fellbach — passend zu Ihrem Gartenstil und Ihrem Budget.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Zäune und Sichtschutzwände</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Ob klassischer Holzzaun, moderner WPC-Sichtschutz oder elegante Cortenstahl-Elemente — wir montieren Sichtschutzzäune in allen gängigen Materialien und Designs. Rhombusleisten aus Lärche oder Douglasie sorgen für ein natürliches Erscheinungsbild, während WPC-Elemente durch ihre Langlebigkeit und Wartungsfreiheit überzeugen. Alle Zäune werden mit massiven Pfosten auf Punkt- oder Streifenfundamenten verankert, sodass sie auch starkem Wind standhalten. In den Gärten unserer Kunden in Stuttgart und Ludwigsburg setzen wir seit Jahren auf bewährte Konstruktionen.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Gabionen und Steinwände</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Gabionen sind eine hervorragende Wahl für langlebigen, modernen Sichtschutz. Die Drahtkörbe werden mit Naturstein, Basalt, Kalkstein oder Glasbruch befüllt und bieten einen robusten Sichtschutz mit architektonischem Charakter. In Kombination mit Holzelementen oder Bepflanzung entstehen einzigartige Gestaltungslösungen. Wir übernehmen Planung, Fundamentierung und Aufbau der Gabionen komplett — von Ludwigsburg über Waiblingen bis nach Fellbach.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Hecken und grüner Sichtschutz</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Für Naturliebhaber ist eine immergrüne Hecke die schönste Form des Sichtschutzes. Wir pflanzen Thuja, Kirschlorbeer, Liguster, Eibe oder Hainbuche — je nach Standort, gewünschter Höhe und persönlichem Geschmack. Bei der Pflanzung achten wir auf die richtige Pflanztiefe, optimalen Pflanzabstand und eine gründliche Bodenvorbereitung. Gerne kombinieren wir Hecken mit Zaunabschnitten oder Gabionen zu einem abwechslungsreichen Sichtschutzkonzept, das Ihren Garten in Stuttgart und Umgebung optisch aufwertet.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Holzzäune (Lärche, Douglasie, Kiefer)</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">WPC-Sichtschutzelemente und Verbundmaterial</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Gabionen mit Naturstein- oder Glasfüllung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Immergrüne Heckenpflanzung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Cortenstahl- und Metall-Sichtschutzwände</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Fundamente und Pfostenmontage</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Kombinationen aus verschiedenen Materialien</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Beratung zu Vorschriften und Grenzabständen</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_100.webp" alt="Moderner Holz-Sichtschutz in einem Garten in Stuttgart" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_105.webp" alt="Gabionen-Sichtschutz mit Natursteinfüllung in Ludwigsburg" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_140.webp" alt="Kombinierter Sichtschutz aus Holz und Bepflanzung" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
+        {faqs.map((faq) => (
+          <details class="border-b border-sand/50 group">
+            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-forest text-white text-center">
+      <div class="mx-auto max-w-3xl px-4">
+        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
+        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
+          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>
+
+<style>
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+  details .faq-content > p {
+    overflow: hidden;
+  }
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

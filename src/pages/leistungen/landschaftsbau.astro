@@ -1,0 +1,212 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
+    { "@type": "ListItem", "position": 3, "name": "Landschaftsbau", "item": "https://gartenbauzm.de/leistungen/landschaftsbau/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Landschaftsbau",
+  "description": "Professioneller Landschaftsbau in Ludwigsburg, Stuttgart & Region. Erdarbeiten, Bepflanzung, Rasenneuanlage & komplette Gartenumgestaltung.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
+    "telephone": "+491782747470",
+    "url": "https://gartenbauzm.de"
+  },
+  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+};
+
+const faqs = [
+  { question: "Welche Leistungen umfasst der Landschaftsbau?", answer: "Unser Landschaftsbau umfasst sämtliche Arbeiten rund um die Neugestaltung und Umgestaltung von Außenanlagen: Erdarbeiten, Geländemodellierung, Bodenvorbereitung, Bepflanzung mit Bäumen, Sträuchern und Stauden, Rasenneuanlage, Anlage von Wegen und Plätzen sowie die Integration von Bewässerungssystemen. Wir begleiten Sie von der Planung bis zur schlüsselfertigen Übergabe." },
+  { question: "Was kostet ein Landschaftsbau-Projekt in Stuttgart und Umgebung?", answer: "Die Kosten hängen stark von Umfang und Gegebenheiten ab. Eine einfache Gartenumgestaltung beginnt bei ca. 3.000 Euro, während umfangreiche Projekte mit Erdarbeiten und Bepflanzung deutlich darüber liegen können. Wir erstellen Ihnen nach einem kostenlosen Vor-Ort-Termin ein transparentes Festpreis-Angebot ohne versteckte Kosten." },
+  { question: "Wie lange dauert eine komplette Gartenumgestaltung?", answer: "Je nach Projektumfang rechnen Sie mit 1 bis 4 Wochen Bauzeit. Kleinere Umgestaltungen sind oft innerhalb weniger Tage abgeschlossen. Größere Projekte mit Erdarbeiten, Natursteinmauern und umfangreicher Bepflanzung können bis zu 4 Wochen in Anspruch nehmen. Den genauen Zeitplan besprechen wir im Vorfeld verbindlich mit Ihnen." },
+  { question: "Welche Jahreszeit eignet sich am besten für Landschaftsbau?", answer: "Grundsätzlich können Erdarbeiten und Geländemodellierung ganzjährig durchgeführt werden, sofern der Boden nicht gefroren ist. Für Bepflanzungen eignen sich Frühjahr (März bis Mai) und Herbst (September bis November) am besten, da die Pflanzen in diesen Zeiträumen optimal anwachsen. Rasen kann von April bis Oktober angelegt werden." },
+  { question: "Bieten Sie auch eine Planung und Beratung an?", answer: "Ja, wir bieten eine umfassende Gartenplanung inklusive Beratung vor Ort an. Auf Wunsch erstellen wir Ihnen Entwürfe und Pflanzpläne. Die Erstberatung ist kostenlos und unverbindlich. Gemeinsam erarbeiten wir ein Konzept, das Ihre Wünsche mit den Gegebenheiten vor Ort optimal vereint." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<MainLayout
+  title="Landschaftsbau Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
+  description="Professioneller Landschaftsbau in Ludwigsburg, Stuttgart & Region. Erdarbeiten, Bepflanzung, Rasenneuanlage & komplette Gartenumgestaltung."
+  ogImage="/img/image_20.webp"
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-ivory/60">
+          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ivory">Landschaftsbau</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Landschaftsbau</h1>
+      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Professionelle Gartenumgestaltung und Landschaftsbau in Ludwigsburg, Stuttgart und der gesamten Region.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <!-- Service description -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest">Ihr Partner für professionellen Landschaftsbau</h2>
+        <p class="mt-6 font-body text-text-muted leading-relaxed">
+          Ob Neubau oder komplette Umgestaltung eines bestehenden Gartens — als erfahrener Landschaftsbau-Betrieb in Ludwigsburg, Stuttgart und der gesamten Region verwandeln wir Ihre Außenfläche in eine grüne Oase. Gartenbau Z.M. steht für durchdachte Planung, sorgfältige Ausführung und nachhaltige Ergebnisse, die über Jahre Bestand haben.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Erdarbeiten und Geländemodellierung</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Jedes Landschaftsbau-Projekt beginnt mit der richtigen Vorbereitung. Wir führen Erdarbeiten aller Art durch: Aushub, Abtrag, Aufschüttung und Geländemodellierung. Mit modernem Gerät formen wir Ihr Grundstück in Ludwigsburg, Stuttgart, Kornwestheim oder Waiblingen exakt nach Plan. Dabei achten wir auf fachgerechte Entwässerung und optimale Bodenverhältnisse für die spätere Bepflanzung.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Bepflanzung und Rasenneuanlage</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Die Bepflanzung gibt Ihrem Garten Charakter. Wir wählen standortgerechte Bäume, Sträucher, Hecken und Stauden aus, die zum Klima in der Region Stuttgart passen und ganzjährig attraktiv wirken. Ergänzend legen wir Rasenflächen per Aussaat oder Rollrasen an — für ein sofort grünes Ergebnis. Auf Wunsch integrieren wir automatische Bewässerungssysteme, die den Pflegeaufwand dauerhaft reduzieren.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Komplette Gartenumgestaltung aus einer Hand</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Viele unserer Kunden in Stuttgart, Fellbach und Ludwigsburg wünschen sich eine vollständige Neugestaltung ihrer Außenanlage. Wir koordinieren alle Gewerke: von der Bodenanalyse über Erdarbeiten und Pflasterarbeiten bis hin zur Bepflanzung und Beleuchtung. Das Ergebnis ist ein stimmiges Gesamtkonzept, das Ihren Garten in einen echten Lebensraum verwandelt. Durch unsere jahrelange Erfahrung im Landschaftsbau wissen wir, worauf es ankommt — und liefern termingerecht zum vereinbarten Festpreis.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Erdarbeiten und Geländemodellierung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Bodenvorbereitung und Drainage</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Bepflanzung mit Bäumen, Sträuchern und Stauden</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Rasenneuanlage per Aussaat oder Rollrasen</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Bewässerungssysteme und Wasseranschlüsse</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Komplette Gartenumgestaltung und Neuanlagen</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Gartenbeleuchtung und Außensteckdosen</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Kostenlose Erstberatung und Festpreis-Angebote</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_20.webp" alt="Landschaftsbau-Projekt mit Bepflanzung und Rasenanlage in Stuttgart" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_25.webp" alt="Gartenumgestaltung mit Erdarbeiten und Geländemodellierung in Ludwigsburg" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_30.webp" alt="Fertig angelegte Außenanlage mit Bepflanzung und Rasenfläche" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
+        {faqs.map((faq) => (
+          <details class="border-b border-sand/50 group">
+            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-forest text-white text-center">
+      <div class="mx-auto max-w-3xl px-4">
+        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
+        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
+          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>
+
+<style>
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+  details .faq-content > p {
+    overflow: hidden;
+  }
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

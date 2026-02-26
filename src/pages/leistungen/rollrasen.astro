@@ -1,0 +1,212 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
+    { "@type": "ListItem", "position": 3, "name": "Rollrasen verlegen", "item": "https://gartenbauzm.de/leistungen/rollrasen/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Rollrasen verlegen",
+  "description": "Rollrasen verlegen in Ludwigsburg, Stuttgart & Region. Professionelle Verlegung für sofort nutzbaren, dichten Rasen. Beratung & Pflege-Tipps.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
+    "telephone": "+491782747470",
+    "url": "https://gartenbauzm.de"
+  },
+  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+};
+
+const faqs = [
+  { question: "Wie pflege ich Rollrasen nach der Verlegung?", answer: "In den ersten zwei Wochen nach der Verlegung ist tägliches Wässern entscheidend. Der Boden sollte stets gleichmäßig feucht sein, idealerweise morgens und abends je 10-15 Minuten beregnen. Nach etwa 10 bis 14 Tagen hat der Rasen angewurzelt und kann zum ersten Mal auf ca. 4 cm gemäht werden. Ab der dritten Woche reicht Bewässerung alle 2-3 Tage. Eine Startdüngung empfehlen wir bereits bei der Verlegung." },
+  { question: "Was kostet Rollrasen verlegen in Ludwigsburg und Stuttgart?", answer: "Die Gesamtkosten setzen sich aus Materialkosten für den Rollrasen (ca. 5-8 Euro pro Quadratmeter) und den Verlegekosten zusammen. Hinzu kommen bei Bedarf Kosten für Bodenvorbereitung und Altrasenabtrag. Für ein durchschnittliches Projekt mit 100 m² kalkulieren Sie inklusive Bodenvorbereitung und Verlegung mit 1.500 bis 2.500 Euro. Wir erstellen Ihnen gerne ein individuelles Festpreis-Angebot." },
+  { question: "Wann ist die beste Zeit, Rollrasen zu verlegen?", answer: "Rollrasen kann grundsätzlich von März bis November verlegt werden, solange der Boden frostfrei ist. Die besten Ergebnisse erzielen Sie im Frühjahr (April/Mai) und im Herbst (September/Oktober), wenn die Temperaturen moderat sind und ausreichend Niederschlag fällt. Im Hochsommer ist eine Verlegung ebenfalls möglich, erfordert jedoch deutlich intensivere Bewässerung." },
+  { question: "Wie lange dauert die Verlegung von Rollrasen?", answer: "Die reine Verlegung geht schnell: Eine Fläche von 100 m² ist in der Regel innerhalb eines Arbeitstages verlegt. Die Bodenvorbereitung — Altrasenabtrag, Erdaustausch oder Bodenverbesserung — kann je nach Zustand 1 bis 2 zusätzliche Tage beanspruchen. Insgesamt sollten Sie für ein typisches Projekt 2 bis 3 Werktage einplanen." },
+  { question: "Kann ich Rollrasen auf alten Rasen verlegen?", answer: "Nein, eine direkte Verlegung auf alten Rasen ist nicht empfehlenswert. Der alte Rasen muss zunächst entfernt werden, damit der Rollrasen direkten Bodenkontakt hat und sicher anwurzeln kann. Wir entfernen den Altrasen maschinell, lockern den Unterboden auf, gleichen Unebenheiten aus und bringen bei Bedarf frischen Mutterboden auf — so wird ein optimales Ergebnis garantiert." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<MainLayout
+  title="Rollrasen verlegen Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
+  description="Rollrasen verlegen in Ludwigsburg, Stuttgart & Region. Professionelle Verlegung für sofort nutzbaren, dichten Rasen. Beratung & Pflege-Tipps."
+  ogImage="/img/image_40.webp"
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-ivory/60">
+          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ivory">Rollrasen verlegen</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Rollrasen verlegen</h1>
+      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Sofort grün: Professionelle Rollrasen-Verlegung in Ludwigsburg, Stuttgart und der gesamten Region.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <!-- Service description -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest">Rollrasen vom Profi — sofort grün und begehbar</h2>
+        <p class="mt-6 font-body text-text-muted leading-relaxed">
+          Ein dichter, sattgrüner Rasen ist der Traum vieler Gartenbesitzer. Mit Rollrasen wird dieser Traum innerhalb weniger Stunden Realität. Gartenbau Z.M. verlegt hochwertigen Rollrasen in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und der gesamten Region — fachgerecht, termingenau und zu einem fairen Festpreis.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Gründliche Bodenvorbereitung</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Der Schlüssel zu einem langlebigen Rollrasen liegt in der Vorbereitung. Wir beginnen mit dem Abtrag des alten Rasens oder Bewuchses, lockern den Unterboden maschinell auf und beseitigen Steine, Wurzeln und Verdichtungen. Bei Bedarf tragen wir frischen, nährstoffreichen Mutterboden auf und gleichen Unebenheiten zentimetergenau aus. Eine Startdüngung sorgt für optimale Nährstoffversorgung vom ersten Tag an. So schafft unser Team in Stuttgart und Umgebung die ideale Grundlage für sattes Grün.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Professionelle Verlegung</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Wir beziehen unseren Rollrasen von bewährten Rasenschulen aus der Region und verlegen ihn am selben Tag der Lieferung. Die Bahnen werden fugenlos und versatzfrei ausgelegt, sorgfältig an Beete und Wege angepasst und anschließend gewalzt, um vollflächigen Bodenkontakt zu gewährleisten. Bereits wenige Stunden nach der Verlegung präsentiert sich Ihr Garten in Ludwigsburg, Fellbach oder Esslingen in sattem Grün.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Pflege und Nachbetreuung</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Damit Ihr neuer Rasen dauerhaft gesund und dicht bleibt, erhalten Sie von uns eine ausführliche Pflegeanleitung. Wir erklären Ihnen die richtige Bewässerung in der Anwachsphase, den optimalen Mährhythmus und die empfohlene Düngung im Jahresverlauf. Auf Wunsch übernehmen wir auch die regelmäßige Rasenpflege im Rahmen unseres Hausmeisterservice — so bleibt Ihr Rasen das ganze Jahr in Bestform.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Altrasenabtrag und Entsorgung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Maschinelle Bodenvorbereitung und Planum</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Lieferung von frischem Mutterboden</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Startdüngung für optimale Nährstoffversorgung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Fugenlose Verlegung mit Präzisionsschnitt</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Walzen für optimalen Bodenkontakt</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Ausführliche Pflegeanleitung nach Verlegung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Optionale Bewässerungssystem-Installation</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_40.webp" alt="Rollrasen-Verlegung auf vorbereiteter Fläche in Stuttgart" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_45.webp" alt="Frisch verlegter Rollrasen in einem Garten in Ludwigsburg" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_50.webp" alt="Fertiger Rollrasen mit satter grüner Rasenfläche" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
+        {faqs.map((faq) => (
+          <details class="border-b border-sand/50 group">
+            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-forest text-white text-center">
+      <div class="mx-auto max-w-3xl px-4">
+        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
+        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
+          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>
+
+<style>
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+  details .faq-content > p {
+    overflow: hidden;
+  }
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

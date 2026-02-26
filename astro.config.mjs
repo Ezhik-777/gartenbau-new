@@ -7,7 +7,9 @@ export default defineConfig({
   site: 'https://gartenbauzm.de',
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes('before-after-demo'),
+    }),
   ],
   build: {
     inlineStylesheets: 'auto',

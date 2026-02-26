@@ -11,14 +11,14 @@ import ContactForm from '../components/ContactForm.astro';
 import BeforeAfterSlider from '../components/gallery/BeforeAfterSlider';
 
 const services = [
-  { icon: '🌱', title: 'Gartengestaltung', description: 'Professionelle Gartenplanung und -gestaltung mit individueller Beratung.' },
-  { icon: '🪨', title: 'Natursteinarbeiten', description: 'Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen und Einfassungen.' },
-  { icon: '🏗️', title: 'Terrassenbau', description: 'Moderne Terrassengestaltung mit hochwertigen Materialien.' },
-  { icon: '🛤️', title: 'Wege & Zufahrten', description: 'Professionelle Pflasterarbeiten für Einfahrten und Gartenwege.' },
-  { icon: '🏡', title: 'Landschaftsbau', description: 'Kompletter Landschaftsbau von Erdarbeiten bis Bepflanzung.' },
-  { icon: '🌾', title: 'Rollrasen', description: 'Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen.' },
-  { icon: '🧹', title: 'Hausmeisterservice', description: 'Regelmäßige Gartenpflege und Grundstücksbetreuung.' },
-  { icon: '🌳', title: 'Sichtschutz', description: 'Sichtschutzzäune, Hecken und Gabionen für Ihre Privatsphäre.' },
+  { icon: '🌱', title: 'Gartengestaltung', description: 'Professionelle Gartenplanung und -gestaltung mit individueller Beratung.', href: '/leistungen/gartengestaltung' },
+  { icon: '🪨', title: 'Natursteinarbeiten', description: 'Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen und Einfassungen.', href: '/leistungen/natursteinarbeiten' },
+  { icon: '🏗️', title: 'Terrassenbau', description: 'Moderne Terrassengestaltung mit hochwertigen Materialien.', href: '/leistungen/terrassenbau' },
+  { icon: '🛤️', title: 'Wege & Zufahrten', description: 'Professionelle Pflasterarbeiten für Einfahrten und Gartenwege.', href: '/leistungen/pflasterarbeiten' },
+  { icon: '🏡', title: 'Landschaftsbau', description: 'Kompletter Landschaftsbau von Erdarbeiten bis Bepflanzung.', href: '/leistungen/landschaftsbau' },
+  { icon: '🌾', title: 'Rollrasen', description: 'Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen.', href: '/leistungen/rollrasen' },
+  { icon: '🧹', title: 'Hausmeisterservice', description: 'Regelmäßige Gartenpflege und Grundstücksbetreuung.', href: '/leistungen/hausmeisterservice' },
+  { icon: '🌳', title: 'Sichtschutz', description: 'Sichtschutzzäune, Hecken und Gabionen für Ihre Privatsphäre.', href: '/leistungen/sichtschutz' },
 ];
 
 const projects = [
@@ -29,8 +29,8 @@ const projects = [
 ---
 
 <MainLayout
-  title="Gartenbau Remseck | Landschaftsbau Stuttgart | Garten Ludwigsburg"
-  description="Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort."
+  title="Gartenbau Ludwigsburg & Stuttgart | Landschaftsbau & Gartengestaltung"
+  description="Professioneller Gartenbau in Ludwigsburg, Stuttgart, Waiblingen & Region. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort."
 >
   <!-- Header -->
   <Header />
@@ -42,7 +42,7 @@ const projects = [
   <TrustBar />
 
   <!-- Main Content -->
-  <main>
+  <main id="main-content">
 
     <!-- ==================== Leistungen ==================== -->
     <section id="leistungen" class="py-20 md:py-28 bg-ivory">
@@ -63,9 +63,20 @@ const projects = [
                 icon={service.icon}
                 title={service.title}
                 description={service.description}
+                href={service.href}
               />
             </div>
           ))}
+        </div>
+
+        <div class="text-center mt-12 reveal">
+          <a
+            href="/leistungen"
+            class="inline-flex items-center gap-2 text-terracotta font-medium transition-colors duration-300 hover:text-terracotta-dark"
+          >
+            Alle Leistungen ansehen
+            <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
     </section>
@@ -195,7 +206,7 @@ const projects = [
 
             <p class="text-text-muted leading-relaxed mt-6">
               Gartenbau Z.M. ist Ihr Familienbetrieb für hochwertige Garten- und
-              Landschaftsbauarbeiten in Remseck am Neckar, Stuttgart, Ludwigsburg
+              Landschaftsbauarbeiten in Ludwigsburg, Stuttgart, Waiblingen
               und der gesamten Region. Mit Leidenschaft und handwerklichem Können
               verwandeln wir Ihre Außenbereiche in grüne Wohlfühloasen.
             </p>

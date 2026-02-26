@@ -1,0 +1,83 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<MainLayout
+  title="Seite nicht gefunden | Gartenbau Z.M."
+  description="Die angeforderte Seite wurde nicht gefunden. Entdecken Sie unsere Leistungen oder kehren Sie zur Startseite zurück."
+  noindex={true}
+>
+  <Header />
+
+  <main id="main-content" class="min-h-[80vh] flex items-center justify-center bg-ivory relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
+      <!-- Scattered leaves -->
+      <div class="absolute top-[15%] left-[10%] text-6xl opacity-10 rotate-[-20deg]">🌿</div>
+      <div class="absolute top-[25%] right-[15%] text-5xl opacity-10 rotate-[30deg]">🍃</div>
+      <div class="absolute bottom-[20%] left-[20%] text-7xl opacity-10 rotate-[15deg]">🌱</div>
+      <div class="absolute bottom-[30%] right-[10%] text-4xl opacity-10 rotate-[-10deg]">🪨</div>
+      <div class="absolute top-[60%] left-[5%] text-5xl opacity-10 rotate-[45deg]">🌳</div>
+      <div class="absolute top-[10%] right-[30%] text-6xl opacity-10 rotate-[-35deg]">🌾</div>
+    </div>
+
+    <div class="text-center px-4 py-20 relative z-10">
+      <!-- 404 number with garden styling -->
+      <div class="relative inline-block mb-8">
+        <span class="text-[10rem] md:text-[14rem] font-heading text-forest/10 leading-none select-none" aria-hidden="true">
+          404
+        </span>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-6xl md:text-7xl" role="img" aria-label="Gartenspaten">🌻</span>
+        </div>
+      </div>
+
+      <h1 class="font-heading text-3xl md:text-4xl text-forest -mt-4">
+        Hier wächst noch nichts
+      </h1>
+
+      <p class="text-text-muted text-lg mt-4 max-w-md mx-auto leading-relaxed">
+        Die Seite, die Sie suchen, wurde leider nicht gefunden.
+        Vielleicht wurde sie umgepflanzt?
+      </p>
+
+      <!-- Navigation options -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+        <a
+          href="/"
+          class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors duration-200 inline-flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Zur Startseite
+        </a>
+        <a
+          href="/leistungen"
+          class="border border-forest/30 hover:border-forest text-forest rounded-full px-8 py-3 font-medium transition-colors duration-200"
+        >
+          Unsere Leistungen
+        </a>
+      </div>
+
+      <!-- Quick links -->
+      <div class="mt-14 pt-8 border-t border-sand/40 max-w-lg mx-auto">
+        <p class="text-sm text-text-muted mb-4">Vielleicht suchen Sie:</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="/projekte" class="text-sm text-terracotta hover:text-terracotta-dark transition-colors">Projekte</a>
+          <span class="text-sand" aria-hidden="true">&middot;</span>
+          <a href="/galerie" class="text-sm text-terracotta hover:text-terracotta-dark transition-colors">Galerie</a>
+          <span class="text-sand" aria-hidden="true">&middot;</span>
+          <a href="/blog" class="text-sm text-terracotta hover:text-terracotta-dark transition-colors">Blog</a>
+          <span class="text-sand" aria-hidden="true">&middot;</span>
+          <a href="/#kontakt" class="text-sm text-terracotta hover:text-terracotta-dark transition-colors">Kontakt</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>

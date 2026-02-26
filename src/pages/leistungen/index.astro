@@ -1,0 +1,139 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+
+const services = [
+  {
+    icon: '🌱',
+    title: 'Gartengestaltung',
+    description: 'Professionelle Gartenplanung und -gestaltung mit individueller Beratung — vom Entwurf bis zur Bepflanzung.',
+    slug: 'gartengestaltung',
+  },
+  {
+    icon: '🪨',
+    title: 'Natursteinarbeiten',
+    description: 'Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen und dekorative Elemente.',
+    slug: 'natursteinarbeiten',
+  },
+  {
+    icon: '🏗️',
+    title: 'Terrassenbau',
+    description: 'Moderne Terrassengestaltung mit hochwertigen Materialien für Ihren perfekten Außenbereich.',
+    slug: 'terrassenbau',
+  },
+  {
+    icon: '🛤️',
+    title: 'Pflasterarbeiten (Wege & Zufahrten)',
+    description: 'Professionelle Pflasterarbeiten für Einfahrten, Gartenwege und repräsentative Zufahrten.',
+    slug: 'pflasterarbeiten',
+  },
+  {
+    icon: '🏡',
+    title: 'Landschaftsbau',
+    description: 'Kompletter Landschaftsbau von Erdarbeiten über Geländemodellierung bis zur fertigen Bepflanzung.',
+    slug: 'landschaftsbau',
+  },
+  {
+    icon: '🌾',
+    title: 'Rollrasen',
+    description: 'Rollrasen-Verlegung für sofort nutzbaren, dichten und saftig grünen Rasen.',
+    slug: 'rollrasen',
+  },
+  {
+    icon: '🌳',
+    title: 'Sichtschutz',
+    description: 'Sichtschutzzäune, Hecken und Gabionen für mehr Privatsphäre in Ihrem Garten.',
+    slug: 'sichtschutz',
+  },
+  {
+    icon: '🧹',
+    title: 'Hausmeisterservice',
+    description: 'Regelmäßige Gartenpflege, Grundstücksbetreuung und zuverlässiger Hausmeisterservice.',
+    slug: 'hausmeisterservice',
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.gartenbau-zm.de/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Leistungen',
+      item: 'https://www.gartenbau-zm.de/leistungen/',
+    },
+  ],
+};
+---
+
+<MainLayout
+  title="Leistungen | Gartenbau Z.M. - Gartenbau Ludwigsburg, Stuttgart & Region"
+  description="Alle Leistungen von Gartenbau Z.M.: Gartengestaltung, Natursteinarbeiten, Terrassenbau, Pflasterarbeiten, Landschaftsbau, Rollrasen, Sichtschutz & Hausmeisterservice."
+>
+  <Header />
+
+  <!-- Hero Banner -->
+  <section class="bg-forest pt-28 pb-20 md:pt-36 md:pb-28 text-center">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="text-sand/60 text-sm mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-sand transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-sand">Leistungen</span>
+      </nav>
+
+      <h1 class="font-heading text-4xl md:text-5xl text-white">
+        Unsere Leistungen
+      </h1>
+      <p class="text-ivory/80 mt-4 max-w-2xl mx-auto">
+        Professioneller Gartenbau und Landschaftsbau in Ludwigsburg, Stuttgart und der gesamten Region — alles aus einer Hand.
+      </p>
+    </div>
+  </section>
+
+  <!-- Service Listing -->
+  <main id="main-content" class="py-20 md:py-28 bg-ivory">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map((service, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 100}ms`}>
+            <ServiceCard
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              href={`/leistungen/${service.slug}`}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-16 reveal">
+        <p class="text-text-muted max-w-2xl mx-auto">
+          Sie haben Fragen zu einer unserer Leistungen oder wünschen eine individuelle Beratung? Wir sind gerne für Sie da.
+        </p>
+        <a
+          href="/#kontakt"
+          class="inline-flex items-center gap-2 bg-terracotta text-white font-medium px-8 py-3 rounded-full mt-6 transition-colors duration-300 hover:bg-terracotta-dark"
+        >
+          Kostenlose Beratung anfragen
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <!-- BreadcrumbList JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</MainLayout>

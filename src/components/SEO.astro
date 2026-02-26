@@ -29,7 +29,7 @@ const localBusinessSchema = {
   "@id": `${siteUrl}/#business`,
   "name": "Gartenbau Z.M.",
   "legalName": "Gartenbau Z.M.",
-  "description": "Professioneller Garten- und Landschaftsbau in Remseck am Neckar, Stuttgart und Region. Gartengestaltung, Natursteinarbeiten, Terrassenbau, Pflasterarbeiten.",
+  "description": "Professioneller Garten- und Landschaftsbau in Ludwigsburg, Stuttgart und Region. Gartengestaltung, Natursteinarbeiten, Terrassenbau, Pflasterarbeiten.",
   "url": siteUrl,
   "logo": {
     "@type": "ImageObject",
@@ -60,32 +60,23 @@ const localBusinessSchema = {
   "areaServed": [
     {
       "@type": "City",
-      "name": "Remseck am Neckar",
+      "name": "Ludwigsburg",
       "containedInPlace": {
         "@type": "State",
         "name": "Baden-Württemberg"
       }
     },
-    {
-      "@type": "City",
-      "name": "Stuttgart"
-    },
-    {
-      "@type": "City",
-      "name": "Ludwigsburg"
-    },
-    {
-      "@type": "City",
-      "name": "Waiblingen"
-    },
-    {
-      "@type": "City",
-      "name": "Kornwestheim"
-    },
-    {
-      "@type": "City",
-      "name": "Fellbach"
-    }
+    { "@type": "City", "name": "Stuttgart" },
+    { "@type": "City", "name": "Remseck am Neckar" },
+    { "@type": "City", "name": "Waiblingen" },
+    { "@type": "City", "name": "Fellbach" },
+    { "@type": "City", "name": "Kornwestheim" },
+    { "@type": "City", "name": "Esslingen am Neckar" },
+    { "@type": "City", "name": "Leonberg" },
+    { "@type": "City", "name": "Böblingen" },
+    { "@type": "City", "name": "Sindelfingen" },
+    { "@type": "City", "name": "Bietigheim-Bissingen" },
+    { "@type": "City", "name": "Korntal-Münchingen" }
   ],
   "priceRange": "€€",
   "openingHoursSpecification": [
@@ -122,7 +113,8 @@ const localBusinessSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Gartengestaltung",
-          "description": "Professionelle Gartenplanung und -gestaltung mit individueller Beratung"
+          "description": "Professionelle Gartenplanung und -gestaltung mit individueller Beratung",
+          "url": `${siteUrl}/leistungen/gartengestaltung`
         }
       },
       {
@@ -130,7 +122,8 @@ const localBusinessSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Natursteinarbeiten",
-          "description": "Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen"
+          "description": "Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen",
+          "url": `${siteUrl}/leistungen/natursteinarbeiten`
         }
       },
       {
@@ -138,7 +131,8 @@ const localBusinessSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Terrassenbau",
-          "description": "Moderne Terrassengestaltung mit hochwertigen Materialien"
+          "description": "Moderne Terrassengestaltung mit hochwertigen Materialien",
+          "url": `${siteUrl}/leistungen/terrassenbau`
         }
       },
       {
@@ -146,7 +140,44 @@ const localBusinessSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Pflasterarbeiten",
-          "description": "Professionelle Pflasterarbeiten für Einfahrten und Gartenwege"
+          "description": "Professionelle Pflasterarbeiten für Einfahrten und Gartenwege",
+          "url": `${siteUrl}/leistungen/pflasterarbeiten`
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Landschaftsbau",
+          "description": "Kompletter Landschaftsbau von Erdarbeiten bis Bepflanzung",
+          "url": `${siteUrl}/leistungen/landschaftsbau`
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Rollrasen",
+          "description": "Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen",
+          "url": `${siteUrl}/leistungen/rollrasen`
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sichtschutz",
+          "description": "Sichtschutzzäune, Hecken und Gabionen für Ihre Privatsphäre",
+          "url": `${siteUrl}/leistungen/sichtschutz`
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Hausmeisterservice",
+          "description": "Regelmäßige Gartenpflege und Grundstücksbetreuung",
+          "url": `${siteUrl}/leistungen/hausmeisterservice`
         }
       }
     ]
@@ -209,7 +240,7 @@ if (pathParts.length > 0) {
 
 <!-- Geo Meta Tags for Local SEO -->
 <meta name="geo.region" content="DE-BW">
-<meta name="geo.placename" content="Remseck am Neckar">
+<meta name="geo.placename" content="Ludwigsburg">
 <meta name="geo.position" content="48.8951;9.2742">
 <meta name="ICBM" content="48.8951, 9.2742">
 

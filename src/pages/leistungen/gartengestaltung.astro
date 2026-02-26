@@ -1,0 +1,182 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
+    { "@type": "ListItem", "position": 3, "name": "Gartengestaltung", "item": "https://gartenbauzm.de/leistungen/gartengestaltung/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Gartengestaltung",
+  "description": "Professionelle Gartengestaltung in Ludwigsburg, Stuttgart & Region. Individuelle Gartenplanung, Bepflanzung & Neugestaltung. Kostenlose Beratung.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
+    "telephone": "+491782747470",
+    "url": "https://gartenbauzm.de"
+  },
+  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+};
+
+const faqs = [
+  { question: "Was kostet eine professionelle Gartengestaltung?", answer: "Die Kosten variieren je nach Umfang und Wünschen. Ein kleiner Vorgarten beginnt bei ca. 2.000 Euro, während eine komplette Gartenumgestaltung ab ca. 8.000 Euro startet. Wir erstellen Ihnen nach einer kostenlosen Erstberatung ein individuelles Angebot mit transparenter Preisaufstellung." },
+  { question: "Wie lange dauert eine komplette Gartenumgestaltung?", answer: "Die Dauer hängt von der Projektgröße ab. Kleinere Projekte wie eine neue Bepflanzung realisieren wir innerhalb weniger Tage. Eine vollständige Gartenumgestaltung mit Erdarbeiten, Wegebau und Bepflanzung dauert in der Regel zwei bis vier Wochen. Den genauen Zeitplan besprechen wir vorab." },
+  { question: "Bieten Sie auch eine Gartenplanung mit 3D-Visualisierung an?", answer: "Ja, wir erstellen auf Wunsch detaillierte Gartenpläne, damit Sie sich Ihr zukünftiges Grün bereits vor der Umsetzung vorstellen können. So können wir gemeinsam Änderungen besprechen, bevor die eigentlichen Arbeiten beginnen." },
+  { question: "Welche Pflanzen eignen sich für Gärten in der Region Stuttgart?", answer: "Die Region Stuttgart bietet dank des milden Klimas vielfältige Möglichkeiten. Besonders gut gedeihen heimische Stauden, Gräser, Hortensien, Lavendel und verschiedene Gehölze. Wir beraten Sie ausführlich zu standortgerechten Pflanzen, die pflegeleicht sind und das ganze Jahr attraktiv wirken." },
+  { question: "Übernehmen Sie auch die laufende Gartenpflege nach der Gestaltung?", answer: "Selbstverständlich. Wir bieten regelmäßige Gartenpflege als Zusatzleistung an — von Rasenmähen und Heckenschnitt bis zur saisonalen Bepflanzung. So bleibt Ihr Garten dauerhaft in bestem Zustand." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<MainLayout
+  title="Gartengestaltung Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
+  description="Professionelle Gartengestaltung in Ludwigsburg, Stuttgart & Region. Individuelle Gartenplanung, Bepflanzung & Neugestaltung. Kostenlose Beratung."
+  ogImage="/img/image_2.webp"
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-ivory/60">
+          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ivory">Gartengestaltung</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Gartengestaltung</h1>
+      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Individuelle Gartenplanung und -gestaltung in Ludwigsburg, Stuttgart und der gesamten Region — von der ersten Idee bis zum fertigen Traumgarten.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <!-- Service description -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest">Ihr Garten, individuell geplant und professionell umgesetzt</h2>
+        <p class="mt-6 text-text leading-relaxed">
+          Ein schöner Garten ist mehr als nur eine Grünfläche — er ist ein Ort der Erholung, ein Lebensraum für die Familie und eine Visitenkarte Ihres Hauses. Bei Gartenbau Z.M. gestalten wir Gärten in Ludwigsburg, Stuttgart, Waiblingen, Fellbach, Kornwestheim und der gesamten Region, die genau zu Ihren Vorstellungen und den Gegebenheiten Ihres Grundstücks passen.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Von der Planung bis zur Bepflanzung</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Jedes Gartenprojekt beginnt mit einem persönlichen Beratungsgespräch vor Ort. Wir analysieren die Bodenbeschaffenheit, die Lichtverhältnisse und Ihre Wünsche. Darauf aufbauend entwickeln wir ein durchdachtes Gestaltungskonzept, das Pflanzflächen, Wege, Sitzplätze und Wasserelemente harmonisch miteinander verbindet. Dabei berücksichtigen wir sowohl ästhetische als auch praktische Aspekte wie Pflegeaufwand und Nachhaltigkeit.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Neugestaltung und Umgestaltung</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Ob Sie einen bestehenden Garten komplett neu gestalten oder gezielt einzelne Bereiche aufwerten möchten — wir setzen Ihre Ideen fachgerecht um. Von modernen, geradlinigen Gartenkonzepten über naturnahe Wildgärten bis hin zu pflegeleichten Gärten mit automatischer Bewässerung: Unser erfahrenes Team beherrscht alle Stilrichtungen und arbeitet ausschließlich mit hochwertigen Materialien und gesunden Pflanzen aus regionalen Baumschulen.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Nachhaltige Gartengestaltung in der Region Stuttgart</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Wir legen großen Wert auf eine ökologisch sinnvolle Gartengestaltung. Das bedeutet: standortgerechte Pflanzenauswahl, wassersparende Bewässerungslösungen und der Einsatz natürlicher Materialien. Auch das Thema Biodiversität ist uns wichtig — mit Blühwiesen, Insektenhotels und heimischen Gehölzen schaffen wir Lebensräume, die nicht nur schön aussehen, sondern auch einen Beitrag für die Umwelt leisten. Ob in Ludwigsburg, Fellbach, Esslingen oder Stuttgart: Wir sind Ihr verlässlicher Partner für nachhaltige Gartengestaltung.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Persönliche Beratung und Gartenplanung vor Ort</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Komplette Gartenneugestaltung und Umgestaltung</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Professionelle Bepflanzung mit regionalen Pflanzen</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Erdarbeiten und Geländemodellierung</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Anlage von Rasenflächen und Rollrasen</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Bewässerungssysteme und Gartenbeleuchtung</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Sicht- und Windschutzlösungen</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Laufende Gartenpflege und Wartung</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <img src="/img/image_2.webp" alt="Gartengestaltung mit harmonischer Bepflanzung in Ludwigsburg" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_3.webp" alt="Neugestalteter Garten mit Rasenfläche und Staudenbeet in Stuttgart" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_10.webp" alt="Professionelle Gartenplanung mit Wegeführung und Bepflanzung" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
+        {faqs.map((faq) => (
+          <details class="border-b border-sand/50 group">
+            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-forest text-white text-center">
+      <div class="mx-auto max-w-3xl px-4">
+        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
+        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
+          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>
+
+<style>
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+  details .faq-content > p {
+    overflow: hidden;
+  }
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

@@ -1,0 +1,182 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
+    { "@type": "ListItem", "position": 3, "name": "Pflasterarbeiten", "item": "https://gartenbauzm.de/leistungen/pflasterarbeiten/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Pflasterarbeiten",
+  "description": "Professionelle Pflasterarbeiten in Ludwigsburg, Stuttgart & Region. Einfahrten, Gartenwege & Hofeinfahrten. Betonstein, Naturstein & Klinker.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
+    "telephone": "+491782747470",
+    "url": "https://gartenbauzm.de"
+  },
+  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+};
+
+const faqs = [
+  { question: "Welche Pflastersteine eignen sich für eine Einfahrt?", answer: "Für Einfahrten empfehlen wir Pflastersteine mit hoher Druckfestigkeit, die das Gewicht von Fahrzeugen dauerhaft aushalten. Betonstein in 8 cm Stärke, Natursteinpflaster aus Granit oder hochwertige Klinker sind ideale Materialien. Wir beraten Sie zur optimalen Steinwahl basierend auf der erwarteten Belastung, Ihrem gewünschten Erscheinungsbild und dem Budget." },
+  { question: "Was kostet eine gepflasterte Einfahrt?", answer: "Die Kosten hängen von Größe, Material und Untergrund ab. Eine Standard-Einfahrt von ca. 30 Quadratmetern mit Betonstein kostet ab ca. 3.500 Euro. Natursteinpflaster beginnt ab ca. 5.000 Euro für die gleiche Fläche, jeweils inklusive Erdarbeiten, Tragschicht und Verlegung. Gerne erstellen wir Ihnen ein individuelles Angebot." },
+  { question: "Brauche ich eine Genehmigung für das Pflastern meiner Einfahrt?", answer: "In Baden-Württemberg ist das Pflastern einer Einfahrt auf dem eigenen Grundstück in der Regel genehmigungsfrei. Allerdings muss bei Neuanschluss an eine öffentliche Straße eine Genehmigung für den Bordsteinabsenkung beantragt werden. Zudem achten wir auf die kommunalen Vorgaben zur Versickerung, da einige Gemeinden wasserdurchlässige Beläge vorschreiben." },
+  { question: "Was ist der Unterschied zwischen gebundener und ungebundener Bauweise?", answer: "Bei der ungebundenen Bauweise werden die Pflastersteine auf einem Splittbett verlegt und die Fugen mit Sand verfüllt. Diese Methode ist kostengünstiger und ermöglicht eine natürliche Versickerung. Bei der gebundenen Bauweise werden die Steine auf Drainmörtel verlegt und mit Fugenmörtel verfugt. Das verhindert Unkrautwachstum und Ameisenbefall, ist jedoch aufwendiger." },
+  { question: "Wie pflege ich meine Pflasterfläche richtig?", answer: "Regelmäßiges Kehren und gelegentliches Abspritzen mit dem Gartenschlauch reichen für die Grundpflege aus. Bei ungebundener Verlegung sollte der Fugensand alle paar Jahre ergänzt werden. Moos und Grünbelag lassen sich mit speziellen Reinigern oder einem Hochdruckreiniger (mit Vorsicht) entfernen. Wir bieten auch professionelle Pflege- und Reinigungsservices an." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<MainLayout
+  title="Pflasterarbeiten Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
+  description="Professionelle Pflasterarbeiten in Ludwigsburg, Stuttgart & Region. Einfahrten, Gartenwege & Hofeinfahrten. Betonstein, Naturstein & Klinker."
+  ogImage="/img/image_80.webp"
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-ivory/60">
+          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ivory">Pflasterarbeiten</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Pflasterarbeiten</h1>
+      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Professionelle Pflasterarbeiten für Einfahrten, Gartenwege und Hofflächen — dauerhaft, fachgerecht und optisch ansprechend.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <!-- Service description -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest">Pflasterarbeiten vom Fachbetrieb</h2>
+        <p class="mt-6 text-text leading-relaxed">
+          Gepflasterte Flächen prägen den ersten Eindruck Ihres Grundstücks. Ob einladende Einfahrt, geschwungener Gartenweg oder repräsentative Hofeinfahrt — bei Gartenbau Z.M. realisieren wir Pflasterarbeiten in Ludwigsburg, Stuttgart, Waiblingen, Esslingen und der gesamten Region, die handwerklich einwandfrei ausgeführt sind und über viele Jahre belastbar bleiben. Von der Planung über die Erdarbeiten bis zur sauberen Verfugung erhalten Sie alles aus einer Hand.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Materialauswahl: Betonstein, Naturstein und Klinker</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Wir verarbeiten alle gängigen Pflastermaterialien und beraten Sie zur optimalen Wahl. Betonstein bietet ein hervorragendes Preis-Leistungs-Verhältnis und ist in zahlreichen Farben und Formaten erhältlich — von klassischem Rechteckpflaster bis zu modernen Großformatplatten. Natursteinpflaster aus Granit, Basalt oder Porphyr überzeugt durch seine einzigartige Optik und extreme Langlebigkeit. Klinker setzt mit seinen warmen Rottönen besondere Akzente und eignet sich sowohl für ländliche als auch für moderne Gestaltungen.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Fachgerechter Aufbau für dauerhafte Ergebnisse</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Die Qualität einer Pflasterfläche steht und fällt mit dem Unterbau. Wir tragen zunächst den Oberboden ab und erstellen eine verdichtete Tragschicht aus Schotter, die der jeweiligen Belastung angepasst wird. Einfahrten erhalten einen stärkeren Aufbau als Gartenwege. Darauf folgt das Splittbett, in das die Pflastersteine millimetergenau verlegt werden. Randeinfassungen aus Beton oder Naturstein sichern die Fläche gegen seitliches Verschieben. Das Ergebnis ist eine ebenmäßige, langlebige Fläche ohne spätere Absackungen.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Entwässerung und Versickerung</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Die Entwässerung ist ein wesentlicher Bestandteil jeder Pflasterarbeit. Wir planen ein ausreichendes Gefälle ein und setzen bei Bedarf Entwässerungsrinnen oder Muldenrinnen. Für umweltbewusste Kunden bieten wir wasserdurchlässige Pflastersysteme an, die Regenwasser direkt vor Ort versickern lassen. Das schont die Kanalisation und entspricht den aktuellen Anforderungen vieler Kommunen im Raum Stuttgart, Fellbach und Waiblingen an die Flächenversiegelung.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Einfahrten und Hofeinfahrten pflastern</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Gartenwege und Gehwege anlegen</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Betonstein, Naturstein und Klinker</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Fachgerechter Unterbau mit Tragschicht</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Randeinfassungen und Bordsteine</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Entwässerungsrinnen und Versickerungssysteme</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Wasserdurchlässige Pflastersysteme</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Sanierung und Neuverlegung bestehender Flächen</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <img src="/img/image_80.webp" alt="Gepflasterte Einfahrt mit Betonstein-Pflaster in Ludwigsburg" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_85.webp" alt="Gartenweg aus Natursteinpflaster in Stuttgart" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_90.webp" alt="Pflasterarbeiten mit Randeinfassung und Entwässerung" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
+        {faqs.map((faq) => (
+          <details class="border-b border-sand/50 group">
+            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-forest text-white text-center">
+      <div class="mx-auto max-w-3xl px-4">
+        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
+        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
+          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>
+
+<style>
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+  details .faq-content > p {
+    overflow: hidden;
+  }
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

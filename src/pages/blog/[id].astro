@@ -28,8 +28,9 @@ const germanMonths = [
 ];
 const formattedDate = `${entry.data.date.getDate()}. ${germanMonths[entry.data.date.getMonth()]} ${entry.data.date.getFullYear()}`;
 
-// Estimate reading time (rough word count estimate from rendered content body)
-const readingTime = Math.max(Math.ceil(entry.data.description.length / 200), 1);
+// Reading time from actual content word count (~200 words/min German)
+const wordCount = entry.body ? entry.body.trim().split(/\s+/).length : 0;
+const readingTime = Math.max(Math.ceil(wordCount / 200), 1);
 
 const siteUrl = 'https://gartenbauzm.de';
 
@@ -104,7 +105,7 @@ const blogPostingSchema = {
   </div>
 
   <!-- Main Content -->
-  <main class="py-16 md:py-24 bg-ivory">
+  <main id="main-content" class="py-16 md:py-24 bg-ivory">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 
       <!-- Article Meta -->

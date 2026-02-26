@@ -1,0 +1,182 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
+    { "@type": "ListItem", "position": 3, "name": "Natursteinarbeiten", "item": "https://gartenbauzm.de/leistungen/natursteinarbeiten/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Natursteinarbeiten",
+  "description": "Hochwertige Natursteinarbeiten in Ludwigsburg, Stuttgart & Region. Natursteinmauern, Treppen, Einfassungen aus Granit, Sandstein & Muschelkalk.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
+    "telephone": "+491782747470",
+    "url": "https://gartenbauzm.de"
+  },
+  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+};
+
+const faqs = [
+  { question: "Welche Natursteinarten verwenden Sie?", answer: "Wir arbeiten mit einer Vielzahl hochwertiger Natursteine: Granit für besonders beanspruchte Flächen, Sandstein für warme, natürliche Optik, Muschelkalk als regionaltypischen Stein sowie Basalt, Gneis und Porphyr. Die Steinauswahl stimmen wir gemeinsam auf Ihr Projekt, den gewünschten Stil und Ihr Budget ab." },
+  { question: "Wie langlebig sind Natursteinmauern?", answer: "Natursteinmauern gehören zu den langlebigsten Bauwerken im Garten. Bei fachgerechter Errichtung mit passendem Fundament halten sie problemlos mehrere Jahrzehnte. Trockenmauern ohne Mörtel bieten zusätzlich wertvolle Lebensräume für Eidechsen und Insekten und sind besonders in naturnahen Gärten beliebt." },
+  { question: "Was kostet eine Natursteinmauer pro laufenden Meter?", answer: "Die Kosten hängen von der Steinart, der Mauerhöhe und der Bauweise ab. Eine einfache Trockenmauer beginnt bei ca. 150 Euro pro laufendem Meter, während eine gemörtelte Natursteinmauer aus hochwertigem Granit ab ca. 300 Euro pro Meter kostet. Wir erstellen Ihnen gerne ein detailliertes Angebot." },
+  { question: "Können Sie auch bestehende Natursteinmauern sanieren?", answer: "Ja, wir übernehmen auch Sanierungsarbeiten an bestehenden Natursteinmauern und -treppen. Dazu gehören das Ausbessern von Fugen, der Austausch beschädigter Steine und die Stabilisierung von Fundamenten. Oft lässt sich eine bestehende Mauer mit gezielten Maßnahmen wieder in einen einwandfreien Zustand bringen." },
+  { question: "Benötige ich eine Baugenehmigung für eine Natursteinmauer?", answer: "In Baden-Württemberg sind freistehende Mauern bis zu einer Höhe von zwei Metern in der Regel genehmigungsfrei. Stützmauern und Mauern in Hanglagen können jedoch genehmigungspflichtig sein. Wir beraten Sie zu den lokalen Vorschriften in Ludwigsburg, Stuttgart und Umgebung und unterstützen Sie bei Bedarf mit den Antragsunterlagen." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<MainLayout
+  title="Natursteinarbeiten Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
+  description="Hochwertige Natursteinarbeiten in Ludwigsburg, Stuttgart & Region. Natursteinmauern, Treppen, Einfassungen aus Granit, Sandstein & Muschelkalk."
+  ogImage="/img/image_65.webp"
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-ivory/60">
+          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ivory">Natursteinarbeiten</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Natursteinarbeiten</h1>
+      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Hochwertige Natursteinmauern, Treppen und Einfassungen aus Granit, Sandstein und Muschelkalk — handwerklich perfekt umgesetzt.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <!-- Service description -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest">Naturstein — zeitlose Eleganz für Ihren Garten</h2>
+        <p class="mt-6 text-text leading-relaxed">
+          Naturstein verleiht jedem Außenbereich einen besonderen Charakter. Als natürliches Material fügt er sich harmonisch in jede Gartengestaltung ein und überzeugt durch seine Langlebigkeit und Widerstandsfähigkeit. Bei Gartenbau Z.M. sind Natursteinarbeiten eine unserer Kernkompetenzen. Wir realisieren anspruchsvolle Steinprojekte in Ludwigsburg, Stuttgart, Waiblingen, Kornwestheim und der gesamten Region.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Mauern, Treppen und Einfassungen</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Ob repräsentative Natursteinmauer als Grundstücksabgrenzung, eine elegante Treppe im Hanggrundstück oder dekorative Beeteinfassungen — wir verarbeiten Naturstein in allen gängigen Bauweisen. Unsere Leistungen umfassen sowohl klassische Trockenmauern ohne Mörtel als auch gemörtelte Mauern mit Frostschutzfundament. Für Hanggrundstücke in Stuttgart und Umgebung bauen wir stabile Stützmauern, die sowohl funktional als auch ästhetisch überzeugen.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Materialauswahl und Verarbeitung</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Die Wahl des richtigen Steins ist entscheidend für das Gesamtbild. Wir arbeiten mit Granit, Sandstein, Muschelkalk, Basalt und weiteren hochwertigen Steinsorten. Muschelkalk ist als regionaler Stein in der Stuttgarter Region besonders beliebt und fügt sich nahtlos in die Landschaft ein. Granit eignet sich hervorragend für stark beanspruchte Bereiche wie Treppenstufen und Mauerabdeckungen. Bei der Verarbeitung achten wir auf saubere Fugenbilder, präzise Schnitte und eine dauerhafte Verlegung.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Naturstein als gestalterisches Element</h3>
+        <p class="mt-4 text-text leading-relaxed">
+          Neben klassischen Mauern und Treppen setzen wir Naturstein auch als gestalterisches Highlight ein: als Trittsteine im Rasen, als Findlinge in Staudenbeeten, als Wasserlaufeinfassung oder als Sitzsteine im Garten. In Kombination mit passender Bepflanzung entsteht ein stimmiges Gesamtbild, das Ihren Garten in Ludwigsburg, Fellbach, Waiblingen oder Esslingen aufwertet und über viele Jahre Freude bereitet.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Natursteinmauern (Trocken- und Mörtelbauweise)</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Treppen und Stufenanlagen aus Naturstein</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Stützmauern für Hanggrundstücke</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Beeteinfassungen und Rasenkanten</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Naturstein-Verblendungen und Mauerabdeckungen</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Hochbeete aus Naturstein</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Sanierung bestehender Natursteinmauern</span></li>
+          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Beratung zur optimalen Steinauswahl</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <img src="/img/image_65.webp" alt="Natursteinmauer aus Muschelkalk als Grundstücksabgrenzung" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_66.webp" alt="Treppe aus Granit-Blockstufen im Hanggrundstück" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_70.webp" alt="Natursteineinfassung und Stützmauer im Garten bei Stuttgart" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
+        {faqs.map((faq) => (
+          <details class="border-b border-sand/50 group">
+            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-forest text-white text-center">
+      <div class="mx-auto max-w-3xl px-4">
+        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
+        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
+          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>
+
+<style>
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+  details .faq-content > p {
+    overflow: hidden;
+  }
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

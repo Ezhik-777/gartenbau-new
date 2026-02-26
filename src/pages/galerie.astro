@@ -23,7 +23,7 @@ const images = Array.from({ length: 180 }, (_, i) => {
       'Gartenplanung'
     ];
     const subcategory = subcategories[Math.floor((id - 1) / 12) % subcategories.length];
-    alt = `${subcategory} Projekt ${id} - Professioneller Gartenbau in Stuttgart und Remseck am Neckar`;
+    alt = `${subcategory} Projekt ${id} - Professioneller Gartenbau in Ludwigsburg und Stuttgart`;
     title = `${subcategory} #${id}`;
   } else if (id >= 61 && id <= 105) {
     // Natural stone work (61-105)
@@ -75,7 +75,7 @@ const images = Array.from({ length: 180 }, (_, i) => {
       'Zaunbau'
     ];
     const subcategory = subcategories[Math.floor((id - 166) / 3) % subcategories.length];
-    alt = `${subcategory} Projekt ${id} - Sichtschutz und Zaunbau in Remseck`;
+    alt = `${subcategory} Projekt ${id} - Sichtschutz und Zaunbau in Ludwigsburg und Region`;
     title = `${subcategory} #${id}`;
   }
 
@@ -102,8 +102,8 @@ const categoryCounts = {
 ---
 
 <MainLayout
-  title="Projekt Galerie - 180+ Gartenprojekte | Gartenbau Z.M. Remseck"
-  description="Entdecken Sie über 180 erfolgreich abgeschlossene Gartenprojekte in Stuttgart, Remseck, Ludwigsburg & Waiblingen. Gartengestaltung, Naturstein, Terrassen, Pflaster & mehr."
+  title="Projekt Galerie - 180+ Gartenprojekte | Gartenbau Z.M. Ludwigsburg"
+  description="Entdecken Sie über 180 erfolgreich abgeschlossene Gartenprojekte in Ludwigsburg, Stuttgart, Waiblingen & Region. Gartengestaltung, Naturstein, Terrassen, Pflaster & mehr."
   canonical="https://gartenbauzm.de/galerie"
   ogImage="/img/image_1.webp"
   ogType="website"
@@ -130,7 +130,7 @@ const categoryCounts = {
   </section>
 
   <!-- Main Gallery Content -->
-  <main class="py-16 md:py-24 bg-ivory">
+  <main id="main-content" class="py-16 md:py-24 bg-ivory">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Gallery Controls -->
       <div class="flex flex-col gap-6 mb-10">

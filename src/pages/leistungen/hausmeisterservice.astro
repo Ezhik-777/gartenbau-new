@@ -1,0 +1,212 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
+    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
+    { "@type": "ListItem", "position": 3, "name": "Hausmeisterservice", "item": "https://gartenbauzm.de/leistungen/hausmeisterservice/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Hausmeisterservice",
+  "description": "Zuverlässiger Hausmeisterservice in Ludwigsburg, Stuttgart & Region. Gartenpflege, Grundstücksbetreuung & Winterdienst. Regelmäßig oder auf Abruf.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Gartenbau Z.M.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
+    "telephone": "+491782747470",
+    "url": "https://gartenbauzm.de"
+  },
+  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+};
+
+const faqs = [
+  { question: "Wie oft kommt der Hausmeisterservice?", answer: "Die Häufigkeit stimmen wir individuell auf Ihren Bedarf ab. Die meisten unserer Kunden in Ludwigsburg und Stuttgart buchen einen wöchentlichen oder 14-tägigen Rhythmus für die Gartenpflege. Im Winter kann der Winterdienst täglich anfallen. Wir bieten aber auch monatliche Betreuung oder Einsätze auf Abruf an — ganz nach Ihren Wünschen und Ihrem Budget." },
+  { question: "Was kostet der Hausmeisterservice pro Monat?", answer: "Die monatlichen Kosten richten sich nach Grundstücksgröße, gewünschtem Leistungsumfang und Besuchshäufigkeit. Für ein durchschnittliches Einfamilienhaus mit Gartenpflege im 14-tägigen Rhythmus rechnen Sie mit ca. 150-300 Euro monatlich. Für eine Wohnanlage mit mehreren Einheiten erstellen wir Ihnen ein individuelles Pauschalangebot. Die Erstberatung und Besichtigung sind kostenlos." },
+  { question: "Ist der Winterdienst im Hausmeisterservice enthalten?", answer: "Der Winterdienst kann als Zusatzleistung oder als Teil eines Jahrespakets gebucht werden. Er umfasst Schneeräumung und Streuen von Gehwegen, Zufahrten und Parkplätzen. Wir sind in den Wintermonaten ab 6 Uhr morgens einsatzbereit und gewährleisten, dass Ihre Verkehrssicherungspflicht zuverlässig erfüllt wird. Streumaterial stellen wir auf Wunsch." },
+  { question: "Welche Grundstücke betreuen Sie?", answer: "Wir betreuen Einfamilienhäuser, Mehrfamilienhäuser, Wohnanlagen, Gewerbeobjekte und öffentliche Einrichtungen in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und Fellbach. Vom kleinen Vorgarten bis zur großen Gewerbefläche — wir passen unseren Service flexibel an Ihr Objekt an. Hausverwaltungen bieten wir attraktive Rahmenverträge." },
+  { question: "Kann ich einzelne Leistungen auch separat buchen?", answer: "Ja, Sie können jede unserer Hausmeisterservice-Leistungen auch einzeln und auf Abruf buchen. Ob ein einmaliger Heckenschnitt, eine saisonale Beetpflege oder ein Großputz der Außenanlage — rufen Sie uns einfach an oder schreiben Sie uns über das Kontaktformular. Wir sind in der Regel innerhalb weniger Werktage vor Ort." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<MainLayout
+  title="Hausmeisterservice Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
+  description="Zuverlässiger Hausmeisterservice in Ludwigsburg, Stuttgart & Region. Gartenpflege, Grundstücksbetreuung & Winterdienst. Regelmäßig oder auf Abruf."
+  ogImage="/img/image_55.webp"
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-ivory/60">
+          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ivory">Hausmeisterservice</li>
+        </ol>
+      </nav>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Hausmeisterservice</h1>
+      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Zuverlässige Gartenpflege und Grundstücksbetreuung in Ludwigsburg, Stuttgart und der gesamten Region.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <!-- Service description -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest">Ihr zuverlässiger Hausmeisterservice vor Ort</h2>
+        <p class="mt-6 font-body text-text-muted leading-relaxed">
+          Ein gepflegtes Grundstück steigert nicht nur den Wert Ihrer Immobilie, sondern sorgt auch für Wohlbefinden und Sicherheit. Gartenbau Z.M. bietet einen umfassenden Hausmeisterservice in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und Fellbach. Ob regelmäßige Gartenpflege, saisonale Arbeiten oder Winterdienst — wir kümmern uns zuverlässig um Ihr Grundstück, damit Sie sich um nichts sorgen müssen.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Regelmäßige Gartenpflege</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Unser Kernbereich ist die laufende Gartenpflege. Dazu gehören Rasenmähen, Heckenschnitt, Unkrautbekämpfung, Beetpflege und Laubbeseitigung. Wir arbeiten mit professionellem Gerät und stimmen die Pflegeintervalle auf die Bedürfnisse Ihres Gartens ab. Im Frühjahr bereiten wir Ihren Garten in Ludwigsburg oder Stuttgart auf die Saison vor, im Herbst machen wir ihn winterfest. So bleibt Ihre Außenanlage das ganze Jahr über in einwandfreiem Zustand.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Grundstücksbetreuung und Objektpflege</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Neben der Gartenpflege übernehmen wir die Betreuung Ihres gesamten Grundstücks. Wir reinigen Gehwege, Einfahrten und Stellplätze, beseitigen Wildwuchs und halten Entwässerungsrinnen frei. Für Hausverwaltungen und Wohnungseigentümergemeinschaften in Ludwigsburg und Waiblingen bieten wir maßgeschneiderte Service-Pakete mit festem Ansprechpartner, regelmäßigen Begehungen und transparenter Dokumentation aller durchgeführten Arbeiten.
+        </p>
+
+        <h3 class="font-heading text-2xl text-forest mt-10">Winterdienst mit Verlässlichkeit</h3>
+        <p class="mt-4 font-body text-text-muted leading-relaxed">
+          Im Winter sorgen wir für sichere Wege und Zufahrten. Unser Winterdienst umfasst Schneeräumung und Streuen bei Glatteis — zuverlässig ab den frühen Morgenstunden. Wir erfüllen Ihre Verkehrssicherungspflicht pünktlich und gewissenhaft, sodass Bewohner und Besucher Ihr Grundstück sicher betreten können. Der Winterdienst kann als Einzelleistung oder im Jahrespaket gebucht werden. In Ludwigsburg, Stuttgart und der gesamten Region sind wir kurzfristig einsatzbereit.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Rasenmähen und Rasenkantenpflege</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Heckenschnitt und Strauchpflege</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Unkrautbekämpfung und Beetpflege</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Laubbeseitigung und Herbstreinigung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Winterdienst: Schneeräumung und Streuen</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Gehweg- und Zufahrtsreinigung</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Bewässerung und Düngung nach Plan</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
+            <span class="font-body text-text-muted">Flexible Verträge: wöchentlich, monatlich oder auf Abruf</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_55.webp" alt="Regelmäßige Gartenpflege und Rasenmähen in Ludwigsburg" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_60.webp" alt="Heckenschnitt und Beetpflege im Rahmen des Hausmeisterservice" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <img src="/img/image_75.webp" alt="Gepflegtes Grundstück nach Hausmeisterservice-Einsatz in Stuttgart" class="w-full h-64 object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
+        {faqs.map((faq) => (
+          <details class="border-b border-sand/50 group">
+            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-forest text-white text-center">
+      <div class="mx-auto max-w-3xl px-4">
+        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
+        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
+          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>
+
+<style>
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+  details .faq-content > p {
+    overflow: hidden;
+  }
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>
