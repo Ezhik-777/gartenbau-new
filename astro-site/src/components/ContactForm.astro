@@ -1,547 +1,290 @@
 ---
-// ContactForm.astro - v5.0 Modern form with floating labels and green theme
-// HTML5 validation - no JavaScript needed!
+// ContactForm.astro — Organic luxury redesign
+// Formspree integration with honeypot spam protection
 ---
 
-<div class="contact-form-wrapper">
-  <form
-    id="contact-form"
-    action="https://formspree.io/f/xoqznyqb"
-    method="POST"
-    class="contact-form"
-    accept-charset="UTF-8"
-  >
-    <!-- Honeypot for spam protection -->
-    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-    <!-- Formspree configuration -->
-    <input type="hidden" name="_subject" value="Neue Anfrage von gartenbauzm.de">
-    <input type="hidden" name="_next" value="https://gartenbauzm.de/?success=true">
-
-    <!-- Name with Floating Label -->
-    <div class="form-group floating-label">
-      <input
-        type="text"
-        id="name"
-        name="name"
-        class="form-input"
-        required
-        placeholder=" "
-        minlength="2"
-        maxlength="100"
-      >
-      <label for="name" class="form-label">
-        Name <span class="required">*</span>
-      </label>
+<section id="Kontakt" class="py-20 md:py-28 bg-ivory">
+  <div class="mx-auto max-w-7xl px-5">
+    <!-- Section heading -->
+    <div class="text-center mb-14">
+      <h2 class="font-heading text-3xl md:text-4xl text-forest">Kontakt aufnehmen</h2>
+      <p class="text-text-muted text-center mt-4 max-w-2xl mx-auto">
+        Wir freuen uns auf Ihr Projekt. Kontaktieren Sie uns für eine kostenlose Beratung.
+      </p>
     </div>
 
-    <!-- Email with Floating Label -->
-    <div class="form-group floating-label">
-      <input
-        type="email"
-        id="email"
-        name="email"
-        class="form-input"
-        required
-        placeholder=" "
-      >
-      <label for="email" class="form-label">
-        E-Mail <span class="required">*</span>
-      </label>
-    </div>
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
-    <!-- Phone with Floating Label -->
-    <div class="form-group floating-label">
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        class="form-input"
-        placeholder=" "
-        pattern="[0-9+\s\-()]+"
-      >
-      <label for="phone" class="form-label">
-        Telefon (optional)
-      </label>
-    </div>
-
-    <!-- Service with Floating Label -->
-    <div class="form-group floating-label">
-      <select
-        id="service"
-        name="service"
-        class="form-select"
-        required
-      >
-        <option value="" disabled selected></option>
-        <option value="Gartengestaltung">Gartengestaltung</option>
-        <option value="Natursteinarbeiten">Natursteinarbeiten</option>
-        <option value="Terrassen & Plätze">Terrassen & Plätze</option>
-        <option value="Wege und Zufahrten">Wege und Zufahrten</option>
-        <option value="Landschaftsbau">Landschaftsbau</option>
-        <option value="Rollrasen">Rollrasen-Verlegung</option>
-        <option value="Hausmeisterservice">Hausmeisterservice</option>
-        <option value="Sonstiges">Sonstiges</option>
-      </select>
-      <label for="service" class="form-label">
-        Gewünschte Leistung <span class="required">*</span>
-      </label>
-    </div>
-
-    <!-- Message with Floating Label -->
-    <div class="form-group floating-label">
-      <textarea
-        id="message"
-        name="message"
-        class="form-textarea"
-        required
-        placeholder=" "
-        rows="6"
-        minlength="10"
-        maxlength="1000"
-      ></textarea>
-      <label for="message" class="form-label">
-        Ihre Nachricht <span class="required">*</span>
-      </label>
-      <div class="form-hint">Mindestens 10 Zeichen</div>
-    </div>
-
-    <!-- Privacy Checkbox -->
-    <div class="form-group form-checkbox-group">
-      <label class="form-checkbox-label">
-        <input
-          type="checkbox"
-          name="privacy"
-          required
-          class="form-checkbox"
+      <!-- Left column — Form (3/5) -->
+      <div class="lg:col-span-3">
+        <form
+          id="contact-form"
+          action="https://formspree.io/f/xkgnqkwa"
+          method="POST"
+          class="flex flex-col gap-5"
+          accept-charset="UTF-8"
         >
-        <span>
-          Ich habe die <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="required">*</span>
-        </span>
-      </label>
-    </div>
+          <!-- Honeypot for spam protection -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-    <!-- Contact Options: Form Submit + WhatsApp -->
-    <div class="contact-options">
-      <button type="submit" class="btn-primary">
-        <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.5 5.83333L9.16667 10.8333C9.63333 11.1667 10.3667 11.1667 10.8333 10.8333L17.5 5.83333M4.16667 15.8333H15.8333C16.75 15.8333 17.5 15.0833 17.5 14.1667V5.83333C17.5 4.91667 16.75 4.16667 15.8333 4.16667H4.16667C3.25 4.16667 2.5 4.91667 2.5 5.83333V14.1667C2.5 15.0833 3.25 15.8333 4.16667 15.8333Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Nachricht senden</span>
-      </button>
-      <a href="https://wa.me/491782747470" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
-        <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.0711 2.92893C15.1826 1.04043 12.6609 0 9.99998 0C4.47998 0 0.00998001 4.47 0.00998001 9.99C0.00998001 11.66 0.459981 13.29 1.30998 14.71L0 20L5.41998 18.72C6.78998 19.49 8.37998 19.9 9.99998 19.9C15.52 19.9 20 15.43 20 9.91C20 7.27 18.95 4.77 17.0711 2.92893ZM9.99998 18.15C8.55998 18.15 7.13998 17.75 5.90998 17L5.63998 16.84L2.43998 17.67L3.28998 14.55L3.11998 14.27C2.30998 12.99 1.88998 11.52 1.88998 9.99C1.88998 5.52 5.52998 1.88 9.99998 1.88C12.17 1.88 14.21 2.71 15.77 4.26C17.33 5.81 18.16 7.85 18.16 10.02C18.16 14.49 14.47 18.15 9.99998 18.15ZM14.45 12.01C14.21 11.89 13.08 11.33 12.86 11.26C12.64 11.18 12.48 11.14 12.32 11.39C12.16 11.64 11.72 12.16 11.58 12.32C11.44 12.48 11.29 12.5 11.05 12.37C10.81 12.25 10.03 11.99 9.10998 11.18C8.38998 10.54 7.89998 9.76 7.74998 9.52C7.60998 9.28 7.73998 9.15 7.85998 9.03C7.96998 8.92 8.09998 8.75 8.21998 8.61C8.33998 8.47 8.37998 8.36 8.44998 8.2C8.51998 8.04 8.48998 7.9 8.42998 7.78C8.36998 7.66 7.89998 6.53 7.69998 6.05C7.49998 5.58 7.29998 5.64 7.15998 5.63H6.69998C6.53998 5.63 6.27998 5.69 6.05998 5.93C5.83998 6.17 5.24998 6.73 5.24998 7.86C5.24998 8.99 6.08998 10.09 6.20998 10.25C6.32998 10.41 7.89998 12.83 10.27 13.82C10.84 14.07 11.28 14.22 11.62 14.33C12.19 14.51 12.71 14.49 13.12 14.42C13.58 14.35 14.5 13.85 14.7 13.3C14.9 12.75 14.9 12.27 14.84 12.17C14.78 12.07 14.69 12.13 14.45 12.01Z" fill="currentColor"/>
-        </svg>
-        <span>WhatsApp direkt</span>
-      </a>
-    </div>
+          <!-- Formspree config -->
+          <input type="hidden" name="_subject" value="Neue Anfrage von gartenbauzm.de">
 
-    <!-- Success/Error Messages -->
-    <div class="form-status" id="form-status" style="display:none;">
-      <div class="status-success" id="status-success">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p><strong>Vielen Dank!</strong> Ihre Nachricht wurde erfolgreich gesendet.</p>
+          <!-- Name -->
+          <div>
+            <label for="contact-name" class="font-body text-sm font-medium text-forest mb-1.5 block">
+              Name <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              required
+              minlength="2"
+              maxlength="100"
+              placeholder="Ihr vollständiger Name"
+              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors"
+            >
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="contact-email" class="font-body text-sm font-medium text-forest mb-1.5 block">
+              E-Mail <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              required
+              placeholder="ihre@email.de"
+              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors"
+            >
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label for="contact-phone" class="font-body text-sm font-medium text-forest mb-1.5 block">
+              Telefon <span class="text-text-muted/60 font-normal">(optional)</span>
+            </label>
+            <input
+              type="tel"
+              id="contact-phone"
+              name="phone"
+              placeholder="z.B. 0176 12345678"
+              pattern="[0-9+\s\-()]+"
+              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors"
+            >
+          </div>
+
+          <!-- Service dropdown -->
+          <div>
+            <label for="contact-service" class="font-body text-sm font-medium text-forest mb-1.5 block">
+              Gewünschte Leistung
+            </label>
+            <select
+              id="contact-service"
+              name="service"
+              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201.5L6%206.5L11%201.5%22%20stroke%3D%22%236b6b6b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat"
+            >
+              <option value="">Bitte wählen...</option>
+              <option value="Gartengestaltung">Gartengestaltung</option>
+              <option value="Natursteinarbeiten">Natursteinarbeiten</option>
+              <option value="Terrassenbau">Terrassenbau</option>
+              <option value="Pflasterarbeiten">Pflasterarbeiten</option>
+              <option value="Landschaftsbau">Landschaftsbau</option>
+              <option value="Rollrasen">Rollrasen</option>
+              <option value="Sichtschutz">Sichtschutz</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="contact-message" class="font-body text-sm font-medium text-forest mb-1.5 block">
+              Ihre Nachricht <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              required
+              rows="5"
+              minlength="10"
+              maxlength="1000"
+              placeholder="Beschreiben Sie Ihr Projekt oder Ihre Frage..."
+              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors resize-vertical"
+            ></textarea>
+          </div>
+
+          <!-- Privacy checkbox -->
+          <div class="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="contact-privacy"
+              name="privacy"
+              required
+              class="mt-1 h-4 w-4 rounded border-sand accent-terracotta cursor-pointer shrink-0"
+            >
+            <label for="contact-privacy" class="text-sm text-text-muted leading-relaxed cursor-pointer">
+              Ich habe die <a href="/datenschutz" target="_blank" class="text-terracotta underline hover:text-terracotta-dark transition-colors">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="text-red-500">*</span>
+            </label>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            id="contact-submit"
+            class="w-full bg-terracotta hover:bg-terracotta-dark text-white rounded-full py-4 text-lg font-medium transition-colors mt-2 cursor-pointer"
+          >
+            Nachricht senden
+          </button>
+
+          <!-- Status messages -->
+          <div id="form-status" class="hidden">
+            <!-- Success -->
+            <div id="status-success" class="hidden items-center gap-3 rounded-xl bg-green-50 border border-green-200 p-4 text-green-800">
+              <svg class="w-6 h-6 shrink-0 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <p class="text-sm font-medium">Vielen Dank! Wir melden uns in Kürze.</p>
+            </div>
+            <!-- Error -->
+            <div id="status-error" class="hidden items-center gap-3 rounded-xl bg-red-50 border border-red-200 p-4 text-red-800">
+              <svg class="w-6 h-6 shrink-0 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <p class="text-sm font-medium">Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</p>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="status-error" id="status-error">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p><strong>Fehler!</strong> Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.</p>
+
+      <!-- Right column — Contact Info (2/5) -->
+      <div class="lg:col-span-2">
+        <div class="bg-forest rounded-2xl p-8 md:p-10 text-ivory h-fit">
+          <h3 class="font-heading text-2xl text-white mb-8">So erreichen Sie uns</h3>
+
+          <!-- Address -->
+          <div class="flex gap-4 border-b border-forest-light/30 pb-6 mb-6">
+            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div>
+              <p class="text-ivory/80 text-sm">Remseck am Neckar</p>
+              <p class="text-ivory/80 text-sm">Baden-Württemberg</p>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex gap-4 border-b border-forest-light/30 pb-6 mb-6">
+            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+            </svg>
+            <a href="tel:+491782747470" class="text-ivory/80 text-sm hover:text-white transition-colors">
+              +49 178 2747470
+            </a>
+          </div>
+
+          <!-- Email -->
+          <div class="flex gap-4 border-b border-forest-light/30 pb-6 mb-6">
+            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <a href="mailto:info@gartenbauzm.de" class="text-ivory/80 text-sm hover:text-white transition-colors">
+              info@gartenbauzm.de
+            </a>
+          </div>
+
+          <!-- Hours -->
+          <div class="flex gap-4">
+            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <div>
+              <p class="text-ivory/80 text-sm">Mo–Fr 08:00–18:00</p>
+              <p class="text-ivory/80 text-sm">Sa 09:00–14:00</p>
+            </div>
+          </div>
+
+          <!-- WhatsApp CTA -->
+          <a
+            href="https://wa.me/491782747470"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-[#25D366] text-white rounded-full px-6 py-3 flex items-center gap-3 w-full justify-center hover:brightness-110 mt-8 transition-all text-sm font-medium"
+          >
+            <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+            </svg>
+            WhatsApp schreiben
+          </a>
+        </div>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+</section>
 
 <script>
-  // Check URL for success/error parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const success = urlParams.get('success');
-  const error = urlParams.get('error');
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const statusDiv = document.getElementById('form-status');
+  const successDiv = document.getElementById('status-success');
+  const errorDiv = document.getElementById('status-error');
+  const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement;
 
-  if (success === 'true') {
-    const statusDiv = document.getElementById('form-status');
-    const successDiv = document.getElementById('status-success');
-    if (statusDiv && successDiv) {
-      statusDiv.style.display = 'block';
-      successDiv.style.display = 'flex';
-      // Scroll to status message
-      statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-  if (error === 'true') {
-    const statusDiv = document.getElementById('form-status');
-    const errorDiv = document.getElementById('status-error');
-    if (statusDiv && errorDiv) {
-      statusDiv.style.display = 'block';
-      errorDiv.style.display = 'flex';
-      // Scroll to status message
-      statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+      // Hide any previous status
+      if (statusDiv) statusDiv.classList.add('hidden');
+      if (successDiv) successDiv.classList.remove('flex');
+      if (successDiv) successDiv.classList.add('hidden');
+      if (errorDiv) errorDiv.classList.remove('flex');
+      if (errorDiv) errorDiv.classList.add('hidden');
+
+      // Disable button
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wird gesendet...';
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+          // Show success
+          if (statusDiv) statusDiv.classList.remove('hidden');
+          if (successDiv) {
+            successDiv.classList.remove('hidden');
+            successDiv.classList.add('flex');
+          }
+          form.reset();
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch {
+        // Show error
+        if (statusDiv) statusDiv.classList.remove('hidden');
+        if (errorDiv) {
+          errorDiv.classList.remove('hidden');
+          errorDiv.classList.add('flex');
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        // Scroll status into view
+        if (statusDiv) {
+          statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    });
   }
 </script>
-
-<style>
-  /* ========== CONTACT FORM v5.0 - Modern Floating Labels ========== */
-
-  .contact-form-wrapper {
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  .contact-form {
-    background: var(--color-neutral-0);
-    padding: var(--space-10);
-    border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-xl);
-    position: relative;
-  }
-
-  /* Subtle gradient border effect */
-  .contact-form::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-2xl);
-    padding: 2px;
-    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-300));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.15;
-    pointer-events: none;
-  }
-
-  @media (max-width: 768px) {
-    .contact-form {
-      padding: var(--space-6);
-    }
-  }
-
-  /* ========== FLOATING LABEL DESIGN ========== */
-
-  .form-group {
-    margin-bottom: var(--space-6);
-  }
-
-  .floating-label {
-    position: relative;
-  }
-
-  .floating-label .form-label {
-    position: absolute;
-    left: var(--space-4);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: var(--text-base);
-    font-weight: var(--font-medium);
-    color: var(--color-neutral-500);
-    background: var(--color-neutral-0);
-    padding: 0 var(--space-2);
-    pointer-events: none;
-    transition: all var(--transition-base);
-    z-index: 1;
-  }
-
-  /* Floating label for textarea */
-  .floating-label:has(.form-textarea) .form-label {
-    top: var(--space-6);
-    transform: translateY(0);
-  }
-
-  /* Float label when input has focus or value */
-  .floating-label .form-input:focus ~ .form-label,
-  .floating-label .form-input:not(:placeholder-shown) ~ .form-label,
-  .floating-label .form-select:focus ~ .form-label,
-  .floating-label .form-select:not([value=""]):valid ~ .form-label,
-  .floating-label .form-textarea:focus ~ .form-label,
-  .floating-label .form-textarea:not(:placeholder-shown) ~ .form-label {
-    top: 0;
-    transform: translateY(-50%);
-    font-size: var(--text-sm);
-    color: var(--color-primary-600);
-    font-weight: var(--font-semibold);
-  }
-
-  .required {
-    color: #ef4444;
-  }
-
-  /* ========== FORM INPUTS ========== */
-
-  .form-input,
-  .form-select,
-  .form-textarea {
-    width: 100%;
-    padding: var(--space-4);
-    font-size: var(--text-base);
-    font-family: var(--font-body);
-    color: var(--color-neutral-900);
-    background: var(--color-neutral-0);
-    border: 2px solid var(--color-neutral-300);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
-  }
-
-  .form-input:focus,
-  .form-select:focus,
-  .form-textarea:focus {
-    outline: none;
-    border-color: var(--color-primary-500);
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
-  }
-
-  /* Validation states */
-  .form-input:invalid:not(:placeholder-shown),
-  .form-select:invalid:not(:placeholder-shown),
-  .form-textarea:invalid:not(:placeholder-shown) {
-    border-color: #ef4444;
-  }
-
-  .form-input:valid:not(:placeholder-shown),
-  .form-select:valid:not([value=""]),
-  .form-textarea:valid:not(:placeholder-shown) {
-    border-color: var(--color-primary-500);
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 140px;
-  }
-
-  .form-hint {
-    font-size: var(--text-sm);
-    color: var(--color-neutral-500);
-    margin-top: var(--space-2);
-    padding-left: var(--space-4);
-  }
-
-  /* Select dropdown arrow */
-  .form-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right var(--space-4) center;
-    padding-right: var(--space-10);
-  }
-
-  /* ========== CHECKBOX ========== */
-
-  .form-checkbox-group {
-    margin-bottom: var(--space-8);
-  }
-
-  .form-checkbox-label {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    cursor: pointer;
-    font-size: var(--text-sm);
-    line-height: var(--leading-relaxed);
-    color: var(--color-neutral-700);
-  }
-
-  .form-checkbox {
-    width: 20px;
-    height: 20px;
-    margin-top: 2px;
-    cursor: pointer;
-    accent-color: var(--color-primary-600);
-    border-radius: var(--radius-sm);
-  }
-
-  .form-checkbox-label a {
-    color: var(--color-primary-600);
-    text-decoration: underline;
-    font-weight: var(--font-medium);
-  }
-
-  .form-checkbox-label a:hover {
-    color: var(--color-primary-700);
-  }
-
-  /* ========== CONTACT OPTIONS (Submit + WhatsApp) ========== */
-
-  .contact-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-  }
-
-  @media (max-width: 640px) {
-    .contact-options {
-      grid-template-columns: 1fr;
-      gap: var(--space-3);
-    }
-  }
-
-  /* Primary Submit Button */
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    width: 100%;
-    padding: var(--space-4) var(--space-6);
-    font-size: var(--text-base);
-    font-weight: var(--font-bold);
-    font-family: var(--font-heading);
-    color: var(--color-neutral-0);
-    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
-    border: none;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    transition: all var(--transition-base);
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
-  }
-
-  .btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-600));
-    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35), var(--glow-green);
-    transform: translateY(-2px);
-  }
-
-  .btn-primary:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25);
-  }
-
-  .btn-primary:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  /* WhatsApp Button */
-  .btn-whatsapp {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    width: 100%;
-    padding: var(--space-4) var(--space-6);
-    font-size: var(--text-base);
-    font-weight: var(--font-bold);
-    font-family: var(--font-heading);
-    color: var(--color-neutral-0);
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    border: none;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    text-decoration: none;
-    transition: all var(--transition-base);
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
-  }
-
-  .btn-whatsapp:hover {
-    background: linear-gradient(135deg, #128C7E, #075E54);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
-    transform: translateY(-2px);
-  }
-
-  .btn-whatsapp:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
-  }
-
-  .btn-icon {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-  }
-
-  /* ========== SUCCESS/ERROR STATUS ========== */
-
-  .form-status {
-    margin-top: var(--space-6);
-  }
-
-  .status-success,
-  .status-error {
-    display: none;
-    align-items: flex-start;
-    gap: var(--space-3);
-    padding: var(--space-4);
-    border-radius: var(--radius-lg);
-    font-size: var(--text-base);
-    animation: slideIn 0.4s ease-out;
-  }
-
-  .status-success {
-    background: #d1fae5;
-    border: 2px solid var(--color-primary-500);
-    color: #065f46;
-  }
-
-  .status-error {
-    background: #fee2e2;
-    border: 2px solid #ef4444;
-    color: #991b1b;
-  }
-
-  .status-success svg {
-    color: var(--color-primary-600);
-    flex-shrink: 0;
-  }
-
-  .status-error svg {
-    color: #ef4444;
-    flex-shrink: 0;
-  }
-
-  .status-success p,
-  .status-error p {
-    margin: 0;
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* ========== FOCUS STYLES (Accessibility) ========== */
-
-  .btn-primary:focus-visible,
-  .btn-whatsapp:focus-visible {
-    outline: 3px solid var(--color-primary-500);
-    outline-offset: 3px;
-  }
-
-  .form-checkbox:focus-visible {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: 2px;
-  }
-
-  /* ========== REDUCED MOTION ========== */
-
-  @media (prefers-reduced-motion: reduce) {
-    .btn-primary,
-    .btn-whatsapp,
-    .form-input,
-    .form-select,
-    .form-textarea,
-    .form-label {
-      transition: none;
-    }
-
-    .btn-primary:hover,
-    .btn-whatsapp:hover {
-      transform: none;
-    }
-
-    .status-success,
-    .status-error {
-      animation: none;
-    }
-  }
-</style>
