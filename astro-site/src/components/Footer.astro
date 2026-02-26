@@ -166,8 +166,9 @@ const services = [
 
 <script>
   function initBackToTop() {
-    const btn = document.getElementById('back-to-top');
-    if (!btn) return;
+    const btnEl = document.getElementById('back-to-top');
+    if (!btnEl) return;
+    const btn = btnEl;
 
     let visible = false;
 

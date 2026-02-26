@@ -3,7 +3,7 @@ import '../styles/global.css';
 import SEO from '../components/SEO.astro';
 import GoogleAnalytics from '../components/analytics/GoogleAnalytics.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -44,7 +44,7 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <GoogleAnalytics />
-  <ViewTransitions />
+  <ClientRouter />
 </head>
 
 <body class="font-body text-text bg-ivory antialiased">
