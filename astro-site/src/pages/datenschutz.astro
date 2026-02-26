@@ -12,188 +12,199 @@ import Footer from '../components/Footer.astro';
 >
   <Header />
 
-  <main style="padding: var(--space-20) 0;">
-    <div class="container">
-      <div style="max-width: 800px; margin: 0 auto;">
-        <h1 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--text-primary); margin-bottom: var(--space-8);">
-          Datenschutzerklärung
-        </h1>
+  <!-- Hero Banner -->
+  <section class="bg-forest pt-28 pb-16 md:pt-36 md:pb-20 text-center">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="text-sand/60 text-sm mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-sand transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-sand">Datenschutz</span>
+      </nav>
 
-        <div class="legal-content">
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              1. Datenschutz auf einen Blick
-            </h2>
+      <h1 class="font-heading text-4xl md:text-5xl text-white">
+        Datenschutzerklärung
+      </h1>
+    </div>
+  </section>
 
-            <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--text-primary); margin: var(--space-6) 0 var(--space-3);">
-              Allgemeine Hinweise
-            </h3>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
-            </p>
-          </section>
+  <!-- Content -->
+  <main class="py-16 md:py-24 bg-ivory">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="legal-content">
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            1. Datenschutz auf einen Blick
+          </h2>
 
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              2. Verantwortliche Stelle
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary);">
-              <strong>Gartenbau Z.M.</strong><br>
-              Lerchenrain 9<br>
-              71686 Remseck am Neckar<br>
-              <br>
-              Telefon: <a href="tel:+491782747470" style="color: var(--color-brand);">+49 178 2747470</a><br>
-              E-Mail: <a href="mailto:info.gartenbauzm@gmx.de" style="color: var(--color-brand);">info.gartenbauzm@gmx.de</a>
-            </p>
-          </section>
+          <h3 class="font-heading text-xl text-forest mt-8 mb-3">
+            Allgemeine Hinweise
+          </h3>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+          </p>
+        </section>
 
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              3. Datenerfassung auf dieser Website
-            </h2>
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            2. Verantwortliche Stelle
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+          </p>
+          <p class="text-text-muted leading-relaxed">
+            <strong class="text-forest">Gartenbau Z.M.</strong><br>
+            Lerchenrain 9<br>
+            71686 Remseck am Neckar<br>
+            <br>
+            Telefon: <a href="tel:+491782747470" class="text-terracotta hover:text-terracotta-dark transition-colors">+49 178 2747470</a><br>
+            E-Mail: <a href="mailto:info.gartenbauzm@gmx.de" class="text-terracotta hover:text-terracotta-dark transition-colors">info.gartenbauzm@gmx.de</a>
+          </p>
+        </section>
 
-            <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--text-primary); margin: var(--space-6) 0 var(--space-3);">
-              Kontaktformular
-            </h3>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Diese Daten werden über den Dienst <strong>Formspree</strong> verarbeitet. Weitere Informationen finden Sie in der Datenschutzerklärung von Formspree:
-              <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener" style="color: var(--color-brand); text-decoration: underline;">
-                https://formspree.io/legal/privacy-policy
-              </a>
-            </p>
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            3. Datenerfassung auf dieser Website
+          </h2>
 
-            <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--text-primary); margin: var(--space-6) 0 var(--space-3);">
-              Server-Log-Dateien
-            </h3>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
-            </p>
-            <ul style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-left: var(--space-6); margin-bottom: var(--space-4);">
-              <li>Browsertyp und Browserversion</li>
-              <li>Verwendetes Betriebssystem</li>
-              <li>Referrer URL</li>
-              <li>Hostname des zugreifenden Rechners</li>
-              <li>Uhrzeit der Serveranfrage</li>
-              <li>IP-Adresse</li>
-            </ul>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website.
-            </p>
-          </section>
-
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              4. Google Analytics 4
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Diese Website benutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited („Google"). Google Analytics verwendet sogenannte „Cookies", Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen.
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Website, wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt.
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              <strong>Umfang der Datenverarbeitung:</strong>
-            </p>
-            <ul style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-left: var(--space-6); margin-bottom: var(--space-4);">
-              <li>Seitenaufrufe und Seitenaufenthaltsdauer</li>
-              <li>Klicks auf Elemente (WhatsApp-Button, Kontaktformular, Galerie, Service-Karten)</li>
-              <li>Scroll-Tiefe (25%, 50%, 75%, 100%)</li>
-              <li>Ausgehende Links (Outbound-Clicks)</li>
-              <li>Geräteinformationen (Browser, Betriebssystem, Bildschirmauflösung)</li>
-              <li>Standortdaten (anonymisiert auf Stadt-Ebene)</li>
-            </ul>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              <strong>Rechtsgrundlage:</strong> Die Nutzung von Google Analytics erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der Analyse des Nutzerverhaltens, um sowohl sein Webangebot als auch seine Werbung zu optimieren.
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              <strong>Widerspruchsmöglichkeit:</strong> Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren:
-              <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="color: var(--color-brand); text-decoration: underline;">
-                https://tools.google.com/dlpage/gaoptout
-              </a>
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Weitere Informationen zu Nutzungsbedingungen und Datenschutz finden Sie unter:
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: var(--color-brand); text-decoration: underline;">
-                https://policies.google.com/privacy
-              </a>
-            </p>
-          </section>
-
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              5. Google Fonts
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Weitere Informationen zu Google Fonts finden Sie unter:
-              <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener" style="color: var(--color-brand); text-decoration: underline;">
-                https://developers.google.com/fonts/faq
-              </a>
-            </p>
-          </section>
-
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              6. Ihre Rechte
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
-            </p>
-            <ul style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-left: var(--space-6); margin-bottom: var(--space-4);">
-              <li><strong>Recht auf Auskunft:</strong> Sie haben das Recht, Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen.</li>
-              <li><strong>Recht auf Berichtigung:</strong> Sie haben das Recht, unverzüglich die Berichtigung unrichtiger oder die Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
-              <li><strong>Recht auf Löschung:</strong> Sie haben das Recht, die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
-              <li><strong>Recht auf Einschränkung:</strong> Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-              <li><strong>Recht auf Datenübertragbarkeit:</strong> Sie haben das Recht, Ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.</li>
-              <li><strong>Widerspruchsrecht:</strong> Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen.</li>
-            </ul>
-          </section>
-
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              7. WhatsApp Business
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Wir bieten die Möglichkeit der Kontaktaufnahme über WhatsApp an. Wenn Sie uns über WhatsApp kontaktieren, werden Ihre Daten über die WhatsApp-Server von Meta Platforms Ireland Limited übertragen und verarbeitet.
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Weitere Informationen finden Sie in der Datenschutzerklärung von WhatsApp:
-              <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener" style="color: var(--color-brand); text-decoration: underline;">
-                https://www.whatsapp.com/legal/privacy-policy
-              </a>
-            </p>
-          </section>
-
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              8. Änderungen dieser Datenschutzerklärung
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary);">
-              Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.
-            </p>
-          </section>
-
-          <div style="margin-top: var(--space-12); padding: var(--space-6); background: var(--color-primary-50); border-radius: var(--radius-lg); border-left: 4px solid var(--color-brand);">
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin: 0;">
-              <strong>Stand:</strong> Februar 2026<br>
-              Bei Fragen zum Datenschutz kontaktieren Sie uns bitte unter:
-              <a href="mailto:info.gartenbauzm@gmx.de" style="color: var(--color-brand); text-decoration: none;">info.gartenbauzm@gmx.de</a>
-            </p>
-          </div>
-
-          <div style="margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--color-neutral-200); text-align: center;">
-            <a href="/" class="btn btn-primary">
-              🏠 Zurück zur Startseite
+          <h3 class="font-heading text-xl text-forest mt-8 mb-3">
+            Kontaktformular
+          </h3>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Diese Daten werden über den Dienst <strong class="text-forest">Formspree</strong> verarbeitet. Weitere Informationen finden Sie in der Datenschutzerklärung von Formspree:
+            <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener" class="text-terracotta hover:text-terracotta-dark underline underline-offset-2 transition-colors">
+              https://formspree.io/legal/privacy-policy
             </a>
-          </div>
+          </p>
+
+          <h3 class="font-heading text-xl text-forest mt-8 mb-3">
+            Server-Log-Dateien
+          </h3>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+          </p>
+          <ul class="text-text-muted leading-relaxed list-disc pl-6 mb-4 marker:text-terracotta">
+            <li class="mb-1">Browsertyp und Browserversion</li>
+            <li class="mb-1">Verwendetes Betriebssystem</li>
+            <li class="mb-1">Referrer URL</li>
+            <li class="mb-1">Hostname des zugreifenden Rechners</li>
+            <li class="mb-1">Uhrzeit der Serveranfrage</li>
+            <li class="mb-1">IP-Adresse</li>
+          </ul>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website.
+          </p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            4. Google Analytics 4
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Diese Website benutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited ("Google"). Google Analytics verwendet sogenannte "Cookies", Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen.
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Website, wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt.
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            <strong class="text-forest">Umfang der Datenverarbeitung:</strong>
+          </p>
+          <ul class="text-text-muted leading-relaxed list-disc pl-6 mb-4 marker:text-terracotta">
+            <li class="mb-1">Seitenaufrufe und Seitenaufenthaltsdauer</li>
+            <li class="mb-1">Klicks auf Elemente (WhatsApp-Button, Kontaktformular, Galerie, Service-Karten)</li>
+            <li class="mb-1">Scroll-Tiefe (25%, 50%, 75%, 100%)</li>
+            <li class="mb-1">Ausgehende Links (Outbound-Clicks)</li>
+            <li class="mb-1">Geräteinformationen (Browser, Betriebssystem, Bildschirmauflösung)</li>
+            <li class="mb-1">Standortdaten (anonymisiert auf Stadt-Ebene)</li>
+          </ul>
+          <p class="text-text-muted leading-relaxed mb-4">
+            <strong class="text-forest">Rechtsgrundlage:</strong> Die Nutzung von Google Analytics erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der Analyse des Nutzerverhaltens, um sowohl sein Webangebot als auch seine Werbung zu optimieren.
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            <strong class="text-forest">Widerspruchsmöglichkeit:</strong> Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren:
+            <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" class="text-terracotta hover:text-terracotta-dark underline underline-offset-2 transition-colors">
+              https://tools.google.com/dlpage/gaoptout
+            </a>
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Weitere Informationen zu Nutzungsbedingungen und Datenschutz finden Sie unter:
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-terracotta hover:text-terracotta-dark underline underline-offset-2 transition-colors">
+              https://policies.google.com/privacy
+            </a>
+          </p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            5. Google Fonts
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Weitere Informationen zu Google Fonts finden Sie unter:
+            <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener" class="text-terracotta hover:text-terracotta-dark underline underline-offset-2 transition-colors">
+              https://developers.google.com/fonts/faq
+            </a>
+          </p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            6. Ihre Rechte
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
+          </p>
+          <ul class="text-text-muted leading-relaxed list-disc pl-6 mb-4 marker:text-terracotta">
+            <li class="mb-1"><strong class="text-forest">Recht auf Auskunft:</strong> Sie haben das Recht, Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen.</li>
+            <li class="mb-1"><strong class="text-forest">Recht auf Berichtigung:</strong> Sie haben das Recht, unverzüglich die Berichtigung unrichtiger oder die Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
+            <li class="mb-1"><strong class="text-forest">Recht auf Löschung:</strong> Sie haben das Recht, die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
+            <li class="mb-1"><strong class="text-forest">Recht auf Einschränkung:</strong> Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+            <li class="mb-1"><strong class="text-forest">Recht auf Datenübertragbarkeit:</strong> Sie haben das Recht, Ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.</li>
+            <li class="mb-1"><strong class="text-forest">Widerspruchsrecht:</strong> Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen.</li>
+          </ul>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            7. WhatsApp Business
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Wir bieten die Möglichkeit der Kontaktaufnahme über WhatsApp an. Wenn Sie uns über WhatsApp kontaktieren, werden Ihre Daten über die WhatsApp-Server von Meta Platforms Ireland Limited übertragen und verarbeitet.
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Weitere Informationen finden Sie in der Datenschutzerklärung von WhatsApp:
+            <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener" class="text-terracotta hover:text-terracotta-dark underline underline-offset-2 transition-colors">
+              https://www.whatsapp.com/legal/privacy-policy
+            </a>
+          </p>
+        </section>
+
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            8. Änderungen dieser Datenschutzerklärung
+          </h2>
+          <p class="text-text-muted leading-relaxed">
+            Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.
+          </p>
+        </section>
+
+        <div class="mt-12 p-6 bg-ivory-warm rounded-xl border-l-4 border-terracotta">
+          <p class="text-text-muted leading-relaxed">
+            <strong class="text-forest">Stand:</strong> Februar 2026<br>
+            Bei Fragen zum Datenschutz kontaktieren Sie uns bitte unter:
+            <a href="mailto:info.gartenbauzm@gmx.de" class="text-terracotta hover:text-terracotta-dark transition-colors">info.gartenbauzm@gmx.de</a>
+          </p>
+        </div>
+
+        <div class="mt-16 pt-8 border-t border-sand/40 text-center">
+          <a href="/" class="inline-flex items-center gap-2 bg-terracotta text-white px-6 py-3 rounded-lg font-semibold transition-all hover:bg-terracotta-dark hover:-translate-y-0.5 hover:shadow-lg">
+            Zurück zur Startseite
+          </a>
         </div>
       </div>
     </div>

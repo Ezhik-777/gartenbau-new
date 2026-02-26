@@ -12,98 +12,109 @@ import Footer from '../components/Footer.astro';
 >
   <Header />
 
-  <main style="padding: var(--space-20) 0;">
-    <div class="container">
-      <div style="max-width: 800px; margin: 0 auto;">
-        <h1 style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--text-primary); margin-bottom: var(--space-8);">
-          Impressum
-        </h1>
+  <!-- Hero Banner -->
+  <section class="bg-forest pt-28 pb-16 md:pt-36 md:pb-20 text-center">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="text-sand/60 text-sm mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-sand transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-sand">Impressum</span>
+      </nav>
 
-        <div class="legal-content">
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              Angaben gemäß § 5 TMG
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary);">
-              <strong>Gartenbau Z.M.</strong><br>
-              Lerchenrain 9<br>
-              71686 Remseck am Neckar<br>
-              Deutschland
-            </p>
-          </section>
+      <h1 class="font-heading text-4xl md:text-5xl text-white">
+        Impressum
+      </h1>
+    </div>
+  </section>
 
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              Kontakt
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary);">
-              <strong>Telefon:</strong> <a href="tel:+491782747470" style="color: var(--color-brand); text-decoration: none;">+49 178 2747470</a><br>
-              <strong>E-Mail:</strong> <a href="mailto:info.gartenbauzm@gmx.de" style="color: var(--color-brand); text-decoration: none;">info.gartenbauzm@gmx.de</a><br>
-              <strong>WhatsApp:</strong> <a href="https://wa.me/+491782747470" target="_blank" rel="noopener" style="color: var(--color-brand); text-decoration: none;">+49 178 2747470</a>
-            </p>
-          </section>
+  <!-- Content -->
+  <main class="py-16 md:py-24 bg-ivory">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="legal-content">
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            Angaben gemäß § 5 TMG
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            <strong class="text-forest">Gartenbau Z.M.</strong><br>
+            Lerchenrain 9<br>
+            71686 Remseck am Neckar<br>
+            Deutschland
+          </p>
+        </section>
 
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary);">
-              Gartenbau Z.M.<br>
-              Lerchenrain 9<br>
-              71686 Remseck am Neckar
-            </p>
-          </section>
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            Kontakt
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            <strong class="text-forest">Telefon:</strong> <a href="tel:+491782747470" class="text-terracotta hover:text-terracotta-dark transition-colors">+49 178 2747470</a><br>
+            <strong class="text-forest">E-Mail:</strong> <a href="mailto:info.gartenbauzm@gmx.de" class="text-terracotta hover:text-terracotta-dark transition-colors">info.gartenbauzm@gmx.de</a><br>
+            <strong class="text-forest">WhatsApp:</strong> <a href="https://wa.me/+491782747470" target="_blank" rel="noopener" class="text-terracotta hover:text-terracotta-dark transition-colors">+49 178 2747470</a>
+          </p>
+        </section>
 
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              Haftungsausschluss (Disclaimer)
-            </h2>
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Gartenbau Z.M.<br>
+            Lerchenrain 9<br>
+            71686 Remseck am Neckar
+          </p>
+        </section>
 
-            <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--text-primary); margin: var(--space-6) 0 var(--space-3);">
-              Haftung für Inhalte
-            </h3>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
-            </p>
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            Haftungsausschluss (Disclaimer)
+          </h2>
 
-            <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--text-primary); margin: var(--space-6) 0 var(--space-3);">
-              Haftung für Links
-            </h3>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
-            </p>
+          <h3 class="font-heading text-xl text-forest mt-8 mb-3">
+            Haftung für Inhalte
+          </h3>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+          </p>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+          </p>
 
-            <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); color: var(--text-primary); margin: var(--space-6) 0 var(--space-3);">
-              Urheberrecht
-            </h3>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-4);">
-              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-            </p>
-          </section>
+          <h3 class="font-heading text-xl text-forest mt-8 mb-3">
+            Haftung für Links
+          </h3>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+          </p>
 
-          <section style="margin-bottom: var(--space-8);">
-            <h2 style="font-size: var(--text-2xl); font-weight: var(--font-semibold); color: var(--text-primary); margin-bottom: var(--space-4);">
-              EU-Streitschlichtung
-            </h2>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary);">
-              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br>
-              <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" style="color: var(--color-brand); text-decoration: underline;">
-                https://ec.europa.eu/consumers/odr
-              </a>
-            </p>
-            <p style="line-height: var(--leading-relaxed); color: var(--text-secondary); margin-top: var(--space-3);">
-              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-            </p>
-          </section>
+          <h3 class="font-heading text-xl text-forest mt-8 mb-3">
+            Urheberrecht
+          </h3>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+          </p>
+        </section>
 
-          <div style="margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--color-neutral-200); text-align: center;">
-            <a href="/" class="btn btn-primary">
-              🏠 Zurück zur Startseite
+        <section class="mb-10">
+          <h2 class="font-heading text-2xl text-forest mt-12 mb-4">
+            EU-Streitschlichtung
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br>
+            <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" class="text-terracotta hover:text-terracotta-dark underline underline-offset-2 transition-colors">
+              https://ec.europa.eu/consumers/odr
             </a>
-          </div>
+          </p>
+          <p class="text-text-muted leading-relaxed">
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </section>
+
+        <div class="mt-16 pt-8 border-t border-sand/40 text-center">
+          <a href="/" class="inline-flex items-center gap-2 bg-terracotta text-white px-6 py-3 rounded-lg font-semibold transition-all hover:bg-terracotta-dark hover:-translate-y-0.5 hover:shadow-lg">
+            Zurück zur Startseite
+          </a>
         </div>
       </div>
     </div>
