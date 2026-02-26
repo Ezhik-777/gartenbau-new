@@ -169,7 +169,7 @@ const categoryCounts = {
       </div>
 
       <!-- Gallery Grid Component -->
-      <GalleryGrid client:load images={images} />
+      <GalleryGrid client:only="react" images={images} />
     </div>
   </main>
 
