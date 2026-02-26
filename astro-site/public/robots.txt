@@ -1,14 +1,20 @@
-# robots.txt for gartenbauzm.de
-
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://gartenbauzm.de/sitemap.xml
+Sitemap: https://gartenbauzm.de/sitemap-index.xml
 
-# Disallow admin/test areas (if any in future)
-# Disallow: /admin/
-# Disallow: /test/
+# LLM Crawlers
+User-agent: GPTBot
+Allow: /llm.txt
 
-# Crawl-delay for polite bots
-Crawl-delay: 1
+User-agent: ChatGPT-User
+Allow: /llm.txt
+
+User-agent: Claude-Web
+Allow: /llm.txt
+
+User-agent: Amazonbot
+Allow: /llm.txt
+
+User-agent: anthropic-ai
+Allow: /llm.txt

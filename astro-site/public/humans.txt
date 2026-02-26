@@ -1,0 +1,12 @@
+/* TEAM */
+Company: Gartenbau Z.M.
+Site: gartenbauzm.de
+Location: Remseck am Neckar, Germany
+
+/* SITE */
+Built with: Astro, Tailwind CSS, TypeScript
+Last update: 2026-02-26
+Language: German
+Standards: HTML5, CSS3, ES2022
+Components: Astro Islands, React (minimal)
+Fonts: DM Serif Display, Outfit (Google Fonts)
