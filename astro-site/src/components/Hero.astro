@@ -1,0 +1,113 @@
+---
+// Hero.astro v6.0 — Full-bleed static hero with parallax background
+// Pure Astro + Tailwind, no JavaScript framework needed
+---
+
+<!-- Preload hero image for LCP performance -->
+<link rel="preload" as="image" href="/img/image_1.webp" slot="head" />
+
+<section
+  class="hero relative min-h-screen flex items-center justify-center overflow-hidden"
+  aria-label="Willkommen bei Gartenbau Z.M."
+>
+  <!-- Dark overlay gradient -->
+  <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/40 to-forest/20 z-10"></div>
+
+  <!-- Content -->
+  <div class="relative z-20 text-center px-4 sm:px-6 max-w-3xl mx-auto">
+    <!-- Eyebrow -->
+    <p class="font-body uppercase tracking-widest text-sand text-sm mb-6">
+      Seit über 10 Jahren
+    </p>
+
+    <!-- Main headline -->
+    <h1 class="font-heading text-4xl md:text-5xl lg:text-7xl text-white leading-tight">
+      Ihr Garten.<br>Unsere Leidenschaft.
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="font-body text-lg md:text-xl text-ivory/80 max-w-xl mx-auto mt-6">
+      Professioneller Gartenbau und Landschaftsbau in Stuttgart &amp; Region
+    </p>
+
+    <!-- CTA button -->
+    <div class="mt-8">
+      <a
+        href="#kontakt"
+        class="inline-block w-full sm:w-auto bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-4 text-lg font-medium transition-colors duration-200"
+      >
+        Kostenlose Beratung
+      </a>
+    </div>
+
+    <!-- Secondary link -->
+    <div class="mt-4">
+      <a
+        href="/projekte"
+        class="inline-block text-sand hover:text-white text-sm transition-colors duration-200"
+      >
+        Unsere Projekte ansehen &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator (decorative) -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2" aria-hidden="true">
+    <span class="text-xs text-ivory/60 uppercase tracking-widest font-body">Entdecken</span>
+    <svg
+      class="scroll-chevron w-5 h-5 text-ivory/60"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  /* Background image — CSS for parallax support */
+  .hero {
+    background-image: url('/img/image_1.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* iOS / mobile: disable fixed attachment (causes rendering issues) */
+  @supports (-webkit-touch-callout: none) {
+    .hero {
+      background-attachment: scroll;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      background-attachment: scroll;
+    }
+  }
+
+  /* Bounce animation for scroll indicator */
+  .scroll-chevron {
+    animation: bounce-down 1.5s ease-in-out infinite;
+  }
+
+  @keyframes bounce-down {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-chevron {
+      animation: none;
+    }
+  }
+</style>

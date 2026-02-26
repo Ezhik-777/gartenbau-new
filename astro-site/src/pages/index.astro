@@ -2,13 +2,12 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import HeroSlider from '../components/HeroSlider';
+import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FAQAccordion from '../components/FAQAccordion';
 import FAQSchema from '../components/FAQSchema.astro';
 import ContactForm from '../components/ContactForm.astro';
 import BeforeAfterSlider from '../components/gallery/BeforeAfterSlider';
-import BackgroundPattern from '../components/decorations/BackgroundPattern.astro';
 ---
 
 <MainLayout
@@ -18,11 +17,8 @@ import BackgroundPattern from '../components/decorations/BackgroundPattern.astro
   <!-- Header -->
   <Header />
 
-  <!-- Hero Slider (React Island) with decorative elements -->
-  <div style="position: relative;">
-    <BackgroundPattern />
-    <HeroSlider client:load />
-  </div>
+  <!-- Hero -->
+  <Hero />
 
   <!-- Main Content -->
   <main>
