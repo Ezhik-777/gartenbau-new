@@ -3,11 +3,29 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import TrustBar from '../components/TrustBar.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
 import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
 import BeforeAfterSlider from '../components/gallery/BeforeAfterSlider';
-import ReviewsSection from '../components/ReviewsSection.astro';
+
+const services = [
+  { icon: '🌱', title: 'Gartengestaltung', description: 'Professionelle Gartenplanung und -gestaltung mit individueller Beratung.' },
+  { icon: '🪨', title: 'Natursteinarbeiten', description: 'Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen und Einfassungen.' },
+  { icon: '🏗️', title: 'Terrassenbau', description: 'Moderne Terrassengestaltung mit hochwertigen Materialien.' },
+  { icon: '🛤️', title: 'Wege & Zufahrten', description: 'Professionelle Pflasterarbeiten für Einfahrten und Gartenwege.' },
+  { icon: '🏡', title: 'Landschaftsbau', description: 'Kompletter Landschaftsbau von Erdarbeiten bis Bepflanzung.' },
+  { icon: '🌾', title: 'Rollrasen', description: 'Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen.' },
+  { icon: '🧹', title: 'Hausmeisterservice', description: 'Regelmäßige Gartenpflege und Grundstücksbetreuung.' },
+  { icon: '🌳', title: 'Sichtschutz', description: 'Sichtschutzzäune, Hecken und Gabionen für Ihre Privatsphäre.' },
+];
+
+const projects = [
+  { image: '/img/image_10.webp', title: 'Gartengestaltung Stuttgart-Süd', category: 'Gartengestaltung', text: 'Komplette Neugestaltung eines 200m² Gartens mit Natursteinmauer und Bepflanzung.' },
+  { image: '/img/image_15.webp', title: 'Terrassenbau Ludwigsburg', category: 'Terrassenbau', text: 'Moderne Terrassenanlage mit Granitplatten und integrierter LED-Beleuchtung.' },
+  { image: '/img/image_20.webp', title: 'Einfahrt Remseck', category: 'Pflasterarbeiten', text: 'Pflasterarbeiten für eine großzügige Einfahrt mit Entwässerungssystem.' },
+];
 ---
 
 <MainLayout
@@ -20,161 +38,98 @@ import ReviewsSection from '../components/ReviewsSection.astro';
   <!-- Hero -->
   <Hero />
 
+  <!-- Trust Bar -->
+  <TrustBar />
+
   <!-- Main Content -->
   <main>
-    <!-- Leistungen Section -->
-    <section id="Leistungen" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Unsere Leistungen</h2>
-          <p class="section-subtitle">
-            Professioneller Gartenbau und Landschaftsbau in Stuttgart & Region
+
+    <!-- ==================== Leistungen ==================== -->
+    <section id="leistungen" class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center reveal">
+          <h2 class="font-heading text-3xl md:text-4xl text-forest">
+            Unsere Leistungen
+          </h2>
+          <p class="text-text-muted mt-4">
+            Professioneller Gartenbau und Landschaftsbau in Stuttgart &amp; Region
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-12);">
-          <div data-aos="fade-up" data-aos-delay="0">
-            <ServiceCard
-              icon="🌱"
-              title="Gartengestaltung"
-              description="Professionelle Gartenplanung und -gestaltung mit individueller Beratung. Von der Idee bis zur Umsetzung."
-            />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="100">
-            <ServiceCard
-              icon="🪨"
-              title="Natursteinarbeiten"
-              description="Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen und Gabionen."
-            />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="200">
-            <ServiceCard
-              icon="🏗️"
-              title="Terrassenbau"
-              description="Moderne Terrassengestaltung mit hochwertigen Materialien für Ihr Outdoor-Living-Erlebnis."
-            />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="300">
-            <ServiceCard
-              icon="🛤️"
-              title="Wege & Zufahrten"
-              description="Professionelle Pflasterarbeiten für Einfahrten, Gartenwege, Parkplätze und Hofflächen."
-            />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="400">
-            <ServiceCard
-              icon="🏡"
-              title="Landschaftsbau"
-              description="Kompletter Landschaftsbau Service - von Erdarbeiten über Drainagen bis zur Bepflanzung."
-            />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="500">
-            <ServiceCard
-              icon="🌾"
-              title="Rollrasen"
-              description="Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen inklusive Bodenvorbereitung."
-            />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="600">
-            <ServiceCard
-              icon="🧹"
-              title="Hausmeisterservice"
-              description="Regelmäßige Gartenpflege - Rasenmähen, Heckenschnitt, Unkrautbekämpfung und Laubbeseitigung."
-            />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="700">
-            <ServiceCard
-              icon="🌳"
-              title="Sichtschutz"
-              description="Installation von Sichtschutzzäunen, Hecken und Gabionen für Ihre Privatsphäre."
-            />
-          </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          {services.map((service, i) => (
+            <div class="reveal" style={`transition-delay: ${i * 100}ms`}>
+              <ServiceCard
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-
-    <!-- Über uns Section - Two-column layout with stats -->
-    <section id="Ueber-uns" style="padding: var(--space-20) 0;">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Über uns</h2>
-          <p class="section-subtitle">
-            Ihr zuverlässiger Partner für Garten- und Landschaftsbau seit Jahren
+    <!-- ==================== Projekte Preview ==================== -->
+    <section class="py-20 md:py-28 bg-ivory-warm">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center reveal">
+          <h2 class="font-heading text-3xl md:text-4xl text-forest">
+            Unsere Projekte
+          </h2>
+          <p class="text-text-muted mt-4">
+            Einblicke in unsere aktuellen Arbeiten
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); margin-top: var(--space-12); align-items: center;">
-          <!-- Text Column -->
-          <div data-aos="fade-right">
-            <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-6);">
-              Gartenbau Z.M. steht für höchste Qualität und Zuverlässigkeit im Garten- und Landschaftsbau.
-              Mit jahrelanger Erfahrung und Leidenschaft für Grün gestalten wir Ihren Traumgarten in
-              Remseck am Neckar, Stuttgart, Ludwigsburg und der gesamten Region.
-            </p>
-            <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: var(--space-8);">
-              Von der ersten Beratung bis zur finalen Umsetzung - wir begleiten Sie durch alle Phasen
-              Ihres Gartenprojekts. Unser erfahrenes Team garantiert professionelle Arbeit und
-              termingerechte Fertigstellung.
-            </p>
-            <a href="#Kontakt" class="btn btn-primary">
-              🏡 Kostenlose Beratung anfragen
-            </a>
-          </div>
-
-          <!-- Stats Column -->
-          <div data-aos="fade-left">
-            <div style="background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 100%); border-radius: var(--radius-2xl); padding: var(--space-10); box-shadow: var(--shadow-lg);">
-              <div style="display: grid; gap: var(--space-8);">
-                <div style="text-align: center;">
-                  <div style="font-size: var(--text-5xl); font-weight: var(--font-extrabold); color: var(--color-primary-600); margin-bottom: var(--space-2);">10+</div>
-                  <div style="font-size: var(--text-lg); color: var(--text-secondary);">Jahre Erfahrung</div>
-                </div>
-                <div style="text-align: center;">
-                  <div style="font-size: var(--text-5xl); font-weight: var(--font-extrabold); color: var(--color-primary-600); margin-bottom: var(--space-2);">180+</div>
-                  <div style="font-size: var(--text-lg); color: var(--text-secondary);">Projekte</div>
-                </div>
-                <div style="text-align: center;">
-                  <div style="font-size: var(--text-5xl); font-weight: var(--font-extrabold); color: var(--color-primary-600); margin-bottom: var(--space-2);">5.0⭐</div>
-                  <div style="font-size: var(--text-lg); color: var(--text-secondary);">Google Bewertung</div>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {projects.map((project, i) => (
+            <div class="bg-white rounded-2xl overflow-hidden reveal" style={`transition-delay: ${i * 100}ms`}>
+              <div class="aspect-4/3 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <span class="inline-block bg-forest-light/10 text-forest text-xs font-medium px-3 py-1 rounded-full">
+                  {project.category}
+                </span>
+                <h3 class="font-heading text-xl text-forest mt-3">{project.title}</h3>
+                <p class="text-text-muted text-sm leading-relaxed mt-2">{project.text}</p>
               </div>
             </div>
-          </div>
+          ))}
         </div>
 
-        <!-- Mobile responsive: stack on smaller screens -->
-        <style>
-          @media (max-width: 768px) {
-            #Ueber-uns > .container > div:nth-of-type(2) {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        </style>
+        <div class="text-center mt-12 reveal">
+          <a
+            href="/projekte"
+            class="inline-flex items-center gap-2 text-terracotta font-medium transition-colors duration-300 hover:text-terracotta-dark"
+          >
+            Alle Projekte ansehen
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Before/After Showcase Section - NEW in v5.0 -->
-    <section class="before-after-showcase" style="padding: var(--space-20) 0;">
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Unsere Transformationen</h2>
-          <p class="section-subtitle">
-            Sehen Sie, wie wir Gärten in Stuttgart und Umgebung verwandeln
+    <!-- ==================== Vorher & Nachher ==================== -->
+    <section class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center reveal">
+          <h2 class="font-heading text-3xl md:text-4xl text-forest">
+            Vorher &amp; Nachher
+          </h2>
+          <p class="text-text-muted mt-4">
+            Sehen Sie die Verwandlung unserer Projekte
           </p>
         </div>
 
-        <div class="showcase-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-8); margin-top: var(--space-12);">
-          <!-- TODO: Replace with actual before/after images -->
-          <!-- Placeholder: Using regular gallery images for demonstration -->
-          <div data-aos="fade-up" data-aos-delay="0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          <div class="rounded-2xl overflow-hidden shadow-md reveal">
             <BeforeAfterSlider
               client:visible
               beforeImage="/img/image_1.webp"
@@ -185,7 +140,7 @@ import ReviewsSection from '../components/ReviewsSection.astro';
             />
           </div>
 
-          <div data-aos="fade-up" data-aos-delay="100">
+          <div class="rounded-2xl overflow-hidden shadow-md reveal" style="transition-delay: 100ms">
             <BeforeAfterSlider
               client:visible
               beforeImage="/img/image_3.webp"
@@ -196,7 +151,7 @@ import ReviewsSection from '../components/ReviewsSection.astro';
             />
           </div>
 
-          <div data-aos="fade-up" data-aos-delay="200">
+          <div class="rounded-2xl overflow-hidden shadow-md reveal" style="transition-delay: 200ms">
             <BeforeAfterSlider
               client:visible
               beforeImage="/img/image_5.webp"
@@ -207,24 +162,96 @@ import ReviewsSection from '../components/ReviewsSection.astro';
             />
           </div>
         </div>
+      </div>
+    </section>
 
-        <div style="text-align: center; margin-top: var(--space-12);" data-aos="fade-up" data-aos-delay="300">
-          <a href="/gallery" class="btn btn-primary" style="font-size: var(--text-lg); padding: var(--space-4) var(--space-8);">
-            Alle Projekte ansehen →
-          </a>
+    <!-- ==================== Reviews ==================== -->
+    <ReviewsSection />
+
+    <!-- ==================== Über Uns ==================== -->
+    <section id="ueber-uns" class="py-20 md:py-28 bg-ivory">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+          <!-- Left: Image -->
+          <div class="rounded-2xl overflow-hidden shadow-lg reveal">
+            <img
+              src="/img/image_5.webp"
+              alt="Gartenbau Z.M. Team bei der Arbeit"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Right: Text -->
+          <div class="reveal" style="transition-delay: 150ms">
+            <span class="uppercase tracking-widest text-terracotta text-sm font-medium">
+              Über uns
+            </span>
+
+            <h2 class="font-heading text-3xl md:text-4xl text-forest mt-4">
+              Ihr Partner für professionellen Gartenbau
+            </h2>
+
+            <p class="text-text-muted leading-relaxed mt-6">
+              Gartenbau Z.M. ist Ihr Familienbetrieb für hochwertige Garten- und
+              Landschaftsbauarbeiten in Remseck am Neckar, Stuttgart, Ludwigsburg
+              und der gesamten Region. Mit Leidenschaft und handwerklichem Können
+              verwandeln wir Ihre Außenbereiche in grüne Wohlfühloasen.
+            </p>
+
+            <p class="text-text-muted leading-relaxed mt-4">
+              Von der ersten Idee bis zur fertigen Umsetzung begleiten wir Sie
+              persönlich durch jedes Projekt. Unsere lokale Verwurzelung und
+              jahrelange Erfahrung garantieren Ihnen erstklassige Ergebnisse
+              mit einem Ansprechpartner, der immer erreichbar ist.
+            </p>
+
+            <p class="text-text-muted leading-relaxed mt-4">
+              Wir stehen für transparente Kommunikation, faire Preise und
+              termingerechte Fertigstellung. Jedes Projekt, ob klein oder groß,
+              erhält bei uns die gleiche Sorgfalt und Aufmerksamkeit.
+            </p>
+
+            <!-- Bullet features -->
+            <ul class="mt-8 space-y-3">
+              <li class="flex items-center gap-3 text-forest font-medium">
+                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
+                Über 10 Jahre Erfahrung
+              </li>
+              <li class="flex items-center gap-3 text-forest font-medium">
+                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
+                Kostenlose Erstberatung
+              </li>
+              <li class="flex items-center gap-3 text-forest font-medium">
+                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
+                Faire Festpreise
+              </li>
+              <li class="flex items-center gap-3 text-forest font-medium">
+                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
+                Termingarantie
+              </li>
+            </ul>
+
+            <!-- CTA -->
+            <a
+              href="#Kontakt"
+              class="inline-flex items-center gap-2 text-terracotta font-medium mt-8 transition-colors duration-300 hover:text-terracotta-dark"
+            >
+              Jetzt beraten lassen
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-
-    <!-- Reviews Section -->
-    <ReviewsSection />
-
-    <!-- FAQ Section — CSS-only accordion -->
+    <!-- ==================== FAQ ==================== -->
     <FAQ />
 
-    <!-- Kontakt Section with Form -->
+    <!-- ==================== Kontakt ==================== -->
     <ContactForm />
+
   </main>
 
   <!-- Footer -->
