@@ -1,0 +1,105 @@
+---
+import FAQSchema from './FAQSchema.astro';
+
+const faqs = [
+  {
+    question: 'Welche Leistungen bieten Sie an?',
+    answer: 'Wir bieten professionelle Gartengestaltung, hochwertige Natursteinarbeiten, Terrassenbau, Pflasterarbeiten, Landschaftsbau, Rollrasen-Verlegung, Sichtschutz-Installation und zuverlässigen Hausmeisterservice. Alle Arbeiten führen wir mit höchstem Qualitätsanspruch aus.',
+  },
+  {
+    question: 'In welchen Regionen sind Sie tätig?',
+    answer: 'Unser Hauptarbeitsgebiet umfasst Remseck am Neckar, Stuttgart, Ludwigsburg, Waiblingen, Fellbach, Kornwestheim, Esslingen und die gesamte Umgebung. Für größere Projekte sind wir auch darüber hinaus in der Region tätig.',
+  },
+  {
+    question: 'Wie läuft eine Beratung ab?',
+    answer: 'Wir beginnen mit einer kostenlosen Erstberatung vor Ort. Dabei nehmen wir den Bestand auf, besprechen Ihre Ideen und Wünsche, erstellen ein individuelles Konzept und unterbreiten Ihnen ein detailliertes Angebot. Nach Ihrer Freigabe starten wir mit der Umsetzung.',
+  },
+  {
+    question: 'Wie lange dauert ein typisches Projekt?',
+    answer: 'Die Projektdauer variiert je nach Umfang: Kleinere Arbeiten dauern wenige Tage, mittlere Projekte wie Terrassenbau 1-2 Wochen. Komplette Gartenumgestaltungen können 2-4 Wochen in Anspruch nehmen. Bei der Erstberatung geben wir Ihnen eine genaue Zeitplanung.',
+  },
+  {
+    question: 'Bieten Sie eine kostenlose Erstberatung an?',
+    answer: 'Ja, selbstverständlich! Unsere Erstberatung ist unverbindlich und kostenlos. Wir kommen zu Ihnen vor Ort, besichtigen Ihr Grundstück und besprechen gemeinsam Ihre Vorstellungen. Kontaktieren Sie uns einfach telefonisch, per WhatsApp oder über unser Kontaktformular.',
+  },
+  {
+    question: 'Welche Materialien verwenden Sie?',
+    answer: 'Wir arbeiten mit hochwertigen Materialien: Naturstein (Granit, Sandstein, Muschelkalk), Betonstein, Holz, WPC und Gabionen. Die Materialauswahl erfolgt individuell nach Ihren Wünschen und der vorgesehenen Verwendung. Wir beraten Sie gerne zu den besten Optionen.',
+  },
+  {
+    question: 'Übernehmen Sie auch kleine Projekte?',
+    answer: 'Ja, wir übernehmen Projekte jeder Größe — von einzelnen Maßnahmen wie einer Mauer oder einem Beet bis hin zur kompletten Gartengestaltung. Jedes Projekt erhält bei uns die gleiche Sorgfalt und Aufmerksamkeit.',
+  },
+  {
+    question: 'Wie kann ich Sie am besten erreichen?',
+    answer: 'Sie erreichen uns auf mehreren Wegen: Telefonisch unter +49 178 2747470, per WhatsApp, per E-Mail oder über unser Kontaktformular auf dieser Website. Wir melden uns in der Regel innerhalb weniger Stunden bei Ihnen zurück.',
+  },
+  {
+    question: 'Gibt es eine Garantie auf Ihre Arbeit?',
+    answer: 'Ja, wir gewähren auf alle unsere Arbeiten eine Garantie nach gesetzlichen Vorgaben und stehen darüber hinaus für die Qualität unserer Leistungen ein. Ihre Zufriedenheit hat für uns höchste Priorität.',
+  },
+  {
+    question: 'Was kostet ein Projekt?',
+    answer: 'Die Kosten sind individuell und hängen vom Umfang, den Materialien und den örtlichen Gegebenheiten ab. Wir erstellen Ihnen gerne einen kostenlosen, detaillierten Kostenvoranschlag nach der Erstberatung vor Ort — transparent und unverbindlich.',
+  },
+];
+---
+
+<section id="FAQ" class="py-20 md:py-28 bg-ivory-warm">
+  <div class="mx-auto max-w-3xl px-5">
+    <div class="text-center">
+      <h2 class="font-heading text-3xl md:text-4xl text-forest">
+        Häufig gestellte Fragen
+      </h2>
+      <p class="text-text-muted mt-4">
+        Alles was Sie über unsere Gartenbau-Leistungen wissen müssen
+      </p>
+    </div>
+
+    <div class="mt-12">
+      {faqs.map((faq) => (
+        <details class="faq-item border-b border-sand/50 group">
+          <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+            <span>{faq.question}</span>
+            <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-content">
+            <div>
+              <p class="font-body text-text-muted leading-relaxed pb-5">
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <FAQSchema />
+</section>
+
+<style>
+  /* Smooth open/close animation using grid-template-rows trick */
+  details .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+
+  details .faq-content > div {
+    overflow: hidden;
+  }
+
+  /* Plus to X rotation */
+  details summary .faq-icon {
+    transition: transform 0.3s ease-out;
+  }
+
+  details[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

@@ -4,8 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import FAQAccordion from '../components/FAQAccordion';
-import FAQSchema from '../components/FAQSchema.astro';
+import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
 import BeforeAfterSlider from '../components/gallery/BeforeAfterSlider';
 ---
@@ -217,24 +216,8 @@ import BeforeAfterSlider from '../components/gallery/BeforeAfterSlider';
     </section>
 
 
-    <!-- FAQ Section with React Island -->
-    <section id="FAQ" style="padding: var(--space-20) 0;">
-      <!-- FAQPage Schema.org for rich snippets -->
-      <FAQSchema />
-
-      <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="section-title">Häufig gestellte Fragen</h2>
-          <p class="section-subtitle">
-            Alles, was Sie über unsere Gartenbau-Services wissen müssen
-          </p>
-        </div>
-
-        <div style="margin-top: var(--space-12);" data-aos="fade-up" data-aos-delay="100">
-          <FAQAccordion client:visible />
-        </div>
-      </div>
-    </section>
+    <!-- FAQ Section — CSS-only accordion -->
+    <FAQ />
 
     <!-- Kontakt Section with Form -->
     <section id="Kontakt" style="padding: var(--space-20) 0; background: var(--bg-secondary);">
