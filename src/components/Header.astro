@@ -1,11 +1,11 @@
 ---
-// Header.astro v6.0 — Organic Luxury Navigation
-// Mobile-first sticky header with full-screen overlay menu
+// Header.astro v7.0 — Enhanced with transparent→frosted transition, active page, mobile blur
+const currentPath = Astro.url.pathname;
 ---
 
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 bg-ivory/95 backdrop-blur-md border-b border-sand/40 transition-shadow duration-300"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-b border-transparent"
   data-astro-persist
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -14,7 +14,7 @@
       <!-- Logo -->
       <a
         href="/"
-        class="font-heading text-forest text-lg sm:text-xl tracking-wide hover:opacity-80 transition-opacity duration-200"
+        class="header-logo font-heading text-lg sm:text-xl tracking-wide hover:tracking-wider transition-all duration-300 hover:opacity-80"
         aria-label="GARTENBAU Z.M. - Zurück zur Startseite"
       >
         GARTENBAU Z.M.
@@ -26,36 +26,40 @@
         role="navigation"
         aria-label="Hauptnavigation"
       >
-        <a href="/leistungen"  class="nav-link font-body text-sm uppercase tracking-widest text-forest transition-colors duration-200 relative group">
-          Leistungen
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="/projekte"    class="nav-link font-body text-sm uppercase tracking-widest text-forest transition-colors duration-200 relative group">
-          Projekte
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="/galerie"     class="nav-link font-body text-sm uppercase tracking-widest text-forest transition-colors duration-200 relative group">
-          Galerie
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="/#ueber-uns"  class="nav-link font-body text-sm uppercase tracking-widest text-forest transition-colors duration-200 relative group">
-          Über uns
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="/blog"        class="nav-link font-body text-sm uppercase tracking-widest text-forest transition-colors duration-200 relative group">
-          Blog
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="/#kontakt"    class="nav-link font-body text-sm uppercase tracking-widest text-forest transition-colors duration-200 relative group">
-          Kontakt
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-        </a>
+        {[
+          { href: '/leistungen', label: 'Leistungen' },
+          { href: '/projekte', label: 'Projekte' },
+          { href: '/galerie', label: 'Galerie' },
+          { href: '/#ueber-uns', label: 'Über uns' },
+          { href: '/blog', label: 'Blog' },
+          { href: '/#kontakt', label: 'Kontakt' },
+        ].map(({ href, label }) => {
+          const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href.replace('/#', '/')));
+          return (
+            <a
+              href={href}
+              class:list={[
+                'nav-link font-body text-sm uppercase tracking-widest transition-colors duration-200 relative group',
+                isActive ? 'text-terracotta' : 'text-forest',
+              ]}
+            >
+              {label}
+              <span class:list={[
+                'absolute -bottom-1 left-0 h-0.5 bg-terracotta transition-all duration-300',
+                isActive ? 'w-full' : 'w-0 group-hover:w-full',
+              ]}></span>
+              {isActive && (
+                <span class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-terracotta" aria-hidden="true"></span>
+              )}
+            </a>
+          );
+        })}
       </nav>
 
       <!-- Desktop Phone CTA -->
       <a
         href="tel:+491782747470"
-        class="hidden lg:inline-flex items-center gap-2 bg-terracotta text-white rounded-full px-6 py-2 text-sm font-medium hover:bg-terracotta-dark transition-colors duration-200"
+        class="hidden lg:inline-flex items-center gap-2 bg-terracotta text-white rounded-full px-6 py-2 text-sm font-medium hover:bg-terracotta-dark transition-all duration-200 hover:shadow-lg hover:shadow-terracotta/30"
         aria-label="Anrufen: +49 178 2747470"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -83,16 +87,19 @@
 <!-- Mobile Menu Overlay -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-40 bg-forest flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-300"
   role="dialog"
   aria-modal="true"
   aria-hidden="true"
   aria-label="Mobile Navigation"
 >
+  <!-- Backdrop with blur -->
+  <div class="mobile-backdrop absolute inset-0 bg-forest/95 backdrop-blur-md"></div>
+
   <!-- Close Button -->
   <button
     id="menu-close"
-    class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white/80 hover:text-white transition-colors duration-200"
+    class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white/80 hover:text-white transition-colors duration-200 z-10"
     aria-label="Menü schließen"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -102,7 +109,7 @@
   </button>
 
   <!-- Mobile Nav Links -->
-  <nav role="navigation" aria-label="Mobile Navigation">
+  <nav role="navigation" aria-label="Mobile Navigation" class="relative z-10">
     <ul class="flex flex-col items-center gap-6">
       <li>
         <a href="/leistungen" class="mobile-link font-heading text-2xl text-white/90 hover:text-white transition-colors duration-200 opacity-0 translate-y-4">
@@ -140,7 +147,7 @@
   <!-- Phone CTA at bottom -->
   <a
     href="tel:+491782747470"
-    class="mobile-link absolute bottom-12 inline-flex items-center gap-3 text-sand text-lg hover:text-white transition-colors duration-200 opacity-0 translate-y-4"
+    class="mobile-link absolute bottom-12 inline-flex items-center gap-3 text-sand text-lg hover:text-white transition-colors duration-200 opacity-0 translate-y-4 z-10"
     aria-label="Anrufen: +49 178 2747470"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -189,9 +196,33 @@
     color: var(--color-terracotta);
   }
 
-  /* Header scrolled state */
+  /* Header at top — white text on hero */
+  #site-header:not(.scrolled) .header-logo {
+    color: white;
+  }
+  #site-header:not(.scrolled) .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  #site-header:not(.scrolled) .nav-link:hover {
+    color: white;
+  }
+  #site-header:not(.scrolled) .nav-link span {
+    background-color: white;
+  }
+  #site-header:not(.scrolled) .burger-line {
+    background-color: white;
+  }
+
+  /* Header scrolled state — frosted glass */
   #site-header.scrolled {
+    background-color: rgba(250, 248, 245, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom-color: rgba(212, 197, 169, 0.4);
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  }
+  #site-header.scrolled .header-logo {
+    color: var(--color-forest);
   }
 
   /* Respect reduced motion */
@@ -217,7 +248,7 @@
     const mobileMenu = mobileMenuEl;
     const mobileLinks = mobileMenu.querySelectorAll('a');
 
-    // --- Scroll shadow ---
+    // --- Scroll: transparent → frosted glass ---
     let ticking = false;
 
     function onScroll() {

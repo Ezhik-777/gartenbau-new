@@ -4,51 +4,62 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 
+const svgIcons = {
+  gartengestaltung: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M12 8c0-4 3-6 6-6-1 4-3 6-6 6z"/><path d="M12 12c0-4-3-6-6-6 1 4 3 6 6 6z"/><path d="M8 22h8"/><circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/></svg>`,
+  naturstein: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4l3-2h6l3 2v4"/><path d="M6 14v-3l2-2h4l2 2v3"/><path d="M9 9V6l1.5-1.5h0L12 6v3"/><path d="M7 16h10"/></svg>`,
+  terrassenbau: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4h16v4"/><path d="M6 16v-4h12v4"/><path d="M8 12V8h8v4"/><path d="M4 16h16"/><path d="M6 12h12"/></svg>`,
+  pflaster: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c2-4 5-8 8-12s5-6 8-6"/><rect x="2" y="18" width="4" height="4" rx="0.5"/><rect x="7" y="13" width="3.5" height="3.5" rx="0.5"/><rect x="12" y="8" width="3" height="3" rx="0.5"/><path d="M17 4l1-1"/></svg>`,
+  landschaftsbau: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M2 20c4-2 6-8 9-8s3 3 5 3 3-2 6-3"/><circle cx="18" cy="6" r="2"/><path d="M6 14c1-2 2-4 4-4"/></svg>`,
+  rollrasen: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h14"/><path d="M16 20c0 0 0-3 3-3s3 3 3 3"/><ellipse cx="19" cy="17" rx="3" ry="3"/><path d="M16 17V8h3"/><path d="M2 16l4-8 3 4 4-6 3 6"/><path d="M2 16h14"/></svg>`,
+  sichtschutz: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16"/><path d="M20 4v16"/><path d="M12 4v16"/><path d="M4 4h16"/><path d="M4 10h16"/><path d="M4 16h16"/></svg>`,
+  hausmeister: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+};
+
 const services = [
   {
-    icon: '🌱',
+    icon: svgIcons.gartengestaltung,
     title: 'Gartengestaltung',
     description: 'Professionelle Gartenplanung und -gestaltung mit individueller Beratung — vom Entwurf bis zur Bepflanzung.',
     slug: 'gartengestaltung',
   },
   {
-    icon: '🪨',
+    icon: svgIcons.naturstein,
     title: 'Natursteinarbeiten',
     description: 'Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen und dekorative Elemente.',
     slug: 'natursteinarbeiten',
   },
   {
-    icon: '🏗️',
+    icon: svgIcons.terrassenbau,
     title: 'Terrassenbau',
     description: 'Moderne Terrassengestaltung mit hochwertigen Materialien für Ihren perfekten Außenbereich.',
     slug: 'terrassenbau',
   },
   {
-    icon: '🛤️',
+    icon: svgIcons.pflaster,
     title: 'Pflasterarbeiten (Wege & Zufahrten)',
     description: 'Professionelle Pflasterarbeiten für Einfahrten, Gartenwege und repräsentative Zufahrten.',
     slug: 'pflasterarbeiten',
   },
   {
-    icon: '🏡',
+    icon: svgIcons.landschaftsbau,
     title: 'Landschaftsbau',
     description: 'Kompletter Landschaftsbau von Erdarbeiten über Geländemodellierung bis zur fertigen Bepflanzung.',
     slug: 'landschaftsbau',
   },
   {
-    icon: '🌾',
+    icon: svgIcons.rollrasen,
     title: 'Rollrasen',
     description: 'Rollrasen-Verlegung für sofort nutzbaren, dichten und saftig grünen Rasen.',
     slug: 'rollrasen',
   },
   {
-    icon: '🌳',
+    icon: svgIcons.sichtschutz,
     title: 'Sichtschutz',
     description: 'Sichtschutzzäune, Hecken und Gabionen für mehr Privatsphäre in Ihrem Garten.',
     slug: 'sichtschutz',
   },
   {
-    icon: '🧹',
+    icon: svgIcons.hausmeister,
     title: 'Hausmeisterservice',
     description: 'Regelmäßige Gartenpflege, Grundstücksbetreuung und zuverlässiger Hausmeisterservice.',
     slug: 'hausmeisterservice',

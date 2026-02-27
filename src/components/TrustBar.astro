@@ -1,5 +1,5 @@
 ---
-// TrustBar.astro — Stats bar below hero (organic luxury)
+// TrustBar.astro — Stats bar with animated counters
 ---
 
 <section class="bg-ivory-warm py-8 md:py-12" aria-label="Unsere Leistungen in Zahlen">
@@ -7,7 +7,9 @@
     <div class="reveal flex flex-col items-center gap-6 md:flex-row md:justify-center md:gap-16">
       <!-- Stat 1 -->
       <div class="flex flex-col items-center text-center">
-        <span class="font-heading text-3xl md:text-4xl text-forest">10+</span>
+        <span class="font-heading text-3xl md:text-4xl text-forest">
+          <span class="counter" data-target="10">0</span>+
+        </span>
         <span class="font-body text-sm text-text-muted uppercase tracking-wider mt-1">Jahre Erfahrung</span>
       </div>
 
@@ -16,18 +18,88 @@
 
       <!-- Stat 2 -->
       <div class="flex flex-col items-center text-center">
-        <span class="font-heading text-3xl md:text-4xl text-forest">180+</span>
+        <span class="font-heading text-3xl md:text-4xl text-forest">
+          <span class="counter" data-target="180">0</span>+
+        </span>
         <span class="font-body text-sm text-text-muted uppercase tracking-wider mt-1">Projekte</span>
       </div>
 
       <!-- Divider -->
       <div class="hidden md:block w-px h-12 bg-sand" aria-hidden="true"></div>
 
-      <!-- Stat 3 -->
+      <!-- Stat 3 (star rating) -->
       <div class="flex flex-col items-center text-center">
-        <span class="font-heading text-3xl md:text-4xl text-forest">5.0 ★</span>
+        <span class="font-heading text-3xl md:text-4xl text-forest">
+          <span class="counter" data-target="5.0" data-decimals="1">0</span> <span class="counter-stars" aria-label="Sterne">&#9733;</span>
+        </span>
         <span class="font-body text-sm text-text-muted uppercase tracking-wider mt-1">Google Bewertung</span>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    if (!counters.length) return;
+
+    const animated = new WeakSet();
+
+    function easeOutCubic(t: number): number {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function animateCounter(el: Element) {
+      if (animated.has(el)) return;
+      animated.add(el);
+
+      const target = parseFloat(el.getAttribute('data-target') || '0');
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const duration = 2000;
+      const start = performance.now();
+
+      function update(now: number) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutCubic(progress);
+        const current = eased * target;
+
+        (el as HTMLElement).textContent = current.toFixed(decimals);
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+
+      // Animate stars with slight delay
+      const parent = el.closest('.flex.flex-col');
+      const stars = parent?.querySelector('.counter-stars');
+      if (stars) {
+        (stars as HTMLElement).style.opacity = '0';
+        (stars as HTMLElement).style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+          (stars as HTMLElement).style.opacity = '1';
+        }, 1800);
+      }
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    counters.forEach((el) => observer.observe(el));
+  }
+
+  initCounters();
+  document.addEventListener('astro:page-load', initCounters);
+</script>

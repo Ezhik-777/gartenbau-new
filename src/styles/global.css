@@ -71,6 +71,7 @@ html {
 /* ========== Scroll Animations ========== */
 
 @layer utilities {
+  /* Base reveal (up) */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -79,9 +80,117 @@ html {
 
   .reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateX(0) scale(1);
   }
 
+  /* Reveal from left */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Reveal from right */
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Reveal with scale */
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* ========== Button Shimmer Effect ========== */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .btn-shimmer:hover::after {
+    left: 100%;
+  }
+
+  /* ========== Button Sweep Effect ========== */
+  .btn-sweep {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .btn-sweep::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    transition: width 0.35s ease;
+    z-index: -1;
+  }
+
+  .btn-sweep:hover::before {
+    width: 100%;
+  }
+
+  /* ========== Input Focus Underline ========== */
+  .input-focus-line {
+    position: relative;
+  }
+
+  .input-focus-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-terracotta);
+    transition: width 0.3s ease, left 0.3s ease;
+    border-radius: 1px;
+  }
+
+  .input-focus-line:focus-within::after {
+    width: 100%;
+    left: 0;
+  }
+
+  /* ========== Grain Texture ========== */
   .grain::after {
     content: '';
     position: fixed;

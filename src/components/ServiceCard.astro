@@ -1,5 +1,5 @@
 ---
-// ServiceCard.astro — Organic luxury service card
+// ServiceCard.astro — Organic luxury service card with SVG icon support
 interface Props {
   icon: string;
   title: string;
@@ -20,8 +20,8 @@ const Tag = href ? 'a' : 'div';
   ]}
 >
   {/* Icon */}
-  <div class="flex h-12 w-12 items-center justify-center rounded-full bg-forest-light/10">
-    <span class="text-2xl leading-none">{icon}</span>
+  <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-forest-light/10 to-forest-light/5 transition-colors duration-300 group-hover:from-terracotta/15 group-hover:to-terracotta/5">
+    <Fragment set:html={icon} />
   </div>
 
   {/* Title */}

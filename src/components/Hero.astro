@@ -1,6 +1,5 @@
 ---
-// Hero.astro v6.0 — Full-bleed static hero with parallax background
-// Pure Astro + Tailwind, no JavaScript framework needed
+// Hero.astro v7.0 — Enhanced hero with Ken Burns, text reveals, floating botanicals
 ---
 
 <!-- Preload hero image for LCP performance -->
@@ -10,103 +9,199 @@
   class="hero relative min-h-screen flex items-center justify-center overflow-hidden"
   aria-label="Willkommen bei Gartenbau Z.M."
 >
+  <!-- Ken Burns background image -->
+  <div class="hero-bg absolute inset-0" aria-hidden="true"></div>
+
   <!-- Dark overlay gradient -->
   <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/40 to-forest/20 z-10"></div>
+
+  <!-- Floating botanical elements -->
+  <div class="absolute inset-0 z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+    <!-- Leaf 1 — top right -->
+    <svg class="hero-float absolute top-[15%] right-[10%] w-24 h-24 text-ivory opacity-[0.07]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M50 95 C50 95 15 65 15 35 C15 15 30 5 50 5 C70 5 85 15 85 35 C85 65 50 95 50 95Z"/>
+      <path d="M50 5 L50 95"/>
+      <path d="M50 30 C35 35 25 45 22 55"/>
+      <path d="M50 50 C65 48 75 42 80 35"/>
+    </svg>
+    <!-- Leaf 2 — bottom left -->
+    <svg class="hero-float-reverse absolute bottom-[20%] left-[8%] w-20 h-20 text-ivory opacity-[0.06]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M50 95 C50 95 20 70 20 40 C20 20 33 8 50 8 C67 8 80 20 80 40 C80 70 50 95 50 95Z"/>
+      <path d="M50 8 L50 95"/>
+      <path d="M50 40 C38 42 28 50 24 58"/>
+      <path d="M50 60 C62 56 72 48 76 40"/>
+    </svg>
+    <!-- Leaf 3 — center left -->
+    <svg class="hero-float-slow absolute top-[40%] left-[5%] w-16 h-16 text-sand opacity-[0.06]" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+      <ellipse cx="40" cy="40" rx="20" ry="35" transform="rotate(-20 40 40)"/>
+      <path d="M40 8 L40 72"/>
+    </svg>
+  </div>
 
   <!-- Content -->
   <div class="relative z-20 text-center px-4 sm:px-6 max-w-3xl mx-auto">
     <!-- Eyebrow -->
-    <p class="font-body uppercase tracking-widest text-sand text-sm mb-6">
+    <p class="hero-reveal font-body uppercase tracking-widest text-sand text-sm mb-6" style="animation-delay: 0.3s">
       Seit über 10 Jahren
     </p>
 
     <!-- Main headline -->
-    <h1 class="font-heading text-4xl md:text-5xl lg:text-7xl text-white leading-tight">
+    <h1 class="hero-reveal font-heading text-4xl md:text-5xl lg:text-7xl text-white leading-tight" style="animation-delay: 0.6s">
       Ihr Garten.<br>Unsere Leidenschaft.
     </h1>
 
     <!-- Subtitle -->
-    <p class="font-body text-lg md:text-xl text-ivory/80 max-w-xl mx-auto mt-6">
+    <p class="hero-reveal font-body text-lg md:text-xl text-ivory/80 max-w-xl mx-auto mt-6" style="animation-delay: 0.9s">
       Professioneller Gartenbau und Landschaftsbau in Stuttgart &amp; Region
     </p>
 
     <!-- CTA button -->
-    <div class="mt-8">
+    <div class="hero-reveal mt-8" style="animation-delay: 1.2s">
       <a
         href="/#kontakt"
-        class="inline-block w-full sm:w-auto bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-4 text-lg font-medium transition-colors duration-200"
+        class="btn-shimmer inline-block w-full sm:w-auto bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-terracotta/30"
       >
         Kostenlose Beratung
       </a>
     </div>
 
     <!-- Secondary link -->
-    <div class="mt-4">
+    <div class="hero-reveal mt-4" style="animation-delay: 1.4s">
       <a
         href="/projekte"
-        class="inline-block text-sand hover:text-white text-sm transition-colors duration-200"
+        class="inline-flex items-center gap-1 text-sand hover:text-white text-sm transition-colors duration-200"
       >
-        Unsere Projekte ansehen &rarr;
+        Unsere Projekte ansehen
+        <span class="inline-block transition-transform duration-300 hover:translate-x-1" aria-hidden="true">&rarr;</span>
       </a>
     </div>
   </div>
 
-  <!-- Scroll indicator (decorative) -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2" aria-hidden="true">
+  <!-- Scroll indicator (line + dot) -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3" aria-hidden="true">
     <span class="text-xs text-ivory/60 uppercase tracking-widest font-body">Entdecken</span>
-    <svg
-      class="scroll-chevron w-5 h-5 text-ivory/60"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      stroke-width="2"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-    </svg>
+    <div class="scroll-line relative w-px h-8 bg-ivory/20 rounded-full overflow-hidden">
+      <div class="scroll-dot absolute top-0 left-0 w-full h-3 bg-ivory/70 rounded-full"></div>
+    </div>
   </div>
 </section>
 
 <style>
-  /* Background image — CSS for parallax support */
-  .hero {
+  /* Ken Burns background */
+  .hero-bg {
     background-image: url('/img/hero-garden.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    animation: kenBurns 20s ease-in-out infinite alternate;
+    will-change: transform;
   }
 
-  /* iOS / mobile: disable fixed attachment (causes rendering issues) */
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.08);
+    }
+  }
+
+  /* Fallback: keep the original parallax style on desktop for scroll effect */
+  .hero {
+    background: none;
+  }
+
+  /* iOS / mobile: simpler animation */
   @supports (-webkit-touch-callout: none) {
-    .hero {
-      background-attachment: scroll;
+    .hero-bg {
+      animation-duration: 25s;
     }
   }
 
-  @media (max-width: 767px) {
-    .hero {
-      background-attachment: scroll;
-    }
+  /* ========== Orchestrated text reveal ========== */
+  .hero-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroFadeUp 0.8s ease-out forwards;
   }
 
-  /* Bounce animation for scroll indicator */
-  .scroll-chevron {
-    animation: bounce-down 1.5s ease-in-out infinite;
-  }
-
-  @keyframes bounce-down {
-    0%, 100% {
+  @keyframes heroFadeUp {
+    to {
+      opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* ========== Floating botanical elements ========== */
+  .hero-float {
+    animation: floatUp 8s ease-in-out infinite;
+  }
+
+  .hero-float-reverse {
+    animation: floatDown 10s ease-in-out infinite;
+  }
+
+  .hero-float-slow {
+    animation: floatUp 12s ease-in-out infinite;
+  }
+
+  @keyframes floatUp {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
     50% {
-      transform: translateY(6px);
+      transform: translateY(-15px) rotate(3deg);
     }
   }
 
-  /* Respect reduced motion */
+  @keyframes floatDown {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(12px) rotate(-2deg);
+    }
+  }
+
+  /* ========== Scroll indicator (line + dot) ========== */
+  .scroll-dot {
+    animation: scrollDot 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollDot {
+    0% {
+      top: 0;
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      top: calc(100% - 12px);
+      opacity: 0;
+    }
+  }
+
+  /* ========== Reduced motion ========== */
   @media (prefers-reduced-motion: reduce) {
-    .scroll-chevron {
+    .hero-bg {
+      animation: none;
+      transform: scale(1);
+    }
+    .hero-reveal {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .hero-float,
+    .hero-float-reverse,
+    .hero-float-slow {
+      animation: none;
+    }
+    .scroll-dot {
       animation: none;
     }
   }
