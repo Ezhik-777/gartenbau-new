@@ -125,11 +125,7 @@ const shouldLoadGA = isProduction && GA_MEASUREMENT_ID;
 {!shouldLoadGA && (
   <!-- GA4 not loaded (development mode or missing measurement ID) -->
   <script is:inline>
-    // Mock tracking function for development
-    window.trackEvent = function(eventName, eventParams) {
-      if (import.meta.env.DEV) {
-        console.log('[GA4 Mock]', eventName, eventParams);
-      }
-    };
+    // Mock tracking function (GA not loaded)
+    window.trackEvent = function() {};
   </script>
 )}
