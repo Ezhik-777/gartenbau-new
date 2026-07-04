@@ -45,6 +45,17 @@ const faqSchema = {
     "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
   }))
 };
+
+const checklist = [
+  'Persönliche Beratung und Gartenplanung vor Ort',
+  'Komplette Gartenneugestaltung und Umgestaltung',
+  'Professionelle Bepflanzung mit regionalen Pflanzen',
+  'Erdarbeiten und Geländemodellierung',
+  'Anlage von Rasenflächen und Rollrasen',
+  'Bewässerungssysteme und Gartenbeleuchtung',
+  'Sicht- und Windschutzlösungen',
+  'Laufende Gartenpflege und Wartung',
+];
 ---
 
 <MainLayout
@@ -55,101 +66,112 @@ const faqSchema = {
   <Header />
 
   <!-- Hero -->
-  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-sm text-ivory/60">
-          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
-          <li class="text-ivory">Gartengestaltung</li>
+          <li class="text-white/80">Gartengestaltung</li>
         </ol>
       </nav>
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Gartengestaltung</h1>
-      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Individuelle Gartenplanung und -gestaltung in Ludwigsburg, Stuttgart und der gesamten Region — von der ersten Idee bis zum fertigen Traumgarten.</p>
+      <p class="eyebrow eyebrow-light">Leistung · LV 01</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Gartengestaltung</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">Individuelle Gartenplanung und -gestaltung in Ludwigsburg, Stuttgart und der gesamten Region — von der ersten Idee bis zum fertigen Traumgarten.</p>
     </div>
   </section>
 
   <main id="main-content">
     <!-- Service description -->
-    <section class="py-20 md:py-28 bg-ivory">
+    <section class="py-20 md:py-28 bg-paper">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest">Ihr Garten, individuell geplant und professionell umgesetzt</h2>
-        <p class="mt-6 text-text leading-relaxed">
+        <div class="reveal">
+          <p class="eyebrow">Im Detail</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Ihr Garten, individuell geplant und umgesetzt</h2>
+        </div>
+        <p class="mt-6 text-bark leading-relaxed">
           Ein schöner Garten ist mehr als nur eine Grünfläche — er ist ein Ort der Erholung, ein Lebensraum für die Familie und eine Visitenkarte Ihres Hauses. Bei Gartenbau Z.M. gestalten wir Gärten in Ludwigsburg, Stuttgart, Waiblingen, Fellbach, Kornwestheim und der gesamten Region, die genau zu Ihren Vorstellungen und den Gegebenheiten Ihres Grundstücks passen.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Von der Planung bis zur Bepflanzung</h3>
-        <p class="mt-4 text-text leading-relaxed">
+        <h3 class="font-display font-bold text-xl md:text-2xl text-ink mt-12" style="font-stretch: 110%;">Von der Planung bis zur Bepflanzung</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Jedes Gartenprojekt beginnt mit einem persönlichen Beratungsgespräch vor Ort. Wir analysieren die Bodenbeschaffenheit, die Lichtverhältnisse und Ihre Wünsche. Darauf aufbauend entwickeln wir ein durchdachtes Gestaltungskonzept, das Pflanzflächen, Wege, Sitzplätze und Wasserelemente harmonisch miteinander verbindet. Dabei berücksichtigen wir sowohl ästhetische als auch praktische Aspekte wie Pflegeaufwand und Nachhaltigkeit.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Neugestaltung und Umgestaltung</h3>
-        <p class="mt-4 text-text leading-relaxed">
+        <h3 class="font-display font-bold text-xl md:text-2xl text-ink mt-12" style="font-stretch: 110%;">Neugestaltung und Umgestaltung</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Ob Sie einen bestehenden Garten komplett neu gestalten oder gezielt einzelne Bereiche aufwerten möchten — wir setzen Ihre Ideen fachgerecht um. Von modernen, geradlinigen Gartenkonzepten über naturnahe Wildgärten bis hin zu pflegeleichten Gärten mit automatischer Bewässerung: Unser erfahrenes Team beherrscht alle Stilrichtungen und arbeitet ausschließlich mit hochwertigen Materialien und gesunden Pflanzen aus regionalen Baumschulen.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Nachhaltige Gartengestaltung in der Region Stuttgart</h3>
-        <p class="mt-4 text-text leading-relaxed">
+        <h3 class="font-display font-bold text-xl md:text-2xl text-ink mt-12" style="font-stretch: 110%;">Nachhaltige Gartengestaltung in der Region Stuttgart</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Wir legen großen Wert auf eine ökologisch sinnvolle Gartengestaltung. Das bedeutet: standortgerechte Pflanzenauswahl, wassersparende Bewässerungslösungen und der Einsatz natürlicher Materialien. Auch das Thema Biodiversität ist uns wichtig — mit Blühwiesen, Insektenhotels und heimischen Gehölzen schaffen wir Lebensräume, die nicht nur schön aussehen, sondern auch einen Beitrag für die Umwelt leisten. Ob in Ludwigsburg, Fellbach, Esslingen oder Stuttgart: Wir sind Ihr verlässlicher Partner für nachhaltige Gartengestaltung.
         </p>
       </div>
     </section>
 
     <!-- Checklist -->
-    <section class="py-20 md:py-28 bg-ivory-warm">
+    <section class="py-20 md:py-28 bg-stone">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <div class="reveal">
+          <p class="eyebrow">Leistungsumfang</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Was wir bieten</h2>
+        </div>
         <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Persönliche Beratung und Gartenplanung vor Ort</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Komplette Gartenneugestaltung und Umgestaltung</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Professionelle Bepflanzung mit regionalen Pflanzen</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Erdarbeiten und Geländemodellierung</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Anlage von Rasenflächen und Rollrasen</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Bewässerungssysteme und Gartenbeleuchtung</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Sicht- und Windschutzlösungen</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Laufende Gartenpflege und Wartung</span></li>
+          {checklist.map((item) => (
+            <li class="flex items-start gap-3"><span class="flex items-center justify-center w-5 h-5 mt-0.5 bg-marker rounded-sm font-mono text-[0.7rem] text-ink shrink-0" aria-hidden="true">&#10003;</span><span class="text-ink">{item}</span></li>
+          ))}
         </ul>
       </div>
     </section>
 
     <!-- Gallery -->
-    <section class="py-20 md:py-28 bg-ivory">
+    <section class="py-20 md:py-28 bg-paper">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="reveal">
+          <p class="eyebrow">Referenzen</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_2.webp" alt="Gartengestaltung mit harmonischer Bepflanzung in Ludwigsburg" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_3.webp" alt="Neugestalteter Garten mit Rasenfläche und Staudenbeet in Stuttgart" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_10.webp" alt="Professionelle Gartenplanung mit Wegeführung und Bepflanzung" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_2.webp" alt="Gartengestaltung mit harmonischer Bepflanzung in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_3.webp" alt="Neugestalteter Garten mit Rasenfläche und Staudenbeet in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_10.webp" alt="Professionelle Gartenplanung mit Wegeführung und Bepflanzung" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-20 md:py-28 bg-ivory-warm">
+    <section class="py-20 md:py-28 bg-stone">
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
-        {faqs.map((faq) => (
-          <details class="border-b border-sand/50 group">
-            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
-              <span>{faq.question}</span>
-              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
-          </details>
-        ))}
+        <div class="reveal">
+          <p class="eyebrow justify-center">FAQ</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink text-center mt-5" style="font-stretch: 118%;">Häufige Fragen</h2>
+        </div>
+        <div class="mt-12">
+          {faqs.map((faq) => (
+            <details class="border-b border-line group">
+              <summary class="font-semibold text-ink text-[1.05rem] py-5 cursor-pointer flex items-center justify-between gap-4 list-none [&::-webkit-details-marker]:hidden">
+                <span>{faq.question}</span>
+                <span class="faq-icon flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-md border border-line font-mono text-lg leading-none text-moss select-none" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-content"><div><p class="text-bark leading-relaxed pb-5">{faq.answer}</p></div></div>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="py-20 md:py-28 bg-forest text-white text-center">
-      <div class="mx-auto max-w-3xl px-4">
-        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
-        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
-          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+    <section class="py-20 md:py-28 bg-pine text-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+        <p class="eyebrow eyebrow-light justify-center">Kontakt</p>
+        <h2 class="font-display font-extrabold uppercase text-white text-3xl md:text-4xl mt-5" style="font-stretch: 118%;">Projekt besprechen?</h2>
+        <p class="text-white/70 mt-4 text-lg">Kostenlose Erstberatung — vor Ort und unverbindlich.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+          <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+          <a href="tel:+491782747470" class="btn btn-outline text-white">+49 178 2747470</a>
         </div>
       </div>
     </section>
@@ -170,13 +192,16 @@ const faqSchema = {
   details[open] .faq-content {
     grid-template-rows: 1fr;
   }
-  details .faq-content > p {
+  details .faq-content > div {
     overflow: hidden;
   }
   details summary .faq-icon {
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out;
   }
   details[open] summary .faq-icon {
     transform: rotate(45deg);
+    background-color: var(--color-marker);
+    border-color: var(--color-marker);
+    color: var(--color-ink);
   }
 </style>

@@ -4,8 +4,8 @@
   "description": "Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#faf8f5",
-  "theme_color": "#1a3a2a",
+  "background_color": "#fafaf8",
+  "theme_color": "#183527",
   "orientation": "portrait-primary",
   "categories": ["business", "lifestyle"],
   "lang": "de",
@@ -34,40 +34,12 @@
       "purpose": "any maskable"
     }
   ],
-  "screenshots": [
-    {
-      "src": "img/gal-1.webp",
-      "sizes": "1280x720",
-      "type": "image/webp",
-      "platform": "wide",
-      "label": "Gartengestaltung Projekte"
-    },
-    {
-      "src": "img/gal-2.webp", 
-      "sizes": "640x1136",
-      "type": "image/webp",
-      "platform": "narrow",
-      "label": "Natursteinarbeiten"
-    }
-  ],
   "shortcuts": [
     {
       "name": "Kontakt",
       "short_name": "Kontakt",
       "description": "Kontaktieren Sie uns direkt",
-      "url": "/index.html#Kontakt",
-      "icons": [
-        {
-          "src": "img/logo.webp",
-          "sizes": "96x96"
-        }
-      ]
-    },
-    {
-      "name": "WhatsApp",
-      "short_name": "WhatsApp", 
-      "description": "Schreiben Sie uns auf WhatsApp",
-      "url": "/index.html",
+      "url": "/#kontakt",
       "icons": [
         {
           "src": "img/logo.webp",

@@ -1,5 +1,5 @@
 ---
-// BlogCard.astro — Organic Luxury Blog Card
+// BlogCard.astro v8 — «Werkplan» blog card (Projektblatt-Muster: Spec-Strip + Footer-Link)
 interface Props {
   title: string;
   description: string;
@@ -24,48 +24,39 @@ const readingTime = Math.max(Math.ceil(description.length / 200), 1);
 
 <a
   href={href}
-  class="block group bg-white rounded-2xl overflow-hidden border border-transparent hover:border-sand transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-forest/5"
+  class="flex flex-col group h-full bg-white rounded-lg overflow-hidden border border-line transition-all duration-200 hover:border-ink/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/8"
 >
   <!-- Image -->
-  <div class="relative aspect-[16/9] overflow-hidden">
+  <div class="aspect-[16/10] overflow-hidden">
     <img
       src={heroImage}
       alt={title}
-      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
       loading="lazy"
     />
   </div>
 
-  <!-- Content -->
-  <div class="p-6">
-    <!-- Tags -->
-    {tags.length > 0 && (
-      <div class="flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span class="text-xs bg-sand-light text-forest px-2 py-0.5 rounded-full">
-            {tag}
-          </span>
-        ))}
-      </div>
-    )}
+  <!-- Spec strip: date + tag -->
+  <div class="flex items-center justify-between gap-3 font-mono text-[0.65rem] uppercase tracking-[0.13em] text-bark border-b border-line px-5 py-2.5">
+    <time datetime={date.toISOString().split('T')[0]}>
+      {formattedDate}
+    </time>
+    {tags.length > 0 && <span>{tags[0]}</span>}
+  </div>
 
-    <!-- Title -->
-    <h3 class="font-heading text-xl text-forest group-hover:text-terracotta transition-colors mt-3">
+  <!-- Content -->
+  <div class="flex flex-col flex-1 p-5">
+    <h3 class="font-display font-bold text-lg text-ink leading-snug" style="font-stretch: 110%;">
       {title}
     </h3>
 
-    <!-- Description -->
-    <p class="text-text-muted text-sm line-clamp-2 mt-2">
+    <p class="text-bark text-sm leading-relaxed line-clamp-2 mt-2 flex-1">
       {description}
     </p>
 
-    <!-- Meta: Date + Reading Time -->
-    <div class="flex items-center gap-3 text-text-muted text-xs mt-3">
-      <time datetime={date.toISOString().split('T')[0]}>
-        {formattedDate}
-      </time>
-      <span class="w-1 h-1 rounded-full bg-sand" aria-hidden="true"></span>
-      <span>{readingTime} min Lesezeit</span>
-    </div>
+    <span class="inline-flex items-center gap-1.5 text-moss text-sm font-semibold mt-4">
+      Beitrag lesen
+      <span class="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+    </span>
   </div>
 </a>

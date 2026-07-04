@@ -176,17 +176,17 @@ export default function GalleryGrid({ images }: Props) {
   const getCategoryLabel = (category: string) => {
     switch (category) {
       case 'garden':
-        return { icon: '🌱', label: 'Gartengestaltung' };
+        return { label: 'Gartengestaltung' };
       case 'stone':
-        return { icon: '🪨', label: 'Naturstein' };
+        return { label: 'Naturstein' };
       case 'terrace':
-        return { icon: '🏗️', label: 'Terrassenbau' };
+        return { label: 'Terrassenbau' };
       case 'paving':
-        return { icon: '🛤️', label: 'Pflaster' };
+        return { label: 'Pflaster' };
       case 'privacy':
-        return { icon: '🏡', label: 'Sichtschutz' };
+        return { label: 'Sichtschutz' };
       default:
-        return { icon: '📷', label: 'Projekt' };
+        return { label: 'Projekt' };
     }
   };
 
@@ -225,11 +225,10 @@ export default function GalleryGrid({ images }: Props) {
                 height={image.height}
               />
               <div className="gallery-item-overlay">
-                <span className="gallery-item-icon">🔍</span>
+                <span className="gallery-item-icon" aria-hidden="true">+</span>
                 <span className="gallery-item-title">{image.title}</span>
               </div>
               <span className={`gallery-category-badge ${image.category}`}>
-                <span className="category-icon">{categoryInfo.icon}</span>
                 <span className="category-label">{categoryInfo.label}</span>
               </span>
             </div>
@@ -280,7 +279,6 @@ export default function GalleryGrid({ images }: Props) {
               const imageName = filteredImages[lightboxIndex].src.split('/').pop()?.replace('.webp', '') || '';
               const lightboxSrc = `/img/optimized/${imageName}-sm.webp`;
               const currentImage = filteredImages[lightboxIndex];
-              const categoryInfo = getCategoryLabel(currentImage.category);
 
               return (
                 <div className="lightbox-image-wrapper">
@@ -298,7 +296,7 @@ export default function GalleryGrid({ images }: Props) {
               </div>
               <div className="lightbox-meta">
                 <span className="lightbox-category">
-                  {getCategoryLabel(filteredImages[lightboxIndex].category).icon} {getCategoryLabel(filteredImages[lightboxIndex].category).label}
+                  {getCategoryLabel(filteredImages[lightboxIndex].category).label}
                 </span>
                 <span className="lightbox-counter">
                   {lightboxIndex + 1} / {filteredImages.length}

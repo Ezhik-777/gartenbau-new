@@ -5,60 +5,68 @@ import Footer from '../../components/Footer.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 
 const svgIcons = {
-  gartengestaltung: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M12 8c0-4 3-6 6-6-1 4-3 6-6 6z"/><path d="M12 12c0-4-3-6-6-6 1 4 3 6 6 6z"/><path d="M8 22h8"/><circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/></svg>`,
-  naturstein: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4l3-2h6l3 2v4"/><path d="M6 14v-3l2-2h4l2 2v3"/><path d="M9 9V6l1.5-1.5h0L12 6v3"/><path d="M7 16h10"/></svg>`,
-  terrassenbau: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4h16v4"/><path d="M6 16v-4h12v4"/><path d="M8 12V8h8v4"/><path d="M4 16h16"/><path d="M6 12h12"/></svg>`,
-  pflaster: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c2-4 5-8 8-12s5-6 8-6"/><rect x="2" y="18" width="4" height="4" rx="0.5"/><rect x="7" y="13" width="3.5" height="3.5" rx="0.5"/><rect x="12" y="8" width="3" height="3" rx="0.5"/><path d="M17 4l1-1"/></svg>`,
-  landschaftsbau: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M2 20c4-2 6-8 9-8s3 3 5 3 3-2 6-3"/><circle cx="18" cy="6" r="2"/><path d="M6 14c1-2 2-4 4-4"/></svg>`,
-  rollrasen: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h14"/><path d="M16 20c0 0 0-3 3-3s3 3 3 3"/><ellipse cx="19" cy="17" rx="3" ry="3"/><path d="M16 17V8h3"/><path d="M2 16l4-8 3 4 4-6 3 6"/><path d="M2 16h14"/></svg>`,
-  sichtschutz: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16"/><path d="M20 4v16"/><path d="M12 4v16"/><path d="M4 4h16"/><path d="M4 10h16"/><path d="M4 16h16"/></svg>`,
-  hausmeister: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+  gartengestaltung: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M12 8c0-4 3-6 6-6-1 4-3 6-6 6z"/><path d="M12 12c0-4-3-6-6-6 1 4 3 6 6 6z"/><path d="M8 22h8"/><circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/></svg>`,
+  naturstein: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4l3-2h6l3 2v4"/><path d="M6 14v-3l2-2h4l2 2v3"/><path d="M9 9V6l1.5-1.5h0L12 6v3"/><path d="M7 16h10"/></svg>`,
+  terrassenbau: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4h16v4"/><path d="M6 16v-4h12v4"/><path d="M8 12V8h8v4"/><path d="M4 16h16"/><path d="M6 12h12"/></svg>`,
+  pflaster: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c2-4 5-8 8-12s5-6 8-6"/><rect x="2" y="18" width="4" height="4" rx="0.5"/><rect x="7" y="13" width="3.5" height="3.5" rx="0.5"/><rect x="12" y="8" width="3" height="3" rx="0.5"/><path d="M17 4l1-1"/></svg>`,
+  landschaftsbau: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M2 20c4-2 6-8 9-8s3 3 5 3 3-2 6-3"/><circle cx="18" cy="6" r="2"/><path d="M6 14c1-2 2-4 4-4"/></svg>`,
+  rollrasen: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h14"/><path d="M16 20c0 0 0-3 3-3s3 3 3 3"/><ellipse cx="19" cy="17" rx="3" ry="3"/><path d="M16 17V8h3"/><path d="M2 16l4-8 3 4 4-6 3 6"/><path d="M2 16h14"/></svg>`,
+  sichtschutz: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16"/><path d="M20 4v16"/><path d="M12 4v16"/><path d="M4 4h16"/><path d="M4 10h16"/><path d="M4 16h16"/></svg>`,
+  hausmeister: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
 };
 
 const services = [
   {
+    code: 'LV 01',
     icon: svgIcons.gartengestaltung,
     title: 'Gartengestaltung',
     description: 'Professionelle Gartenplanung und -gestaltung mit individueller Beratung — vom Entwurf bis zur Bepflanzung.',
     slug: 'gartengestaltung',
   },
   {
+    code: 'LV 02',
     icon: svgIcons.naturstein,
     title: 'Natursteinarbeiten',
     description: 'Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen und dekorative Elemente.',
     slug: 'natursteinarbeiten',
   },
   {
+    code: 'LV 03',
     icon: svgIcons.terrassenbau,
     title: 'Terrassenbau',
     description: 'Moderne Terrassengestaltung mit hochwertigen Materialien für Ihren perfekten Außenbereich.',
     slug: 'terrassenbau',
   },
   {
+    code: 'LV 04',
     icon: svgIcons.pflaster,
-    title: 'Pflasterarbeiten (Wege & Zufahrten)',
+    title: 'Pflasterarbeiten',
     description: 'Professionelle Pflasterarbeiten für Einfahrten, Gartenwege und repräsentative Zufahrten.',
     slug: 'pflasterarbeiten',
   },
   {
+    code: 'LV 05',
     icon: svgIcons.landschaftsbau,
     title: 'Landschaftsbau',
     description: 'Kompletter Landschaftsbau von Erdarbeiten über Geländemodellierung bis zur fertigen Bepflanzung.',
     slug: 'landschaftsbau',
   },
   {
+    code: 'LV 06',
     icon: svgIcons.rollrasen,
     title: 'Rollrasen',
     description: 'Rollrasen-Verlegung für sofort nutzbaren, dichten und saftig grünen Rasen.',
     slug: 'rollrasen',
   },
   {
+    code: 'LV 07',
     icon: svgIcons.sichtschutz,
     title: 'Sichtschutz',
     description: 'Sichtschutzzäune, Hecken und Gabionen für mehr Privatsphäre in Ihrem Garten.',
     slug: 'sichtschutz',
   },
   {
+    code: 'LV 08',
     icon: svgIcons.hausmeister,
     title: 'Hausmeisterservice',
     description: 'Regelmäßige Gartenpflege, Grundstücksbetreuung und zuverlässiger Hausmeisterservice.',
@@ -92,55 +100,54 @@ const breadcrumbSchema = {
 >
   <Header />
 
-  <!-- Hero Banner -->
-  <section class="bg-forest pt-28 pb-20 md:pt-36 md:pb-28 text-center">
+  <!-- Hero -->
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Breadcrumb -->
-      <nav class="text-sand/60 text-sm mb-6" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-sand transition-colors">Home</a>
-        <span class="mx-2">/</span>
-        <span class="text-sand">Leistungen</span>
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white/80">Leistungen</li>
+        </ol>
       </nav>
-
-      <h1 class="font-heading text-4xl md:text-5xl text-white">
-        Unsere Leistungen
-      </h1>
-      <p class="text-ivory/80 mt-4 max-w-2xl mx-auto">
-        Professioneller Gartenbau und Landschaftsbau in Ludwigsburg, Stuttgart und der gesamten Region — alles aus einer Hand.
-      </p>
+      <p class="eyebrow eyebrow-light">Leistungsverzeichnis</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Unsere Leistungen</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">Professioneller Gartenbau und Landschaftsbau in Ludwigsburg, Stuttgart und der gesamten Region — alles aus einer Hand.</p>
     </div>
   </section>
 
-  <!-- Service Listing -->
-  <main id="main-content" class="py-20 md:py-28 bg-ivory">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {services.map((service, i) => (
-          <div class="reveal" style={`transition-delay: ${i * 100}ms`}>
-            <ServiceCard
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              href={`/leistungen/${service.slug}`}
-            />
-          </div>
-        ))}
+  <main id="main-content">
+    <!-- Service Listing -->
+    <section class="py-20 md:py-28 bg-paper">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service, i) => (
+            <div class="reveal" style={`transition-delay: ${(i % 4) * 80}ms`}>
+              <ServiceCard
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                href={`/leistungen/${service.slug}`}
+                code={service.code}
+              />
+            </div>
+          ))}
+        </div>
       </div>
+    </section>
 
-      <!-- CTA -->
-      <div class="text-center mt-16 reveal">
-        <p class="text-text-muted max-w-2xl mx-auto">
-          Sie haben Fragen zu einer unserer Leistungen oder wünschen eine individuelle Beratung? Wir sind gerne für Sie da.
-        </p>
-        <a
-          href="/#kontakt"
-          class="inline-flex items-center gap-2 bg-terracotta text-white font-medium px-8 py-3 rounded-full mt-6 transition-colors duration-300 hover:bg-terracotta-dark"
-        >
-          Kostenlose Beratung anfragen
-          <span aria-hidden="true">&rarr;</span>
-        </a>
+    <!-- CTA -->
+    <section class="py-20 md:py-28 bg-pine text-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+        <p class="eyebrow eyebrow-light justify-center">Kontakt</p>
+        <h2 class="font-display font-extrabold uppercase text-white text-3xl md:text-4xl mt-5" style="font-stretch: 118%;">Projekt besprechen?</h2>
+        <p class="text-white/70 mt-4 text-lg">Kostenlose Erstberatung — vor Ort und unverbindlich.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+          <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+          <a href="tel:+491782747470" class="btn btn-outline text-white">+49 178 2747470</a>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <Footer />

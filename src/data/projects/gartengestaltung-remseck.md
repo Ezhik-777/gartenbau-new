@@ -3,7 +3,7 @@ title: "Komplette Gartengestaltung in Remseck"
 description: "Von der kahlen Fläche zum Traumgarten — komplette Neugestaltung eines 200m² Gartens mit Terrasse, Bepflanzung und Beleuchtung."
 category: "gartengestaltung"
 date: 2025-11-15
-heroImage: "/img/image_1.webp"
+heroImage: "/img/image_115.webp"
 images: ["/img/image_2.webp", "/img/image_3.webp", "/img/image_4.webp", "/img/image_5.webp"]
 featured: true
 location: "Remseck am Neckar"

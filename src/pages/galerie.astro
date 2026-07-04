@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import GalleryGrid from '../components/GalleryGrid';
 // Generate all 180 image data with proper categorization and titles
-const images = Array.from({ length: 180 }, (_, i) => {
+const generatedImages = Array.from({ length: 180 }, (_, i) => {
   const id = i + 1;
 
   // Categorize images based on ID ranges with realistic distribution
@@ -90,6 +90,19 @@ const images = Array.from({ length: 180 }, (_, i) => {
   };
 });
 
+// Neue reale Baustellen- und Projektfotos (id 181–187)
+const newImages = [
+  { id: 181, src: '/img/baustelle-einfahrt.webp', category: 'paving', title: 'Einfahrt — Unterbau & Verdichtung', alt: 'Vorbereitung einer Einfahrt: Schotter-Tragschicht mit Rüttelplatte verdichtet', width: 1200, height: 1600 },
+  { id: 182, src: '/img/baustelle-verdichtung.webp', category: 'paving', title: 'Tragschicht verdichten', alt: 'Verdichtung der Tragschicht mit der Rüttelplatte', width: 1200, height: 1600 },
+  { id: 183, src: '/img/baustelle-randsteine.webp', category: 'privacy', title: 'Zaunbau — Fundament & Randsteine', alt: 'Zaunpfosten gesetzt, Randsteine in Beton — Vorbereitung Sichtschutz', width: 1200, height: 1600 },
+  { id: 184, src: '/img/projekt-hangterrassen.webp', category: 'stone', title: 'Hangterrassierung mit Palisaden', alt: 'Terrassierter Hang mit dunklen Palisaden und Treppe', width: 946, height: 1170 },
+  { id: 185, src: '/img/projekt-l-steine.webp', category: 'stone', title: 'Stützmauer aus L-Steinen', alt: 'L-Steine als Stützmauer, Erdarbeiten mit Minibagger', width: 1600, height: 414 },
+  { id: 186, src: '/img/projekt-rasen-fertig.webp', category: 'garden', title: 'Gartenpflege — Rasen & Sichtschutz', alt: 'Gepflegter Rasen mit Holz-Sichtschutz', width: 1200, height: 855 },
+  { id: 187, src: '/img/projekt-garten-vorher.webp', category: 'garden', title: 'Gartenumbau — Ausgangszustand', alt: 'Garten vor der Umgestaltung — Ausgangszustand', width: 1200, height: 708 },
+];
+
+const images = [...generatedImages, ...newImages];
+
 // Calculate category counts
 const categoryCounts = {
   all: images.length,
@@ -102,8 +115,8 @@ const categoryCounts = {
 ---
 
 <MainLayout
-  title="Projekt Galerie - 180+ Gartenprojekte | Gartenbau Z.M. Ludwigsburg"
-  description="Entdecken Sie über 180 erfolgreich abgeschlossene Gartenprojekte in Ludwigsburg, Stuttgart, Waiblingen & Region. Gartengestaltung, Naturstein, Terrassen, Pflaster & mehr."
+  title="Projekt Galerie - 185+ Gartenprojekte | Gartenbau Z.M. Ludwigsburg"
+  description="Entdecken Sie über 185 erfolgreich abgeschlossene Gartenprojekte in Ludwigsburg, Stuttgart, Waiblingen & Region. Gartengestaltung, Naturstein, Terrassen, Pflaster & mehr."
   canonical="https://gartenbauzm.de/galerie"
   ogImage="/img/image_1.webp"
   ogType="website"
@@ -111,55 +124,54 @@ const categoryCounts = {
   <Header />
 
   <!-- Hero Banner -->
-  <section class="bg-forest pt-28 pb-20 md:pt-36 md:pb-28 text-center">
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Breadcrumb -->
-      <nav class="text-sand/60 text-sm mb-6" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-sand transition-colors">Home</a>
-        <span class="mx-2">/</span>
-        <span class="text-sand">Galerie</span>
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white/80">Galerie</li>
+        </ol>
       </nav>
-
-      <h1 class="font-heading text-4xl md:text-5xl text-white">
-        Unsere Galerie
-      </h1>
-      <p class="text-ivory/80 mt-4 max-w-2xl mx-auto">
-        180+ erfolgreiche Gartenprojekte in Stuttgart & Region
+      <p class="eyebrow eyebrow-light">Referenzen</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Galerie</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">
+        185+ abgeschlossene Gartenprojekte in Stuttgart, Ludwigsburg & Region — echte Baustellen, echte Ergebnisse.
       </p>
     </div>
   </section>
 
   <!-- Main Gallery Content -->
-  <main id="main-content" class="py-16 md:py-24 bg-ivory">
+  <main id="main-content" class="py-16 md:py-24 bg-paper">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Gallery Controls -->
       <div class="flex flex-col gap-6 mb-10">
-        <!-- Filter Pills -->
-        <div class="flex flex-wrap gap-3 justify-center">
-          <button class="filter-btn active px-5 py-2.5 text-sm font-semibold rounded-full cursor-pointer transition-all whitespace-nowrap bg-forest text-white" data-filter="all">
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2.5 justify-center">
+          <button class="filter-btn active px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-pine text-white border border-pine" data-filter="all">
             Alle Projekte ({categoryCounts.all})
           </button>
-          <button class="filter-btn px-5 py-2.5 text-sm font-semibold rounded-full cursor-pointer transition-all whitespace-nowrap bg-ivory-warm text-forest border border-sand hover:bg-sand-light" data-filter="garden">
+          <button class="filter-btn px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-white border border-line text-ink hover:border-ink/30" data-filter="garden">
             Gartengestaltung ({categoryCounts.garden})
           </button>
-          <button class="filter-btn px-5 py-2.5 text-sm font-semibold rounded-full cursor-pointer transition-all whitespace-nowrap bg-ivory-warm text-forest border border-sand hover:bg-sand-light" data-filter="stone">
+          <button class="filter-btn px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-white border border-line text-ink hover:border-ink/30" data-filter="stone">
             Natursteinarbeiten ({categoryCounts.stone})
           </button>
-          <button class="filter-btn px-5 py-2.5 text-sm font-semibold rounded-full cursor-pointer transition-all whitespace-nowrap bg-ivory-warm text-forest border border-sand hover:bg-sand-light" data-filter="terrace">
+          <button class="filter-btn px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-white border border-line text-ink hover:border-ink/30" data-filter="terrace">
             Terrassenbau ({categoryCounts.terrace})
           </button>
-          <button class="filter-btn px-5 py-2.5 text-sm font-semibold rounded-full cursor-pointer transition-all whitespace-nowrap bg-ivory-warm text-forest border border-sand hover:bg-sand-light" data-filter="paving">
+          <button class="filter-btn px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-white border border-line text-ink hover:border-ink/30" data-filter="paving">
             Pflasterarbeiten ({categoryCounts.paving})
           </button>
-          <button class="filter-btn px-5 py-2.5 text-sm font-semibold rounded-full cursor-pointer transition-all whitespace-nowrap bg-ivory-warm text-forest border border-sand hover:bg-sand-light" data-filter="privacy">
+          <button class="filter-btn px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-white border border-line text-ink hover:border-ink/30" data-filter="privacy">
             Sichtschutz ({categoryCounts.privacy})
           </button>
         </div>
 
         <!-- Sort Dropdown -->
         <div class="flex items-center justify-center gap-3">
-          <label for="sort-select" class="text-sm font-semibold text-forest">Sortieren:</label>
-          <select id="sort-select" class="px-3 py-2 text-sm border border-sand rounded-lg bg-white text-forest cursor-pointer transition-all hover:border-terracotta focus:outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/20" data-sort-select>
+          <label for="sort-select" class="font-mono uppercase text-[0.72rem] tracking-[0.12em] text-bark">Sortieren:</label>
+          <select id="sort-select" class="px-3 py-2 text-sm border border-line rounded-md bg-white text-ink cursor-pointer transition-all hover:border-ink/30 focus:outline-none focus:border-moss focus:ring-2 focus:ring-moss/15" data-sort-select>
             <option value="newest">Neueste zuerst</option>
             <option value="oldest">Älteste zuerst</option>
             <option value="title-asc">Titel A-Z</option>
@@ -174,24 +186,14 @@ const categoryCounts = {
   </main>
 
   <!-- CTA Section -->
-  <section class="bg-forest py-20 md:py-28">
-    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
-        Bereit für Ihr nächstes Projekt?
-      </h2>
-      <p class="text-ivory/80 text-lg leading-relaxed mb-8">
-        Lassen Sie uns gemeinsam Ihren Traumgarten verwirklichen. Kostenlose Beratung vor Ort in Stuttgart und Umgebung.
-      </p>
-      <div class="flex gap-4 justify-center flex-wrap">
-        <a href="/#kontakt" class="inline-flex items-center gap-2 bg-terracotta text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:bg-terracotta-dark hover:-translate-y-0.5 hover:shadow-lg">
-          Jetzt Kontakt aufnehmen
-        </a>
-        <a href="https://wa.me/+491782747470" class="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:bg-white hover:text-forest hover:-translate-y-0.5 hover:shadow-lg">
-          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          WhatsApp direkt
-        </a>
+  <section class="py-20 md:py-28 bg-pine text-white">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+      <p class="eyebrow eyebrow-light justify-center">Kontakt</p>
+      <h2 class="font-display font-extrabold uppercase text-white text-3xl md:text-4xl mt-5" style="font-stretch: 118%;">Projekt besprechen?</h2>
+      <p class="text-white/70 mt-4 text-lg">Kostenlose Erstberatung — vor Ort und unverbindlich.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+        <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+        <a href="tel:+491782747470" class="btn btn-outline text-white">+49 178 2747470</a>
       </div>
     </div>
   </section>
@@ -202,9 +204,9 @@ const categoryCounts = {
 <style>
   /* Filter button active state toggling (JS adds/removes .active) */
   .filter-btn.active {
-    background-color: var(--color-forest) !important;
+    background-color: var(--color-pine) !important;
     color: white !important;
-    border-color: var(--color-forest) !important;
+    border-color: var(--color-pine) !important;
   }
 </style>
 

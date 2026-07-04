@@ -3,7 +3,7 @@ title: "Einfahrt und Wege in Waiblingen"
 description: "Neugestaltung der Einfahrt und Gartenwege mit hochwertigem Betonsteinpflaster in anthrazit."
 category: "pflaster"
 date: 2025-08-10
-heroImage: "/img/image_141.webp"
+heroImage: "/img/image_142.webp"
 images: ["/img/image_142.webp", "/img/image_143.webp"]
 featured: true
 location: "Waiblingen"

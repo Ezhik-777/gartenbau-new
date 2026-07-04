@@ -1,27 +1,33 @@
 ---
-// ContactForm.astro — Enhanced with input focus animations, loading & success states
+// ContactForm.astro v8.0 — «Projektanfrage»: mono labels, marker submit, pine info card
 ---
 
-<section id="kontakt" class="py-20 md:py-28 bg-ivory">
-  <div class="mx-auto max-w-7xl px-5">
+<section id="kontakt" class="py-20 md:py-28 bg-paper">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- Section heading -->
-    <div class="text-center mb-14">
-      <h2 class="font-heading text-3xl md:text-4xl text-forest">Kontakt aufnehmen</h2>
-      <p class="text-text-muted text-center mt-4 max-w-2xl mx-auto">
-        Wir freuen uns auf Ihr Projekt. Kontaktieren Sie uns für eine kostenlose Beratung.
-      </p>
+    <div class="reveal">
+      <p class="eyebrow">Kontakt</p>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-5 mb-12">
+        <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink" style="font-stretch: 118%;">
+          Projekt anfragen
+        </h2>
+        <p class="text-bark max-w-md">
+          Beschreiben Sie kurz Ihr Vorhaben — wir melden uns
+          innerhalb weniger Stunden mit einem Terminvorschlag.
+        </p>
+      </div>
     </div>
 
     <!-- Two-column layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
 
       <!-- Left column — Form (3/5) -->
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-3 reveal">
         <form
           id="contact-form"
           action="https://formspree.io/f/xkgnqkwa"
           method="POST"
-          class="flex flex-col gap-5"
+          class="flex flex-col gap-5 bg-white border border-line rounded-lg p-6 md:p-8"
           accept-charset="UTF-8"
         >
           <!-- Honeypot for spam protection -->
@@ -30,79 +36,82 @@
           <!-- Formspree config -->
           <input type="hidden" name="_subject" value="Neue Anfrage von gartenbauzm.de">
 
-          <!-- Name -->
-          <div class="input-focus-line relative">
-            <label for="contact-name" class="font-body text-sm font-medium text-forest mb-1.5 block">
-              Name <span class="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="contact-name"
-              name="name"
-              required
-              minlength="2"
-              maxlength="100"
-              placeholder="Ihr vollständiger Name"
-              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors"
-            >
-          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- Name -->
+            <div>
+              <label for="contact-name" class="font-mono text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bark mb-2 block">
+                Name <span class="text-moss">*</span>
+              </label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                required
+                minlength="2"
+                maxlength="100"
+                placeholder="Ihr vollständiger Name"
+                class="w-full bg-paper border border-line rounded-md px-4 py-3 text-ink placeholder:text-bark/50 focus:border-moss focus:ring-2 focus:ring-moss/15 outline-none transition-colors"
+              >
+            </div>
 
-          <!-- Email -->
-          <div class="input-focus-line relative">
-            <label for="contact-email" class="font-body text-sm font-medium text-forest mb-1.5 block">
-              E-Mail <span class="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="contact-email"
-              name="email"
-              required
-              placeholder="ihre@email.de"
-              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors"
-            >
-          </div>
+            <!-- Email -->
+            <div>
+              <label for="contact-email" class="font-mono text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bark mb-2 block">
+                E-Mail <span class="text-moss">*</span>
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                required
+                placeholder="ihre@email.de"
+                class="w-full bg-paper border border-line rounded-md px-4 py-3 text-ink placeholder:text-bark/50 focus:border-moss focus:ring-2 focus:ring-moss/15 outline-none transition-colors"
+              >
+            </div>
 
-          <!-- Phone -->
-          <div class="input-focus-line relative">
-            <label for="contact-phone" class="font-body text-sm font-medium text-forest mb-1.5 block">
-              Telefon <span class="text-text-muted font-normal">(optional)</span>
-            </label>
-            <input
-              type="tel"
-              id="contact-phone"
-              name="phone"
-              placeholder="z.B. 0176 12345678"
-              pattern="[0-9+\s\-()]+"
-              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors"
-            >
-          </div>
+            <!-- Phone -->
+            <div>
+              <label for="contact-phone" class="font-mono text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bark mb-2 block">
+                Telefon <span class="normal-case tracking-normal text-bark/60">(optional)</span>
+              </label>
+              <input
+                type="tel"
+                id="contact-phone"
+                name="phone"
+                placeholder="z.B. 0176 12345678"
+                pattern="[0-9+\s\-()]+"
+                class="w-full bg-paper border border-line rounded-md px-4 py-3 text-ink placeholder:text-bark/50 focus:border-moss focus:ring-2 focus:ring-moss/15 outline-none transition-colors"
+              >
+            </div>
 
-          <!-- Service dropdown -->
-          <div class="input-focus-line relative">
-            <label for="contact-service" class="font-body text-sm font-medium text-forest mb-1.5 block">
-              Gewünschte Leistung
-            </label>
-            <select
-              id="contact-service"
-              name="service"
-              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201.5L6%206.5L11%201.5%22%20stroke%3D%22%236b6b6b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat"
-            >
-              <option value="">Bitte wählen...</option>
-              <option value="Gartengestaltung">Gartengestaltung</option>
-              <option value="Natursteinarbeiten">Natursteinarbeiten</option>
-              <option value="Terrassenbau">Terrassenbau</option>
-              <option value="Pflasterarbeiten">Pflasterarbeiten</option>
-              <option value="Landschaftsbau">Landschaftsbau</option>
-              <option value="Rollrasen">Rollrasen</option>
-              <option value="Sichtschutz">Sichtschutz</option>
-              <option value="Sonstiges">Sonstiges</option>
-            </select>
+            <!-- Service dropdown -->
+            <div>
+              <label for="contact-service" class="font-mono text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bark mb-2 block">
+                Leistung
+              </label>
+              <select
+                id="contact-service"
+                name="service"
+                class="w-full bg-paper border border-line rounded-md px-4 py-3 text-ink focus:border-moss focus:ring-2 focus:ring-moss/15 outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201.5L6%206.5L11%201.5%22%20stroke%3D%22%2355605a%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat"
+              >
+                <option value="">Bitte wählen...</option>
+                <option value="Gartengestaltung">Gartengestaltung</option>
+                <option value="Natursteinarbeiten">Natursteinarbeiten</option>
+                <option value="Terrassenbau">Terrassenbau</option>
+                <option value="Pflasterarbeiten">Pflasterarbeiten</option>
+                <option value="Landschaftsbau">Landschaftsbau</option>
+                <option value="Rollrasen">Rollrasen</option>
+                <option value="Sichtschutz">Sichtschutz</option>
+                <option value="Hausmeisterservice">Hausmeisterservice</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+            </div>
           </div>
 
           <!-- Message -->
-          <div class="input-focus-line relative">
-            <label for="contact-message" class="font-body text-sm font-medium text-forest mb-1.5 block">
-              Ihre Nachricht <span class="text-red-500">*</span>
+          <div>
+            <label for="contact-message" class="font-mono text-[0.7rem] font-medium uppercase tracking-[0.15em] text-bark mb-2 block">
+              Ihre Nachricht <span class="text-moss">*</span>
             </label>
             <textarea
               id="contact-message"
@@ -111,8 +120,8 @@
               rows="5"
               minlength="10"
               maxlength="1000"
-              placeholder="Beschreiben Sie Ihr Projekt oder Ihre Frage..."
-              class="w-full bg-white border border-sand/60 rounded-xl px-4 py-3 text-text placeholder:text-text-muted/50 focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 outline-none transition-colors resize-vertical"
+              placeholder="Was soll gebaut werden? Fläche, Ort, Zeitrahmen..."
+              class="w-full bg-paper border border-line rounded-md px-4 py-3 text-ink placeholder:text-bark/50 focus:border-moss focus:ring-2 focus:ring-moss/15 outline-none transition-colors resize-vertical"
             ></textarea>
           </div>
 
@@ -123,10 +132,10 @@
               id="contact-privacy"
               name="privacy"
               required
-              class="mt-1 h-4 w-4 rounded border-sand accent-terracotta cursor-pointer shrink-0"
+              class="mt-1 h-4 w-4 rounded-sm border-line accent-moss cursor-pointer shrink-0"
             >
-            <label for="contact-privacy" class="text-sm text-text-muted leading-relaxed cursor-pointer">
-              Ich habe die <a href="/datenschutz" target="_blank" class="text-forest underline decoration-terracotta/40 hover:text-forest-light transition-colors">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="text-red-500">*</span>
+            <label for="contact-privacy" class="text-sm text-bark leading-relaxed cursor-pointer">
+              Ich habe die <a href="/datenschutz" target="_blank" class="text-ink underline decoration-marker decoration-2 underline-offset-2 hover:text-moss transition-colors">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="text-moss">*</span>
             </label>
           </div>
 
@@ -134,9 +143,9 @@
           <button
             type="submit"
             id="contact-submit"
-            class="btn-sweep w-full bg-forest hover:bg-forest-light text-white rounded-full py-4 text-lg font-medium transition-all duration-200 mt-2 cursor-pointer hover:shadow-lg hover:shadow-forest/30 active:scale-[0.98]"
+            class="btn btn-primary w-full mt-2 text-base"
           >
-            <span class="submit-text">Nachricht senden</span>
+            <span class="submit-text">Anfrage senden</span>
             <span class="submit-loading hidden items-center justify-center gap-2">
               <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
@@ -149,14 +158,14 @@
           <!-- Status messages -->
           <div id="form-status" class="hidden">
             <!-- Success -->
-            <div id="status-success" class="hidden items-center gap-3 rounded-xl bg-green-50 border border-green-200 p-4 text-green-800 form-status-animate">
-              <svg class="w-6 h-6 shrink-0 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <div id="status-success" class="hidden items-center gap-3 rounded-md bg-moss/10 border border-moss/30 p-4 text-pine form-status-animate">
+              <svg class="w-6 h-6 shrink-0 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
               <p class="text-sm font-medium">Vielen Dank! Wir melden uns in Kürze.</p>
             </div>
             <!-- Error -->
-            <div id="status-error" class="hidden items-center gap-3 rounded-xl bg-red-50 border border-red-200 p-4 text-red-800 form-status-animate">
+            <div id="status-error" class="hidden items-center gap-3 rounded-md bg-red-50 border border-red-200 p-4 text-red-800 form-status-animate">
               <svg class="w-6 h-6 shrink-0 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
@@ -167,56 +176,53 @@
       </div>
 
       <!-- Right column — Contact Info (2/5) -->
-      <div class="lg:col-span-2">
-        <div class="relative bg-forest rounded-2xl p-8 md:p-10 text-ivory h-fit overflow-hidden">
-          <!-- Inner glow accent -->
-          <div class="absolute top-0 right-0 w-32 h-32 bg-terracotta/10 rounded-full blur-2xl pointer-events-none" aria-hidden="true"></div>
-          <div class="absolute bottom-0 left-0 w-24 h-24 bg-forest-light/20 rounded-full blur-2xl pointer-events-none" aria-hidden="true"></div>
-
-          <h3 class="font-heading text-2xl text-white mb-8 relative">So erreichen Sie uns</h3>
+      <div class="lg:col-span-2 reveal" style="transition-delay: 100ms">
+        <div class="bg-pine rounded-lg p-8 md:p-10 text-white h-fit">
+          <p class="font-mono text-[0.7rem] font-medium uppercase tracking-[0.18em] text-white/50">Direkter Draht</p>
+          <h3 class="font-display font-bold text-2xl text-white mt-3 mb-8" style="font-stretch: 112%;">So erreichen Sie uns</h3>
 
           <!-- Address -->
-          <div class="flex gap-4 border-b border-forest-light/30 pb-6 mb-6 relative">
-            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="flex gap-4 border-b border-white/10 pb-5 mb-5">
+            <svg class="w-5 h-5 shrink-0 text-marker mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
             <div>
-              <p class="text-ivory/80 text-sm">Remseck am Neckar</p>
-              <p class="text-ivory/80 text-sm">Baden-Württemberg</p>
+              <p class="text-white/80 text-sm">Remseck am Neckar</p>
+              <p class="text-white/80 text-sm">Baden-Württemberg</p>
             </div>
           </div>
 
           <!-- Phone -->
-          <div class="flex gap-4 border-b border-forest-light/30 pb-6 mb-6 relative">
-            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="flex gap-4 border-b border-white/10 pb-5 mb-5">
+            <svg class="w-5 h-5 shrink-0 text-marker mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
             </svg>
-            <a href="tel:+491782747470" class="text-ivory/80 text-sm hover:text-white transition-colors">
+            <a href="tel:+491782747470" class="font-mono text-sm text-white/80 hover:text-marker transition-colors">
               +49 178 2747470
             </a>
           </div>
 
           <!-- Email -->
-          <div class="flex gap-4 border-b border-forest-light/30 pb-6 mb-6 relative">
-            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="flex gap-4 border-b border-white/10 pb-5 mb-5">
+            <svg class="w-5 h-5 shrink-0 text-marker mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            <a href="mailto:info@gartenbauzm.de" class="text-ivory/80 text-sm hover:text-white transition-colors">
+            <a href="mailto:info@gartenbauzm.de" class="font-mono text-sm text-white/80 hover:text-marker transition-colors break-all">
               info@gartenbauzm.de
             </a>
           </div>
 
           <!-- Hours -->
-          <div class="flex gap-4 relative">
-            <svg class="w-5 h-5 shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="flex gap-4">
+            <svg class="w-5 h-5 shrink-0 text-marker mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <div>
-              <p class="text-ivory/80 text-sm">Mo–Fr 08:00–18:00</p>
-              <p class="text-ivory/80 text-sm">Sa 09:00–14:00</p>
+            <div class="font-mono text-sm text-white/80">
+              <p>Mo&ndash;Fr&ensp;08:00&ndash;18:00</p>
+              <p>Sa&ensp;&ensp;&ensp;&ensp;09:00&ndash;14:00</p>
             </div>
           </div>
 
@@ -225,7 +231,7 @@
             href="https://wa.me/491782747470"
             target="_blank"
             rel="noopener noreferrer"
-            class="relative bg-[#075E54] text-white rounded-full px-6 py-3 flex items-center gap-3 w-full justify-center hover:brightness-125 mt-8 transition-all text-sm font-medium"
+            class="bg-[#25D366] text-ink font-semibold rounded-md px-6 py-3.5 flex items-center gap-3 w-full justify-center hover:brightness-110 mt-8 transition-all text-sm"
           >
             <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
@@ -298,7 +304,6 @@
         });
 
         if (res.ok) {
-          // Show success
           if (statusDiv) statusDiv.classList.remove('hidden');
           if (successDiv) {
             successDiv.classList.remove('hidden');
@@ -309,7 +314,6 @@
           throw new Error('Submission failed');
         }
       } catch {
-        // Show error
         if (statusDiv) statusDiv.classList.remove('hidden');
         if (errorDiv) {
           errorDiv.classList.remove('hidden');
@@ -322,7 +326,6 @@
           loadingEl.classList.add('hidden');
           loadingEl.classList.remove('inline-flex');
         }
-        // Scroll status into view
         if (statusDiv) {
           statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }

@@ -1,4 +1,5 @@
 ---
+// FAQ.astro v8.0 — «Werkplan»: stone ground, mono plus markers
 import FAQSchema from './FAQSchema.astro';
 
 const faqs = [
@@ -45,27 +46,28 @@ const faqs = [
 ];
 ---
 
-<section id="FAQ" class="py-20 md:py-28 bg-ivory-warm">
-  <div class="mx-auto max-w-3xl px-5">
-    <div class="text-center">
-      <h2 class="font-heading text-3xl md:text-4xl text-forest">
-        Häufig gestellte Fragen
+<section id="FAQ" class="py-20 md:py-28 bg-stone">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <div class="reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">
+        Häufige Fragen
       </h2>
-      <p class="text-text-muted mt-4">
-        Alles was Sie über unsere Gartenbau-Leistungen wissen müssen
+      <p class="text-bark mt-4">
+        Antworten zu Ablauf, Kosten und Materialien
       </p>
     </div>
 
-    <div class="mt-12">
+    <div class="mt-12 reveal">
       {faqs.map((faq) => (
-        <details class="faq-item border-b border-sand/50 group">
-          <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+        <details class="faq-item border-b border-line group">
+          <summary class="font-semibold text-ink text-[1.05rem] py-5 cursor-pointer flex items-center justify-between gap-4 list-none [&::-webkit-details-marker]:hidden">
             <span>{faq.question}</span>
-            <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
+            <span class="faq-icon flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-md border border-line font-mono text-lg leading-none text-moss select-none" aria-hidden="true">+</span>
           </summary>
           <div class="faq-content">
             <div>
-              <p class="font-body text-text-muted leading-relaxed pb-5">
+              <p class="text-bark leading-relaxed pb-5 pr-2">
                 {faq.answer}
               </p>
             </div>
@@ -79,7 +81,6 @@ const faqs = [
 </section>
 
 <style>
-  /* Smooth open/close animation using grid-template-rows trick */
   details .faq-content {
     display: grid;
     grid-template-rows: 0fr;
@@ -94,12 +95,14 @@ const faqs = [
     overflow: hidden;
   }
 
-  /* Plus to X rotation */
   details summary .faq-icon {
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out;
   }
 
   details[open] summary .faq-icon {
     transform: rotate(45deg);
+    background-color: var(--color-marker);
+    border-color: var(--color-marker);
+    color: var(--color-ink);
   }
 </style>

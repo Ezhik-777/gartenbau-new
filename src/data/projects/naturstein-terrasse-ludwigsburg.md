@@ -3,7 +3,7 @@ title: "Naturstein-Terrasse in Ludwigsburg"
 description: "Elegante Natursteinterrasse mit Polygonalplatten und integrierter Sitzmauer für ein Einfamilienhaus."
 category: "naturstein"
 date: 2025-09-20
-heroImage: "/img/image_61.webp"
+heroImage: "/img/image_110.webp"
 images: ["/img/image_62.webp", "/img/image_63.webp", "/img/image_64.webp"]
 featured: true
 location: "Ludwigsburg"

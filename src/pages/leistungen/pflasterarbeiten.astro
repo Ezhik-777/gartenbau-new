@@ -45,6 +45,17 @@ const faqSchema = {
     "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
   }))
 };
+
+const checklist = [
+  'Einfahrten und Hofeinfahrten pflastern',
+  'Gartenwege und Gehwege anlegen',
+  'Betonstein, Naturstein und Klinker',
+  'Fachgerechter Unterbau mit Tragschicht',
+  'Randeinfassungen und Bordsteine',
+  'Entwässerungsrinnen und Versickerungssysteme',
+  'Wasserdurchlässige Pflastersysteme',
+  'Sanierung und Neuverlegung bestehender Flächen',
+];
 ---
 
 <MainLayout
@@ -55,101 +66,112 @@ const faqSchema = {
   <Header />
 
   <!-- Hero -->
-  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-sm text-ivory/60">
-          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
-          <li class="text-ivory">Pflasterarbeiten</li>
+          <li class="text-white/80">Pflasterarbeiten</li>
         </ol>
       </nav>
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Pflasterarbeiten</h1>
-      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Professionelle Pflasterarbeiten für Einfahrten, Gartenwege und Hofflächen — dauerhaft, fachgerecht und optisch ansprechend.</p>
+      <p class="eyebrow eyebrow-light">Leistung · LV 04</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Pflasterarbeiten</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">Professionelle Pflasterarbeiten für Einfahrten, Gartenwege und Hofflächen — dauerhaft, fachgerecht und optisch ansprechend.</p>
     </div>
   </section>
 
   <main id="main-content">
     <!-- Service description -->
-    <section class="py-20 md:py-28 bg-ivory">
+    <section class="py-20 md:py-28 bg-paper">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest">Pflasterarbeiten vom Fachbetrieb</h2>
-        <p class="mt-6 text-text leading-relaxed">
+        <div class="reveal">
+          <p class="eyebrow">Im Detail</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Pflasterarbeiten vom Fachbetrieb</h2>
+        </div>
+        <p class="mt-6 text-bark leading-relaxed">
           Gepflasterte Flächen prägen den ersten Eindruck Ihres Grundstücks. Ob einladende Einfahrt, geschwungener Gartenweg oder repräsentative Hofeinfahrt — bei Gartenbau Z.M. realisieren wir Pflasterarbeiten in Ludwigsburg, Stuttgart, Waiblingen, Esslingen und der gesamten Region, die handwerklich einwandfrei ausgeführt sind und über viele Jahre belastbar bleiben. Von der Planung über die Erdarbeiten bis zur sauberen Verfugung erhalten Sie alles aus einer Hand.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Materialauswahl: Betonstein, Naturstein und Klinker</h3>
-        <p class="mt-4 text-text leading-relaxed">
+        <h3 class="font-display font-bold text-xl md:text-2xl text-ink mt-12" style="font-stretch: 110%;">Materialauswahl: Betonstein, Naturstein und Klinker</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Wir verarbeiten alle gängigen Pflastermaterialien und beraten Sie zur optimalen Wahl. Betonstein bietet ein hervorragendes Preis-Leistungs-Verhältnis und ist in zahlreichen Farben und Formaten erhältlich — von klassischem Rechteckpflaster bis zu modernen Großformatplatten. Natursteinpflaster aus Granit, Basalt oder Porphyr überzeugt durch seine einzigartige Optik und extreme Langlebigkeit. Klinker setzt mit seinen warmen Rottönen besondere Akzente und eignet sich sowohl für ländliche als auch für moderne Gestaltungen.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Fachgerechter Aufbau für dauerhafte Ergebnisse</h3>
-        <p class="mt-4 text-text leading-relaxed">
+        <h3 class="font-display font-bold text-xl md:text-2xl text-ink mt-12" style="font-stretch: 110%;">Fachgerechter Aufbau für dauerhafte Ergebnisse</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Die Qualität einer Pflasterfläche steht und fällt mit dem Unterbau. Wir tragen zunächst den Oberboden ab und erstellen eine verdichtete Tragschicht aus Schotter, die der jeweiligen Belastung angepasst wird. Einfahrten erhalten einen stärkeren Aufbau als Gartenwege. Darauf folgt das Splittbett, in das die Pflastersteine millimetergenau verlegt werden. Randeinfassungen aus Beton oder Naturstein sichern die Fläche gegen seitliches Verschieben. Das Ergebnis ist eine ebenmäßige, langlebige Fläche ohne spätere Absackungen.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Entwässerung und Versickerung</h3>
-        <p class="mt-4 text-text leading-relaxed">
+        <h3 class="font-display font-bold text-xl md:text-2xl text-ink mt-12" style="font-stretch: 110%;">Entwässerung und Versickerung</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Die Entwässerung ist ein wesentlicher Bestandteil jeder Pflasterarbeit. Wir planen ein ausreichendes Gefälle ein und setzen bei Bedarf Entwässerungsrinnen oder Muldenrinnen. Für umweltbewusste Kunden bieten wir wasserdurchlässige Pflastersysteme an, die Regenwasser direkt vor Ort versickern lassen. Das schont die Kanalisation und entspricht den aktuellen Anforderungen vieler Kommunen im Raum Stuttgart, Fellbach und Waiblingen an die Flächenversiegelung.
         </p>
       </div>
     </section>
 
     <!-- Checklist -->
-    <section class="py-20 md:py-28 bg-ivory-warm">
+    <section class="py-20 md:py-28 bg-stone">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <div class="reveal">
+          <p class="eyebrow">Leistungsumfang</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Was wir bieten</h2>
+        </div>
         <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Einfahrten und Hofeinfahrten pflastern</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Gartenwege und Gehwege anlegen</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Betonstein, Naturstein und Klinker</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Fachgerechter Unterbau mit Tragschicht</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Randeinfassungen und Bordsteine</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Entwässerungsrinnen und Versickerungssysteme</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Wasserdurchlässige Pflastersysteme</span></li>
-          <li class="flex items-start gap-3"><span class="text-terracotta mt-1" aria-hidden="true">&#10003;</span><span class="text-text">Sanierung und Neuverlegung bestehender Flächen</span></li>
+          {checklist.map((item) => (
+            <li class="flex items-start gap-3"><span class="flex items-center justify-center w-5 h-5 mt-0.5 bg-marker rounded-sm font-mono text-[0.7rem] text-ink shrink-0" aria-hidden="true">&#10003;</span><span class="text-ink">{item}</span></li>
+          ))}
         </ul>
       </div>
     </section>
 
     <!-- Gallery -->
-    <section class="py-20 md:py-28 bg-ivory">
+    <section class="py-20 md:py-28 bg-paper">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="reveal">
+          <p class="eyebrow">Referenzen</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_80.webp" alt="Gepflasterte Einfahrt mit Betonstein-Pflaster in Ludwigsburg" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_85.webp" alt="Gartenweg aus Natursteinpflaster in Stuttgart" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_90.webp" alt="Pflasterarbeiten mit Randeinfassung und Entwässerung" class="rounded-2xl w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_80.webp" alt="Gepflasterte Einfahrt mit Betonstein-Pflaster in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_85.webp" alt="Gartenweg aus Natursteinpflaster in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/image_90.webp" alt="Pflasterarbeiten mit Randeinfassung und Entwässerung" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-20 md:py-28 bg-ivory-warm">
+    <section class="py-20 md:py-28 bg-stone">
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
-        {faqs.map((faq) => (
-          <details class="border-b border-sand/50 group">
-            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
-              <span>{faq.question}</span>
-              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
-          </details>
-        ))}
+        <div class="reveal">
+          <p class="eyebrow justify-center">FAQ</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink text-center mt-5" style="font-stretch: 118%;">Häufige Fragen</h2>
+        </div>
+        <div class="mt-12">
+          {faqs.map((faq) => (
+            <details class="border-b border-line group">
+              <summary class="font-semibold text-ink text-[1.05rem] py-5 cursor-pointer flex items-center justify-between gap-4 list-none [&::-webkit-details-marker]:hidden">
+                <span>{faq.question}</span>
+                <span class="faq-icon flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-md border border-line font-mono text-lg leading-none text-moss select-none" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-content"><div><p class="text-bark leading-relaxed pb-5">{faq.answer}</p></div></div>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="py-20 md:py-28 bg-forest text-white text-center">
-      <div class="mx-auto max-w-3xl px-4">
-        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
-        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
-          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+    <section class="py-20 md:py-28 bg-pine text-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+        <p class="eyebrow eyebrow-light justify-center">Kontakt</p>
+        <h2 class="font-display font-extrabold uppercase text-white text-3xl md:text-4xl mt-5" style="font-stretch: 118%;">Projekt besprechen?</h2>
+        <p class="text-white/70 mt-4 text-lg">Kostenlose Erstberatung — vor Ort und unverbindlich.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+          <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+          <a href="tel:+491782747470" class="btn btn-outline text-white">+49 178 2747470</a>
         </div>
       </div>
     </section>
@@ -170,13 +192,16 @@ const faqSchema = {
   details[open] .faq-content {
     grid-template-rows: 1fr;
   }
-  details .faq-content > p {
+  details .faq-content > div {
     overflow: hidden;
   }
   details summary .faq-icon {
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out;
   }
   details[open] summary .faq-icon {
     transform: rotate(45deg);
+    background-color: var(--color-marker);
+    border-color: var(--color-marker);
+    color: var(--color-ink);
   }
 </style>

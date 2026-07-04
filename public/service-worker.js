@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gartenbau-v6';
+const CACHE_NAME = 'gartenbau-v8';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_URLS = [

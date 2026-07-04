@@ -45,6 +45,17 @@ const faqSchema = {
     "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
   }))
 };
+
+const checklist = [
+  "Rasenmähen und Rasenkantenpflege",
+  "Heckenschnitt und Strauchpflege",
+  "Unkrautbekämpfung und Beetpflege",
+  "Laubbeseitigung und Herbstreinigung",
+  "Winterdienst: Schneeräumung und Streuen",
+  "Gehweg- und Zufahrtsreinigung",
+  "Bewässerung und Düngung nach Plan",
+  "Flexible Verträge: wöchentlich, monatlich oder auf Abruf",
+];
 ---
 
 <MainLayout
@@ -55,131 +66,115 @@ const faqSchema = {
   <Header />
 
   <!-- Hero -->
-  <section class="bg-forest text-white pt-28 pb-20 md:pt-36 md:pb-28">
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <nav aria-label="Breadcrumb" class="mb-6">
-        <ol class="flex items-center gap-2 text-sm text-ivory/60">
-          <li><a href="/" class="hover:text-ivory transition-colors">Home</a></li>
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-ivory transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
-          <li class="text-ivory">Hausmeisterservice</li>
+          <li class="text-white/80">Hausmeisterservice</li>
         </ol>
       </nav>
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl">Hausmeisterservice</h1>
-      <p class="text-ivory/80 text-lg md:text-xl mt-4 max-w-2xl">Zuverlässige Gartenpflege und Grundstücksbetreuung in Ludwigsburg, Stuttgart und der gesamten Region.</p>
+      <p class="eyebrow eyebrow-light">Leistung &middot; LV 08</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Hausmeisterservice</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">Zuverlässige Gartenpflege und Grundstücksbetreuung in Ludwigsburg, Stuttgart und der gesamten Region.</p>
     </div>
   </section>
 
   <main id="main-content">
     <!-- Service description -->
-    <section class="py-20 md:py-28 bg-ivory">
+    <section class="py-20 md:py-28 bg-paper">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest">Ihr zuverlässiger Hausmeisterservice vor Ort</h2>
-        <p class="mt-6 font-body text-text-muted leading-relaxed">
+        <div class="reveal">
+          <p class="eyebrow">Leistung im Detail</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Ihr Hausmeisterservice vor Ort</h2>
+        </div>
+        <p class="mt-6 text-bark leading-relaxed">
           Ein gepflegtes Grundstück steigert nicht nur den Wert Ihrer Immobilie, sondern sorgt auch für Wohlbefinden und Sicherheit. Gartenbau Z.M. bietet einen umfassenden Hausmeisterservice in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und Fellbach. Ob regelmäßige Gartenpflege, saisonale Arbeiten oder Winterdienst — wir kümmern uns zuverlässig um Ihr Grundstück, damit Sie sich um nichts sorgen müssen.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Regelmäßige Gartenpflege</h3>
-        <p class="mt-4 font-body text-text-muted leading-relaxed">
+        <h3 class="font-display font-bold text-2xl text-ink mt-10" style="font-stretch: 110%;">Regelmäßige Gartenpflege</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Unser Kernbereich ist die laufende Gartenpflege. Dazu gehören Rasenmähen, Heckenschnitt, Unkrautbekämpfung, Beetpflege und Laubbeseitigung. Wir arbeiten mit professionellem Gerät und stimmen die Pflegeintervalle auf die Bedürfnisse Ihres Gartens ab. Im Frühjahr bereiten wir Ihren Garten in Ludwigsburg oder Stuttgart auf die Saison vor, im Herbst machen wir ihn winterfest. So bleibt Ihre Außenanlage das ganze Jahr über in einwandfreiem Zustand.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Grundstücksbetreuung und Objektpflege</h3>
-        <p class="mt-4 font-body text-text-muted leading-relaxed">
+        <h3 class="font-display font-bold text-2xl text-ink mt-10" style="font-stretch: 110%;">Grundstücksbetreuung und Objektpflege</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Neben der Gartenpflege übernehmen wir die Betreuung Ihres gesamten Grundstücks. Wir reinigen Gehwege, Einfahrten und Stellplätze, beseitigen Wildwuchs und halten Entwässerungsrinnen frei. Für Hausverwaltungen und Wohnungseigentümergemeinschaften in Ludwigsburg und Waiblingen bieten wir maßgeschneiderte Service-Pakete mit festem Ansprechpartner, regelmäßigen Begehungen und transparenter Dokumentation aller durchgeführten Arbeiten.
         </p>
 
-        <h3 class="font-heading text-2xl text-forest mt-10">Winterdienst mit Verlässlichkeit</h3>
-        <p class="mt-4 font-body text-text-muted leading-relaxed">
+        <h3 class="font-display font-bold text-2xl text-ink mt-10" style="font-stretch: 110%;">Winterdienst mit Verlässlichkeit</h3>
+        <p class="mt-4 text-bark leading-relaxed">
           Im Winter sorgen wir für sichere Wege und Zufahrten. Unser Winterdienst umfasst Schneeräumung und Streuen bei Glatteis — zuverlässig ab den frühen Morgenstunden. Wir erfüllen Ihre Verkehrssicherungspflicht pünktlich und gewissenhaft, sodass Bewohner und Besucher Ihr Grundstück sicher betreten können. Der Winterdienst kann als Einzelleistung oder im Jahrespaket gebucht werden. In Ludwigsburg, Stuttgart und der gesamten Region sind wir kurzfristig einsatzbereit.
         </p>
       </div>
     </section>
 
     <!-- Checklist -->
-    <section class="py-20 md:py-28 bg-ivory-warm">
+    <section class="py-20 md:py-28 bg-stone">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Was wir bieten</h2>
+        <div class="reveal">
+          <p class="eyebrow">Leistungsumfang</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Was wir bieten</h2>
+        </div>
         <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Rasenmähen und Rasenkantenpflege</span>
-          </li>
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Heckenschnitt und Strauchpflege</span>
-          </li>
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Unkrautbekämpfung und Beetpflege</span>
-          </li>
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Laubbeseitigung und Herbstreinigung</span>
-          </li>
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Winterdienst: Schneeräumung und Streuen</span>
-          </li>
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Gehweg- und Zufahrtsreinigung</span>
-          </li>
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Bewässerung und Düngung nach Plan</span>
-          </li>
-          <li class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
-            <span class="text-terracotta text-xl leading-none mt-0.5" aria-hidden="true">&#10003;</span>
-            <span class="font-body text-text-muted">Flexible Verträge: wöchentlich, monatlich oder auf Abruf</span>
-          </li>
+          {checklist.map((item) => (
+            <li class="flex items-start gap-3 bg-white rounded-lg border border-line p-4 reveal">
+              <span class="flex items-center justify-center w-5 h-5 mt-0.5 bg-marker rounded-sm font-mono text-[0.7rem] text-ink shrink-0" aria-hidden="true">&#10003;</span>
+              <span class="text-ink">{item}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
 
     <!-- Gallery -->
-    <section class="py-20 md:py-28 bg-ivory">
+    <section class="py-20 md:py-28 bg-paper">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center">Beispiele unserer Arbeit</h2>
+        <div class="reveal">
+          <p class="eyebrow">Referenzen</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <div class="rounded-2xl overflow-hidden shadow-md">
-            <img src="/img/image_55.webp" alt="Regelmäßige Gartenpflege und Rasenmähen in Ludwigsburg" class="w-full h-64 object-cover" loading="lazy" />
-          </div>
-          <div class="rounded-2xl overflow-hidden shadow-md">
-            <img src="/img/image_60.webp" alt="Heckenschnitt und Beetpflege im Rahmen des Hausmeisterservice" class="w-full h-64 object-cover" loading="lazy" />
-          </div>
-          <div class="rounded-2xl overflow-hidden shadow-md">
-            <img src="/img/image_75.webp" alt="Gepflegtes Grundstück nach Hausmeisterservice-Einsatz in Stuttgart" class="w-full h-64 object-cover" loading="lazy" />
-          </div>
+          <img src="/img/image_55.webp" alt="Regelmäßige Gartenpflege und Rasenmähen in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
+          <img src="/img/image_60.webp" alt="Heckenschnitt und Beetpflege im Rahmen des Hausmeisterservice" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
+          <img src="/img/image_75.webp" alt="Gepflegtes Grundstück nach Hausmeisterservice-Einsatz in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="py-20 md:py-28 bg-ivory-warm">
+    <section class="py-20 md:py-28 bg-stone">
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading text-3xl md:text-4xl text-forest text-center mb-10">Häufige Fragen</h2>
-        {faqs.map((faq) => (
-          <details class="border-b border-sand/50 group">
-            <summary class="font-heading text-lg text-forest py-5 cursor-pointer flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
-              <span>{faq.question}</span>
-              <span class="faq-icon ml-4 flex-shrink-0 text-2xl leading-none text-terracotta select-none" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-content"><p class="font-body text-text-muted leading-relaxed pb-5">{faq.answer}</p></div>
-          </details>
-        ))}
+        <div class="reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Häufige Fragen</h2>
+        </div>
+        <div class="mt-10 reveal">
+          {faqs.map((faq) => (
+            <details class="border-b border-line group">
+              <summary class="font-semibold text-ink text-[1.05rem] py-5 cursor-pointer flex items-center justify-between gap-4 list-none [&::-webkit-details-marker]:hidden">
+                <span>{faq.question}</span>
+                <span class="faq-icon flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-md border border-line font-mono text-lg leading-none text-moss select-none" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-content"><div><p class="text-bark leading-relaxed pb-5">{faq.answer}</p></div></div>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="py-20 md:py-28 bg-forest text-white text-center">
-      <div class="mx-auto max-w-3xl px-4">
-        <h2 class="font-heading text-3xl md:text-4xl">Projekt besprechen?</h2>
-        <p class="text-ivory/80 mt-4 text-lg">Kontaktieren Sie uns für eine kostenlose Erstberatung.</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-          <a href="/#kontakt" class="bg-terracotta hover:bg-terracotta-dark text-white rounded-full px-8 py-3 font-medium transition-colors">Kontakt aufnehmen</a>
-          <a href="tel:+491782747470" class="border border-ivory/30 hover:border-ivory text-ivory rounded-full px-8 py-3 font-medium transition-colors">+49 178 2747470</a>
+    <section class="py-20 md:py-28 bg-pine text-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+        <p class="eyebrow eyebrow-light justify-center">Kontakt</p>
+        <h2 class="font-display font-extrabold uppercase text-white text-3xl md:text-4xl mt-5" style="font-stretch: 118%;">Projekt besprechen?</h2>
+        <p class="text-white/70 mt-4 text-lg">Kostenlose Erstberatung — vor Ort und unverbindlich.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+          <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+          <a href="tel:+491782747470" class="btn btn-outline text-white">+49 178 2747470</a>
         </div>
       </div>
     </section>
@@ -200,13 +195,16 @@ const faqSchema = {
   details[open] .faq-content {
     grid-template-rows: 1fr;
   }
-  details .faq-content > p {
+  details .faq-content > div {
     overflow: hidden;
   }
   details summary .faq-icon {
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out;
   }
   details[open] summary .faq-icon {
     transform: rotate(45deg);
+    background-color: var(--color-marker);
+    border-color: var(--color-marker);
+    color: var(--color-ink);
   }
 </style>

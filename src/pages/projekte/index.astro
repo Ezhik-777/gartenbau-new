@@ -15,37 +15,37 @@ const sorted = projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTi
 >
   <Header />
 
-  <!-- Hero Banner -->
-  <section class="bg-forest pt-28 pb-20 md:pt-36 md:pb-28 text-center">
+  <!-- Hero -->
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <!-- Breadcrumb -->
-      <nav class="text-sand/60 text-sm mb-6" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-sand transition-colors">Home</a>
-        <span class="mx-2">/</span>
-        <span class="text-sand">Projekte</span>
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white/80">Projekte</li>
+        </ol>
       </nav>
-
-      <h1 class="font-heading text-4xl md:text-5xl text-white">
-        Unsere Projekte
-      </h1>
-      <p class="text-ivory/80 mt-4 max-w-2xl mx-auto">
-        Von der ersten Idee bis zur fertigen Umsetzung — entdecken Sie eine Auswahl unserer realisierten Garten- und Landschaftsbauprojekte.
+      <p class="eyebrow eyebrow-light">Referenzen</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Unsere Projekte</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">
+        Von der ersten Idee bis zur fertigen Umsetzung — eine Auswahl unserer realisierten Garten- und Landschaftsbauprojekte in der Region.
       </p>
     </div>
   </section>
 
   <!-- Project Listing -->
-  <main id="main-content" class="py-16 md:py-24 bg-ivory">
+  <main id="main-content" class="py-20 md:py-28 bg-paper">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sorted.map((project, i) => (
-          <div class="reveal" style={`transition-delay: ${i * 100}ms`}>
+          <div class="reveal" style={`transition-delay: ${i * 80}ms`}>
             <ProjectCard
               title={project.data.title}
               description={project.data.description}
               category={project.data.category}
               heroImage={project.data.heroImage}
               location={project.data.location}
+              duration={project.data.duration}
               href={`/projekte/${project.id}`}
             />
           </div>
@@ -53,6 +53,19 @@ const sorted = projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTi
       </div>
     </div>
   </main>
+
+  <!-- CTA-Band -->
+  <section class="py-20 md:py-28 bg-pine text-white">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+      <p class="eyebrow eyebrow-light justify-center">Kontakt</p>
+      <h2 class="font-display font-extrabold uppercase text-white text-3xl md:text-4xl mt-5" style="font-stretch: 118%;">Projekt besprechen?</h2>
+      <p class="text-white/70 mt-4 text-lg">Kostenlose Erstberatung — vor Ort und unverbindlich.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+        <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+        <a href="tel:+491782747470" class="btn btn-outline text-white">+49 178 2747470</a>
+      </div>
+    </div>
+  </section>
 
   <Footer />
 </MainLayout>

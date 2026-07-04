@@ -1,173 +1,175 @@
 ---
+import { getCollection } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import TrustBar from '../components/TrustBar.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
 import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
 
-const svgIcons = {
-  gartengestaltung: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M12 8c0-4 3-6 6-6-1 4-3 6-6 6z"/><path d="M12 12c0-4-3-6-6-6 1 4 3 6 6 6z"/><path d="M8 22h8"/><circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/></svg>`,
-  naturstein: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4l3-2h6l3 2v4"/><path d="M6 14v-3l2-2h4l2 2v3"/><path d="M9 9V6l1.5-1.5h0L12 6v3"/><path d="M7 16h10"/></svg>`,
-  terrassenbau: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-4h16v4"/><path d="M6 16v-4h12v4"/><path d="M8 12V8h8v4"/><path d="M4 16h16"/><path d="M6 12h12"/></svg>`,
-  pflaster: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c2-4 5-8 8-12s5-6 8-6"/><rect x="2" y="18" width="4" height="4" rx="0.5"/><rect x="7" y="13" width="3.5" height="3.5" rx="0.5"/><rect x="12" y="8" width="3" height="3" rx="0.5"/><path d="M17 4l1-1"/></svg>`,
-  landschaftsbau: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M2 20c4-2 6-8 9-8s3 3 5 3 3-2 6-3"/><circle cx="18" cy="6" r="2"/><path d="M6 14c1-2 2-4 4-4"/></svg>`,
-  rollrasen: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h14"/><path d="M16 20c0 0 0-3 3-3s3 3 3 3"/><ellipse cx="19" cy="17" rx="3" ry="3"/><path d="M16 17V8h3"/><path d="M2 16l4-8 3 4 4-6 3 6"/><path d="M2 16h14"/></svg>`,
-  hausmeister: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
-  sichtschutz: `<svg class="w-6 h-6 text-forest transition-colors duration-300 group-hover:text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16"/><path d="M20 4v16"/><path d="M12 4v16"/><path d="M4 4h16"/><path d="M4 10h16"/><path d="M4 16h16"/></svg>`,
-};
-
 const services = [
-  { icon: svgIcons.gartengestaltung, title: 'Gartengestaltung', description: 'Professionelle Gartenplanung und -gestaltung mit individueller Beratung.', href: '/leistungen/gartengestaltung' },
-  { icon: svgIcons.naturstein, title: 'Natursteinarbeiten', description: 'Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen und Einfassungen.', href: '/leistungen/natursteinarbeiten' },
-  { icon: svgIcons.terrassenbau, title: 'Terrassenbau', description: 'Moderne Terrassengestaltung mit hochwertigen Materialien.', href: '/leistungen/terrassenbau' },
-  { icon: svgIcons.pflaster, title: 'Wege & Zufahrten', description: 'Professionelle Pflasterarbeiten für Einfahrten und Gartenwege.', href: '/leistungen/pflasterarbeiten' },
-  { icon: svgIcons.landschaftsbau, title: 'Landschaftsbau', description: 'Kompletter Landschaftsbau von Erdarbeiten bis Bepflanzung.', href: '/leistungen/landschaftsbau' },
-  { icon: svgIcons.rollrasen, title: 'Rollrasen', description: 'Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen.', href: '/leistungen/rollrasen' },
-  { icon: svgIcons.hausmeister, title: 'Hausmeisterservice', description: 'Regelmäßige Gartenpflege und Grundstücksbetreuung.', href: '/leistungen/hausmeisterservice' },
-  { icon: svgIcons.sichtschutz, title: 'Sichtschutz', description: 'Sichtschutzzäune, Hecken und Gabionen für Ihre Privatsphäre.', href: '/leistungen/sichtschutz' },
+  { code: 'LV 01', title: 'Gartengestaltung', description: 'Planung und Neuanlage — vom Konzept bis zur Bepflanzung.', href: '/leistungen/gartengestaltung' },
+  { code: 'LV 02', title: 'Natursteinarbeiten', description: 'Mauern, Treppen und Einfassungen aus Granit, Sandstein, Muschelkalk.', href: '/leistungen/natursteinarbeiten' },
+  { code: 'LV 03', title: 'Terrassenbau', description: 'Naturstein, WPC oder Holz — mit frostsicherem Unterbau.', href: '/leistungen/terrassenbau' },
+  { code: 'LV 04', title: 'Pflasterarbeiten', description: 'Einfahrten, Wege und Höfe mit sauberer Entwässerung.', href: '/leistungen/pflasterarbeiten' },
+  { code: 'LV 05', title: 'Landschaftsbau', description: 'Erdarbeiten, Hangbefestigung, Modellierung des Geländes.', href: '/leistungen/landschaftsbau' },
+  { code: 'LV 06', title: 'Rollrasen', description: 'Bodenvorbereitung und Verlegung — sofort nutzbarer Rasen.', href: '/leistungen/rollrasen' },
+  { code: 'LV 07', title: 'Sichtschutz', description: 'Zäune, Gabionen und Hecken für Ihre Privatsphäre.', href: '/leistungen/sichtschutz' },
+  { code: 'LV 08', title: 'Hausmeisterservice', description: 'Regelmäßige Pflege für Garten und Grundstück.', href: '/leistungen/hausmeisterservice' },
 ];
 
-const projects = [
-  { image: '/img/image_10.webp', title: 'Gartengestaltung Stuttgart-Süd', category: 'Gartengestaltung', text: 'Komplette Neugestaltung eines 200m² Gartens mit Natursteinmauer und Bepflanzung.' },
-  { image: '/img/image_15.webp', title: 'Terrassenbau Ludwigsburg', category: 'Terrassenbau', text: 'Moderne Terrassenanlage mit Granitplatten und integrierter LED-Beleuchtung.' },
-  { image: '/img/image_20.webp', title: 'Einfahrt Remseck', category: 'Pflasterarbeiten', text: 'Pflasterarbeiten für eine großzügige Einfahrt mit Entwässerungssystem.' },
+const steps = [
+  { nr: '01', title: 'Beratung vor Ort', text: 'Kostenlos und unverbindlich: Wir nehmen Maß, prüfen den Bestand und hören zu, was Sie sich wünschen.' },
+  { nr: '02', title: 'Konzept & Festpreis', text: 'Sie erhalten ein klares Angebot mit allen Positionen — keine versteckten Kosten, keine Überraschungen.' },
+  { nr: '03', title: 'Umsetzung', text: 'Unser eigenes Team baut termingerecht, mit ordentlicher Baustelle und kurzen Wegen zum Chef.' },
+  { nr: '04', title: 'Übergabe & Pflege', text: 'Gemeinsame Abnahme, Pflegehinweise und Garantie. Auf Wunsch übernehmen wir die laufende Pflege.' },
 ];
 
-const revealDirections = ['reveal-left', 'reveal-right', 'reveal-left', 'reveal-right', 'reveal-left', 'reveal-right', 'reveal-left', 'reveal-right'];
+// 3 aktuelle Projekte fürs Preview
+const allProjects = (await getCollection('projects'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const projects = [...allProjects.filter(p => p.data.featured), ...allProjects.filter(p => !p.data.featured)].slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  gartengestaltung: 'Gartengestaltung',
+  naturstein: 'Naturstein',
+  terrasse: 'Terrassenbau',
+  pflaster: 'Pflasterarbeiten',
+  sichtschutz: 'Sichtschutz',
+};
 ---
 
 <MainLayout
   title="Gartenbau Ludwigsburg & Stuttgart | Landschaftsbau & Gartengestaltung"
   description="Professioneller Gartenbau in Ludwigsburg, Stuttgart, Waiblingen & Region. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort."
 >
-  <!-- Header -->
   <Header />
 
-  <!-- Hero -->
   <Hero />
 
-  <!-- Organic divider: Hero → TrustBar -->
-  <div class="relative -mt-1" aria-hidden="true">
-    <svg class="w-full h-8 md:h-12" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="var(--color-ivory-warm)">
-      <path d="M0 48h1440V12c-120 20-360 36-720 36S120 32 0 12v36z"/>
-    </svg>
-  </div>
-
-  <!-- Trust Bar -->
+  <!-- Facts band -->
   <TrustBar />
 
-  <!-- Main Content -->
   <main id="main-content">
 
-    <!-- ==================== Leistungen ==================== -->
-    <section id="leistungen" class="relative py-20 md:py-28 bg-ivory overflow-hidden">
-      <!-- Decorative botanical background -->
-      <svg class="absolute top-12 right-0 w-64 h-64 text-forest opacity-[0.03] pointer-events-none" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5" aria-hidden="true">
-        <path d="M100 190 C100 190 40 130 40 70 C40 30 65 10 100 10 C135 10 160 30 160 70 C160 130 100 190 100 190Z"/>
-        <path d="M100 10 L100 190"/>
-        <path d="M100 50 C75 60 55 80 45 100"/>
-        <path d="M100 80 C125 75 145 60 155 45"/>
-        <path d="M100 110 C80 115 60 130 50 150"/>
-        <path d="M100 140 C120 135 140 120 150 100"/>
-      </svg>
-
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-        <div class="text-center reveal-scale">
-          <h2 class="font-heading text-3xl md:text-4xl text-forest">
-            Unsere Leistungen
-          </h2>
-          <p class="text-text-muted mt-4">
-            Professioneller Gartenbau und Landschaftsbau in Stuttgart &amp; Region
-          </p>
+    <!-- ==================== Leistungen (Leistungsverzeichnis) ==================== -->
+    <section id="leistungen" class="pt-16 pb-20 md:pt-20 md:pb-28 bg-paper">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <p class="eyebrow">Leistungen</p>
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-5">
+            <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink" style="font-stretch: 118%;">
+              Was wir bauen
+            </h2>
+            <a
+              href="/leistungen"
+              class="inline-flex items-center gap-2 text-moss font-semibold transition-colors duration-200 hover:text-pine group"
+            >
+              Alle Leistungen im Detail
+              <span class="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <!-- LV list -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-12 mt-10 border-t border-line">
           {services.map((service, i) => (
-            <div class={revealDirections[i]} style={`transition-delay: ${i * 100}ms`}>
-              <ServiceCard
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-                href={service.href}
-              />
-            </div>
+            <a
+              href={service.href}
+              class="lv-row group relative grid grid-cols-[auto_1fr_auto] items-baseline gap-x-5 py-5 px-3 -mx-3 border-b border-line transition-colors duration-200 hover:bg-stone reveal"
+              style={`transition-delay: ${(i % 4) * 50}ms`}
+            >
+              <span class="absolute left-0 top-0 bottom-0 w-[3px] bg-marker scale-y-0 origin-top transition-transform duration-300 group-hover:scale-y-100" aria-hidden="true"></span>
+              <span class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-bark/70 tabular-nums">{service.code}</span>
+              <span class="min-w-0">
+                <span class="block font-display font-bold text-lg text-ink" style="font-stretch: 110%;">{service.title}</span>
+                <span class="block text-bark text-sm leading-relaxed mt-0.5">{service.description}</span>
+              </span>
+              <span class="text-moss transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+            </a>
           ))}
-        </div>
-
-        <div class="text-center mt-12 reveal">
-          <a
-            href="/leistungen"
-            class="inline-flex items-center gap-2 text-terracotta font-medium transition-colors duration-300 hover:text-terracotta-dark group"
-          >
-            Alle Leistungen ansehen
-            <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- Organic divider: Leistungen → Projekte -->
-    <div class="relative -mb-1" aria-hidden="true">
-      <svg class="w-full h-8 md:h-12" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="var(--color-ivory-warm)">
-        <path d="M0 0h1440v36c-120-20-360-36-720-36S120 16 0 36V0z"/>
-      </svg>
-    </div>
-
     <!-- ==================== Projekte Preview ==================== -->
-    <section class="py-20 md:py-28 bg-ivory-warm">
+    <section class="py-20 md:py-28 bg-stone">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="text-center reveal-scale">
-          <h2 class="font-heading text-3xl md:text-4xl text-forest">
-            Unsere Projekte
-          </h2>
-          <p class="text-text-muted mt-4">
-            Einblicke in unsere aktuellen Arbeiten
-          </p>
+        <div class="reveal">
+          <p class="eyebrow">Projekte</p>
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-5">
+            <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink" style="font-stretch: 118%;">
+              Zuletzt gebaut
+            </h2>
+            <a
+              href="/projekte"
+              class="inline-flex items-center gap-2 text-moss font-semibold transition-colors duration-200 hover:text-pine group"
+            >
+              Alle Projekte
+              <span class="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {projects.map((project, i) => (
-            <div class="project-card group bg-white rounded-2xl overflow-hidden reveal transition-shadow duration-300 hover:shadow-xl hover:shadow-forest/8" style={`transition-delay: ${i * 100}ms`}>
-              <div class="relative aspect-4/3 overflow-hidden">
+            <a
+              href={`/projekte/${project.id}`}
+              class="group flex flex-col h-full bg-white rounded-lg border border-line overflow-hidden transition-all duration-200 hover:border-ink/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/8 reveal"
+              style={`transition-delay: ${i * 80}ms`}
+            >
+              <div class="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-90"
+                  src={project.data.heroImage}
+                  alt={project.data.title}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
+                  width="800"
+                  height="600"
                 />
-                {/* Hover overlay */}
-                <div class="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                  <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full w-fit translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    {project.category}
-                  </span>
-                  <h3 class="font-heading text-lg text-white mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                    {project.title}
-                  </h3>
-                </div>
               </div>
-              <div class="p-6">
-                <span class="inline-block bg-forest-light/10 text-forest text-xs font-medium px-3 py-1 rounded-full">
-                  {project.category}
+              <!-- Spec strip -->
+              <div class="flex items-center justify-between gap-3 font-mono text-[0.65rem] uppercase tracking-[0.13em] text-bark border-b border-line px-5 py-2.5">
+                <span>{categoryLabels[project.data.category] ?? project.data.category}</span>
+                <span>{project.data.location}{project.data.duration ? ` · ${project.data.duration}` : ''}</span>
+              </div>
+              <div class="flex flex-col flex-1 p-5">
+                <h3 class="font-display font-bold text-lg text-ink leading-snug" style="font-stretch: 110%;">{project.data.title}</h3>
+                <p class="text-bark text-sm leading-relaxed mt-2 line-clamp-2 flex-1">{project.data.description}</p>
+                <span class="inline-flex items-center gap-1.5 text-moss text-sm font-semibold mt-4">
+                  Projekt ansehen
+                  <span class="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
                 </span>
-                <h3 class="font-heading text-xl text-forest mt-3">{project.title}</h3>
-                <p class="text-text-muted text-sm leading-relaxed mt-2">{project.text}</p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
+      </div>
+    </section>
 
-        <div class="text-center mt-12 reveal">
-          <a
-            href="/projekte"
-            class="inline-flex items-center gap-2 text-terracotta font-medium transition-colors duration-300 hover:text-terracotta-dark group"
-          >
-            Alle Projekte ansehen
-            <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
-          </a>
+    <!-- ==================== Ablauf ==================== -->
+    <section class="py-20 md:py-28 bg-paper">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <p class="eyebrow">Ablauf</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">
+            Vom Aufmaß zur Übergabe
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 mt-12">
+          {steps.map((step, i) => (
+            <div class="reveal" style={`transition-delay: ${i * 80}ms`}>
+              <div class="flex items-center gap-4">
+                <span class="font-display font-extrabold text-4xl text-line" style="font-stretch: 120%;">{step.nr}</span>
+                <div class="dim-line flex-1"></div>
+              </div>
+              <h3 class="font-display font-bold text-lg text-ink mt-4" style="font-stretch: 110%;">{step.title}</h3>
+              <p class="text-bark text-sm leading-relaxed mt-2">{step.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -175,93 +177,72 @@ const revealDirections = ['reveal-left', 'reveal-right', 'reveal-left', 'reveal-
     <!-- ==================== Reviews ==================== -->
     <ReviewsSection />
 
-    <!-- ==================== Über Uns ==================== -->
-    <section id="ueber-uns" class="relative py-20 md:py-28 bg-ivory overflow-hidden">
-      <!-- Decorative circular gradient -->
-      <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-terracotta/[0.04] rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <!-- ==================== Über uns ==================== -->
+    <section id="ueber-uns" class="py-20 md:py-28 bg-paper">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-          <!-- Left: Image -->
-          <div class="rounded-2xl overflow-hidden shadow-lg reveal-left">
+          <!-- Left: real work photo -->
+          <figure class="photo-frame reveal">
             <img
-              src="/img/image_5.webp"
-              alt="Gartenbau Z.M. Team bei der Arbeit"
-              class="w-full h-full object-cover"
+              src="/img/baustelle-verdichtung.webp"
+              alt="Gartenbau Z.M. bei der Arbeit — Verdichtung der Tragschicht mit der Rüttelplatte"
+              class="w-full aspect-[4/5] lg:aspect-[5/6] object-cover object-top rounded-lg border border-line"
               loading="lazy"
+              width="1200"
+              height="1600"
             />
-          </div>
+            <figcaption class="flex items-center justify-between font-mono text-[0.7rem] uppercase tracking-[0.14em] text-bark mt-4 px-0.5">
+              <span>Auf der Baustelle</span>
+              <span>Verdichtung der Tragschicht</span>
+            </figcaption>
+          </figure>
 
           <!-- Right: Text -->
-          <div class="reveal-right" style="transition-delay: 150ms">
-            <span class="uppercase tracking-widest text-terracotta text-sm font-medium">
-              Über uns
-            </span>
+          <div class="reveal" style="transition-delay: 100ms">
+            <p class="eyebrow">Über uns</p>
 
-            <h2 class="font-heading text-3xl md:text-4xl text-forest mt-4">
-              Ihr Partner für professionellen Gartenbau
+            <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">
+              Familienbetrieb aus Remseck
             </h2>
 
-            <p class="text-text-muted leading-relaxed mt-6">
-              Gartenbau Z.M. ist Ihr Familienbetrieb für hochwertige Garten- und
-              Landschaftsbauarbeiten in Ludwigsburg, Stuttgart, Waiblingen
-              und der gesamten Region. Mit Leidenschaft und handwerklichem Können
-              verwandeln wir Ihre Außenbereiche in grüne Wohlfühloasen.
+            <p class="text-bark leading-relaxed mt-6">
+              Gartenbau Z.M. baut seit über zehn Jahren Gärten, Terrassen und
+              Außenanlagen in Ludwigsburg, Stuttgart und der Region. Wir arbeiten
+              mit eigenem Team, eigener Technik — und einem Anspruch: Was wir
+              bauen, muss Jahrzehnte halten.
             </p>
 
-            <p class="text-text-muted leading-relaxed mt-4">
-              Von der ersten Idee bis zur fertigen Umsetzung begleiten wir Sie
-              persönlich durch jedes Projekt. Unsere lokale Verwurzelung und
-              jahrelange Erfahrung garantieren Ihnen erstklassige Ergebnisse
-              mit einem Ansprechpartner, der immer erreichbar ist.
+            <p class="text-bark leading-relaxed mt-4">
+              Sie sprechen bei uns direkt mit dem, der Ihr Projekt auch umsetzt.
+              Kurze Wege, klare Absprachen, ein Festpreis — und eine Baustelle,
+              die jeden Abend aufgeräumt ist.
             </p>
 
-            <p class="text-text-muted leading-relaxed mt-4">
-              Wir stehen für transparente Kommunikation, faire Preise und
-              termingerechte Fertigstellung. Jedes Projekt, ob klein oder groß,
-              erhält bei uns die gleiche Sorgfalt und Aufmerksamkeit.
-            </p>
-
-            <!-- Bullet features -->
+            <!-- Checklist -->
             <ul class="mt-8 space-y-3">
-              <li class="flex items-center gap-3 text-forest font-medium">
-                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
-                Über 10 Jahre Erfahrung
-              </li>
-              <li class="flex items-center gap-3 text-forest font-medium">
-                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
-                Kostenlose Erstberatung
-              </li>
-              <li class="flex items-center gap-3 text-forest font-medium">
-                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
-                Faire Festpreise
-              </li>
-              <li class="flex items-center gap-3 text-forest font-medium">
-                <span class="text-terracotta" aria-hidden="true">&#10003;</span>
-                Termingarantie
-              </li>
+              {['Über 10 Jahre Erfahrung', 'Kostenlose Erstberatung vor Ort', 'Faire Festpreise ohne Nachträge', 'Termingarantie'].map((item) => (
+                <li class="flex items-center gap-3 text-ink font-medium">
+                  <span class="flex items-center justify-center w-5 h-5 bg-marker rounded-sm font-mono text-[0.7rem] text-ink" aria-hidden="true">&#10003;</span>
+                  {item}
+                </li>
+              ))}
             </ul>
 
             <!-- CTA -->
-            <a
-              href="/#kontakt"
-              class="inline-flex items-center gap-2 text-terracotta font-medium mt-8 transition-colors duration-300 hover:text-terracotta-dark group"
-            >
-              Jetzt beraten lassen
-              <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
-            </a>
+            <div class="flex flex-col sm:flex-row gap-3 mt-9">
+              <a href="/#kontakt" class="btn btn-primary">
+                Jetzt beraten lassen
+              </a>
+              <a href="/galerie" class="btn btn-outline text-ink">
+                Galerie ansehen
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Organic divider: Über uns → FAQ -->
-    <div class="relative -mt-1" aria-hidden="true">
-      <svg class="w-full h-8 md:h-12" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="var(--color-ivory-warm)">
-        <path d="M0 48h1440V16c-200 18-440 32-720 32S200 34 0 16v32z"/>
-      </svg>
-    </div>
 
     <!-- ==================== FAQ ==================== -->
     <FAQ />
@@ -271,6 +252,5 @@ const revealDirections = ['reveal-left', 'reveal-right', 'reveal-left', 'reveal-
 
   </main>
 
-  <!-- Footer -->
   <Footer />
 </MainLayout>
