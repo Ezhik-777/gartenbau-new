@@ -1,0 +1,56 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { cities } from '../data/cities';
+import { serviceArea } from '../data/business';
+
+const sorted = [...cities].sort((a, b) => a.distanceKm - b.distanceKm);
+const otherPlaces = serviceArea.filter((name) => !cities.some((c) => c.name === name));
+---
+
+<MainLayout
+  title="Einsatzgebiet: Remseck, Ludwigsburg, Stuttgart | Gartenbau Z.M."
+  description="Wo wir arbeiten: Garten- und Landschaftsbau in Remseck, Ludwigsburg, Stuttgart, Waiblingen, Fellbach, Kornwestheim, Esslingen und Bietigheim-Bissingen."
+>
+  <Header />
+
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white/80">Einsatzgebiet</li>
+        </ol>
+      </nav>
+      <p class="eyebrow eyebrow-light">Einsatzgebiet</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Wo wir arbeiten</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">Unser Betrieb sitzt in Remseck am Neckar. Von hier aus arbeiten wir im Kreis Ludwigsburg, im Rems-Murr-Kreis, in Stuttgart und im Neckartal.</p>
+    </div>
+  </section>
+
+  <main id="main-content" class="py-20 md:py-28 bg-paper">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <ul class="border-t border-line">
+        {sorted.map((city) => (
+          <li class="border-b border-line">
+            <a href={`/gartenbau-${city.slug}/`} class="grid grid-cols-[1fr_auto] gap-x-6 py-5 group">
+              <span class="font-display font-bold text-lg text-ink group-hover:text-moss transition-colors" style="font-stretch: 110%;">{city.name}</span>
+              <span class="font-mono text-[0.72rem] uppercase tracking-[0.12em] text-bark self-center">{city.distanceKm === 0 ? 'Standort' : `ca. ${city.distanceKm} km`}</span>
+              <span class="text-bark text-sm mt-1 col-span-2">{city.districts.join(' · ')}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="text-bark leading-relaxed mt-10">
+        Entfernungen sind Luftlinie ab Remseck. Auch in {otherPlaces.join(', ')} und weiteren Orten der Region übernehmen wir Projekte. Fragen Sie einfach an.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 mt-8">
+        <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>

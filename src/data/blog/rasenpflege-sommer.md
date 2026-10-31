@@ -74,4 +74,4 @@ Vertikutieren ist eine Frühjahrsmaßnahme. Im Sommer ist es kontraproduktiv. Da
 
 ## Gartenbau Z.M. — Ihr Rasenprofi für den Sommer
 
-Ein gepflegter Rasen braucht im Sommer die richtige Strategie. Wenn Sie wenig Zeit haben oder Ihr Rasen trotz Pflege nicht grün wird, helfen wir Ihnen weiter. Gartenbau Z.M. bietet professionelle Rasenpflege über unseren [Hausmeisterservice](/leistungen/hausmeisterservice), [Rollrasen](/leistungen/rollrasen)-Verlegung und Bewässerungslösungen für Stuttgart und die Region. [Rufen Sie uns an](/#kontakt) — wir beraten Sie gerne.
+Ein gepflegter Rasen braucht im Sommer die richtige Strategie. Wenn Sie wenig Zeit haben oder Ihr Rasen trotz Pflege nicht grün wird, helfen wir Ihnen weiter. Gartenbau Z.M. bietet professionelle Rasenpflege über unseren [Hausmeisterservice](/leistungen/hausmeisterservice/), [Rollrasen](/leistungen/rollrasen/)-Verlegung und Bewässerungslösungen für Stuttgart und die Region. [Rufen Sie uns an](/#kontakt) — wir beraten Sie gerne.

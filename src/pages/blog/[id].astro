@@ -79,7 +79,7 @@ const blogPostingSchema = {
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/blog" class="hover:text-marker transition-colors">Blog</a></li>
+          <li><a href="/blog/" class="hover:text-marker transition-colors">Blog</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Beitrag</li>
         </ol>
@@ -156,7 +156,7 @@ const blogPostingSchema = {
                 heroImage={post.data.heroImage}
                 date={post.data.date}
                 tags={post.data.tags}
-                href={`/blog/${post.id}`}
+                href={`/blog/${post.id}/`}
               />
             </div>
           ))}

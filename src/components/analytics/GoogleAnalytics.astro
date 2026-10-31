@@ -1,131 +1,91 @@
 ---
-/**
- * Google Analytics 4 Component
- *
- * Integrates GA4 tracking with event handling for:
- * - Page views (automatic)
- * - WhatsApp clicks
- * - Form submissions
- * - Gallery image views
- * - Service card clicks
- *
- * Environment Variable Required:
- * PUBLIC_GA_MEASUREMENT_ID - GA4 Measurement ID (G-XXXXXXXXXX)
- */
-
+// GA4 is opt-in (§ 25 TDDDG): gtag.js loads only after the visitor consents.
+// Without PUBLIC_GA_MEASUREMENT_ID the site sets no cookies and shows no banner.
 const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-
-// Only load GA4 in production
-const isProduction = import.meta.env.PROD;
-const shouldLoadGA = isProduction && GA_MEASUREMENT_ID;
+const shouldLoadGA = import.meta.env.PROD && GA_MEASUREMENT_ID;
 ---
 
 {shouldLoadGA && (
   <>
-    <!-- Google tag (gtag.js) -->
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <div id="consent-banner" hidden role="dialog" aria-label="Einwilligung in die Webanalyse" class="fixed bottom-0 left-0 right-0 z-[60] bg-ink text-white border-t-[3px] border-marker">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col lg:flex-row lg:items-center gap-4">
+        <p class="text-sm text-white/80 leading-relaxed flex-1">
+          Dürfen wir mit Google Analytics messen, wie unsere Website genutzt wird? Dabei werden Cookies gesetzt und Daten an Google übermittelt, auch in die USA. Sie können die Entscheidung jederzeit im Footer ändern. <a href="/datenschutz/" class="underline underline-offset-2 hover:text-marker">Details</a>
+        </p>
+        <div class="flex gap-3 shrink-0">
+          <button type="button" id="consent-deny" class="btn btn-outline text-white flex-1 lg:flex-none">Ablehnen</button>
+          <button type="button" id="consent-allow" class="btn btn-primary flex-1 lg:flex-none">Zustimmen</button>
+        </div>
+      </div>
+    </div>
     <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      (function () {
+        if (window.__consentReady) return;
+        window.__consentReady = true;
+        var KEY = 'analytics-consent';
+        var loaded = false;
 
-      // Configure GA4
-      gtag('config', GA_MEASUREMENT_ID, {
-        'anonymize_ip': true,
-        'cookie_flags': 'SameSite=None;Secure'
-      });
-
-      // Event tracking helpers
-      window.trackEvent = function(eventName, eventParams = {}) {
-        if (typeof gtag === 'function') {
-          gtag('event', eventName, eventParams);
+        function read() {
+          try { return localStorage.getItem(KEY); } catch (e) { return null; }
         }
-      };
-
-      // WhatsApp click tracking
-      document.addEventListener('click', function(e) {
-        const whatsappLink = e.target.closest('a[href*="wa.me"], a[href*="whatsapp"]');
-        if (whatsappLink) {
-          window.trackEvent('whatsapp_click', {
-            'event_category': 'engagement',
-            'event_label': 'WhatsApp Link',
-            'link_url': whatsappLink.href
+        function write(value) {
+          try {
+            if (value) localStorage.setItem(KEY, value);
+            else localStorage.removeItem(KEY);
+          } catch (e) { /* Storage blocked: the choice lasts for this page view only */ }
+        }
+        function loadGA() {
+          if (loaded) return;
+          loaded = true;
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+          document.head.appendChild(s);
+        }
+        function clearCookies() {
+          document.cookie.split(';').forEach(function (c) {
+            var name = c.split('=')[0].trim();
+            if (name.indexOf('_ga') === 0) {
+              document.cookie = name + '=; Max-Age=0; path=/; domain=.' + location.hostname;
+              document.cookie = name + '=; Max-Age=0; path=/';
+            }
           });
         }
-      });
-
-      // Form submission tracking
-      document.addEventListener('submit', function(e) {
-        const form = e.target;
-        if (form && form.id === 'contact-form') {
-          window.trackEvent('form_submit', {
-            'event_category': 'engagement',
-            'event_label': 'Contact Form'
-          });
+        function showBanner(show) {
+          var el = document.getElementById('consent-banner');
+          if (el) el.hidden = !show;
         }
-      });
 
-      // Gallery image view tracking
-      document.addEventListener('click', function(e) {
-        const galleryItem = e.target.closest('.gallery-item');
-        if (galleryItem) {
-          const imageAlt = galleryItem.querySelector('img')?.alt || 'Unknown';
-          window.trackEvent('gallery_image_view', {
-            'event_category': 'engagement',
-            'event_label': imageAlt
-          });
-        }
-      });
-
-      // Service card click tracking
-      document.addEventListener('click', function(e) {
-        const serviceCard = e.target.closest('.service-card');
-        if (serviceCard) {
-          const serviceTitle = serviceCard.querySelector('h3')?.textContent || 'Unknown Service';
-          window.trackEvent('service_card_click', {
-            'event_category': 'engagement',
-            'event_label': serviceTitle
-          });
-        }
-      });
-
-      // Scroll depth tracking (25%, 50%, 75%, 100%)
-      let scrollDepths = { 25: false, 50: false, 75: false, 100: false };
-
-      window.addEventListener('scroll', function() {
-        const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
-
-        Object.keys(scrollDepths).forEach(function(depth) {
-          if (scrollPercent >= depth && !scrollDepths[depth]) {
-            scrollDepths[depth] = true;
-            window.trackEvent('scroll_depth', {
-              'event_category': 'engagement',
-              'event_label': depth + '%',
-              'value': parseInt(depth)
-            });
+        // Delegated: ClientRouter swaps the body, so element listeners would be lost.
+        document.addEventListener('click', function (e) {
+          var t = e.target.closest ? e.target : e.target.parentElement;
+          if (t.closest('#consent-allow')) { write('granted'); showBanner(false); loadGA(); return; }
+          if (t.closest('#consent-deny')) { write('denied'); showBanner(false); clearCookies(); return; }
+          if (t.closest('[data-consent-settings]')) { write(null); clearCookies(); showBanner(true); return; }
+          if (window.gtag && read() === 'granted') {
+            if (t.closest('a[href*="wa.me"]')) window.gtag('event', 'whatsapp_click');
+            if (t.closest('a[href^="tel:"]')) window.gtag('event', 'phone_click');
           }
         });
-      });
+        document.addEventListener('submit', function (e) {
+          if (window.gtag && read() === 'granted' && e.target.id === 'contact-form') window.gtag('event', 'form_submit');
+        });
 
-      // Outbound link tracking
-      document.addEventListener('click', function(e) {
-        const link = e.target.closest('a[href^="http"]');
-        if (link && !link.href.includes(window.location.hostname)) {
-          window.trackEvent('outbound_click', {
-            'event_category': 'engagement',
-            'event_label': link.href,
-            'link_url': link.href
-          });
-        }
-      });
+        var first = true;
+        document.addEventListener('astro:page-load', function () {
+          var choice = read();
+          showBanner(choice === null);
+          if (choice === 'granted') {
+            loadGA();
+            if (!first) window.gtag('event', 'page_view', { page_path: location.pathname });
+          }
+          first = false;
+        });
+      })();
     </script>
   </>
-)}
-
-{!shouldLoadGA && (
-  <!-- GA4 not loaded (development mode or missing measurement ID) -->
-  <script is:inline>
-    // Mock tracking function (GA not loaded)
-    window.trackEvent = function() {};
-  </script>
 )}

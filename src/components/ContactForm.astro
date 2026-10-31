@@ -13,7 +13,7 @@
         </h2>
         <p class="text-bark max-w-md">
           Beschreiben Sie kurz Ihr Vorhaben — wir melden uns
-          innerhalb weniger Stunden mit einem Terminvorschlag.
+          in der Regel innerhalb von 24 Stunden mit einem Terminvorschlag.
         </p>
       </div>
     </div>
@@ -25,7 +25,7 @@
       <div class="lg:col-span-3 reveal">
         <form
           id="contact-form"
-          action="https://formspree.io/f/xkgnqkwa"
+          action="https://formspree.io/f/xoqznyqb"
           method="POST"
           class="flex flex-col gap-5 bg-white border border-line rounded-lg p-6 md:p-8"
           accept-charset="UTF-8"
@@ -135,7 +135,7 @@
               class="mt-1 h-4 w-4 rounded-sm border-line accent-moss cursor-pointer shrink-0"
             >
             <label for="contact-privacy" class="text-sm text-bark leading-relaxed cursor-pointer">
-              Ich habe die <a href="/datenschutz" target="_blank" class="text-ink underline decoration-marker decoration-2 underline-offset-2 hover:text-moss transition-colors">Datenschutzerklärung</a> gelesen und akzeptiere sie. <span class="text-moss">*</span>
+              Ich habe die <a href="/datenschutz/" target="_blank" class="text-ink underline decoration-marker decoration-2 underline-offset-2 hover:text-moss transition-colors">Datenschutzerklärung</a> zur Kenntnis genommen. <span class="text-moss">*</span>
             </label>
           </div>
 
@@ -188,8 +188,8 @@
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
             <div>
-              <p class="text-white/80 text-sm">Remseck am Neckar</p>
-              <p class="text-white/80 text-sm">Baden-Württemberg</p>
+              <p class="text-white/80 text-sm">Lerchenrain 9</p>
+              <p class="text-white/80 text-sm">71686 Remseck am Neckar</p>
             </div>
           </div>
 
@@ -268,7 +268,11 @@
 </style>
 
 <script>
+  // ClientRouter swaps pages without a reload, so bind on every page load
+  function initContactForm() {
   const form = document.getElementById('contact-form') as HTMLFormElement;
+  if (!form || form.dataset.bound) return;
+  form.dataset.bound = 'true';
   const statusDiv = document.getElementById('form-status');
   const successDiv = document.getElementById('status-success');
   const errorDiv = document.getElementById('status-error');
@@ -332,4 +336,7 @@
       }
     });
   }
+  }
+
+  document.addEventListener('astro:page-load', initContactForm);
 </script>

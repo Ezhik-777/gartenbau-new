@@ -2,34 +2,19 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Gartengestaltung", "item": "https://gartenbauzm.de/leistungen/gartengestaltung/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Gartengestaltung",
   "description": "Professionelle Gartengestaltung in Ludwigsburg, Stuttgart & Region. Individuelle Gartenplanung, Bepflanzung & Neugestaltung. Kostenlose Beratung.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
-  { question: "Was kostet eine professionelle Gartengestaltung?", answer: "Die Kosten variieren je nach Umfang und Wünschen. Ein kleiner Vorgarten beginnt bei ca. 2.000 Euro, während eine komplette Gartenumgestaltung ab ca. 8.000 Euro startet. Wir erstellen Ihnen nach einer kostenlosen Erstberatung ein individuelles Angebot mit transparenter Preisaufstellung." },
+  { question: "Was kostet eine professionelle Gartengestaltung?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Wie lange dauert eine komplette Gartenumgestaltung?", answer: "Die Dauer hängt von der Projektgröße ab. Kleinere Projekte wie eine neue Bepflanzung realisieren wir innerhalb weniger Tage. Eine vollständige Gartenumgestaltung mit Erdarbeiten, Wegebau und Bepflanzung dauert in der Regel zwei bis vier Wochen. Den genauen Zeitplan besprechen wir vorab." },
   { question: "Bieten Sie auch eine Gartenplanung mit 3D-Visualisierung an?", answer: "Ja, wir erstellen auf Wunsch detaillierte Gartenpläne, damit Sie sich Ihr zukünftiges Grün bereits vor der Umsetzung vorstellen können. So können wir gemeinsam Änderungen besprechen, bevor die eigentlichen Arbeiten beginnen." },
   { question: "Welche Pflanzen eignen sich für Gärten in der Region Stuttgart?", answer: "Die Region Stuttgart bietet dank des milden Klimas vielfältige Möglichkeiten. Besonders gut gedeihen heimische Stauden, Gräser, Hortensien, Lavendel und verschiedene Gehölze. Wir beraten Sie ausführlich zu standortgerechten Pflanzen, die pflegeleicht sind und das ganze Jahr attraktiv wirken." },
@@ -61,7 +46,7 @@ const checklist = [
 <MainLayout
   title="Gartengestaltung Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Professionelle Gartengestaltung in Ludwigsburg, Stuttgart & Region. Individuelle Gartenplanung, Bepflanzung & Neugestaltung. Kostenlose Beratung."
-  ogImage="/img/image_2.webp"
+  ogImage="/img/image_124.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Gartengestaltung</li>
         </ol>
@@ -135,9 +120,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_2.webp" alt="Gartengestaltung mit harmonischer Bepflanzung in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_3.webp" alt="Neugestalteter Garten mit Rasenfläche und Staudenbeet in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_10.webp" alt="Professionelle Gartenplanung mit Wegeführung und Bepflanzung" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_124-sm.webp" alt="Garten mit Rasen, Trittplatten, Natursteineinfassung und Splittweg" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_20-sm.webp" alt="Gartenweg aus Trittplatten in Splitt zwischen zwei Rasenflächen" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_131-sm.webp" alt="Beet mit Findlingen und Natursteineinfassung entlang eines Splittwegs" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
         </div>
       </div>
     </section>
@@ -178,7 +163,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>

@@ -80,4 +80,4 @@ Wer die Drainage regelmäßig wartet, verhindert kostspielige Reparaturen und st
 
 ## Gartenbau Z.M. — Ihr Partner bei Entwässerungsproblemen
 
-Sie haben Staunässe im Garten und wissen nicht, welche Lösung die richtige ist? Wir von Gartenbau Z.M. analysieren die Situation vor Ort, beraten Sie zu den passenden Maßnahmen und setzen die Drainage im Rahmen unserer [Landschaftsbau](/leistungen/landschaftsbau)-Leistungen fachgerecht um — von der Planung bis zur fertigen Entwässerung. [Kontaktieren Sie uns](/#kontakt) für eine unverbindliche Beratung.
+Sie haben Staunässe im Garten und wissen nicht, welche Lösung die richtige ist? Wir von Gartenbau Z.M. analysieren die Situation vor Ort, beraten Sie zu den passenden Maßnahmen und setzen die Drainage im Rahmen unserer [Landschaftsbau](/leistungen/landschaftsbau/)-Leistungen fachgerecht um — von der Planung bis zur fertigen Entwässerung. [Kontaktieren Sie uns](/#kontakt) für eine unverbindliche Beratung.

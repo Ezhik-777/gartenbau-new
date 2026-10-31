@@ -5,11 +5,10 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://gartenbauzm.de',
+  trailingSlash: 'always',
   integrations: [
     react(),
-    sitemap({
-      filter: (page) => !page.includes('before-after-demo'),
-    }),
+    sitemap(),
   ],
   build: {
     inlineStylesheets: 'auto',

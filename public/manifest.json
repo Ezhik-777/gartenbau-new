@@ -1,51 +1,13 @@
 {
-  "name": "Gartenbau Z.M. - Professioneller Landschaftsbau Stuttgart",
+  "name": "Gartenbau Z.M.",
   "short_name": "Gartenbau Z.M.",
-  "description": "Professioneller Gartenbau in Remseck, Stuttgart, Ludwigsburg & Waiblingen",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#fafaf8",
   "theme_color": "#183527",
-  "orientation": "portrait-primary",
-  "categories": ["business", "lifestyle"],
   "lang": "de",
-  "dir": "ltr",
   "icons": [
-    {
-      "src": "favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "img/logo.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "img/logo.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Kontakt",
-      "short_name": "Kontakt",
-      "description": "Kontaktieren Sie uns direkt",
-      "url": "/#kontakt",
-      "icons": [
-        {
-          "src": "img/logo.webp",
-          "sizes": "96x96"
-        }
-      ]
-    }
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
   ]
 }

@@ -20,7 +20,7 @@
 
 Правила контраста: текст на marker — только ink. На pine/ink — белый и marker.
 
-Шрифты (Google Fonts, подключены в MainLayout):
+Шрифты (self-hosted: public/fonts + src/styles/fonts.css, Google Fonts не подключать — DSGVO):
 - `--font-display`: 'Archivo' (variable, wdth 100..125, wght 400..900) — заголовки.
   H1/H2 секций: UPPERCASE, `font-stretch:118%`, wght 750, tracking -0.01em, класс `font-display`.
   Заголовки карточек: обычный регистр, wght 700, stretch 110%.

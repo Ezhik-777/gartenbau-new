@@ -1,16 +1,17 @@
 ---
 // Footer.astro v8.0 — «Werkplan»: ink ground, marker top bar, mono headings
 const currentYear = new Date().getFullYear();
+const analyticsEnabled = import.meta.env.PROD && import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
 const services = [
-  { name: 'Gartengestaltung', href: '/leistungen/gartengestaltung' },
-  { name: 'Natursteinarbeiten', href: '/leistungen/natursteinarbeiten' },
-  { name: 'Terrassenbau', href: '/leistungen/terrassenbau' },
-  { name: 'Pflasterarbeiten', href: '/leistungen/pflasterarbeiten' },
-  { name: 'Landschaftsbau', href: '/leistungen/landschaftsbau' },
-  { name: 'Rollrasen', href: '/leistungen/rollrasen' },
-  { name: 'Sichtschutz', href: '/leistungen/sichtschutz' },
-  { name: 'Hausmeisterservice', href: '/leistungen/hausmeisterservice' },
+  { name: 'Gartengestaltung', href: '/leistungen/gartengestaltung/' },
+  { name: 'Natursteinarbeiten', href: '/leistungen/natursteinarbeiten/' },
+  { name: 'Terrassenbau', href: '/leistungen/terrassenbau/' },
+  { name: 'Pflasterarbeiten', href: '/leistungen/pflasterarbeiten/' },
+  { name: 'Landschaftsbau', href: '/leistungen/landschaftsbau/' },
+  { name: 'Rollrasen', href: '/leistungen/rollrasen/' },
+  { name: 'Sichtschutz', href: '/leistungen/sichtschutz/' },
+  { name: 'Hausmeisterservice', href: '/leistungen/hausmeisterservice/' },
 ];
 ---
 
@@ -88,7 +89,7 @@ const services = [
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
-            <span>Remseck am Neckar<br>Baden-Württemberg</span>
+            <span>Lerchenrain 9<br>71686 Remseck am Neckar</span>
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-4 h-4 mt-0.5 shrink-0 text-marker" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -135,9 +136,11 @@ const services = [
       <p class="font-mono text-xs text-white/40">
         &copy; {currentYear} Gartenbau Z.M. Alle Rechte vorbehalten.
       </p>
-      <nav class="flex items-center gap-6" aria-label="Rechtliche Links">
-        <a href="/impressum" class="font-mono text-xs text-white/40 transition-colors duration-200 hover:text-marker">Impressum</a>
-        <a href="/datenschutz" class="font-mono text-xs text-white/40 transition-colors duration-200 hover:text-marker">Datenschutz</a>
+      <nav class="flex flex-wrap items-center justify-center gap-6" aria-label="Rechtliche Links">
+        <a href="/einsatzgebiet/" class="font-mono text-xs text-white/40 transition-colors duration-200 hover:text-marker">Einsatzgebiet</a>
+        <a href="/impressum/" class="font-mono text-xs text-white/40 transition-colors duration-200 hover:text-marker">Impressum</a>
+        <a href="/datenschutz/" class="font-mono text-xs text-white/40 transition-colors duration-200 hover:text-marker">Datenschutz</a>
+        {analyticsEnabled && <button type="button" data-consent-settings class="font-mono text-xs text-white/40 transition-colors duration-200 hover:text-marker cursor-pointer">Cookie-Einstellungen</button>}
       </nav>
     </div>
 

@@ -2,35 +2,20 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Landschaftsbau", "item": "https://gartenbauzm.de/leistungen/landschaftsbau/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Landschaftsbau",
   "description": "Professioneller Landschaftsbau in Ludwigsburg, Stuttgart & Region. Erdarbeiten, Bepflanzung, Rasenneuanlage & komplette Gartenumgestaltung.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
   { question: "Welche Leistungen umfasst der Landschaftsbau?", answer: "Unser Landschaftsbau umfasst sämtliche Arbeiten rund um die Neugestaltung und Umgestaltung von Außenanlagen: Erdarbeiten, Geländemodellierung, Bodenvorbereitung, Bepflanzung mit Bäumen, Sträuchern und Stauden, Rasenneuanlage, Anlage von Wegen und Plätzen sowie die Integration von Bewässerungssystemen. Wir begleiten Sie von der Planung bis zur schlüsselfertigen Übergabe." },
-  { question: "Was kostet ein Landschaftsbau-Projekt in Stuttgart und Umgebung?", answer: "Die Kosten hängen stark von Umfang und Gegebenheiten ab. Eine einfache Gartenumgestaltung beginnt bei ca. 3.000 Euro, während umfangreiche Projekte mit Erdarbeiten und Bepflanzung deutlich darüber liegen können. Wir erstellen Ihnen nach einem kostenlosen Vor-Ort-Termin ein transparentes Festpreis-Angebot ohne versteckte Kosten." },
+  { question: "Was kostet ein Landschaftsbau-Projekt in Stuttgart und Umgebung?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Wie lange dauert eine komplette Gartenumgestaltung?", answer: "Je nach Projektumfang rechnen Sie mit 1 bis 4 Wochen Bauzeit. Kleinere Umgestaltungen sind oft innerhalb weniger Tage abgeschlossen. Größere Projekte mit Erdarbeiten, Natursteinmauern und umfangreicher Bepflanzung können bis zu 4 Wochen in Anspruch nehmen. Den genauen Zeitplan besprechen wir im Vorfeld verbindlich mit Ihnen." },
   { question: "Welche Jahreszeit eignet sich am besten für Landschaftsbau?", answer: "Grundsätzlich können Erdarbeiten und Geländemodellierung ganzjährig durchgeführt werden, sofern der Boden nicht gefroren ist. Für Bepflanzungen eignen sich Frühjahr (März bis Mai) und Herbst (September bis November) am besten, da die Pflanzen in diesen Zeiträumen optimal anwachsen. Rasen kann von April bis Oktober angelegt werden." },
   { question: "Bieten Sie auch eine Planung und Beratung an?", answer: "Ja, wir bieten eine umfassende Gartenplanung inklusive Beratung vor Ort an. Auf Wunsch erstellen wir Ihnen Entwürfe und Pflanzpläne. Die Erstberatung ist kostenlos und unverbindlich. Gemeinsam erarbeiten wir ein Konzept, das Ihre Wünsche mit den Gegebenheiten vor Ort optimal vereint." }
@@ -54,14 +39,14 @@ const checklist = [
   "Bewässerungssysteme und Wasseranschlüsse",
   "Komplette Gartenumgestaltung und Neuanlagen",
   "Gartenbeleuchtung und Außensteckdosen",
-  "Kostenlose Erstberatung und Festpreis-Angebote",
+  "Kostenlose Erstberatung und schriftliche Angebote",
 ];
 ---
 
 <MainLayout
   title="Landschaftsbau Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Professioneller Landschaftsbau in Ludwigsburg, Stuttgart & Region. Erdarbeiten, Bepflanzung, Rasenneuanlage & komplette Gartenumgestaltung."
-  ogImage="/img/image_20.webp"
+  ogImage="/img/image_48.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Landschaftsbau</li>
         </ol>
@@ -107,7 +92,7 @@ const checklist = [
 
         <h3 class="font-display font-bold text-2xl text-ink mt-10" style="font-stretch: 110%;">Komplette Gartenumgestaltung aus einer Hand</h3>
         <p class="mt-4 text-bark leading-relaxed">
-          Viele unserer Kunden in Stuttgart, Fellbach und Ludwigsburg wünschen sich eine vollständige Neugestaltung ihrer Außenanlage. Wir koordinieren alle Gewerke: von der Bodenanalyse über Erdarbeiten und Pflasterarbeiten bis hin zur Bepflanzung und Beleuchtung. Das Ergebnis ist ein stimmiges Gesamtkonzept, das Ihren Garten in einen echten Lebensraum verwandelt. Durch unsere jahrelange Erfahrung im Landschaftsbau wissen wir, worauf es ankommt — und liefern termingerecht zum vereinbarten Festpreis.
+          Viele unserer Kunden in Stuttgart, Fellbach und Ludwigsburg wünschen sich eine vollständige Neugestaltung ihrer Außenanlage. Wir koordinieren alle Gewerke: von der Bodenanalyse über Erdarbeiten und Pflasterarbeiten bis hin zur Bepflanzung und Beleuchtung. Das Ergebnis ist ein stimmiges Gesamtkonzept, das Ihren Garten in einen echten Lebensraum verwandelt. Sie bekommen ein schriftliches Angebot und einen abgestimmten Zeitplan.
         </p>
       </div>
     </section>
@@ -138,9 +123,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_20.webp" alt="Landschaftsbau-Projekt mit Bepflanzung und Rasenanlage in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
-          <img src="/img/projekt-l-steine.webp" alt="L-Steine Stützmauer mit Minibagger — Hangbefestigung" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
-          <img src="/img/image_30.webp" alt="Fertig angelegte Außenanlage mit Bepflanzung und Rasenfläche" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
+          <img src="/img/optimized/image_48-sm.webp" alt="Erdarbeiten mit dem Minibagger im Garten" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
+          <img src="/img/optimized/projekt-l-steine-sm.webp" alt="Stützmauer aus L-Steinen mit Minibagger bei der Hangbefestigung" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
+          <img src="/img/optimized/image_1-sm.webp" alt="Terrassierter Hang mit dunklen Palisaden und Treppe während der Erdarbeiten" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
         </div>
       </div>
     </section>
@@ -181,7 +166,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>

@@ -47,7 +47,7 @@ const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime(
               heroImage={post.data.heroImage}
               date={post.data.date}
               tags={post.data.tags}
-              href={`/blog/${post.id}`}
+              href={`/blog/${post.id}/`}
             />
           </div>
         ))}

@@ -9,4 +9,4 @@ Last update: 2026-02-26
 Language: German
 Standards: HTML5, CSS3, ES2022
 Components: Astro Islands, React (minimal)
-Fonts: Archivo, Instrument Sans, IBM Plex Mono (Google Fonts)
+Fonts: Archivo, Instrument Sans, IBM Plex Mono (self-hosted)

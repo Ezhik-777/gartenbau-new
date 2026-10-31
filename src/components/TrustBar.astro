@@ -1,10 +1,12 @@
 ---
 // TrustBar.astro v8.0 — dark facts band, static mono figures
+import { business, services } from '../data/business';
+
 const facts = [
-  { value: '10+', label: 'Jahre Erfahrung' },
-  { value: '180+', label: 'Projekte umgesetzt' },
-  { value: '5,0 ★', label: 'Google · 47 Bewertungen' },
-  { value: '100 %', label: 'Festpreis-Angebote' },
+  { value: `${business.rating.value} ★`, label: `Google · ${business.rating.count} Rezensionen` },
+  { value: `${services.length}`, label: 'Leistungen aus einer Hand' },
+  { value: '1', label: 'Ansprechpartner' },
+  { value: '0 €', label: 'Erstberatung vor Ort' },
 ];
 ---
 

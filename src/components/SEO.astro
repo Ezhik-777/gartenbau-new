@@ -1,5 +1,7 @@
 ---
-// SEO.astro - Enhanced SEO component with Schema.org structured data
+// SEO.astro - meta tags and Schema.org structured data
+import { business, services, serviceArea } from '../data/business';
+
 interface Props {
   title: string;
   description: string;
@@ -13,72 +15,44 @@ const {
   title,
   description,
   canonical,
-  ogImage,
+  ogImage = '/img/og.jpg',
   ogType = 'website',
   noindex = false
 } = Astro.props;
 
-const siteUrl = 'https://gartenbauzm.de';
-const fullCanonical = canonical || Astro.url.pathname;
-const fullOgImage = ogImage || `${siteUrl}/img/image_25.webp`;
+const siteUrl = business.url;
+const path = canonical ?? Astro.url.pathname;
+const canonicalUrl = `${siteUrl}${path.endsWith('/') ? path : `${path}/`}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
-// LocalBusiness Schema.org
+// No aggregateRating here: Google ignores self-served ratings for LocalBusiness.
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "LandscapingBusiness"],
+  "@type": "HomeAndConstructionBusiness",
   "@id": `${siteUrl}/#business`,
-  "name": "Gartenbau Z.M.",
-  "legalName": "Gartenbau Z.M.",
-  "description": "Professioneller Garten- und Landschaftsbau in Ludwigsburg, Stuttgart und Region. Gartengestaltung, Natursteinarbeiten, Terrassenbau, Pflasterarbeiten.",
-  "url": siteUrl,
-  "logo": {
-    "@type": "ImageObject",
-    "url": `${siteUrl}/img/logo.webp`,
-    "width": "200",
-    "height": "200"
-  },
-  "image": [
-    `${siteUrl}/img/image_25.webp`,
-    `${siteUrl}/img/image_42.webp`,
-    `${siteUrl}/img/image_87.webp`
-  ],
-  "telephone": "+491782747470",
-  "email": "info.gartenbauzm@gmx.de",
+  "name": business.name,
+  "founder": { "@type": "Person", "name": business.owner },
+  "vatID": business.vatId,
+  "description": "Garten- und Landschaftsbau aus Remseck am Neckar für Ludwigsburg, Stuttgart und die Region: Gartengestaltung, Natursteinarbeiten, Terrassenbau, Pflasterarbeiten, Rollrasen und Sichtschutz.",
+  "url": `${siteUrl}/`,
+  "logo": `${siteUrl}/img/logo.png`,
+  "image": [`${siteUrl}/img/og.jpg`, `${siteUrl}/img/image_114.webp`, `${siteUrl}/img/image_167.webp`],
+  "telephone": business.phone,
+  "email": business.email,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Lerchenrain 9",
-    "addressLocality": "Remseck am Neckar",
-    "postalCode": "71686",
-    "addressRegion": "Baden-Württemberg",
+    "streetAddress": business.street,
+    "addressLocality": business.city,
+    "postalCode": business.postalCode,
+    "addressRegion": business.region,
     "addressCountry": "DE"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "48.8951",
-    "longitude": "9.2742"
+    "latitude": business.geo.latitude,
+    "longitude": business.geo.longitude
   },
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Ludwigsburg",
-      "containedInPlace": {
-        "@type": "State",
-        "name": "Baden-Württemberg"
-      }
-    },
-    { "@type": "City", "name": "Stuttgart" },
-    { "@type": "City", "name": "Remseck am Neckar" },
-    { "@type": "City", "name": "Waiblingen" },
-    { "@type": "City", "name": "Fellbach" },
-    { "@type": "City", "name": "Kornwestheim" },
-    { "@type": "City", "name": "Esslingen am Neckar" },
-    { "@type": "City", "name": "Leonberg" },
-    { "@type": "City", "name": "Böblingen" },
-    { "@type": "City", "name": "Sindelfingen" },
-    { "@type": "City", "name": "Bietigheim-Bissingen" },
-    { "@type": "City", "name": "Korntal-Münchingen" }
-  ],
-  "priceRange": "€€",
+  "areaServed": serviceArea.map((name) => ({ "@type": "City", "name": name })),
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -93,183 +67,60 @@ const localBusinessSchema = {
       "closes": "14:00"
     }
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "47",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "sameAs": [
-    "https://www.google.com/maps/place/Gartenbau+Z.M./@48.8955627,9.2716713,17z",
-    "https://wa.me/+491782747470"
-  ],
+  "sameAs": [business.googleMaps, business.directory],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Gartenbau Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Gartengestaltung",
-          "description": "Professionelle Gartenplanung und -gestaltung mit individueller Beratung",
-          "url": `${siteUrl}/leistungen/gartengestaltung`
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Natursteinarbeiten",
-          "description": "Hochwertige Natur- und Betonsteinarbeiten für Mauern, Treppen, Einfassungen",
-          "url": `${siteUrl}/leistungen/natursteinarbeiten`
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Terrassenbau",
-          "description": "Moderne Terrassengestaltung mit hochwertigen Materialien",
-          "url": `${siteUrl}/leistungen/terrassenbau`
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Pflasterarbeiten",
-          "description": "Professionelle Pflasterarbeiten für Einfahrten und Gartenwege",
-          "url": `${siteUrl}/leistungen/pflasterarbeiten`
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Landschaftsbau",
-          "description": "Kompletter Landschaftsbau von Erdarbeiten bis Bepflanzung",
-          "url": `${siteUrl}/leistungen/landschaftsbau`
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Rollrasen",
-          "description": "Rollrasen-Verlegung für sofort nutzbaren, dichten Rasen",
-          "url": `${siteUrl}/leistungen/rollrasen`
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Sichtschutz",
-          "description": "Sichtschutzzäune, Hecken und Gabionen für Ihre Privatsphäre",
-          "url": `${siteUrl}/leistungen/sichtschutz`
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Hausmeisterservice",
-          "description": "Regelmäßige Gartenpflege und Grundstücksbetreuung",
-          "url": `${siteUrl}/leistungen/hausmeisterservice`
-        }
+    "name": "Leistungen",
+    "itemListElement": services.map((service) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.name,
+        "description": service.description,
+        "url": `${siteUrl}/leistungen/${service.slug}/`
       }
-    ]
+    }))
   }
 };
 
-// BreadcrumbList Schema.org
+const sectionNames: Record<string, string> = {
+  leistungen: 'Leistungen',
+  projekte: 'Projekte',
+  blog: 'Blog',
+};
+const pathParts = Astro.url.pathname.split('/').filter(Boolean);
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": siteUrl
-    }
-  ]
-};
-
-// Add breadcrumb items based on current path
-const pathParts = Astro.url.pathname.split('/').filter(Boolean);
-if (pathParts.length > 0) {
-  pathParts.forEach((part, index) => {
-    const name = part.charAt(0).toUpperCase() + part.slice(1);
-    breadcrumbSchema.itemListElement.push({
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+    ...pathParts.map((part, index) => ({
       "@type": "ListItem",
       "position": index + 2,
-      "name": name,
-      "item": `${siteUrl}/${pathParts.slice(0, index + 1).join('/')}`
-    });
-  });
-}
+      "name": index === pathParts.length - 1
+        ? (sectionNames[part] ?? title.split(' | ')[0])
+        : (sectionNames[part] ?? part),
+      "item": `${siteUrl}/${pathParts.slice(0, index + 1).join('/')}/`
+    }))
+  ]
+};
 ---
 
-<!-- Primary Meta Tags -->
 <title>{title}</title>
-<meta name="title" content={title}>
 <meta name="description" content={description}>
 {noindex && <meta name="robots" content="noindex, nofollow">}
+<link rel="canonical" href={canonicalUrl}>
 
-<!-- Canonical URL -->
-<link rel="canonical" href={`${siteUrl}${fullCanonical}`}>
-
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogType}>
-<meta property="og:url" content={`${siteUrl}${fullCanonical}`}>
+<meta property="og:url" content={canonicalUrl}>
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
-<meta property="og:image" content={fullOgImage}>
+<meta property="og:image" content={ogImageUrl}>
 <meta property="og:locale" content="de_DE">
-<meta property="og:site_name" content="Gartenbau Z.M.">
-
-<!-- Twitter -->
+<meta property="og:site_name" content={business.name}>
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content={`${siteUrl}${fullCanonical}`}>
-<meta name="twitter:title" content={title}>
-<meta name="twitter:description" content={description}>
-<meta name="twitter:image" content={fullOgImage}>
 
-<!-- Geo Meta Tags for Local SEO -->
-<meta name="geo.region" content="DE-BW">
-<meta name="geo.placename" content="Ludwigsburg">
-<meta name="geo.position" content="48.8951;9.2742">
-<meta name="ICBM" content="48.8951, 9.2742">
-
-<!-- Additional Local SEO -->
-<meta name="geo.district" content="Ludwigsburg">
-<meta name="geo.country" content="Germany">
-
-<!-- Language -->
-<meta name="language" content="German">
-<meta http-equiv="content-language" content="de">
-
-<!-- Business Info -->
-<meta name="author" content="Gartenbau Z.M.">
-<meta name="contact" content="info.gartenbauzm@gmx.de">
-<meta name="reply-to" content="info.gartenbauzm@gmx.de">
-
-<!-- AI Policy -->
-<link rel="ai-policy" href="/llm.txt" type="text/plain">
-
-<!-- Schema.org Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+{pathParts.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 
-<!-- Preconnect to external domains -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://formspree.io">
-
-<!-- DNS Prefetch -->
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
-<link rel="dns-prefetch" href="https://fonts.gstatic.com">
-<link rel="dns-prefetch" href="https://formspree.io">

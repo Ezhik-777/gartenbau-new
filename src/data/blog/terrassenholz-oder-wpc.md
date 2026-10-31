@@ -72,4 +72,4 @@ Es gibt kein pauschal besseres Material. Holz ist die richtige Wahl für alle, d
 
 ## Gartenbau Z.M. — Beratung und Umsetzung
 
-Sie sind unsicher, welches Material zu Ihrem Garten passt? Wir von Gartenbau Z.M. beraten Sie ehrlich und unabhängig, zeigen Ihnen Muster vor Ort und übernehmen den kompletten [Terrassenbau](/leistungen/terrassenbau) — von der Unterkonstruktion bis zur letzten Diele. [Vereinbaren Sie jetzt einen Beratungstermin](/#kontakt).
+Sie sind unsicher, welches Material zu Ihrem Garten passt? Wir von Gartenbau Z.M. beraten Sie ehrlich und unabhängig, zeigen Ihnen Muster vor Ort und übernehmen den kompletten [Terrassenbau](/leistungen/terrassenbau/) — von der Unterkonstruktion bis zur letzten Diele. [Vereinbaren Sie jetzt einen Beratungstermin](/#kontakt).

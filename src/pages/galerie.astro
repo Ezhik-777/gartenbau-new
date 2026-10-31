@@ -3,92 +3,39 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import GalleryGrid from '../components/GalleryGrid';
-// Generate all 180 image data with proper categorization and titles
-const generatedImages = Array.from({ length: 180 }, (_, i) => {
-  const id = i + 1;
+// Captions and categories were assigned by looking at the photos, per construction site.
+// Do not add places or dates here without knowing them.
+const photoKinds = {
+  P: { category: 'garden', title: 'Hangterrassierung', alt: 'Terrassierter Hang mit Palisaden und Treppe während der Erdarbeiten' },
+  V: { category: 'garden', title: 'Garten vor dem Umbau', alt: 'Garten im Ausgangszustand vor der Umgestaltung' },
+  L: { category: 'stone', title: 'Stützmauer aus L-Steinen', alt: 'Stützmauer aus L-Steinen mit Minibagger' },
+  S: { category: 'paving', title: 'Stellplatz pflastern', alt: 'Stellplatz neben dem Haus: Unterbau und dunkles Betonpflaster' },
+  B: { category: 'garden', title: 'Seitengarten im Bau', alt: 'Schmaler Seitengarten im Bau: Randsteine, Tragschicht und Plattenbelag' },
+  F: { category: 'garden', title: 'Seitengarten fertig', alt: 'Fertiger Seitengarten mit Plattenweg, Rasen und Sichtschutz' },
+  H: { category: 'paving', title: 'Hofzufahrt pflastern', alt: 'Hofzufahrt mit Stufen und anthrazitfarbenem Betonpflaster' },
+  W: { category: 'paving', title: 'Gepflasterter Weg', alt: 'Heller gepflasterter Weg zwischen Hecken' },
+  K: { category: 'garden', title: 'Pavillon und Sitzplatz', alt: 'Fundament und Sitzplatz für einen Gartenpavillon' },
+  T: { category: 'terrace', title: 'Terrasse verlegen', alt: 'Terrasse aus Platten am Haus, im Bau oder frisch fertiggestellt' },
+  E: { category: 'garden', title: 'Erdarbeiten im Garten', alt: 'Erdarbeiten und Geländevorbereitung mit dem Minibagger' },
+  N: { category: 'stone', title: 'Natursteinmauer und Treppe', alt: 'Natursteinmauern und Treppen am Hang' },
+  G: { category: 'garden', title: 'Splittweg und Beete', alt: 'Geschwungener Splittweg mit Natursteineinfassung und Bepflanzung' },
+  H2: { category: 'privacy', title: 'Holz-Sichtschutz', alt: 'Sichtschutz aus Holzelementen im Fischgrätmuster' },
+  A: { category: 'paving', title: 'Pflaster in warmen Tönen', alt: 'Pflasterfläche in warmen Farbtönen mit Natursteineinfassung' },
+  D: { category: 'terrace', title: 'Terrasse erneuern', alt: 'Alte Terrasse wird mit neuen Platten erneuert' },
+  R: { category: 'paving', title: 'Innenhof mit Rinnen', alt: 'Gepflasterter Innenhof mit Unterbau und Entwässerungsrinnen' },
+  O: { category: 'garden', title: 'Rollrasen', alt: 'Bodenvorbereitung und Verlegung von Rollrasen' },
+};
+const photoRanges: [number, number, keyof typeof photoKinds][] = [[1, 1, 'P'], [2, 2, 'V'], [3, 3, 'L'], [4, 4, 'V'], [5, 9, 'S'], [10, 17, 'B'], [18, 21, 'F'], [22, 33, 'H'], [34, 34, 'W'], [35, 37, 'K'], [38, 39, 'T'], [40, 41, 'K'], [43, 46, 'E'], [48, 49, 'E'], [51, 67, 'E'], [68, 83, 'N'], [84, 85, 'G'], [86, 88, 'H2'], [89, 90, 'G'], [91, 91, 'H2'], [92, 93, 'G'], [94, 95, 'A'], [96, 96, 'G'], [97, 97, 'N'], [98, 101, 'A'], [102, 103, 'N'], [104, 104, 'H2'], [105, 105, 'A'], [106, 106, 'H2'], [107, 107, 'A'], [108, 110, 'N'], [111, 111, 'G'], [112, 112, 'A'], [113, 113, 'H2'], [114, 114, 'N'], [115, 115, 'A'], [116, 116, 'N'], [117, 117, 'H2'], [118, 118, 'A'], [119, 119, 'N'], [120, 120, 'G'], [121, 121, 'A'], [122, 125, 'G'], [126, 126, 'A'], [127, 129, 'G'], [130, 130, 'H2'], [131, 131, 'G'], [132, 132, 'A'], [133, 139, 'T'], [140, 144, 'D'], [145, 157, 'R'], [158, 168, 'O'], [169, 171, 'V'], [172, 173, 'D'], [174, 180, 'R']];
 
-  // Categorize images based on ID ranges with realistic distribution
-  let category = 'garden';
-  let alt = '';
-  let title = '';
-
-  if (id >= 1 && id <= 60) {
-    // Garden landscaping projects (1-60)
-    category = 'garden';
-    const subcategories = [
-      'Komplette Gartengestaltung',
-      'Neuanlage Garten',
-      'Gartenumbau',
-      'Bepflanzung',
-      'Gartenplanung'
-    ];
-    const subcategory = subcategories[Math.floor((id - 1) / 12) % subcategories.length];
-    alt = `${subcategory} Projekt ${id} - Professioneller Gartenbau in Ludwigsburg und Stuttgart`;
-    title = `${subcategory} #${id}`;
-  } else if (id >= 61 && id <= 105) {
-    // Natural stone work (61-105)
-    category = 'stone';
-    const subcategories = [
-      'Natursteinmauer',
-      'Betonsteinarbeiten',
-      'Gabionen',
-      'Steintreppen',
-      'Steineinfassungen'
-    ];
-    const subcategory = subcategories[Math.floor((id - 61) / 9) % subcategories.length];
-    alt = `${subcategory} Projekt ${id} - Hochwertige Natursteinarbeiten in der Region Stuttgart`;
-    title = `${subcategory} #${id}`;
-  } else if (id >= 106 && id <= 140) {
-    // Terrace construction (106-140)
-    category = 'terrace';
-    const subcategories = [
-      'Holzterrasse',
-      'WPC Terrasse',
-      'Steinterrasse',
-      'Dachterrasse',
-      'Terrassenüberdachung'
-    ];
-    const subcategory = subcategories[Math.floor((id - 106) / 7) % subcategories.length];
-    alt = `${subcategory} Projekt ${id} - Moderner Terrassenbau in Ludwigsburg und Waiblingen`;
-    title = `${subcategory} #${id}`;
-  } else if (id >= 141 && id <= 165) {
-    // Paving work (141-165)
-    category = 'paving';
-    const subcategories = [
-      'Einfahrt pflastern',
-      'Gartenwege',
-      'Hofpflasterung',
-      'Parkplatz',
-      'Gehwegplatten'
-    ];
-    const subcategory = subcategories[Math.floor((id - 141) / 5) % subcategories.length];
-    alt = `${subcategory} Projekt ${id} - Professionelle Pflasterarbeiten in Stuttgart`;
-    title = `${subcategory} #${id}`;
-  } else {
-    // Privacy screens / fencing (166-180)
-    category = 'privacy';
-    const subcategories = [
-      'Sichtschutz Holz',
-      'Sichtschutzzaun',
-      'Gabionen Sichtschutz',
-      'Bambuszaun',
-      'Zaunbau'
-    ];
-    const subcategory = subcategories[Math.floor((id - 166) / 3) % subcategories.length];
-    alt = `${subcategory} Projekt ${id} - Sichtschutz und Zaunbau in Ludwigsburg und Region`;
-    title = `${subcategory} #${id}`;
-  }
-
-  return {
-    id,
-    src: `/img/image_${id}.webp`,
-    alt,
-    category,
-    title,
+const generatedImages = photoRanges.flatMap(([from, to, kind]) =>
+  Array.from({ length: to - from + 1 }, (_, i) => ({
+    id: from + i,
+    src: `/img/image_${from + i}.webp`,
+    ...photoKinds[kind],
     width: 800,
-    height: 600
-  };
-});
+    height: 600,
+  }))
+);
 
 // Neue reale Baustellen- und Projektfotos (id 181–187)
 const newImages = [
@@ -115,11 +62,9 @@ const categoryCounts = {
 ---
 
 <MainLayout
-  title="Projekt Galerie - 185+ Gartenprojekte | Gartenbau Z.M. Ludwigsburg"
-  description="Entdecken Sie über 185 erfolgreich abgeschlossene Gartenprojekte in Ludwigsburg, Stuttgart, Waiblingen & Region. Gartengestaltung, Naturstein, Terrassen, Pflaster & mehr."
-  canonical="https://gartenbauzm.de/galerie"
-  ogImage="/img/image_1.webp"
-  ogType="website"
+  title="Galerie: Fotos von unseren Baustellen | Gartenbau Z.M."
+  description="Echte Fotos von unseren Baustellen: Pflaster, Naturstein, Terrassen, Rollrasen und Sichtschutz, vom Unterbau bis zur fertigen Fläche. Gartenbau Z.M. aus Remseck."
+  ogImage="/img/image_114.webp"
 >
   <Header />
 
@@ -136,7 +81,7 @@ const categoryCounts = {
       <p class="eyebrow eyebrow-light">Referenzen</p>
       <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Galerie</h1>
       <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">
-        185+ abgeschlossene Gartenprojekte in Stuttgart, Ludwigsburg & Region — echte Baustellen, echte Ergebnisse.
+        Echte Fotos von unseren Baustellen, vom Unterbau bis zur fertigen Fläche.
       </p>
     </div>
   </section>
@@ -149,7 +94,7 @@ const categoryCounts = {
         <!-- Filter Buttons -->
         <div class="flex flex-wrap gap-2.5 justify-center">
           <button class="filter-btn active px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-pine text-white border border-pine" data-filter="all">
-            Alle Projekte ({categoryCounts.all})
+            Alle Fotos ({categoryCounts.all})
           </button>
           <button class="filter-btn px-4 py-2.5 font-mono uppercase text-[0.72rem] tracking-[0.12em] rounded-md cursor-pointer transition-all whitespace-nowrap bg-white border border-line text-ink hover:border-ink/30" data-filter="garden">
             Gartengestaltung ({categoryCounts.garden})

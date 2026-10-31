@@ -79,4 +79,4 @@ Eine Natursteinmauer muss nicht gradlinig und monoton sein. Hier einige Ideen f�
 
 ## Ihr Mauerprojekt mit Gartenbau Z.M.
 
-Eine Natursteinmauer ist eine Investition, die über Jahrzehnte Bestand hat — wenn sie fachgerecht gebaut wird. Gartenbau Z.M. verfügt über langjährige Erfahrung bei [Natursteinarbeiten](/leistungen/natursteinarbeiten) und arbeitet mit regionalen Steinbrüchen zusammen. Wir beraten Sie bei der Materialwahl, übernehmen die Planung und setzen Ihre Mauer handwerklich sauber um. [Kontaktieren Sie uns](/#kontakt) für ein persönliches Angebot in Stuttgart und Umgebung.
+Eine Natursteinmauer ist eine Investition, die über Jahrzehnte Bestand hat — wenn sie fachgerecht gebaut wird. Gartenbau Z.M. verfügt über langjährige Erfahrung bei [Natursteinarbeiten](/leistungen/natursteinarbeiten/) und arbeitet mit regionalen Steinbrüchen zusammen. Wir beraten Sie bei der Materialwahl, übernehmen die Planung und setzen Ihre Mauer handwerklich sauber um. [Kontaktieren Sie uns](/#kontakt) für ein persönliches Angebot in Stuttgart und Umgebung.

@@ -75,4 +75,4 @@ Die Wahl der richtigen Hangbefestigung hängt von mehreren Faktoren ab: Neigung,
 
 ## Gartenbau Z.M. — Hangbefestigung vom Fachmann
 
-Sie haben ein Hanggrundstück und möchten es sicher und attraktiv gestalten? Wir von Gartenbau Z.M. begutachten Ihren Hang, empfehlen die passende Befestigungsmethode und setzen sie fachgerecht um. Von [Natursteinarbeiten](/leistungen/natursteinarbeiten) bis zum umfassenden [Landschaftsbau](/leistungen/landschaftsbau) — wir haben die Erfahrung und das Know-how. [Sprechen Sie uns an](/#kontakt).
+Sie haben ein Hanggrundstück und möchten es sicher und attraktiv gestalten? Wir von Gartenbau Z.M. begutachten Ihren Hang, empfehlen die passende Befestigungsmethode und setzen sie fachgerecht um. Von [Natursteinarbeiten](/leistungen/natursteinarbeiten/) bis zum umfassenden [Landschaftsbau](/leistungen/landschaftsbau/) — wir haben die Erfahrung und das Know-how. [Sprechen Sie uns an](/#kontakt).

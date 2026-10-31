@@ -30,7 +30,7 @@ const categoryLabel = categoryLabels[category] ?? category;
   <!-- Foto -->
   <div class="relative aspect-[4/3] overflow-hidden">
     <img
-      src={heroImage}
+      src={heroImage.replace('/img/', '/img/optimized/').replace('.webp', '-sm.webp')}
       alt={title}
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
       loading="lazy"

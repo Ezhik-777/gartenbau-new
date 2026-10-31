@@ -2,36 +2,21 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Sichtschutz Garten", "item": "https://gartenbauzm.de/leistungen/sichtschutz/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Sichtschutz Garten",
   "description": "Sichtschutz für Ihren Garten in Ludwigsburg, Stuttgart & Region. Zäune, Hecken, Gabionen & Sichtschutzwände. Individuelle Lösungen für Ihre Privatsphäre.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
   { question: "Welche Sichtschutz-Optionen gibt es für meinen Garten?", answer: "Es gibt zahlreiche Möglichkeiten: Holzzäune (Rhombus, Lamellen oder Lattenzaun), WPC-Sichtschutzelemente, Gabionen mit Stein- oder Glasfüllung, immergrüne Hecken (z. B. Thuja, Kirschlorbeer, Liguster), Sichtschutzwände aus Metall oder Cortenstahl sowie Kombinationen verschiedener Elemente. Wir beraten Sie vor Ort, welche Lösung zu Ihrem Garten, Budget und den örtlichen Vorschriften passt." },
   { question: "Wie hoch darf ein Sichtschutz in Baden-Württemberg sein?", answer: "In Baden-Württemberg ist ein Sichtschutz bis zu einer Höhe von 1,80 Meter in der Regel genehmigungsfrei — vorausgesetzt, die Grenzabstände werden eingehalten. Der Mindestabstand zum Nachbargrundstück beträgt bei Zäunen üblicherweise 0,50 Meter. Bei Hecken gelten je nach Pflanzhöhe Abstände von 0,50 bis 2,00 Meter. Wir kennen die lokalen Bestimmungen in Ludwigsburg, Stuttgart und Umgebung und beraten Sie rechtssicher." },
-  { question: "Was kostet ein Sichtschutz im Garten?", answer: "Die Kosten variieren je nach Material und Länge erheblich. Ein einfacher Holzzaun beginnt bei ca. 80-120 Euro pro laufenden Meter inklusive Montage. WPC-Sichtschutzelemente liegen bei 150-250 Euro pro Meter, Gabionen bei 200-400 Euro pro Meter. Hecken sind günstiger in der Anschaffung, benötigen jedoch regelmäßige Pflege. Wir erstellen Ihnen ein transparentes Angebot nach Vor-Ort-Besichtigung." },
+  { question: "Was kostet ein Sichtschutz im Garten?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Wie lange hält ein Sichtschutz?", answer: "Die Haltbarkeit hängt vom Material ab. Druckimprägnierte Holzzäune halten 15-20 Jahre, Hartholz wie Lärche oder Douglasie 20-25 Jahre. WPC-Elemente sind nahezu wartungsfrei und halten 25-30 Jahre. Gabionen mit feuerverzinktem Draht halten problemlos 30 Jahre und mehr. Immergrüne Hecken sind bei richtiger Pflege quasi unbegrenzt haltbar und werden mit den Jahren immer dichter." },
   { question: "Kann man Sichtschutz auch im Winter aufbauen?", answer: "Ja, feste Sichtschutzelemente wie Zäune, Gabionen und WPC-Wände können ganzjährig montiert werden, sofern der Boden für die Fundamentarbeiten nicht tief gefroren ist. Lediglich die Pflanzung von Hecken sollte auf das Frühjahr oder den Herbst verschoben werden. Wir planen Ihr Projekt so, dass es termingerecht realisiert wird — auch in den Wintermonaten." }
 ];
@@ -61,7 +46,7 @@ const checklist = [
 <MainLayout
   title="Sichtschutz Garten Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Sichtschutz für Ihren Garten in Ludwigsburg, Stuttgart & Region. Zäune, Hecken, Gabionen & Sichtschutzwände. Individuelle Lösungen für Ihre Privatsphäre."
-  ogImage="/img/image_100.webp"
+  ogImage="/img/image_113.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Sichtschutz</li>
         </ol>
@@ -138,9 +123,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_100.webp" alt="Moderner Holz-Sichtschutz in einem Garten in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
-          <img src="/img/image_105.webp" alt="Gabionen-Sichtschutz mit Natursteinfüllung in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
-          <img src="/img/image_140.webp" alt="Kombinierter Sichtschutz aus Holz und Bepflanzung" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
+          <img src="/img/optimized/image_113-sm.webp" alt="Sichtschutz aus Holzelementen im Fischgrätmuster an einem gepflasterten Sitzplatz" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
+          <img src="/img/optimized/image_18-sm.webp" alt="Graue Sichtschutzelemente mit Koniferen entlang der Grundstücksgrenze" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
+          <img src="/img/optimized/image_117-sm.webp" alt="Holz-Sichtschutz als Abschluss einer Pflasterfläche" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
         </div>
       </div>
     </section>
@@ -181,7 +166,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>

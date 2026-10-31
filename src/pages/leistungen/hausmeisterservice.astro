@@ -2,35 +2,20 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Hausmeisterservice", "item": "https://gartenbauzm.de/leistungen/hausmeisterservice/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Hausmeisterservice",
   "description": "Zuverlässiger Hausmeisterservice in Ludwigsburg, Stuttgart & Region. Gartenpflege, Grundstücksbetreuung & Winterdienst. Regelmäßig oder auf Abruf.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
   { question: "Wie oft kommt der Hausmeisterservice?", answer: "Die Häufigkeit stimmen wir individuell auf Ihren Bedarf ab. Die meisten unserer Kunden in Ludwigsburg und Stuttgart buchen einen wöchentlichen oder 14-tägigen Rhythmus für die Gartenpflege. Im Winter kann der Winterdienst täglich anfallen. Wir bieten aber auch monatliche Betreuung oder Einsätze auf Abruf an — ganz nach Ihren Wünschen und Ihrem Budget." },
-  { question: "Was kostet der Hausmeisterservice pro Monat?", answer: "Die monatlichen Kosten richten sich nach Grundstücksgröße, gewünschtem Leistungsumfang und Besuchshäufigkeit. Für ein durchschnittliches Einfamilienhaus mit Gartenpflege im 14-tägigen Rhythmus rechnen Sie mit ca. 150-300 Euro monatlich. Für eine Wohnanlage mit mehreren Einheiten erstellen wir Ihnen ein individuelles Pauschalangebot. Die Erstberatung und Besichtigung sind kostenlos." },
+  { question: "Was kostet der Hausmeisterservice pro Monat?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Ist der Winterdienst im Hausmeisterservice enthalten?", answer: "Der Winterdienst kann als Zusatzleistung oder als Teil eines Jahrespakets gebucht werden. Er umfasst Schneeräumung und Streuen von Gehwegen, Zufahrten und Parkplätzen. Wir sind in den Wintermonaten ab 6 Uhr morgens einsatzbereit und gewährleisten, dass Ihre Verkehrssicherungspflicht zuverlässig erfüllt wird. Streumaterial stellen wir auf Wunsch." },
   { question: "Welche Grundstücke betreuen Sie?", answer: "Wir betreuen Einfamilienhäuser, Mehrfamilienhäuser, Wohnanlagen, Gewerbeobjekte und öffentliche Einrichtungen in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und Fellbach. Vom kleinen Vorgarten bis zur großen Gewerbefläche — wir passen unseren Service flexibel an Ihr Objekt an. Hausverwaltungen bieten wir attraktive Rahmenverträge." },
   { question: "Kann ich einzelne Leistungen auch separat buchen?", answer: "Ja, Sie können jede unserer Hausmeisterservice-Leistungen auch einzeln und auf Abruf buchen. Ob ein einmaliger Heckenschnitt, eine saisonale Beetpflege oder ein Großputz der Außenanlage — rufen Sie uns einfach an oder schreiben Sie uns über das Kontaktformular. Wir sind in der Regel innerhalb weniger Werktage vor Ort." }
@@ -61,7 +46,7 @@ const checklist = [
 <MainLayout
   title="Hausmeisterservice Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Zuverlässiger Hausmeisterservice in Ludwigsburg, Stuttgart & Region. Gartenpflege, Grundstücksbetreuung & Winterdienst. Regelmäßig oder auf Abruf."
-  ogImage="/img/image_55.webp"
+  ogImage="/img/image_166.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Hausmeisterservice</li>
         </ol>
@@ -138,9 +123,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_55.webp" alt="Regelmäßige Gartenpflege und Rasenmähen in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
-          <img src="/img/image_60.webp" alt="Heckenschnitt und Beetpflege im Rahmen des Hausmeisterservice" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
-          <img src="/img/image_75.webp" alt="Gepflegtes Grundstück nach Hausmeisterservice-Einsatz in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
+          <img src="/img/optimized/image_166-sm.webp" alt="Rasenfläche entlang einer Hecke und eines Pflasterwegs" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
+          <img src="/img/optimized/image_130-sm.webp" alt="Beet mit Natursteinen vor einem Holz-Sichtschutz" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
+          <img src="/img/optimized/image_19-sm.webp" alt="Rasenflächen beidseits eines Plattenwegs" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
         </div>
       </div>
     </section>
@@ -181,7 +166,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>

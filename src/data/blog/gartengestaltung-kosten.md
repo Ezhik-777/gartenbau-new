@@ -65,4 +65,4 @@ Im Großraum Stuttgart liegen die Arbeitskosten etwas über dem Bundesdurchschni
 
 ## Ihr Projekt mit Gartenbau Z.M.
 
-Sie planen eine [Gartengestaltung](/leistungen/gartengestaltung) und möchten wissen, welche Kosten auf Sie zukommen? Gartenbau Z.M. erstellt Ihnen gerne ein unverbindliches Angebot — transparent, detailliert und auf Ihr Grundstück zugeschnitten. [Kontaktieren Sie uns](/#kontakt) für eine kostenfreie Erstberatung vor Ort in Stuttgart und der gesamten Region.
+Sie planen eine [Gartengestaltung](/leistungen/gartengestaltung/) und möchten wissen, welche Kosten auf Sie zukommen? Gartenbau Z.M. erstellt Ihnen gerne ein unverbindliches Angebot — transparent, detailliert und auf Ihr Grundstück zugeschnitten. [Kontaktieren Sie uns](/#kontakt) für eine kostenfreie Erstberatung vor Ort in Stuttgart und der gesamten Region.

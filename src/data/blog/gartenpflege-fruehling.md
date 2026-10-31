@@ -64,4 +64,4 @@ Im Mai explodiert das Unkrautwachstum. Entfernen Sie Unkraut regelmäßig mit de
 
 ## Gartenbau Z.M. — Ihr Frühlings-Partner
 
-Der Frühling im Garten bedeutet viel Arbeit in kurzer Zeit. Wenn Ihnen die Zeit fehlt oder Sie professionelle Unterstützung bei Rasenpflege, Gehölzschnitt oder Beetgestaltung wünschen, übernimmt unser [Hausmeisterservice](/leistungen/hausmeisterservice) diese Aufgaben zuverlässig für Sie. [Kontaktieren Sie uns](/#kontakt) — gemeinsam bringen wir Ihren Garten in Bestform.
+Der Frühling im Garten bedeutet viel Arbeit in kurzer Zeit. Wenn Ihnen die Zeit fehlt oder Sie professionelle Unterstützung bei Rasenpflege, Gehölzschnitt oder Beetgestaltung wünschen, übernimmt unser [Hausmeisterservice](/leistungen/hausmeisterservice/) diese Aufgaben zuverlässig für Sie. [Kontaktieren Sie uns](/#kontakt) — gemeinsam bringen wir Ihren Garten in Bestform.

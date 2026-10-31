@@ -78,4 +78,4 @@ Kleinere Gabionenprojekte wie eine niedrige Sitzbank oder eine kurze Beetbegrenz
 
 ## Gartenbau Z.M. — Gabionen nach Maß
 
-Sie möchten Gabionen in Ihrem Garten einsetzen? Ob als [Sichtschutz](/leistungen/sichtschutz) oder in Kombination mit [Natursteinarbeiten](/leistungen/natursteinarbeiten) — wir von Gartenbau Z.M. planen und realisieren Gabionenprojekte jeder Größe. Wir beraten Sie bei der Materialwahl, übernehmen den kompletten Aufbau und sorgen für ein dauerhaft stabiles Ergebnis. [Nehmen Sie Kontakt mit uns auf](/#kontakt).
+Sie möchten Gabionen in Ihrem Garten einsetzen? Ob als [Sichtschutz](/leistungen/sichtschutz/) oder in Kombination mit [Natursteinarbeiten](/leistungen/natursteinarbeiten/) — wir von Gartenbau Z.M. planen und realisieren Gabionenprojekte jeder Größe. Wir beraten Sie bei der Materialwahl, übernehmen den kompletten Aufbau und sorgen für ein dauerhaft stabiles Ergebnis. [Nehmen Sie Kontakt mit uns auf](/#kontakt).

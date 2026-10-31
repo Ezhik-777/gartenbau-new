@@ -82,4 +82,4 @@ Wer möglichst wenig Pflegeaufwand wünscht, greift zu Gabionen, WPC-Elementen o
 
 ## Sichtschutz planen mit Gartenbau Z.M.
 
-Welche Sichtschutzlösung passt zu Ihrem Garten? Gartenbau Z.M. berät Sie vor Ort, berücksichtigt die lokalen Vorschriften und plant einen [Sichtschutz](/leistungen/sichtschutz), der funktional und optisch überzeugt. Von der Hecke bis zur Gabionenwand — wir setzen Ihr Projekt professionell um. [Kontaktieren Sie uns](/#kontakt) für eine unverbindliche Beratung in Stuttgart und der Region.
+Welche Sichtschutzlösung passt zu Ihrem Garten? Gartenbau Z.M. berät Sie vor Ort, berücksichtigt die lokalen Vorschriften und plant einen [Sichtschutz](/leistungen/sichtschutz/), der funktional und optisch überzeugt. Von der Hecke bis zur Gabionenwand — wir setzen Ihr Projekt professionell um. [Kontaktieren Sie uns](/#kontakt) für eine unverbindliche Beratung in Stuttgart und der Region.

@@ -65,4 +65,4 @@ Nach etwa sechs Wochen können Sie den Rasen regulär düngen und normal nutzen.
 
 ## Professionelle Verlegung durch Gartenbau Z.M.
 
-Sie möchten auf Nummer sicher gehen? Gartenbau Z.M. übernimmt die komplette Verlegung Ihres [Rollrasens](/leistungen/rollrasen) — von der Bodenvorbereitung bis zur fertigen Grünfläche. Wir arbeiten mit bewährten Rasenschulen aus der Region zusammen und garantieren frische Ware in Premiumqualität. [Sprechen Sie uns an](/#kontakt) für ein unverbindliches Angebot in Stuttgart und Umgebung.
+Sie möchten auf Nummer sicher gehen? Gartenbau Z.M. übernimmt die komplette Verlegung Ihres [Rollrasens](/leistungen/rollrasen/) — von der Bodenvorbereitung bis zur fertigen Grünfläche. Wir arbeiten mit bewährten Rasenschulen aus der Region zusammen und garantieren frische Ware in Premiumqualität. [Sprechen Sie uns an](/#kontakt) für ein unverbindliches Angebot in Stuttgart und Umgebung.

@@ -2,35 +2,20 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Pflasterarbeiten", "item": "https://gartenbauzm.de/leistungen/pflasterarbeiten/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Pflasterarbeiten",
   "description": "Professionelle Pflasterarbeiten in Ludwigsburg, Stuttgart & Region. Einfahrten, Gartenwege & Hofeinfahrten. Betonstein, Naturstein & Klinker.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
   { question: "Welche Pflastersteine eignen sich für eine Einfahrt?", answer: "Für Einfahrten empfehlen wir Pflastersteine mit hoher Druckfestigkeit, die das Gewicht von Fahrzeugen dauerhaft aushalten. Betonstein in 8 cm Stärke, Natursteinpflaster aus Granit oder hochwertige Klinker sind ideale Materialien. Wir beraten Sie zur optimalen Steinwahl basierend auf der erwarteten Belastung, Ihrem gewünschten Erscheinungsbild und dem Budget." },
-  { question: "Was kostet eine gepflasterte Einfahrt?", answer: "Die Kosten hängen von Größe, Material und Untergrund ab. Eine Standard-Einfahrt von ca. 30 Quadratmetern mit Betonstein kostet ab ca. 3.500 Euro. Natursteinpflaster beginnt ab ca. 5.000 Euro für die gleiche Fläche, jeweils inklusive Erdarbeiten, Tragschicht und Verlegung. Gerne erstellen wir Ihnen ein individuelles Angebot." },
+  { question: "Was kostet eine gepflasterte Einfahrt?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Brauche ich eine Genehmigung für das Pflastern meiner Einfahrt?", answer: "In Baden-Württemberg ist das Pflastern einer Einfahrt auf dem eigenen Grundstück in der Regel genehmigungsfrei. Allerdings muss bei Neuanschluss an eine öffentliche Straße eine Genehmigung für den Bordsteinabsenkung beantragt werden. Zudem achten wir auf die kommunalen Vorgaben zur Versickerung, da einige Gemeinden wasserdurchlässige Beläge vorschreiben." },
   { question: "Was ist der Unterschied zwischen gebundener und ungebundener Bauweise?", answer: "Bei der ungebundenen Bauweise werden die Pflastersteine auf einem Splittbett verlegt und die Fugen mit Sand verfüllt. Diese Methode ist kostengünstiger und ermöglicht eine natürliche Versickerung. Bei der gebundenen Bauweise werden die Steine auf Drainmörtel verlegt und mit Fugenmörtel verfugt. Das verhindert Unkrautwachstum und Ameisenbefall, ist jedoch aufwendiger." },
   { question: "Wie pflege ich meine Pflasterfläche richtig?", answer: "Regelmäßiges Kehren und gelegentliches Abspritzen mit dem Gartenschlauch reichen für die Grundpflege aus. Bei ungebundener Verlegung sollte der Fugensand alle paar Jahre ergänzt werden. Moos und Grünbelag lassen sich mit speziellen Reinigern oder einem Hochdruckreiniger (mit Vorsicht) entfernen. Wir bieten auch professionelle Pflege- und Reinigungsservices an." },
@@ -61,7 +46,7 @@ const checklist = [
 <MainLayout
   title="Pflasterarbeiten Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Professionelle Pflasterarbeiten in Ludwigsburg, Stuttgart & Region. Einfahrten, Gartenwege & Hofeinfahrten. Betonstein, Naturstein & Klinker."
-  ogImage="/img/image_80.webp"
+  ogImage="/img/image_31.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Pflasterarbeiten</li>
         </ol>
@@ -135,9 +120,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_80.webp" alt="Gepflasterte Einfahrt mit Betonstein-Pflaster in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_85.webp" alt="Gartenweg aus Natursteinpflaster in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_90.webp" alt="Pflasterarbeiten mit Randeinfassung und Entwässerung" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_31-sm.webp" alt="Hoffläche mit anthrazitfarbenem Betonpflaster vor der Garage" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_105-sm.webp" alt="Pflasterfläche in warmen Farbtönen mit Natursteineinfassung" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_157-sm.webp" alt="Helles Pflaster mit dunklem Band und Entwässerungsrinne" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
         </div>
       </div>
     </section>
@@ -178,7 +163,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>

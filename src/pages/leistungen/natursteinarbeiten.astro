@@ -2,36 +2,21 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Natursteinarbeiten", "item": "https://gartenbauzm.de/leistungen/natursteinarbeiten/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Natursteinarbeiten",
   "description": "Hochwertige Natursteinarbeiten in Ludwigsburg, Stuttgart & Region. Natursteinmauern, Treppen, Einfassungen aus Granit, Sandstein & Muschelkalk.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
   { question: "Welche Natursteinarten verwenden Sie?", answer: "Wir arbeiten mit einer Vielzahl hochwertiger Natursteine: Granit für besonders beanspruchte Flächen, Sandstein für warme, natürliche Optik, Muschelkalk als regionaltypischen Stein sowie Basalt, Gneis und Porphyr. Die Steinauswahl stimmen wir gemeinsam auf Ihr Projekt, den gewünschten Stil und Ihr Budget ab." },
   { question: "Wie langlebig sind Natursteinmauern?", answer: "Natursteinmauern gehören zu den langlebigsten Bauwerken im Garten. Bei fachgerechter Errichtung mit passendem Fundament halten sie problemlos mehrere Jahrzehnte. Trockenmauern ohne Mörtel bieten zusätzlich wertvolle Lebensräume für Eidechsen und Insekten und sind besonders in naturnahen Gärten beliebt." },
-  { question: "Was kostet eine Natursteinmauer pro laufenden Meter?", answer: "Die Kosten hängen von der Steinart, der Mauerhöhe und der Bauweise ab. Eine einfache Trockenmauer beginnt bei ca. 150 Euro pro laufendem Meter, während eine gemörtelte Natursteinmauer aus hochwertigem Granit ab ca. 300 Euro pro Meter kostet. Wir erstellen Ihnen gerne ein detailliertes Angebot." },
+  { question: "Was kostet eine Natursteinmauer pro laufenden Meter?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Können Sie auch bestehende Natursteinmauern sanieren?", answer: "Ja, wir übernehmen auch Sanierungsarbeiten an bestehenden Natursteinmauern und -treppen. Dazu gehören das Ausbessern von Fugen, der Austausch beschädigter Steine und die Stabilisierung von Fundamenten. Oft lässt sich eine bestehende Mauer mit gezielten Maßnahmen wieder in einen einwandfreien Zustand bringen." },
   { question: "Benötige ich eine Baugenehmigung für eine Natursteinmauer?", answer: "In Baden-Württemberg sind freistehende Mauern bis zu einer Höhe von zwei Metern in der Regel genehmigungsfrei. Stützmauern und Mauern in Hanglagen können jedoch genehmigungspflichtig sein. Wir beraten Sie zu den lokalen Vorschriften in Ludwigsburg, Stuttgart und Umgebung und unterstützen Sie bei Bedarf mit den Antragsunterlagen." },
 ];
@@ -61,7 +46,7 @@ const checklist = [
 <MainLayout
   title="Natursteinarbeiten Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Hochwertige Natursteinarbeiten in Ludwigsburg, Stuttgart & Region. Natursteinmauern, Treppen, Einfassungen aus Granit, Sandstein & Muschelkalk."
-  ogImage="/img/image_65.webp"
+  ogImage="/img/image_114.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Natursteinarbeiten</li>
         </ol>
@@ -135,9 +120,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_65.webp" alt="Natursteinmauer aus Muschelkalk als Grundstücksabgrenzung" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_66.webp" alt="Treppe aus Granit-Blockstufen im Hanggrundstück" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_70.webp" alt="Natursteineinfassung und Stützmauer im Garten bei Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_114-sm.webp" alt="Treppen und Stützmauern aus Naturstein an einer gepflasterten Zufahrt" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_109-sm.webp" alt="Natursteinstufen mit bepflanztem Beet und Einfassung" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_103-sm.webp" alt="Geschwungene Natursteinmauer am Pflasterbelag" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
         </div>
       </div>
     </section>
@@ -178,7 +163,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>

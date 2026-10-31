@@ -8,23 +8,24 @@ import TrustBar from '../components/TrustBar.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
 import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { cities } from '../data/cities';
 
 const services = [
-  { code: 'LV 01', title: 'Gartengestaltung', description: 'Planung und Neuanlage — vom Konzept bis zur Bepflanzung.', href: '/leistungen/gartengestaltung' },
-  { code: 'LV 02', title: 'Natursteinarbeiten', description: 'Mauern, Treppen und Einfassungen aus Granit, Sandstein, Muschelkalk.', href: '/leistungen/natursteinarbeiten' },
-  { code: 'LV 03', title: 'Terrassenbau', description: 'Naturstein, WPC oder Holz — mit frostsicherem Unterbau.', href: '/leistungen/terrassenbau' },
-  { code: 'LV 04', title: 'Pflasterarbeiten', description: 'Einfahrten, Wege und Höfe mit sauberer Entwässerung.', href: '/leistungen/pflasterarbeiten' },
-  { code: 'LV 05', title: 'Landschaftsbau', description: 'Erdarbeiten, Hangbefestigung, Modellierung des Geländes.', href: '/leistungen/landschaftsbau' },
-  { code: 'LV 06', title: 'Rollrasen', description: 'Bodenvorbereitung und Verlegung — sofort nutzbarer Rasen.', href: '/leistungen/rollrasen' },
-  { code: 'LV 07', title: 'Sichtschutz', description: 'Zäune, Gabionen und Hecken für Ihre Privatsphäre.', href: '/leistungen/sichtschutz' },
-  { code: 'LV 08', title: 'Hausmeisterservice', description: 'Regelmäßige Pflege für Garten und Grundstück.', href: '/leistungen/hausmeisterservice' },
+  { code: 'LV 01', title: 'Gartengestaltung', description: 'Planung und Neuanlage — vom Konzept bis zur Bepflanzung.', href: '/leistungen/gartengestaltung/' },
+  { code: 'LV 02', title: 'Natursteinarbeiten', description: 'Mauern, Treppen und Einfassungen aus Granit, Sandstein, Muschelkalk.', href: '/leistungen/natursteinarbeiten/' },
+  { code: 'LV 03', title: 'Terrassenbau', description: 'Naturstein, WPC oder Holz — mit frostsicherem Unterbau.', href: '/leistungen/terrassenbau/' },
+  { code: 'LV 04', title: 'Pflasterarbeiten', description: 'Einfahrten, Wege und Höfe mit sauberer Entwässerung.', href: '/leistungen/pflasterarbeiten/' },
+  { code: 'LV 05', title: 'Landschaftsbau', description: 'Erdarbeiten, Hangbefestigung, Modellierung des Geländes.', href: '/leistungen/landschaftsbau/' },
+  { code: 'LV 06', title: 'Rollrasen', description: 'Bodenvorbereitung und Verlegung — sofort nutzbarer Rasen.', href: '/leistungen/rollrasen/' },
+  { code: 'LV 07', title: 'Sichtschutz', description: 'Zäune, Gabionen und Hecken für Ihre Privatsphäre.', href: '/leistungen/sichtschutz/' },
+  { code: 'LV 08', title: 'Hausmeisterservice', description: 'Regelmäßige Pflege für Garten und Grundstück.', href: '/leistungen/hausmeisterservice/' },
 ];
 
 const steps = [
   { nr: '01', title: 'Beratung vor Ort', text: 'Kostenlos und unverbindlich: Wir nehmen Maß, prüfen den Bestand und hören zu, was Sie sich wünschen.' },
-  { nr: '02', title: 'Konzept & Festpreis', text: 'Sie erhalten ein klares Angebot mit allen Positionen — keine versteckten Kosten, keine Überraschungen.' },
-  { nr: '03', title: 'Umsetzung', text: 'Unser eigenes Team baut termingerecht, mit ordentlicher Baustelle und kurzen Wegen zum Chef.' },
-  { nr: '04', title: 'Übergabe & Pflege', text: 'Gemeinsame Abnahme, Pflegehinweise und Garantie. Auf Wunsch übernehmen wir die laufende Pflege.' },
+  { nr: '02', title: 'Konzept & Angebot', text: 'Sie erhalten ein schriftliches Angebot mit allen Positionen, damit Sie genau wissen, was gebaut wird.' },
+  { nr: '03', title: 'Umsetzung', text: 'Unser Team baut nach abgestimmtem Zeitplan, mit ordentlicher Baustelle und kurzen Wegen zum Chef.' },
+  { nr: '04', title: 'Übergabe & Pflege', text: 'Gemeinsame Abnahme und Pflegehinweise. Auf Wunsch übernehmen wir die laufende Pflege.' },
 ];
 
 // 3 aktuelle Projekte fürs Preview
@@ -42,8 +43,8 @@ const categoryLabels: Record<string, string> = {
 ---
 
 <MainLayout
-  title="Gartenbau Ludwigsburg & Stuttgart | Landschaftsbau & Gartengestaltung"
-  description="Professioneller Gartenbau in Ludwigsburg, Stuttgart, Waiblingen & Region. Gartengestaltung, Terrassen, Natursteinarbeiten. Kostenlose Beratung vor Ort."
+  title="Gartenbau Remseck, Ludwigsburg & Stuttgart | Gartenbau Z.M."
+  description="Garten- und Landschaftsbau aus Remseck für Ludwigsburg, Stuttgart, Waiblingen und Fellbach: Terrassen, Pflaster, Naturstein, Rollrasen. Kostenlose Beratung vor Ort."
 >
   <Header />
 
@@ -64,7 +65,7 @@ const categoryLabels: Record<string, string> = {
               Was wir bauen
             </h2>
             <a
-              href="/leistungen"
+              href="/leistungen/"
               class="inline-flex items-center gap-2 text-moss font-semibold transition-colors duration-200 hover:text-pine group"
             >
               Alle Leistungen im Detail
@@ -104,7 +105,7 @@ const categoryLabels: Record<string, string> = {
               Zuletzt gebaut
             </h2>
             <a
-              href="/projekte"
+              href="/projekte/"
               class="inline-flex items-center gap-2 text-moss font-semibold transition-colors duration-200 hover:text-pine group"
             >
               Alle Projekte
@@ -116,13 +117,13 @@ const categoryLabels: Record<string, string> = {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {projects.map((project, i) => (
             <a
-              href={`/projekte/${project.id}`}
+              href={`/projekte/${project.id}/`}
               class="group flex flex-col h-full bg-white rounded-lg border border-line overflow-hidden transition-all duration-200 hover:border-ink/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/8 reveal"
               style={`transition-delay: ${i * 80}ms`}
             >
               <div class="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={project.data.heroImage}
+                  src={project.data.heroImage.replace('/img/', '/img/optimized/').replace('.webp', '-sm.webp')}
                   alt={project.data.title}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
@@ -207,21 +208,19 @@ const categoryLabels: Record<string, string> = {
             </h2>
 
             <p class="text-bark leading-relaxed mt-6">
-              Gartenbau Z.M. baut seit über zehn Jahren Gärten, Terrassen und
-              Außenanlagen in Ludwigsburg, Stuttgart und der Region. Wir arbeiten
-              mit eigenem Team, eigener Technik — und einem Anspruch: Was wir
-              bauen, muss Jahrzehnte halten.
+              Gartenbau Z.M. baut Gärten, Terrassen und Außenanlagen in Remseck,
+              Ludwigsburg, Stuttgart und der Region. Wir arbeiten mit eigenem Team
+              und einem Anspruch: Was wir bauen, soll lange halten.
             </p>
 
             <p class="text-bark leading-relaxed mt-4">
               Sie sprechen bei uns direkt mit dem, der Ihr Projekt auch umsetzt.
-              Kurze Wege, klare Absprachen, ein Festpreis — und eine Baustelle,
-              die jeden Abend aufgeräumt ist.
+              Kurze Wege, klare Absprachen und eine ordentliche Baustelle.
             </p>
 
             <!-- Checklist -->
             <ul class="mt-8 space-y-3">
-              {['Über 10 Jahre Erfahrung', 'Kostenlose Erstberatung vor Ort', 'Faire Festpreise ohne Nachträge', 'Termingarantie'].map((item) => (
+              {['Kostenlose Erstberatung vor Ort', 'Schriftliches Angebot mit allen Positionen', 'Ein Ansprechpartner von Anfang bis Ende', 'Abgestimmter Zeitplan'].map((item) => (
                 <li class="flex items-center gap-3 text-ink font-medium">
                   <span class="flex items-center justify-center w-5 h-5 bg-marker rounded-sm font-mono text-[0.7rem] text-ink" aria-hidden="true">&#10003;</span>
                   {item}
@@ -234,13 +233,35 @@ const categoryLabels: Record<string, string> = {
               <a href="/#kontakt" class="btn btn-primary">
                 Jetzt beraten lassen
               </a>
-              <a href="/galerie" class="btn btn-outline text-ink">
+              <a href="/galerie/" class="btn btn-outline text-ink">
                 Galerie ansehen
                 <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ==================== Einsatzgebiet ==================== -->
+    <section class="py-20 md:py-28 bg-stone">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <p class="eyebrow">Einsatzgebiet</p>
+          <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">
+            Von Remseck in die Region
+          </h2>
+        </div>
+        <ul class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 mt-10 border-t border-line">
+          {cities.map((city) => (
+            <li class="border-b border-line">
+              <a href={`/gartenbau-${city.slug}/`} class="flex items-center justify-between gap-3 py-4 font-semibold text-ink hover:text-moss transition-colors">
+                {city.name}
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 

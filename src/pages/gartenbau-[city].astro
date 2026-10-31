@@ -1,0 +1,159 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { cities, type City } from '../data/cities';
+import { business, services } from '../data/business';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props as { city: City };
+const pageUrl = `${business.url}/gartenbau-${city.slug}/`;
+const cityServices = city.services.map((slug) => services.find((s) => s.slug === slug)!);
+const neighbours = cities.filter((c) => c.slug !== city.slug);
+
+const faqs = [
+  {
+    question: `Arbeiten Sie auch in ${city.name}?`,
+    answer: city.distanceKm === 0
+      ? `Ja, unser Betrieb sitzt in ${city.name}, ${business.street}. Wir arbeiten in allen Stadtteilen: ${city.districts.join(', ')}.`
+      : `Ja, ${city.name} liegt rund ${city.distanceKm} km Luftlinie von unserem Betrieb in Remseck entfernt und gehört zu unserem Einsatzgebiet, auch ${city.districts.join(', ')}.`,
+  },
+  {
+    question: `Was kostet ein Gartenprojekt in ${city.name}?`,
+    answer: 'Das hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen.',
+  },
+  {
+    question: 'Ist ein Schottergarten erlaubt?',
+    answer: 'In Baden-Württemberg sollen Gartenflächen nach § 21a Naturschutzgesetz insektenfreundlich gestaltet und überwiegend begrünt werden. Reine Schottergärten sind deshalb grundsätzlich nicht zulässig. Wir planen Wege aus Splitt oder Pflaster zusammen mit bepflanzten Flächen.',
+  },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: `Garten- und Landschaftsbau in ${city.name}`,
+  serviceType: 'Garten- und Landschaftsbau',
+  provider: { '@id': `${business.url}/#business` },
+  areaServed: { '@type': 'City', name: city.name },
+  url: pageUrl,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+---
+
+<MainLayout
+  title={`Garten- & Landschaftsbau ${city.name} | Gartenbau Z.M.`}
+  description={`Garten- und Landschaftsbau in ${city.name}: ${cityServices.map((s) => s.name).join(', ')}. Kostenlose Beratung vor Ort, Betrieb aus Remseck.`}
+  ogImage={city.photos[0].src}
+>
+  <Header />
+
+  <section class="bg-pine text-white pt-32 pb-14 md:pt-40 md:pb-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
+          <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/einsatzgebiet/" class="hover:text-marker transition-colors">Einsatzgebiet</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white/80">{city.name}</li>
+        </ol>
+      </nav>
+      <p class="eyebrow eyebrow-light">{city.distanceKm === 0 ? 'Unser Standort' : `Ca. ${city.distanceKm} km von Remseck`}</p>
+      <h1 class="font-display font-extrabold uppercase text-white text-4xl md:text-5xl lg:text-6xl mt-5" style="font-stretch: 118%;">Gartenbau in {city.name}</h1>
+      <p class="text-white/70 text-lg md:text-xl mt-5 max-w-2xl">{city.intro}</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+    <section class="py-20 md:py-28 bg-paper">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <p class="eyebrow">Vor Ort</p>
+        <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Worauf es hier ankommt</h2>
+        <p class="mt-6 text-bark leading-relaxed">{city.terrain}</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          {city.focus.map((item) => (
+            <div class="border-t-[3px] border-marker pt-4">
+              <h3 class="font-display font-bold text-lg text-ink" style="font-stretch: 110%;">{item.title}</h3>
+              <p class="text-bark text-sm leading-relaxed mt-2">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-stone">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="eyebrow">Beispiele</p>
+        <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Typische Arbeiten</h2>
+        <p class="mt-4 text-bark">Fotos von unseren Baustellen in der Region.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          {city.photos.map((photo) => (
+            <img src={photo.src.replace('/img/', '/img/optimized/').replace('.webp', '-sm.webp')} alt={photo.alt} class="rounded-lg border border-line w-full h-72 object-cover" loading="lazy" width="800" height="600" />
+          ))}
+        </div>
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-x-8 mt-12 border-t border-line">
+          {cityServices.map((service) => (
+            <li class="border-b border-line">
+              <a href={`/leistungen/${service.slug}/`} class="flex items-center justify-between gap-3 py-4 font-semibold text-ink hover:text-moss transition-colors">
+                {service.name}
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-paper">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <p class="eyebrow">Gut zu wissen</p>
+        <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Vorschriften und Fragen</h2>
+        <p class="mt-6 text-bark leading-relaxed">
+          {city.rules}
+          {city.rulesLink && <> <a href={city.rulesLink.href} target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">{city.rulesLink.label}</a>.</>}
+        </p>
+        <div class="mt-8">
+          {faqs.map((faq) => (
+            <div class="border-b border-line py-5">
+              <h3 class="font-semibold text-ink text-[1.05rem]">{faq.question}</h3>
+              <p class="text-bark leading-relaxed mt-2">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+        <p class="font-mono text-[0.72rem] uppercase tracking-[0.12em] text-bark mt-10">Auch in der Nähe</p>
+        <p class="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          {neighbours.map((c) => <a href={`/gartenbau-${c.slug}/`} class="text-moss underline underline-offset-2 hover:text-pine transition-colors">{c.name}</a>)}
+        </p>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-pine text-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 text-center">
+        <p class="eyebrow eyebrow-light justify-center">Kontakt</p>
+        <h2 class="font-display font-extrabold uppercase text-white text-3xl md:text-4xl mt-5" style="font-stretch: 118%;">Projekt in {city.name}?</h2>
+        <p class="text-white/70 mt-4 text-lg">Kostenlose Erstberatung, vor Ort und unverbindlich.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+          <a href="/#kontakt" class="btn btn-primary">Kostenlose Beratung anfragen</a>
+          <a href={`tel:${business.phone}`} class="btn btn-outline text-white">{business.phoneDisplay}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</MainLayout>

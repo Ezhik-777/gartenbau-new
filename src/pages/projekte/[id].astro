@@ -44,7 +44,7 @@ const categoryLabel = categoryLabels[entry.data.category] ?? entry.data.category
         <ol class="flex flex-wrap items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/projekte" class="hover:text-marker transition-colors">Projekte</a></li>
+          <li><a href="/projekte/" class="hover:text-marker transition-colors">Projekte</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">{entry.data.title}</li>
         </ol>
@@ -133,7 +133,7 @@ const categoryLabel = categoryLabels[entry.data.category] ?? entry.data.category
             {entry.data.images.map((img: string, i: number) => (
               <div class="rounded-lg border border-line overflow-hidden aspect-[4/3]">
                 <img
-                  src={img}
+                  src={img.replace('/img/', '/img/optimized/').replace('.webp', '-sm.webp')}
                   alt={`${entry.data.title} — Bild ${i + 1}`}
                   class="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-500"
                   loading="lazy"
@@ -168,7 +168,7 @@ const categoryLabel = categoryLabels[entry.data.category] ?? entry.data.category
                 heroImage={project.data.heroImage}
                 location={project.data.location}
                 duration={project.data.duration}
-                href={`/projekte/${project.id}`}
+                href={`/projekte/${project.id}/`}
               />
             </div>
           ))}

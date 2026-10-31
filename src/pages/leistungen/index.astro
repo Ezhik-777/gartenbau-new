@@ -74,29 +74,11 @@ const services = [
   },
 ];
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: 'https://www.gartenbau-zm.de/',
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Leistungen',
-      item: 'https://www.gartenbau-zm.de/leistungen/',
-    },
-  ],
-};
 ---
 
 <MainLayout
-  title="Leistungen | Gartenbau Z.M. - Gartenbau Ludwigsburg, Stuttgart & Region"
-  description="Alle Leistungen von Gartenbau Z.M.: Gartengestaltung, Natursteinarbeiten, Terrassenbau, Pflasterarbeiten, Landschaftsbau, Rollrasen, Sichtschutz & Hausmeisterservice."
+  title="Leistungen im Garten- & Landschaftsbau | Gartenbau Z.M."
+  description="Gartengestaltung, Naturstein, Terrassenbau, Pflaster, Landschaftsbau, Rollrasen, Sichtschutz und Hausmeisterservice von Gartenbau Z.M. aus Remseck."
 >
   <Header />
 
@@ -127,7 +109,7 @@ const breadcrumbSchema = {
                 icon={service.icon}
                 title={service.title}
                 description={service.description}
-                href={`/leistungen/${service.slug}`}
+                href={`/leistungen/${service.slug}/`}
                 code={service.code}
               />
             </div>
@@ -151,7 +133,4 @@ const breadcrumbSchema = {
   </main>
 
   <Footer />
-
-  <!-- BreadcrumbList JSON-LD -->
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </MainLayout>

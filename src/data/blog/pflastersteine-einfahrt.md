@@ -92,4 +92,4 @@ Wenn Sie ein begrenztes Budget haben und Wert auf Vielfalt bei den Formaten lege
 
 ## Beratung und Umsetzung durch Gartenbau Z.M.
 
-Sie sind unsicher, welches Pflaster zu Ihrer Einfahrt passt? Gartenbau Z.M. berät Sie persönlich und zeigt Ihnen Musterflächen verschiedener Materialien. Vom Unterbau bis zur fertigen Einfahrt erhalten Sie bei unseren [Pflasterarbeiten](/leistungen/pflasterarbeiten) alles aus einer Hand — fachgerecht ausgeführt und mit Gewährleistung. [Vereinbaren Sie jetzt Ihren Beratungstermin](/#kontakt) in Stuttgart und Umgebung.
+Sie sind unsicher, welches Pflaster zu Ihrer Einfahrt passt? Gartenbau Z.M. berät Sie persönlich und zeigt Ihnen Musterflächen verschiedener Materialien. Vom Unterbau bis zur fertigen Einfahrt erhalten Sie bei unseren [Pflasterarbeiten](/leistungen/pflasterarbeiten/) alles aus einer Hand — fachgerecht ausgeführt und mit Gewährleistung. [Vereinbaren Sie jetzt Ihren Beratungstermin](/#kontakt) in Stuttgart und Umgebung.

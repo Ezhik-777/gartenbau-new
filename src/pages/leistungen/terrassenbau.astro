@@ -2,35 +2,20 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Terrassenbau", "item": "https://gartenbauzm.de/leistungen/terrassenbau/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Terrassenbau",
   "description": "Professioneller Terrassenbau in Ludwigsburg, Stuttgart & Region. Holz, WPC & Naturstein-Terrassen. Planung & Umsetzung aus einer Hand.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
   { question: "Welches Material eignet sich am besten für eine Terrasse?", answer: "Die Materialwahl hängt von Ihren Anforderungen ab. Naturstein wie Granit oder Travertin ist extrem langlebig und pflegeleicht. WPC (Wood-Plastic-Composite) bietet eine Holzoptik ohne den Pflegeaufwand von Echtholz. Echtholz wie Bangkirai oder Lärche überzeugt durch natürliche Wärme und Haptik, benötigt jedoch regelmäßige Pflege. Wir beraten Sie gerne zu den Vor- und Nachteilen." },
-  { question: "Was kostet eine neue Terrasse pro Quadratmeter?", answer: "Die Kosten variieren je nach Material und Unterbau. Eine Betonstein-Terrasse beginnt bei ca. 80 Euro pro Quadratmeter, WPC-Terrassen ab ca. 120 Euro und Naturstein-Terrassen ab ca. 150 Euro pro Quadratmeter, jeweils inklusive Unterbau und Verlegung. Ein individuelles Angebot erstellen wir nach der kostenlosen Vor-Ort-Beratung." },
+  { question: "Was kostet eine neue Terrasse pro Quadratmeter?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Wie wird die Entwässerung der Terrasse sichergestellt?", answer: "Eine fachgerechte Entwässerung ist entscheidend für die Langlebigkeit Ihrer Terrasse. Wir legen ein Gefälle von mindestens zwei Prozent vom Haus weg an und installieren bei Bedarf Entwässerungsrinnen oder Drainagesysteme. So wird Staunässe vermieden und die Bausubstanz Ihres Hauses geschützt." },
   { question: "Wie lange dauert der Bau einer Terrasse?", answer: "Eine Standard-Terrasse von 20 bis 30 Quadratmetern realisieren wir in der Regel innerhalb von drei bis fünf Arbeitstagen, inklusive Erdarbeiten und Unterbau. Größere Projekte mit aufwendigem Unterbau oder Hanglagen können bis zu zwei Wochen dauern. Den genauen Zeitplan stimmen wir vorab mit Ihnen ab." },
   { question: "Kann eine bestehende Terrasse erneuert werden, ohne alles abzureißen?", answer: "In vielen Fällen ja. Wenn der bestehende Unterbau noch intakt ist, können wir einen neuen Belag darauf verlegen. Wir prüfen zunächst den Zustand des Untergrunds und beraten Sie, ob eine Sanierung ausreicht oder ein Neuaufbau sinnvoller ist. Das spart oft Zeit und Kosten." },
@@ -52,7 +37,7 @@ const checklist = [
   'WPC- und Holzterrassen mit Unterkonstruktion',
   'Frostsicherer Unterbau mit Drainage',
   'Stufen und Höhenausgleich bei Hanglagen',
-  'Terrassenbeleuchtung und Elektroinstallation',
+  'Vorbereitung für Terrassenbeleuchtung',
   'Einfassungen und Übergangsgestaltung',
   'Sanierung und Erneuerung bestehender Terrassen',
 ];
@@ -61,7 +46,7 @@ const checklist = [
 <MainLayout
   title="Terrassenbau Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Professioneller Terrassenbau in Ludwigsburg, Stuttgart & Region. Holz, WPC & Naturstein-Terrassen. Planung & Umsetzung aus einer Hand."
-  ogImage="/img/image_110.webp"
+  ogImage="/img/image_143.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Terrassenbau</li>
         </ol>
@@ -135,9 +120,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_110.webp" alt="Moderne Naturstein-Terrasse mit Großformatplatten in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_111.webp" alt="WPC-Terrasse mit integrierter Beleuchtung in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
-          <img src="/img/image_115.webp" alt="Terrassenbau mit Stufen und Einfassung im Hanggrundstück" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_143-sm.webp" alt="Terrasse aus großformatigen grauen Platten am Haus" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_21-sm.webp" alt="Terrasse aus großformatigen Platten mit Übergang zum Gartenweg" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
+          <img src="/img/optimized/image_139-sm.webp" alt="Terrasse mit Natursteinplatten entlang der Hauswand" class="rounded-lg border border-line w-full h-64 object-cover" loading="lazy" />
         </div>
       </div>
     </section>
@@ -178,7 +163,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>

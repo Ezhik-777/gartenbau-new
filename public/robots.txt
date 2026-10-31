@@ -1,21 +1,20 @@
 User-agent: *
 Allow: /
-Disallow: /before-after-demo
+
+# Search and AI answer engines: explicitly welcome so the company can be cited.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+Allow: /
 
 Sitemap: https://gartenbauzm.de/sitemap-index.xml
-
-# LLM Crawlers
-User-agent: GPTBot
-Allow: /llm.txt
-
-User-agent: ChatGPT-User
-Allow: /llm.txt
-
-User-agent: Claude-Web
-Allow: /llm.txt
-
-User-agent: Amazonbot
-Allow: /llm.txt
-
-User-agent: anthropic-ai
-Allow: /llm.txt

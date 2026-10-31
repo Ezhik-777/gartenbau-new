@@ -2,14 +2,14 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const analyticsEnabled = Boolean(import.meta.env.PUBLIC_GA_MEASUREMENT_ID);
 ---
 
 <MainLayout
   title="Datenschutzerklärung | Gartenbau Z.M."
   description="Datenschutzerklärung von Gartenbau Z.M. - Informationen zum Schutz Ihrer personenbezogenen Daten gemäß DSGVO."
-  canonical="/datenschutz.html"
-  noindex={false}
->
+  >
   <Header />
 
   <!-- Hero -->
@@ -54,150 +54,103 @@ import Footer from '../components/Footer.astro';
           </p>
           <p class="text-bark leading-relaxed">
             <strong class="text-ink">Gartenbau Z.M.</strong><br>
+            Inhaber: Zarko Marinovic<br>
             Lerchenrain 9<br>
             71686 Remseck am Neckar<br>
             <br>
             Telefon: <a href="tel:+491782747470" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">+49 178 2747470</a><br>
-            E-Mail: <a href="mailto:info.gartenbauzm@gmx.de" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">info.gartenbauzm@gmx.de</a>
+            E-Mail: <a href="mailto:info@gartenbauzm.de" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">info@gartenbauzm.de</a>
           </p>
         </section>
 
         <section class="mb-10">
-          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">
-            3. Datenerfassung auf dieser Website
-          </h2>
-
-          <h3 class="font-display font-bold text-lg text-ink mt-8 mb-3">
-            Kontaktformular
-          </h3>
+          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">3. Hosting und Server-Logfiles</h2>
           <p class="text-bark leading-relaxed mb-4">
-            Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
+            Diese Website wird über GitHub Pages (GitHub, Inc., USA) bereitgestellt und über das Netzwerk von Cloudflare, Inc. (USA) ausgeliefert. Beim Aufruf verarbeiten diese Anbieter technisch notwendige Daten: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Referrer-URL, Browser und Betriebssystem. Dabei können Daten in die USA übermittelt werden.
           </p>
           <p class="text-bark leading-relaxed mb-4">
-            Diese Daten werden über den Dienst <strong class="text-ink">Formspree</strong> verarbeitet. Weitere Informationen finden Sie in der Datenschutzerklärung von Formspree:
-            <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">
-              https://formspree.io/legal/privacy-policy
-            </a>
-          </p>
-
-          <h3 class="font-display font-bold text-lg text-ink mt-8 mb-3">
-            Server-Log-Dateien
-          </h3>
-          <p class="text-bark leading-relaxed mb-4">
-            Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
-          </p>
-          <ul class="text-bark leading-relaxed list-disc pl-6 mb-4 marker:text-moss">
-            <li class="mb-1">Browsertyp und Browserversion</li>
-            <li class="mb-1">Verwendetes Betriebssystem</li>
-            <li class="mb-1">Referrer URL</li>
-            <li class="mb-1">Hostname des zugreifenden Rechners</li>
-            <li class="mb-1">Uhrzeit der Serveranfrage</li>
-            <li class="mb-1">IP-Adresse</li>
-          </ul>
-          <p class="text-bark leading-relaxed mb-4">
-            Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website.
+            Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der sicheren und fehlerfreien Bereitstellung der Website. Eine Zusammenführung dieser Daten mit anderen Datenquellen nehmen wir nicht vor.
           </p>
         </section>
 
         <section class="mb-10">
-          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">
-            4. Google Analytics 4
-          </h2>
+          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">4. Kontaktaufnahme</h2>
+
+          <h3 class="font-display font-bold text-lg text-ink mt-8 mb-3">Kontaktformular</h3>
           <p class="text-bark leading-relaxed mb-4">
-            Diese Website benutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited ("Google"). Google Analytics verwendet sogenannte "Cookies", Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen.
+            Die Angaben aus dem Formular (Name, E-Mail-Adresse, optional Telefonnummer, gewünschte Leistung und Ihre Nachricht) verwenden wir, um Ihre Anfrage zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen), im Übrigen Art. 6 Abs. 1 lit. f DSGVO. Wir löschen die Daten, wenn die Anfrage erledigt ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
           </p>
           <p class="text-bark leading-relaxed mb-4">
-            Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Website, wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt.
+            Der Versand läuft über den Dienst Formspree (Formspree, Inc., USA), der die Formulardaten in unserem Auftrag verarbeitet und an uns weiterleitet. Dabei werden Daten in die USA übermittelt. Weitere Informationen:
+            <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">Datenschutzerklärung von Formspree</a>. Wenn Sie das nicht möchten, erreichen Sie uns telefonisch oder per E-Mail.
           </p>
+
+          <h3 class="font-display font-bold text-lg text-ink mt-8 mb-3">Telefon und E-Mail</h3>
           <p class="text-bark leading-relaxed mb-4">
-            <strong class="text-ink">Umfang der Datenverarbeitung:</strong>
+            Wenn Sie uns anrufen oder schreiben, verarbeiten wir Ihre Angaben zur Bearbeitung Ihres Anliegens auf denselben Rechtsgrundlagen. E-Mails an unsere Adresse laufen über den Weiterleitungsdienst von Cloudflare, Inc. (USA) und werden an unser Postfach weitergeleitet.
           </p>
-          <ul class="text-bark leading-relaxed list-disc pl-6 mb-4 marker:text-moss">
-            <li class="mb-1">Seitenaufrufe und Seitenaufenthaltsdauer</li>
-            <li class="mb-1">Klicks auf Elemente (WhatsApp-Button, Kontaktformular, Galerie, Service-Karten)</li>
-            <li class="mb-1">Scroll-Tiefe (25%, 50%, 75%, 100%)</li>
-            <li class="mb-1">Ausgehende Links (Outbound-Clicks)</li>
-            <li class="mb-1">Geräteinformationen (Browser, Betriebssystem, Bildschirmauflösung)</li>
-            <li class="mb-1">Standortdaten (anonymisiert auf Stadt-Ebene)</li>
-          </ul>
+
+          <h3 class="font-display font-bold text-lg text-ink mt-8 mb-3">WhatsApp</h3>
           <p class="text-bark leading-relaxed mb-4">
-            <strong class="text-ink">Rechtsgrundlage:</strong> Die Nutzung von Google Analytics erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der Analyse des Nutzerverhaltens, um sowohl sein Webangebot als auch seine Werbung zu optimieren.
-          </p>
-          <p class="text-bark leading-relaxed mb-4">
-            <strong class="text-ink">Widerspruchsmöglichkeit:</strong> Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren:
-            <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">
-              https://tools.google.com/dlpage/gaoptout
-            </a>
-          </p>
-          <p class="text-bark leading-relaxed mb-4">
-            Weitere Informationen zu Nutzungsbedingungen und Datenschutz finden Sie unter:
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">
-              https://policies.google.com/privacy
-            </a>
+            Unsere WhatsApp-Links sind einfache Links. Beim Laden unserer Seiten werden keine Daten an WhatsApp übertragen. Erst wenn Sie einen Link nutzen und uns schreiben, verarbeitet WhatsApp (WhatsApp Ireland Limited, Irland, Teil der Meta-Gruppe) die Daten nach eigenen Bestimmungen; eine Übermittlung in die USA ist möglich. Weitere Informationen:
+            <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">Datenschutzrichtlinie von WhatsApp</a>.
           </p>
         </section>
 
         <section class="mb-10">
-          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">
-            5. Google Fonts
-          </h2>
+          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">5. Schriftarten und externe Links</h2>
           <p class="text-bark leading-relaxed mb-4">
-            Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
-          </p>
-          <p class="text-bark leading-relaxed mb-4">
-            Weitere Informationen zu Google Fonts finden Sie unter:
-            <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">
-              https://developers.google.com/fonts/faq
-            </a>
+            Die Schriftarten liegen auf unserem eigenen Webspace. Beim Seitenaufruf wird keine Verbindung zu Google Fonts aufgebaut. Links zu Google Maps oder Google-Rezensionen sind einfache Links; Daten fließen erst, wenn Sie den Link anklicken.
           </p>
         </section>
 
         <section class="mb-10">
-          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">
-            6. Ihre Rechte
-          </h2>
-          <p class="text-bark leading-relaxed mb-4">
-            Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
-          </p>
-          <ul class="text-bark leading-relaxed list-disc pl-6 mb-4 marker:text-moss">
-            <li class="mb-1"><strong class="text-ink">Recht auf Auskunft:</strong> Sie haben das Recht, Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen.</li>
-            <li class="mb-1"><strong class="text-ink">Recht auf Berichtigung:</strong> Sie haben das Recht, unverzüglich die Berichtigung unrichtiger oder die Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
-            <li class="mb-1"><strong class="text-ink">Recht auf Löschung:</strong> Sie haben das Recht, die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</li>
-            <li class="mb-1"><strong class="text-ink">Recht auf Einschränkung:</strong> Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-            <li class="mb-1"><strong class="text-ink">Recht auf Datenübertragbarkeit:</strong> Sie haben das Recht, Ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.</li>
-            <li class="mb-1"><strong class="text-ink">Widerspruchsrecht:</strong> Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen.</li>
-          </ul>
+          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">6. Cookies und Webanalyse</h2>
+          {analyticsEnabled ? (
+            <>
+              <p class="text-bark leading-relaxed mb-4">
+                Google Analytics 4 (Google Ireland Limited, Irland) wird nur geladen, wenn Sie über das Banner zustimmen. Dann werden Cookies gesetzt und Nutzungsdaten wie aufgerufene Seiten, Klicks auf Telefon- und WhatsApp-Links, Formularversand, Geräteinformationen und der ungefähre Standort verarbeitet. Eine Übermittlung an Google LLC in den USA ist möglich; Google ist unter dem EU-US Data Privacy Framework zertifiziert.
+              </p>
+              <p class="text-bark leading-relaxed mb-4">
+                Rechtsgrundlage ist Ihre Einwilligung (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO). Ihre Entscheidung speichern wir im lokalen Speicher Ihres Browsers (§ 25 Abs. 2 Nr. 2 TDDDG). Sie können die Einwilligung jederzeit über „Cookie-Einstellungen“ im Footer mit Wirkung für die Zukunft widerrufen. Weitere Informationen:
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">Datenschutzerklärung von Google</a>.
+              </p>
+            </>
+          ) : (
+            <p class="text-bark leading-relaxed mb-4">
+              Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste.
+            </p>
+          )}
         </section>
 
         <section class="mb-10">
-          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">
-            7. WhatsApp Business
-          </h2>
+          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">7. Ihre Rechte</h2>
           <p class="text-bark leading-relaxed mb-4">
-            Wir bieten die Möglichkeit der Kontaktaufnahme über WhatsApp an. Wenn Sie uns über WhatsApp kontaktieren, werden Ihre Daten über die WhatsApp-Server von Meta Platforms Ireland Limited übertragen und verarbeitet.
+            Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18) und Datenübertragbarkeit (Art. 20). Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3).
           </p>
           <p class="text-bark leading-relaxed mb-4">
-            Weitere Informationen finden Sie in der Datenschutzerklärung von WhatsApp:
-            <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">
-              https://www.whatsapp.com/legal/privacy-policy
-            </a>
+            <strong class="text-ink">Widerspruchsrecht (Art. 21 DSGVO):</strong> Soweit wir Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeiten, können Sie aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit widersprechen.
+          </p>
+          <p class="text-bark leading-relaxed mb-4">
+            Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren (Art. 77 DSGVO), zum Beispiel beim Landesbeauftragten für den Datenschutz und die Informationsfreiheit Baden-Württemberg.
+          </p>
+          <p class="text-bark leading-relaxed mb-4">
+            Sie sind nicht verpflichtet, uns Daten bereitzustellen. Ohne die Pflichtangaben im Formular können wir Ihre Anfrage dort jedoch nicht bearbeiten. Eine automatisierte Entscheidungsfindung findet nicht statt.
           </p>
         </section>
 
         <section class="mb-10">
-          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">
-            8. Änderungen dieser Datenschutzerklärung
-          </h2>
+          <h2 class="font-display font-bold text-xl text-ink mt-10 mb-4">8. Änderungen dieser Datenschutzerklärung</h2>
           <p class="text-bark leading-relaxed">
-            Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.
+            Wir passen diese Erklärung an, wenn sich die Website oder die rechtlichen Anforderungen ändern.
           </p>
         </section>
 
         <div class="mt-12 p-6 bg-stone rounded-lg border-l-4 border-marker">
           <p class="text-bark leading-relaxed">
-            <strong class="text-ink">Stand:</strong> Februar 2026<br>
+            <strong class="text-ink">Stand:</strong> Oktober 2026<br>
             Bei Fragen zum Datenschutz kontaktieren Sie uns bitte unter:
-            <a href="mailto:info.gartenbauzm@gmx.de" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">info.gartenbauzm@gmx.de</a>
+            <a href="mailto:info@gartenbauzm.de" class="text-moss underline underline-offset-2 hover:text-pine transition-colors">info@gartenbauzm.de</a>
           </p>
         </div>
 

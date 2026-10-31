@@ -2,35 +2,20 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gartenbauzm.de/" },
-    { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://gartenbauzm.de/leistungen/" },
-    { "@type": "ListItem", "position": 3, "name": "Rollrasen verlegen", "item": "https://gartenbauzm.de/leistungen/rollrasen/" }
-  ]
-};
+import { serviceArea } from '../../data/business';
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Rollrasen verlegen",
   "description": "Rollrasen verlegen in Ludwigsburg, Stuttgart & Region. Professionelle Verlegung für sofort nutzbaren, dichten Rasen. Beratung & Pflege-Tipps.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Gartenbau Z.M.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Remseck am Neckar", "addressRegion": "Baden-Württemberg", "addressCountry": "DE" },
-    "telephone": "+491782747470",
-    "url": "https://gartenbauzm.de"
-  },
-  "areaServed": ["Ludwigsburg", "Stuttgart", "Remseck am Neckar", "Waiblingen", "Fellbach", "Kornwestheim", "Esslingen", "Leonberg", "Böblingen", "Sindelfingen", "Bietigheim-Bissingen", "Korntal-Münchingen"]
+  "provider": { "@id": "https://gartenbauzm.de/#business" },
+  "areaServed": serviceArea
 };
 
 const faqs = [
   { question: "Wie pflege ich Rollrasen nach der Verlegung?", answer: "In den ersten zwei Wochen nach der Verlegung ist tägliches Wässern entscheidend. Der Boden sollte stets gleichmäßig feucht sein, idealerweise morgens und abends je 10-15 Minuten beregnen. Nach etwa 10 bis 14 Tagen hat der Rasen angewurzelt und kann zum ersten Mal auf ca. 4 cm gemäht werden. Ab der dritten Woche reicht Bewässerung alle 2-3 Tage. Eine Startdüngung empfehlen wir bereits bei der Verlegung." },
-  { question: "Was kostet Rollrasen verlegen in Ludwigsburg und Stuttgart?", answer: "Die Gesamtkosten setzen sich aus Materialkosten für den Rollrasen (ca. 5-8 Euro pro Quadratmeter) und den Verlegekosten zusammen. Hinzu kommen bei Bedarf Kosten für Bodenvorbereitung und Altrasenabtrag. Für ein durchschnittliches Projekt mit 100 m² kalkulieren Sie inklusive Bodenvorbereitung und Verlegung mit 1.500 bis 2.500 Euro. Wir erstellen Ihnen gerne ein individuelles Festpreis-Angebot." },
+  { question: "Was kostet Rollrasen verlegen in Ludwigsburg und Stuttgart?", answer: "Der Preis hängt von Fläche, Material, Unterbau und Zugänglichkeit des Grundstücks ab. Pauschalpreise wären deshalb unseriös: Nach dem kostenlosen Aufmaß vor Ort erhalten Sie ein schriftliches Angebot mit allen Positionen." },
   { question: "Wann ist die beste Zeit, Rollrasen zu verlegen?", answer: "Rollrasen kann grundsätzlich von März bis November verlegt werden, solange der Boden frostfrei ist. Die besten Ergebnisse erzielen Sie im Frühjahr (April/Mai) und im Herbst (September/Oktober), wenn die Temperaturen moderat sind und ausreichend Niederschlag fällt. Im Hochsommer ist eine Verlegung ebenfalls möglich, erfordert jedoch deutlich intensivere Bewässerung." },
   { question: "Wie lange dauert die Verlegung von Rollrasen?", answer: "Die reine Verlegung geht schnell: Eine Fläche von 100 m² ist in der Regel innerhalb eines Arbeitstages verlegt. Die Bodenvorbereitung — Altrasenabtrag, Erdaustausch oder Bodenverbesserung — kann je nach Zustand 1 bis 2 zusätzliche Tage beanspruchen. Insgesamt sollten Sie für ein typisches Projekt 2 bis 3 Werktage einplanen." },
   { question: "Kann ich Rollrasen auf alten Rasen verlegen?", answer: "Nein, eine direkte Verlegung auf alten Rasen ist nicht empfehlenswert. Der alte Rasen muss zunächst entfernt werden, damit der Rollrasen direkten Bodenkontakt hat und sicher anwurzeln kann. Wir entfernen den Altrasen maschinell, lockern den Unterboden auf, gleichen Unebenheiten aus und bringen bei Bedarf frischen Mutterboden auf — so wird ein optimales Ergebnis garantiert." }
@@ -61,7 +46,7 @@ const checklist = [
 <MainLayout
   title="Rollrasen verlegen Ludwigsburg, Stuttgart & Region | Gartenbau Z.M."
   description="Rollrasen verlegen in Ludwigsburg, Stuttgart & Region. Professionelle Verlegung für sofort nutzbaren, dichten Rasen. Beratung & Pflege-Tipps."
-  ogImage="/img/image_40.webp"
+  ogImage="/img/image_164.webp"
 >
   <Header />
 
@@ -72,7 +57,7 @@ const checklist = [
         <ol class="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/50">
           <li><a href="/" class="hover:text-marker transition-colors">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="/leistungen" class="hover:text-marker transition-colors">Leistungen</a></li>
+          <li><a href="/leistungen/" class="hover:text-marker transition-colors">Leistungen</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white/80">Rollrasen</li>
         </ol>
@@ -92,7 +77,7 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Rollrasen vom Profi — sofort grün</h2>
         </div>
         <p class="mt-6 text-bark leading-relaxed">
-          Ein dichter, sattgrüner Rasen ist der Traum vieler Gartenbesitzer. Mit Rollrasen wird dieser Traum innerhalb weniger Stunden Realität. Gartenbau Z.M. verlegt hochwertigen Rollrasen in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und der gesamten Region — fachgerecht, termingenau und zu einem fairen Festpreis.
+          Ein dichter, sattgrüner Rasen ist der Traum vieler Gartenbesitzer. Mit Rollrasen wird dieser Traum innerhalb weniger Stunden Realität. Gartenbau Z.M. verlegt hochwertigen Rollrasen in Ludwigsburg, Stuttgart, Kornwestheim, Waiblingen und der gesamten Region — fachgerecht und zu einem fairen Preis.
         </p>
 
         <h3 class="font-display font-bold text-2xl text-ink mt-10" style="font-stretch: 110%;">Gründliche Bodenvorbereitung</h3>
@@ -138,9 +123,9 @@ const checklist = [
           <h2 class="font-display font-extrabold uppercase text-3xl md:text-4xl text-ink mt-5" style="font-stretch: 118%;">Beispiele unserer Arbeit</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          <img src="/img/image_40.webp" alt="Rollrasen-Verlegung auf vorbereiteter Fläche in Stuttgart" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
-          <img src="/img/image_45.webp" alt="Frisch verlegter Rollrasen in einem Garten in Ludwigsburg" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
-          <img src="/img/projekt-rasen-fertig.webp" alt="Frisch gepflegter Rasen mit Sichtschutz — Rollrasen-Projekt" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
+          <img src="/img/optimized/image_164-sm.webp" alt="Rollrasen wird Bahn für Bahn auf dem vorbereiteten Boden verlegt" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" />
+          <img src="/img/optimized/image_167-sm.webp" alt="Fertig verlegter Rollrasen im Garten mit Hecke und Pflasterweg" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 80ms" />
+          <img src="/img/optimized/image_159-sm.webp" alt="Planierter Boden als Vorbereitung für den Rollrasen" class="rounded-lg border border-line w-full h-64 object-cover reveal" loading="lazy" style="transition-delay: 160ms" />
         </div>
       </div>
     </section>
@@ -181,7 +166,6 @@ const checklist = [
   </main>
 
   <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </MainLayout>
